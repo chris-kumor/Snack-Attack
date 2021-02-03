@@ -4,7 +4,16 @@ using UnityEngine;
 
 public class BossController : MonoBehaviour
 {
-   // private Physics2DRaycaster BossLOS;
+    private Rigidbody2D BossRB2D;
+    public GameObject BossLOS;
+    public GameObject BossLOSDir;
+    public  GameObject Prey;
+    public float angular_speed;
+    Vector3 screenPoint;
+    public float BossVelocity;
+
+
+
     // Start is called before the first frame update
     void Start()
     {
