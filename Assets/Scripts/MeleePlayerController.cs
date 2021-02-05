@@ -25,17 +25,17 @@ public class MeleePlayerController : MonoBehaviour
     {
         //Movement
         MeleePlayerAnimation.Play("Idle", PlayMode.StopSameLayer);
-        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
+        if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
         {
-            MeleePlayerAnimation.CrossFade("Run",0.3f, PlayMode.StopSameLayer);
+            //MeleePlayerAnimation.CrossFade("Run",0.3f, PlayMode.StopSameLayer);
             //Movement
-            if(Input.GetKey(KeyCode.W))
+            if(Input.GetAxis("Vertical") > 0)
             {
-                if(Input.GetKey(KeyCode.A))
+                if(Input.GetAxis("Horizontal") < 0)
                 {
                     MeleeRB2D.AddForce(new Vector2(-speed, speed));
                 }
-                else if(Input.GetKey(KeyCode.D))
+                else if(Input.GetAxis("Horizontal") > 0)
                 {
                     MeleeRB2D.AddForce(new Vector2(speed, speed));
                 }
@@ -46,13 +46,13 @@ public class MeleePlayerController : MonoBehaviour
             
                 
             }
-            else if(Input.GetKey(KeyCode.S))
+            else if(Input.GetAxis("Vertical") < 0)
             {
-                if(Input.GetKey(KeyCode.A))
+                if(Input.GetAxis("Horizontal") < 0)
                 {
                     MeleeRB2D.AddForce(new Vector2(-speed, -speed));
                 }
-                else if(Input.GetKey(KeyCode.D))
+                if(Input.GetAxis("Horizontal") > 0)
                 {
                     MeleeRB2D.AddForce(new Vector2(speed, -speed));
                 }
