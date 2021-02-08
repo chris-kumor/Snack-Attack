@@ -15,7 +15,6 @@ public class MeleePlayerController : MonoBehaviour
     public string fireKey = "space";
     private Rigidbody2D MeleeRB2D;
     private Transform pos;
-    private Animation MeleePlayerAnimation;
     private Vector2 MoveDir;
    
 
@@ -23,7 +22,6 @@ public class MeleePlayerController : MonoBehaviour
     void Start()
     {
         MeleeRB2D = gameObject.GetComponent<Rigidbody2D>();
-        MeleePlayerAnimation = gameObject.GetComponent<Animation>();
         pos = gameObject.GetComponent<Transform>();
 
         MoveDir = new Vector2(0, 0);
@@ -34,20 +32,18 @@ public class MeleePlayerController : MonoBehaviour
     void Update()
     {
         //Movement
-        MeleePlayerAnimation.Play("Idle", PlayMode.StopSameLayer);
+
         if (Input.GetAxis(haxis) != 0 || Input.GetAxis(vaxis) != 0)
         {
             //MeleePlayerAnimation.CrossFade("Run",0.3f, PlayMode.StopSameLayer);
             //Movement
 
-            MoveDir = new Vector2(Input.GetAxis(haxis), Input.GetAxis(vaxis));
-            MoveDir.Normalize();
+            MoveDir = (new Vector2(Input.GetAxis(haxis), Input.GetAxis(vaxis))).Normalize();
             MeleeRB2D.velocity = MoveDir * speed;
         }
         else
         {
             MeleeRB2D.velocity *= 0;
-            MeleePlayerAnimation.CrossFade("Idle", 0.3f, PlayMode.StopSameLayer);
         }
 
         // Attacking
@@ -56,6 +52,8 @@ public class MeleePlayerController : MonoBehaviour
             Vector3 atkPos = new Vector3(pos.position.x + MoveDir.x * atkDistance, pos.position.y + MoveDir.y * atkDistance, pos.position.z);
             GameObject atk = Instantiate(attack, atkPos, pos.rotation);
             atk.transform.right = new Vector3(MoveDir.x, MoveDir.y, 0);
+            
+
             atk = null;
         }
         
