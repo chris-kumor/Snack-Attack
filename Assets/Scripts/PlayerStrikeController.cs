@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerStrikeController : MonoBehaviour
 {
-    public float timer = 0.0001f;
+    public float timer;
     public Vector2 angle;
     private Rigidbody2D rb;
     private Transform pos;

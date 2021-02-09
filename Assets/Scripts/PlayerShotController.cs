@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class PlayerShotController : MonoBehaviour
 {
-    public float speed = 15;
+    public float timer;
+    public float speed;
     public Vector2 angle;
     private Rigidbody2D rb;
     private Transform pos;
@@ -21,5 +22,11 @@ public class PlayerShotController : MonoBehaviour
     void Update()
     {
         rb.velocity = angle * speed;
+
+        if (timer < 0)
+        {
+            Destroy(gameObject);
+        }
+        timer -= Time.deltaTime;
     }
 }
