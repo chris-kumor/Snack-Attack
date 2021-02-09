@@ -6,7 +6,7 @@ public class PlayerShotController : MonoBehaviour
 {
     public float timer;
     public float speed;
-    public Vector2 angle;
+    private Vector2 angle;
     private Rigidbody2D rb;
     private Transform pos;
 
@@ -16,6 +16,11 @@ public class PlayerShotController : MonoBehaviour
         rb = gameObject.GetComponent<Rigidbody2D>();
         pos = gameObject.GetComponent<Transform>();
         angle = new Vector2(pos.right.x, pos.right.y);
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        Destroy(gameObject);
     }
 
     // Update is called once per frame
@@ -29,4 +34,6 @@ public class PlayerShotController : MonoBehaviour
         }
         timer -= Time.deltaTime;
     }
+
+ 
 }

@@ -67,7 +67,7 @@ public class PlayerController : MonoBehaviour
         // Attacking
         if(Input.GetKeyDown(fireKey))
         {
-            Debug.Log(canFire);
+           // Debug.Log(canFire);
             Vector3 atkPos = new Vector3(pos.position.x + MoveDir.x * atkDistance, pos.position.y + MoveDir.y * atkDistance, pos.position.z);
             if(attack.tag == "Projectile"  && canFire == true)
             {

@@ -2613,7 +2613,6 @@ GameObject:
   - component: {fileID: 519420030}
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
-  - component: {fileID: 519420032}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2692,18 +2691,6 @@ Camera:
   m_OcclusionCulling: 0
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!114 &519420032
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 519420028}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec6dd01ff31648644b2f9ab0806d6a59, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &549147849
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2817,7 +2804,7 @@ GameObject:
   - component: {fileID: 769219662}
   - component: {fileID: 769219656}
   - component: {fileID: 769219661}
-  - component: {fileID: 769219660}
+  - component: {fileID: 769219658}
   - component: {fileID: 769219657}
   m_Layer: 12
   m_Name: Boss
@@ -2892,8 +2879,9 @@ MonoBehaviour:
   BossLOS: {fileID: 34439245}
   Preylabel: MeleePlayer
   BossVelocity: 5
---- !u!60 &769219660
-PolygonCollider2D:
+  HP: 100
+--- !u!61 &769219658
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -2903,9 +2891,9 @@ PolygonCollider2D:
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_UsedByEffector: 1
-  m_UsedByComposite: 1
-  m_Offset: {x: 0, y: 0}
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.00060242787, y: -0.0038391724}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -2915,14 +2903,9 @@ PolygonCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: -0.055, y: 0.03}
-      - {x: -0.050053652, y: 0.009913333}
-      - {x: -0.005, y: -0.04}
-      - {x: 0.007846372, y: -0.0330497}
-      - {x: 0.055, y: 0}
-      - {x: 0.047839947, y: 0.0233491}
+  serializedVersion: 2
+  m_Size: {x: 0.10317784, y: 0.059733167}
+  m_EdgeRadius: 0
 --- !u!50 &769219661
 Rigidbody2D:
   serializedVersion: 4
@@ -2942,7 +2925,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!224 &769219662
 RectTransform:

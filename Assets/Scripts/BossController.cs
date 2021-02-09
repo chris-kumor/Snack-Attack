@@ -9,6 +9,7 @@ public class BossController : MonoBehaviour
     public  string Preylabel;
     public float BossVelocity;
     GameObject Prey;
+    public int HP;
 
 
 
@@ -28,7 +29,7 @@ public class BossController : MonoBehaviour
         {
             BossRB2D.angularVelocity = 0.0f;
             float distance = Vector2.Distance(BossRB2D.transform.position, Prey.transform.position);
-            Debug.Log(distance);
+            //Debug.Log(distance);
             if( distance > 2.00f)
             {
                
@@ -48,5 +49,14 @@ public class BossController : MonoBehaviour
             
         }
         
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.collider.tag == "Projectile" || collision.collider.tag == "MeleeStrike")
+        {
+            this.HP -= 1;
+            Debug.Log("The Bosses health is now " + this.HP + ".");
+        }
     }
 }
