@@ -17,9 +17,12 @@ public class PlayerController : MonoBehaviour
     private Transform pos;
     private Vector2 MoveDir;
     public float projectileCoolDown;
-    private float timer;
+    private float projectileTimer;
     public bool canFire;
     private GameObject GameView;
+    private SpriteRenderer Player_Sprite;
+    private int playerHP;
+
 
 
     GameObject Attack(GameObject Atk, Vector3 atkPos, Quaternion ProjectileRotation)
@@ -27,6 +30,27 @@ public class PlayerController : MonoBehaviour
         GameObject atk = Instantiate(attack, atkPos, pos.rotation);
         atk.transform.right = new Vector3(MoveDir.x, MoveDir.y, 0);
         return atk;
+    }
+
+    public int GetPlayerHP()
+    {
+        return playerHP;
+    }
+
+    public void ChangeHealth(int amnt, string operation)
+    {
+        if(operation == "+")
+        {
+            this.playerHP += amnt;
+        }
+        else if(operation == "-")
+        {
+            this.playerHP -= amnt;
+        }
+        if(this.playerHP>100)
+        {
+            this.playerHP = 100;
+        }
     }
    
 
@@ -36,35 +60,20 @@ public class PlayerController : MonoBehaviour
         PlayerRB2D = gameObject.GetComponent<Rigidbody2D>();
         pos = gameObject.GetComponent<Transform>();
         MoveDir = new Vector2(0, 0);
-        timer = projectileCoolDown;
+        projectileTimer = projectileCoolDown;
         GameView = GameObject.FindWithTag("MainCamera");
+        playerHP = 100;
 
     }
 
-    // Update is called once per frame
     void Update()
     {
-        //Movement
-        if (Input.GetAxis(haxis) != 0 || Input.GetAxis(vaxis) != 0)
+        //Health Check
+        if(playerHP <= 0)
         {
-           
-            //Movement
-            MoveDir = new Vector2(Input.GetAxis(haxis), Input.GetAxis(vaxis));
-            MoveDir.Normalize();
-            PlayerRB2D.velocity = MoveDir * speed * Time.deltaTime;
+            Destroy(gameObject);
         }
-        else
-        {
-            PlayerRB2D.velocity *= 0;
-        }
-
-        if (timer < 0 && canFire == false)
-        {
-            canFire = true;
-            timer = projectileCoolDown;
-        }
-        timer -= Time.deltaTime;
-
+    
         // Attacking
         if(Input.GetKeyDown(fireKey))
         {
@@ -84,8 +93,30 @@ public class PlayerController : MonoBehaviour
  
         }
 
-        
-        
+    }
+
+    // Update is called once per x frame
+    void FixedUpdate()
+    {
+
+        //Movement
+        if (Input.GetAxis(haxis) != 0 || Input.GetAxis(vaxis) != 0)
+        {
+            MoveDir = new Vector2(Input.GetAxis(haxis), Input.GetAxis(vaxis));
+            MoveDir.Normalize();
+            PlayerRB2D.MovePosition(PlayerRB2D.transform.position + ((Vector3)MoveDir * speed * Time.deltaTime));
+        }
+        else
+        {
+            PlayerRB2D.velocity *= 0;
+        }
+
+        if (projectileTimer < 0 && canFire == false)
+        {
+            canFire = true;
+            projectileTimer = projectileCoolDown;
+        }
+        projectileTimer -= Time.deltaTime;
     }
 
 

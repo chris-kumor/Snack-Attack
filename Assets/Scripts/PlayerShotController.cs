@@ -18,21 +18,26 @@ public class PlayerShotController : MonoBehaviour
         angle = new Vector2(pos.right.x, pos.right.y);
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        Destroy(gameObject);
-    }
-
-    // Update is called once per frame
     void Update()
     {
-        rb.velocity = angle * speed;
-
+        
         if (timer < 0)
         {
             Destroy(gameObject);
         }
         timer -= Time.deltaTime;
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        Destroy(gameObject);
+    }
+
+
+    void FixedUpdate()
+    {
+        rb.velocity = angle * speed * Time.deltaTime;
+
     }
 
  
