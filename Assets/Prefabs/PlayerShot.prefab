@@ -145,5 +145,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timer: 5
-  speed: 10
-  angle: {x: 0, y: 0}
+  speed: 80
