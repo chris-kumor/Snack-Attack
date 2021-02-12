@@ -7,18 +7,20 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour  
 {
+
+        
+        
+ 
+
     public float speed;
-    public GameObject attack;
-    public float atkDistance;
+    public AtkStruct[] attacks;
     public string vaxis;
     public string haxis;
-    public string fireKey;
+   
     private Rigidbody2D PlayerRB2D;
     private Transform pos;
     private Vector2 MoveDir;
-    public float projectileCoolDown;
-    private float projectileTimer;
-    public bool canFire;
+
     private GameObject GameView;
     private SpriteRenderer Player_Sprite;
     private int playerHP;
@@ -27,7 +29,7 @@ public class PlayerController : MonoBehaviour
 
     GameObject Attack(GameObject Atk, Vector3 atkPos, Quaternion ProjectileRotation)
     {
-        GameObject atk = Instantiate(attack, atkPos, pos.rotation);
+        GameObject atk = Instantiate(Atk, atkPos, pos.rotation);
         atk.transform.right = new Vector3(MoveDir.x, MoveDir.y, 0);
         return atk;
     }
@@ -60,7 +62,8 @@ public class PlayerController : MonoBehaviour
         PlayerRB2D = gameObject.GetComponent<Rigidbody2D>();
         pos = gameObject.GetComponent<Transform>();
         MoveDir = new Vector2(0, 0);
-        projectileTimer = projectileCoolDown;
+        for (int i = 0; i < attacks.Length; i++)
+            attacks[i].cooldownTimer = attacks[i].cooldown;
         GameView = GameObject.FindWithTag("MainCamera");
         playerHP = 100;
 
@@ -73,26 +76,26 @@ public class PlayerController : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    
-        // Attacking
-        if(Input.GetKeyDown(fireKey))
-        {
-           // Debug.Log(canFire);
-            Vector3 atkPos = new Vector3(pos.position.x + MoveDir.x * atkDistance * Time.deltaTime, pos.position.y + MoveDir.y * atkDistance *Time.deltaTime, pos.position.z*Time.deltaTime);
-            if(attack.tag == "Projectile"  && canFire == true)
-            {
-                GameObject atk = Attack(attack, atkPos, pos.rotation);
-                atk = null;
-                canFire = false;
-            }
-            else if( attack.tag == "MeleeStrike")
-            {
-                GameObject atk = Attack(attack, atkPos, pos.rotation);
-                atk = null;
-            }
- 
-        }
 
+        // Attacking
+        for (int i = 0; i < attacks.Length; i++)
+        {
+            if (Input.GetKeyDown(attacks[i].fireKey) && attacks[i].canFire)
+            {
+                // Debug.Log(a.canFire);
+                Vector3 atkPos = new Vector3(pos.position.x + MoveDir.x * attacks[i].atkDistance * Time.deltaTime, pos.position.y + MoveDir.y * attacks[i].atkDistance * Time.deltaTime, pos.position.z * Time.deltaTime);
+                
+                    GameObject atk = Attack(attacks[i].atkObj, atkPos, pos.rotation);
+                    atk = null;
+                attacks[i].canFire = false;
+            }
+            if (attacks[i].cooldownTimer < 0 && attacks[i].canFire == false)
+            {
+                attacks[i].canFire = true;
+                attacks[i].cooldownTimer = attacks[i].cooldown;
+            }
+            attacks[i].cooldownTimer -= Time.deltaTime;
+        }
     }
 
     // Update is called once per x frame
@@ -111,12 +114,8 @@ public class PlayerController : MonoBehaviour
             PlayerRB2D.velocity *= 0;
         }
 
-        if (projectileTimer < 0 && canFire == false)
-        {
-            canFire = true;
-            projectileTimer = projectileCoolDown;
-        }
-        projectileTimer -= Time.deltaTime;
+        
+        
     }
 
 
