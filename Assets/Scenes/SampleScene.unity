@@ -165,7 +165,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 31.163834
+  field of view: 147.30122
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -199,7 +199,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
   m_AnchorMin: {x: 0.49873984, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.0082, y: -0.097}
+  m_AnchoredPosition: {x: -0.0082, y: -0.1236}
   m_SizeDelta: {x: 99.99991, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &480467227
@@ -229,7 +229,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 480467227}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.002, y: -0.022, z: 0}
+  m_LocalPosition: {x: 0.002, y: -0.022, z: 1}
   m_LocalScale: {x: 1.0018018, y: 1.0258013, z: 1}
   m_Children: []
   m_Father: {fileID: 1111105086}
@@ -2907,6 +2907,7 @@ MonoBehaviour:
   BossVelocity: 5
   HP: 100
   speed: 5
+  angularSpeed: 3
 --- !u!61 &769219658
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2961,17 +2962,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 769219655}
-  m_LocalRotation: {x: -0, y: -0, z: -0.7013711, w: 0.7127964}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 35.4645, y: 36.112423, z: 40}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.1}
+  m_LocalScale: {x: 20, y: 20, z: 1}
   m_Children:
   - {fileID: 34439247}
   m_Father: {fileID: 0}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -89.074}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 4.99, y: 1.93}
+  m_AnchoredPosition: {x: 3.44, y: 1.79}
   m_SizeDelta: {x: 0.2, y: 0.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1111105084
