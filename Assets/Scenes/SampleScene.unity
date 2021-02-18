@@ -2908,6 +2908,7 @@ MonoBehaviour:
   HP: 100
   speed: 5
   angularSpeed: 3
+  oscilationScale: 0.1
 --- !u!61 &769219658
 BoxCollider2D:
   m_ObjectHideFlags: 0

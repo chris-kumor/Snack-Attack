@@ -12,12 +12,15 @@ public class BossController : MonoBehaviour
     public int HP;
     public int speed;
     public float angularSpeed;
+    Vector3 BossOGPos; 
+    float timer = 5.00f; 
 
     // Start is called before the first frame update
     void Start()
     {
         BossRB2D = gameObject.GetComponent<Rigidbody2D>();
         Prey = GameObject.FindWithTag(Preylabel);
+        BossOGPos = BossRB2D.transform.position;
     
     }
     void Update()
@@ -50,6 +53,7 @@ public class BossController : MonoBehaviour
                     BossRB2D.angularVelocity = 0.0f;
                 }
             }
+            /*
             else
             {
                 BossRB2D.velocity = new Vector2(0.0f, 0.0f);
@@ -57,6 +61,33 @@ public class BossController : MonoBehaviour
                 float singleStep = angularSpeed * Time.deltaTime;
                 Vector3 lookDir = Vector3.RotateTowards(gameObject.transform.position, preyDirection, singleStep, 0.0f);
                 BossRB2D.MoveRotation(Quaternion.LookRotation(lookDir, Vector3.forward));
+            }*/
+            else
+            {
+               
+               BossRB2D.angularVelocity = 0.0f;
+               
+               float oscillationWithTrig = Mathf.Sin(Time.time)*0.01f;
+               BossRB2D.transform.position = BossRB2D.transform.position + new Vector3 (oscillationWithTrig, 0.0f , 0.0f);
+
+               
+               float oscillationWithModulus = (Mathf.Pow(2, Time.time) % 7)*0.01f;
+               if(timer > 0.0f )
+               {
+                BossRB2D.transform.position = BossRB2D.transform.position + new Vector3 (oscillationWithModulus, 0.0f , 0.0f);
+
+                }
+                else if(timer >= (-5.00f))
+                {
+                    BossRB2D.transform.position = BossRB2D.transform.position - new Vector3 (oscillationWithModulus, 0.0f , 0.0f);
+                }
+                else
+                {
+                    timer = 5.00f;
+                }
+                
+                timer -= Time.deltaTime;
+                Debug.Log(timer);
             }
         }
         
