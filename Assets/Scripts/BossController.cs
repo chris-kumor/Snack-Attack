@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class BossController : MonoBehaviour
 {
     private Rigidbody2D BossRB2D;
@@ -13,7 +14,9 @@ public class BossController : MonoBehaviour
     public int speed;
     public float angularSpeed;
     Vector3 BossOGPos; 
-    float timer = 5.00f; 
+    //float timer = 5.00f; 
+    public PlayerController BossAttack;
+    public AtkStruct[] attacks;
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +24,7 @@ public class BossController : MonoBehaviour
         BossRB2D = gameObject.GetComponent<Rigidbody2D>();
         Prey = GameObject.FindWithTag(Preylabel);
         BossOGPos = BossRB2D.transform.position;
+        
     
     }
     void Update()
@@ -51,9 +55,17 @@ public class BossController : MonoBehaviour
                 {
                     BossRB2D.velocity = new Vector2(0.0f, 0.0f);
                     BossRB2D.angularVelocity = 0.0f;
+                    BossAttack.Attack(attacks[0].atkObj, Prey.transform.position, BossRB2D.transform.rotation);
+                    attacks[0].canFire = false;
+                    if (attacks[0].cooldownTimer < 0 && attacks[0].canFire == false)
+                    {
+                        attacks[0].canFire = true;
+                        attacks[0].cooldownTimer = attacks[0].cooldown;
+                    }
+                    attacks[0].cooldownTimer -= Time.deltaTime;
                 }
             }
-            /*
+            
             else
             {
                 BossRB2D.velocity = new Vector2(0.0f, 0.0f);
@@ -61,8 +73,8 @@ public class BossController : MonoBehaviour
                 float singleStep = angularSpeed * Time.deltaTime;
                 Vector3 lookDir = Vector3.RotateTowards(gameObject.transform.position, preyDirection, singleStep, 0.0f);
                 BossRB2D.MoveRotation(Quaternion.LookRotation(lookDir, Vector3.forward));
-            }*/
-            else
+            }
+            /*else
             {
                
                BossRB2D.angularVelocity = 0.0f;
@@ -88,7 +100,7 @@ public class BossController : MonoBehaviour
                 
                 timer -= Time.deltaTime;
                 Debug.Log(timer);
-            }
+            }*/
         }
         
     }
@@ -103,7 +115,7 @@ public class BossController : MonoBehaviour
         }
         else if (collision.gameObject.layer == 9 || collision.gameObject.layer == 11 )
         {
-            collision.gameObject.GetComponent<PlayerController>().ChangeHealth(5, "-");
+            collision.gameObject.GetComponent<PlayerController>().ChangeHealth(1, "-");
             Debug.Log(collision.gameObject.name + " has " + collision.gameObject.GetComponent<PlayerController>().GetPlayerHP() + " health.");
         }
 

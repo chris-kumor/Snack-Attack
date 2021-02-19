@@ -27,10 +27,10 @@ public class PlayerController : MonoBehaviour
 
 
 
-    GameObject Attack(GameObject Atk, Vector3 atkPos, Quaternion ProjectileRotation)
+    public GameObject Attack(GameObject Atk, Vector3 atkPos, Quaternion ProjectileRotation)
     {
-        GameObject atk = Instantiate(Atk, atkPos, pos.rotation);
-        atk.transform.right = new Vector3(MoveDir.x, MoveDir.y, 0);
+        GameObject atk = Instantiate(Atk, atkPos, ProjectileRotation);
+        atk.transform.right = new Vector3(MoveDir.x, MoveDir.y, 0.0f);
         return atk;
     }
 
@@ -82,11 +82,10 @@ public class PlayerController : MonoBehaviour
         {
             if (Input.GetKeyDown(attacks[i].fireKey) && attacks[i].canFire)
             {
-                // Debug.Log(a.canFire);
-                Vector3 atkPos = new Vector3(pos.position.x + MoveDir.x * attacks[i].atkDistance * Time.deltaTime, pos.position.y + MoveDir.y * attacks[i].atkDistance * Time.deltaTime, pos.position.z * Time.deltaTime);
                 
-                    GameObject atk = Attack(attacks[i].atkObj, atkPos, pos.rotation);
-                    atk = null;
+                Vector3 atkPos = new Vector3(pos.position.x + MoveDir.x * attacks[i].atkDistance * Time.deltaTime, pos.position.y + MoveDir.y * attacks[i].atkDistance * Time.deltaTime, pos.position.z * Time.deltaTime);
+                GameObject atk = Attack(attacks[i].atkObj, atkPos, pos.rotation);
+                atk = null;
                 attacks[i].canFire = false;
             }
             if (attacks[i].cooldownTimer < 0 && attacks[i].canFire == false)
