@@ -24,6 +24,7 @@ public class BossController : MonoBehaviour
         BossRB2D = gameObject.GetComponent<Rigidbody2D>();
         Prey = GameObject.FindWithTag(Preylabel);
         BossOGPos = BossRB2D.transform.position;
+        attacks[0].cooldownTimer = attacks[0].cooldown;
         
     
     }
@@ -57,6 +58,7 @@ public class BossController : MonoBehaviour
                     BossRB2D.angularVelocity = 0.0f;
                     BossAttack.Attack(attacks[0].atkObj, Prey.transform.position, BossRB2D.transform.rotation);
                     attacks[0].canFire = false;
+
                     if (attacks[0].cooldownTimer < 0 && attacks[0].canFire == false)
                     {
                         attacks[0].canFire = true;

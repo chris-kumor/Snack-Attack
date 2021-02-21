@@ -77,24 +77,7 @@ public class PlayerController : MonoBehaviour
             Destroy(gameObject);
         }
 
-        // Attacking
-        for (int i = 0; i < attacks.Length; i++)
-        {
-            if (Input.GetKeyDown(attacks[i].fireKey) && attacks[i].canFire)
-            {
-                
-                Vector3 atkPos = new Vector3(pos.position.x + MoveDir.x * attacks[i].atkDistance * Time.deltaTime, pos.position.y + MoveDir.y * attacks[i].atkDistance * Time.deltaTime, pos.position.z * Time.deltaTime);
-                GameObject atk = Attack(attacks[i].atkObj, atkPos, pos.rotation);
-                atk = null;
-                attacks[i].canFire = false;
-            }
-            if (attacks[i].cooldownTimer < 0 && attacks[i].canFire == false)
-            {
-                attacks[i].canFire = true;
-                attacks[i].cooldownTimer = attacks[i].cooldown;
-            }
-            attacks[i].cooldownTimer -= Time.deltaTime;
-        }
+
     }
 
     // Update is called once per x frame
@@ -113,6 +96,24 @@ public class PlayerController : MonoBehaviour
             PlayerRB2D.velocity *= 0;
         }
 
+                // Attacking
+        for (int i = 0; i < attacks.Length; i++)
+        {
+            if (Input.GetKeyDown(attacks[i].fireKey) && attacks[i].canFire)
+            {
+                
+                Vector3 atkPos = new Vector3(pos.position.x + MoveDir.x * attacks[i].atkDistance * Time.deltaTime, pos.position.y + MoveDir.y * attacks[i].atkDistance * Time.deltaTime, pos.position.z * Time.deltaTime);
+                GameObject atk = Attack(attacks[i].atkObj, atkPos, pos.rotation);
+                atk = null;
+                attacks[i].canFire = false;
+            }
+            if (attacks[i].cooldownTimer < 0 && attacks[i].canFire == false)
+            {
+                attacks[i].canFire = true;
+                attacks[i].cooldownTimer = attacks[i].cooldown;
+            }
+            attacks[i].cooldownTimer -= Time.deltaTime;
+        
         
         
     }
