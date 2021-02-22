@@ -11,4 +11,5 @@ public class AtkStruct : ScriptableObject
     public float cooldown;
     public bool canFire;
     public float atkDistance;
+
 }

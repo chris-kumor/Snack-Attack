@@ -7,11 +7,6 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour  
 {
-
-        
-        
- 
-
     public float speed;
     public AtkStruct[] attacks;
     public string vaxis;
@@ -27,10 +22,9 @@ public class PlayerController : MonoBehaviour
 
 
 
-    GameObject Attack(GameObject Atk, Vector3 atkPos, Quaternion ProjectileRotation)
+    public static GameObject Attack(GameObject Atk, Vector3 atkPos, Quaternion ProjectileRotation)
     {
-        GameObject atk = Instantiate(Atk, atkPos, pos.rotation);
-        atk.transform.right = new Vector3(MoveDir.x, MoveDir.y, 0);
+        GameObject atk = Instantiate(Atk, atkPos, ProjectileRotation);
         return atk;
     }
 
@@ -86,15 +80,18 @@ public class PlayerController : MonoBehaviour
                 Vector3 atkPos = new Vector3(pos.position.x + MoveDir.x * attacks[i].atkDistance * Time.deltaTime, pos.position.y + MoveDir.y * attacks[i].atkDistance * Time.deltaTime, pos.position.z * Time.deltaTime);
                 
                     GameObject atk = Attack(attacks[i].atkObj, atkPos, pos.rotation);
+                    atk.transform.right = new Vector3(MoveDir.x, MoveDir.y, 0);
                     atk = null;
                 attacks[i].canFire = false;
             }
+            
             if (attacks[i].cooldownTimer < 0 && attacks[i].canFire == false)
             {
                 attacks[i].canFire = true;
                 attacks[i].cooldownTimer = attacks[i].cooldown;
             }
             attacks[i].cooldownTimer -= Time.deltaTime;
+            
         }
     }
 
