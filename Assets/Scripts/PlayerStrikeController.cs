@@ -26,4 +26,14 @@ public class PlayerStrikeController : MonoBehaviour
         }
         timer -= Time.deltaTime;
     }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log(gameObject.name);
+        if(collision.gameObject.layer == 9 && gameObject.name == "BossAttack(Clone)")
+        {
+            Debug.Log("This is the Boss basic attack damaging a player.");
+            collision.gameObject.GetComponent<PlayerController>().ChangeHealth(1,"-");
+        }
+    }
 }
