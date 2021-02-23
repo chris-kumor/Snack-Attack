@@ -56,6 +56,7 @@ public class BossController : MonoBehaviour
                     attacks[0].canFire = false;
                 }
             }
+            /*
             else
             {
                 BossRB2D.velocity = new Vector2(0.0f, 0.0f);
@@ -63,8 +64,8 @@ public class BossController : MonoBehaviour
                 float singleStep = angularSpeed * Time.deltaTime;
                 Vector3 lookDir = Vector3.RotateTowards(gameObject.transform.position, preyDirection, singleStep, 0.0f);
                 BossRB2D.MoveRotation(Quaternion.LookRotation(lookDir, Vector3.forward));
-            }
-            
+
+            */              
         }
 
         if (attacks[0].cooldownTimer < 0 && attacks[0].canFire == false)
@@ -81,7 +82,7 @@ public class BossController : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.collider.tag == "Projectile" || collision.collider.tag == "MeleePlayer")
+        if(collision.collider.tag == "Projectile" || collision.collider.tag == "MeleeStrike")
         {
             this.HP -= 1;
             //Debug.Log("The Bosses health is now " + this.HP + ".");

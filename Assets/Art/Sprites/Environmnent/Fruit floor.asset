@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: FloorBricksToGrassSquare6
+  m_Name: Fruit floor
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 21300012, guid: 7f66f11c22105f54d83df1487efd7d2f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f3181627614199b4db3bfb8ae87f2e94, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
