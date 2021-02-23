@@ -9,6 +9,7 @@ TagManager:
   - Projectile
   - MeleeStrike
   - Boss
+  - Shield
   layers:
   - Default
   - TransparentFX
@@ -24,7 +25,7 @@ TagManager:
   - Player Bound
   - Boss
   - Attack
-  - 
+  - Shield
   - 
   - 
   - 

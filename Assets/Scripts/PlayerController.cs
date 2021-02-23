@@ -76,7 +76,7 @@ public class PlayerController : MonoBehaviour
         {
             if (Input.GetKeyDown(attacks[i].fireKey) && attacks[i].canFire)
             {
-                // Debug.Log(a.canFire);
+                
                 Vector3 atkPos = new Vector3(pos.position.x + MoveDir.x * attacks[i].atkDistance * Time.deltaTime, pos.position.y + MoveDir.y * attacks[i].atkDistance * Time.deltaTime, pos.position.z * Time.deltaTime);
                 
                     GameObject atk = Attack(attacks[i].atkObj, atkPos, pos.rotation);

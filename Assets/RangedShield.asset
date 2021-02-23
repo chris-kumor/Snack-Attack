@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: da701d0cff681f94284035bc6e36094a, type: 3}
-  m_Name: BossBasicAttk
+  m_Name: RangedShield
   m_EditorClassIdentifier: 
-  fireKey: 
-  atkObj: {fileID: 2850220669115589231, guid: 466ccf8b43b955b48b37f0251024e70e, type: 3}
-  cooldownTimer: 10
+  fireKey: u
+  atkObj: {fileID: 6156330715000639679, guid: bbc5b83438c3eb94faada6e98a22e01d, type: 3}
+  cooldownTimer: 0
   cooldown: 10
-  canFire: 0
-  atkDistance: 1.5
+  canFire: 1
+  atkDistance: 0
