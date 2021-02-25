@@ -9,6 +9,7 @@ public class PlayerStrikeController : MonoBehaviour
     private PolygonCollider2D AttkCollider;
     private GameObject MeleePlayer;
     private GameObject RangedPlayer;
+    private Rigidbody2D rb;
     
 
 
@@ -19,6 +20,7 @@ public class PlayerStrikeController : MonoBehaviour
         AttkCollider = gameObject.GetComponent<PolygonCollider2D>();
         MeleePlayer = GameObject.FindWithTag("MeleePlayer");
         RangedPlayer = GameObject.FindWithTag("RangedPlayer");
+        rb = gameObject.GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -42,5 +44,6 @@ public class PlayerStrikeController : MonoBehaviour
         {
             gameObject.transform.position = RangedPlayer.transform.position;
         }
+         rb.transform.rotation = Quaternion.AngleAxis(0, Vector3.up); 
     }
 }

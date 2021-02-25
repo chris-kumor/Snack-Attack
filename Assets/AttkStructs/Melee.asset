@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da701d0cff681f94284035bc6e36094a, type: 3}
   m_Name: Melee
   m_EditorClassIdentifier: 
-  fireKey: f
+  fireKey: Fire1.1
   atkObj: {fileID: 6622493913580591306, guid: 09cc03701db9d544983b55d3da430729, type: 3}
-  cooldownTimer: -10.409816
+  cooldownTimer: 0.5505197
   cooldown: 1
-  canFire: 1
+  canFire: 0
   atkDistance: 3
   damage: 2.5
