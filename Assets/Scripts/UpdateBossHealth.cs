@@ -20,7 +20,7 @@ public class UpdateBossHealth : MonoBehaviour
     {
         if(Boss != null)
         {
-            BossHealthBar.fillAmount = (float) (Boss.GetComponent<BossController>().HP)/100;
+            BossHealthBar.fillAmount = (Boss.GetComponent<BossController>().GetHP()/Boss.GetComponent<BossController>().MaxHP);
         }
     }
 }

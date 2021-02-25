@@ -5,22 +5,20 @@ using UnityEngine;
 public class PlayerStrikeController : MonoBehaviour
 {
     public float timer;
-    public Vector2 angle;
-    private Rigidbody2D rb;
-    private Transform pos;
+    public AtkStruct attack;
     private PolygonCollider2D AttkCollider;
     private GameObject MeleePlayer;
     private GameObject RangedPlayer;
+    
+
 
     // Start is called before the first frame update
     void Start()
     {
-        rb = gameObject.GetComponent<Rigidbody2D>();
-        pos = gameObject.GetComponent<Transform>();
+
         AttkCollider = gameObject.GetComponent<PolygonCollider2D>();
         MeleePlayer = GameObject.FindWithTag("MeleePlayer");
         RangedPlayer = GameObject.FindWithTag("RangedPlayer");
-        angle = new Vector2(pos.right.x, pos.right.y);
     }
 
     // Update is called once per frame
@@ -35,23 +33,14 @@ public class PlayerStrikeController : MonoBehaviour
 
     void Update()
     {
+        
         if(gameObject.tag == "Shield" && AttkCollider.bounds.Contains(MeleePlayer.transform.position))
         {
             gameObject.transform.position = MeleePlayer.transform.position;
         }
-        else if(gameObject.tag == "Shield" && AttkCollider.bounds.Contains(RangedPlayer.transform.position))
+        if(gameObject.tag == "Shield" && AttkCollider.bounds.Contains(RangedPlayer.transform.position))
         {
-            gameObject.transform.position = MeleePlayer.transform.position;
-        }
-    }
-
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        Debug.Log(gameObject.name);
-        if(collision.gameObject.layer == 9 && gameObject.name == "BossAttack(Clone)")
-        {
-            Debug.Log("This is the Boss basic attack damaging a player.");
-            collision.gameObject.GetComponent<PlayerController>().ChangeHealth(1,"-");
+            gameObject.transform.position = RangedPlayer.transform.position;
         }
     }
 }

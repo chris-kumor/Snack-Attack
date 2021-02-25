@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: da701d0cff681f94284035bc6e36094a, type: 3}
-  m_Name: MeleeShield
+  m_Name: BossLightAttack
   m_EditorClassIdentifier: 
-  fireKey: q
-  atkObj: {fileID: 6156330715000639679, guid: bbc5b83438c3eb94faada6e98a22e01d, type: 3}
-  cooldownTimer: 6.665208
+  fireKey: 
+  atkObj: {fileID: 4223610722966919070, guid: c197d6c692f008347899be8548440d25, type: 3}
+  cooldownTimer: -66.18095
   cooldown: 10
   canFire: 1
-  atkDistance: 0
+  atkDistance: 30
+  damage: 10

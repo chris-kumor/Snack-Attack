@@ -22,6 +22,12 @@ public class WinningCondition : MonoBehaviour
     {
         if(Boss == null || (MeleePlayer == null && RangedPlayer == null))
         {
+            if(Boss == null)
+            {
+                GameStats.isBossAlive = false;
+            }
+            else
+                GameStats.isBossAlive = true;
             SceneManager.LoadScene("Results", LoadSceneMode.Single);
         }
     }

@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: da701d0cff681f94284035bc6e36094a, type: 3}
-  m_Name: Range
+  m_Name: RangedShield
   m_EditorClassIdentifier: 
-  fireKey: space
-  atkObj: {fileID: 6868449655810605895, guid: 3de2e6b0015f7f349b7bfea1f3e547f4, type: 3}
-  cooldownTimer: -3.6954484
-  cooldown: 1
+  fireKey: u
+  atkObj: {fileID: 6156330715000639679, guid: bbc5b83438c3eb94faada6e98a22e01d, type: 3}
+  cooldownTimer: -6.4097905
+  cooldown: 5
   canFire: 1
-  atkDistance: 0.5
+  atkDistance: 0
+  damage: 0

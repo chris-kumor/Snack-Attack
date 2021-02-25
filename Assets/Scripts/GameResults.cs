@@ -8,7 +8,7 @@ public class GameResults : MonoBehaviour
 {
    
     public Text GameResult;
-    int MeleePlayerDamage, RangedPlayerDamage;
+    float MeleePlayerDamage, RangedPlayerDamage;
     public Text PlayersDamageText;
     // Start is called before the first frame update
     public void Awake()
@@ -22,18 +22,16 @@ public class GameResults : MonoBehaviour
     public void Start()
     {
         Cursor.visible = true;
-        //Debug.Log("Bandits had " + BanditsGold);
-        //Debug.Log("Guards had " + GuardsGold);
-        if(!(GameStats.isBossAlive))
-        {
-            GameResult.text = "The players have emerged victorious!";
-        }
-        else if(GameStats.isBossAlive)
+        if(GameStats.isBossAlive)
         {
             GameResult.text = "The players were defeated.";
         }
+        else
+        {
+            GameResult.text = "The players have emerged victorious!";
+        }
 
-        PlayersDamageText.text = "Melee Player Damage: " + GameStats.MeleeDamage + "/n" + "Ranged Player Damage: " + GameStats.RangedDamage;
+        PlayersDamageText.text = "Melee Player Damage: " + GameStats.MeleeDamage + "    Ranged Player Damage: " + GameStats.RangedDamage;
 
     }
     public void Update()

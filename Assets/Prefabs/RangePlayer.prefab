@@ -85,7 +85,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6213613206703919252}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.52, y: -2.12, z: -0.1}
+  m_LocalPosition: {x: 6.52, y: -2.12, z: 1}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0}
   m_Children:
   - {fileID: 6213613206666823570}
@@ -224,8 +224,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 4
-  attack: {fileID: 6868449655810605895, guid: 3de2e6b0015f7f349b7bfea1f3e547f4, type: 3}
-  atkDistance: 1
+  MaxHP: 100
+  attacks:
+  - {fileID: 11400000, guid: 01d06c9cf477bc441a1cb14bf216aac1, type: 2}
+  - {fileID: 11400000, guid: d7bc9ee8a7eb7664eacbe814a8ab879d, type: 2}
+  - {fileID: 11400000, guid: cf151b69febf1f74bb2b998a02087d40, type: 2}
   vaxis: Vertical2
   haxis: Horizontal2
-  fireKey: space

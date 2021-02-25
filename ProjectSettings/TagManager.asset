@@ -10,6 +10,8 @@ TagManager:
   - MeleeStrike
   - Boss
   - Shield
+  - BossMeleeAtk
+  - BossRangeAttk
   layers:
   - Default
   - TransparentFX
@@ -46,4 +48,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: 
+    uniqueID: 950921489
+    locked: 0
+  - name: 
+    uniqueID: 1798551471
     locked: 0

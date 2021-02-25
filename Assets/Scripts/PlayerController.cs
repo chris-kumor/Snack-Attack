@@ -4,69 +4,61 @@ using UnityEngine;
 
 
 
-
 public class PlayerController : MonoBehaviour  
 {
     public float speed;
+    public float MaxHP;
     public AtkStruct[] attacks;
     public string vaxis;
     public string haxis;
-   
+    
     private Rigidbody2D PlayerRB2D;
     private Transform pos;
     private Vector2 MoveDir;
-
-    private GameObject GameView;
     private SpriteRenderer Player_Sprite;
-    private int playerHP;
+    private float playerHP;
+    
+  
+    
 
 
 
-    public static GameObject Attack(GameObject Atk, Vector3 atkPos, Quaternion ProjectileRotation)
+    public static GameObject Attack(GameObject Atk, Vector3 weaponPos, Vector3 targetDir, float atkDistance, Quaternion ProjectileRotation)
     {
+        Vector3 atkPos = new Vector3(weaponPos.x + targetDir.x * atkDistance * Time.deltaTime, weaponPos.y + targetDir.y * atkDistance * Time.deltaTime, 1.00f);
         GameObject atk = Instantiate(Atk, atkPos, ProjectileRotation);
         return atk;
     }
 
-    public int GetPlayerHP()
+    public float GetPlayerHP()
     {
-        return playerHP;
+        return this.playerHP;
     }
 
-    public void ChangeHealth(int amnt, string operation)
+    void enableIdleSprite()
     {
-        if(operation == "+")
-        {
-            this.playerHP += amnt;
-        }
-        else if(operation == "-")
-        {
-            this.playerHP -= amnt;
-        }
-        if(this.playerHP>100)
-        {
-            this.playerHP = 100;
-        }
+        Player_Sprite.enabled = true;
     }
-   
+
 
     // Start is called before the first frame update
     void Start()
     {
         PlayerRB2D = gameObject.GetComponent<Rigidbody2D>();
+        Player_Sprite = gameObject.GetComponent<SpriteRenderer>();
         pos = gameObject.GetComponent<Transform>();
         MoveDir = new Vector2(0, 0);
         for (int i = 0; i < attacks.Length; i++)
             attacks[i].cooldownTimer = attacks[i].cooldown;
-        GameView = GameObject.FindWithTag("MainCamera");
-        playerHP = 100;
+        this.playerHP = MaxHP;
+        
 
     }
 
     void Update()
     {
         //Health Check
-        if(playerHP <= 0)
+        if(this.playerHP <= 0)
         {
             Destroy(gameObject);
         }
@@ -77,12 +69,16 @@ public class PlayerController : MonoBehaviour
             if (Input.GetKeyDown(attacks[i].fireKey) && attacks[i].canFire)
             {
                 
-                Vector3 atkPos = new Vector3(pos.position.x + MoveDir.x * attacks[i].atkDistance * Time.deltaTime, pos.position.y + MoveDir.y * attacks[i].atkDistance * Time.deltaTime, pos.position.z * Time.deltaTime);
-                
-                    GameObject atk = Attack(attacks[i].atkObj, atkPos, pos.rotation);
-                    atk.transform.right = new Vector3(MoveDir.x, MoveDir.y, 0);
-                    atk = null;
+                if(gameObject.tag == "MeleePlayer")
+                {
+                    Player_Sprite.enabled = false;
+                }
+                GameObject atk = Attack(attacks[i].atkObj, pos.position, MoveDir,attacks[i].atkDistance, pos.rotation);
+                atk.transform.right = new Vector3(MoveDir.x, MoveDir.y, 1.00f);
+                atk = null;
                 attacks[i].canFire = false;
+                Invoke("enableIdleSprite",  0.3f);
+                
             }
             
             if (attacks[i].cooldownTimer < 0 && attacks[i].canFire == false)
@@ -104,7 +100,7 @@ public class PlayerController : MonoBehaviour
         {
             MoveDir = new Vector2(Input.GetAxis(haxis), Input.GetAxis(vaxis));
             MoveDir.Normalize();
-            PlayerRB2D.MovePosition(PlayerRB2D.transform.position + ((Vector3)MoveDir * speed * Time.deltaTime));
+            PlayerRB2D.MovePosition(PlayerRB2D.transform.position + (new Vector3(MoveDir.x,MoveDir.y, 1.00f)  * speed * Time.deltaTime));
         }
         else
         {
@@ -112,7 +108,18 @@ public class PlayerController : MonoBehaviour
         }
 
         
-        
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.collider.gameObject.tag == "BossMeleeAtk")
+        {
+            this.playerHP -= collision.collider.gameObject.GetComponent<PlayerStrikeController>().attack.damage;
+        }
+        else if(collision.collider.gameObject.tag == "BossRangeAtk")
+        {
+            this.playerHP -= collision.collider.gameObject.GetComponent<PlayerShotController>().attack.damage;
+        }
     }
 
 

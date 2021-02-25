@@ -7,8 +7,8 @@ using UnityEngine;
 
 public static class GameStats
 {
-    public static int MeleeDamage;
-    public static int RangedDamage;
+    public static float MeleeDamage;
+    public static float RangedDamage;
 
     public static bool isBossAlive;
     

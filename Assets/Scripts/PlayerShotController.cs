@@ -6,6 +6,7 @@ public class PlayerShotController : MonoBehaviour
 {
     public float timer;
     public float speed;
+    public AtkStruct attack;
     private Vector2 angle;
     private Rigidbody2D rb;
     private Transform pos;
@@ -37,7 +38,9 @@ public class PlayerShotController : MonoBehaviour
 
     void FixedUpdate()
     {
+
         rb.velocity = angle * speed * Time.deltaTime;
+        rb.transform.rotation = Quaternion.AngleAxis(0, Vector3.up);     
 
     }
 
