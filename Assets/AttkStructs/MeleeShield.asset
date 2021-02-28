@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da701d0cff681f94284035bc6e36094a, type: 3}
   m_Name: MeleeShield
   m_EditorClassIdentifier: 
-  fireKey: Fire1.3
+  fireKey: joystick 1 button 2
   atkObj: {fileID: 6156330715000639679, guid: bbc5b83438c3eb94faada6e98a22e01d, type: 3}
-  cooldownTimer: -30.788942
+  cooldownTimer: 5
   cooldown: 5
   canFire: 1
   atkDistance: 0

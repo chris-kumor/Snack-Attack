@@ -12,6 +12,7 @@ TagManager:
   - Shield
   - BossMeleeAtk
   - BossRangeAttk
+  - minion
   layers:
   - Default
   - TransparentFX

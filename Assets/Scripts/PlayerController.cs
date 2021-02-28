@@ -66,7 +66,7 @@ public class PlayerController : MonoBehaviour
         // Attacking
         for (int i = 0; i < attacks.Length; i++)
         {
-            if(Input.GetAxis(attacks[i].fireKey) != 0 && attacks[i].canFire)
+            if(Input.GetKeyDown(attacks[i].fireKey) && attacks[i].canFire)
             {
                 
                 if(gameObject.tag == "MeleePlayer")

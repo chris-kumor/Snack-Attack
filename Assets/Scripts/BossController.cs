@@ -83,14 +83,13 @@ public class BossController : MonoBehaviour
             
             else
             {
-                BossRB2D.velocity = new Vector2(0.0f, 0.0f);
-                /*
+                /*BossRB2D.velocity = new Vector2(0.0f, 0.0f);
                 Vector3 preyDirection =  Prey.transform.position -  gameObject.transform.position; 
                 float singleStep = angularSpeed * Time.deltaTime;
                 Vector3 lookDir = Vector3.RotateTowards(gameObject.transform.position, preyDirection, singleStep, 0.0f);
                 BossRB2D.MoveRotation(Quaternion.LookRotation(lookDir, Vector3.forward));
-                */
-
+                BossRB2D.transform.rotation = Quaternion.AngleAxis(0, Vector3.up); 
+                BossRB2D.transform.rotation = Quaternion.AngleAxis(0, Vector3.right);*/
             }             
         }
         else

@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da701d0cff681f94284035bc6e36094a, type: 3}
   m_Name: MeleeHvy
   m_EditorClassIdentifier: 
-  fireKey: Fire1.2
+  fireKey: joystick 1 button 1
   atkObj: {fileID: 6622493913580591306, guid: c223c011012b10d4abc182fee70d033b, type: 3}
-  cooldownTimer: -5.116658
+  cooldownTimer: 2
   cooldown: 2
   canFire: 1
   atkDistance: 8

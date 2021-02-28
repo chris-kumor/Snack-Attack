@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da701d0cff681f94284035bc6e36094a, type: 3}
   m_Name: RangeHvy
   m_EditorClassIdentifier: 
-  fireKey: 
+  fireKey: joystick 2 button 1
   atkObj: {fileID: 6868449655810605895, guid: 80a5b3b863e6426478cd0ae93e789b87, type: 3}
-  cooldownTimer: 2
+  cooldownTimer: 1.5518519
   cooldown: 2
   canFire: 1
   atkDistance: 1
