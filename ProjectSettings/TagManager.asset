@@ -3,7 +3,17 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - MeleePlayer
+  - RangedPlayer
+  - Projectile
+  - MeleeStrike
+  - Boss
+  - Shield
+  - BossMeleeAtk
+  - BossRangeAttk
+  - minion
+  - PickUp
   layers:
   - Default
   - TransparentFX
@@ -17,10 +27,10 @@ TagManager:
   - Player
   - World Bounds
   - Player Bound
-  - 
-  - 
-  - 
-  - 
+  - Boss
+  - Attack
+  - Shield
+  - pickup
   - 
   - 
   - 
@@ -40,4 +50,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: 
+    uniqueID: 950921489
+    locked: 0
+  - name: 
+    uniqueID: 1798551471
     locked: 0
