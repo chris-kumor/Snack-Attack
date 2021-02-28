@@ -22,11 +22,7 @@ public class PlayerShotController : MonoBehaviour
     void Update()
     {
         
-        if (timer < 0)
-        {
-            Destroy(gameObject);
-        }
-        timer -= Time.deltaTime;
+
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -41,7 +37,11 @@ public class PlayerShotController : MonoBehaviour
 
         rb.velocity = angle * speed * Time.deltaTime;
         rb.transform.rotation = Quaternion.AngleAxis(0, Vector3.up);     
-
+        if (timer <= 0)
+        {
+            Destroy(gameObject);
+        }
+        timer -= Time.deltaTime;
     }
 
  

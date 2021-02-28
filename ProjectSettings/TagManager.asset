@@ -13,6 +13,7 @@ TagManager:
   - BossMeleeAtk
   - BossRangeAttk
   - minion
+  - PickUp
   layers:
   - Default
   - TransparentFX
@@ -29,7 +30,7 @@ TagManager:
   - Boss
   - Attack
   - Shield
-  - 
+  - pickup
   - 
   - 
   - 

@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 418212552927413186}
   - component: {fileID: 4546677212157810203}
-  - component: {fileID: 1063735180778755245}
   - component: {fileID: 2144223788612911548}
+  - component: {fileID: 1063735180778755245}
   - component: {fileID: -2001709200566580906}
   m_Layer: 12
   m_Name: MinionExplosion
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 6286601020115255354}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -85,6 +85,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!50 &2144223788612911548
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6286601020115255354}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!60 &1063735180778755245
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -195,27 +216,6 @@ PolygonCollider2D:
       - {x: 0.22, y: -1.255}
       - {x: 0.29999998, y: -1.175}
       - {x: 0.45, y: -1.165}
---- !u!50 &2144223788612911548
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6286601020115255354}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!114 &-2001709200566580906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -228,5 +228,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4697624afdf873c4785888a103b06774, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 0
+  timer: 0.1
   attack: {fileID: 11400000, guid: e46e69b677a3deb4e8160a4e21e81b1f, type: 2}

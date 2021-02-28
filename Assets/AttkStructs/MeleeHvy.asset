@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fireKey: joystick 1 button 1
   atkObj: {fileID: 6622493913580591306, guid: c223c011012b10d4abc182fee70d033b, type: 3}
-  cooldownTimer: 2
-  cooldown: 2
+  cooldownTimer: -10.549589
+  cooldown: 0.4
   canFire: 1
   atkDistance: 8
   damage: 5

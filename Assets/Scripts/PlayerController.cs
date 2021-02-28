@@ -11,12 +11,15 @@ public class PlayerController : MonoBehaviour
     public AtkStruct[] attacks;
     public string vaxis;
     public string haxis;
+    public AtkStruct shield;
     
     private Rigidbody2D PlayerRB2D;
     private Transform pos;
     private Vector2 MoveDir;
     private SpriteRenderer Player_Sprite;
     private float playerHP;
+    GameObject atk;
+    
     
   
     
@@ -51,15 +54,6 @@ public class PlayerController : MonoBehaviour
         for (int i = 0; i < attacks.Length; i++)
             attacks[i].cooldownTimer = attacks[i].cooldown;
         this.playerHP = MaxHP;
-        if(gameObject.tag == "MeleePlayer")
-        {
-            attacks[2].fireKey = "joystick 0 button 2";
-        }
-        else if(gameObject.tag == "RangedPlayer")
-        {
-            attacks[2].fireKey = "joystick 1 button 2";
-        }
-
     }
 
     void Update()
@@ -70,7 +64,7 @@ public class PlayerController : MonoBehaviour
             Destroy(gameObject);
         }
 
-        // Attacking
+                 // Attacking
         for (int i = 0; i < attacks.Length; i++)
         {
             if(Input.GetKeyDown(attacks[i].fireKey) && attacks[i].canFire)
@@ -80,22 +74,23 @@ public class PlayerController : MonoBehaviour
                 {
                     Player_Sprite.enabled = false;
                 }
-                GameObject atk = Attack(attacks[i].atkObj, pos.position, MoveDir,attacks[i].atkDistance, pos.rotation);
+                atk = Attack(attacks[i].atkObj, pos.position, MoveDir,attacks[i].atkDistance, pos.rotation);
                 atk.transform.right = new Vector3(MoveDir.x, MoveDir.y, 1.00f);
                 atk = null;
                 attacks[i].canFire = false;
                 Invoke("enableIdleSprite",  0.3f);
-                
             }
-            
+
+                        
             if (attacks[i].cooldownTimer < 0 && attacks[i].canFire == false)
             {
                 attacks[i].canFire = true;
                 attacks[i].cooldownTimer = attacks[i].cooldown;
             }
             attacks[i].cooldownTimer -= Time.deltaTime;
-            
         }
+
+    
     }
 
     // Update is called once per x frame
@@ -113,7 +108,6 @@ public class PlayerController : MonoBehaviour
         {
             PlayerRB2D.velocity *= 0;
         }
-
         
     }
 

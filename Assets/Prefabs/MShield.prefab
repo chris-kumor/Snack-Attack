@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 2372308625822999306}
   - component: {fileID: -6325051167227606448}
   - component: {fileID: 6485596041835259751}
-  - component: {fileID: 1734071260093755506}
+  - component: {fileID: -104842951852734741}
   m_Layer: 14
-  m_Name: Shield
+  m_Name: MShield
   m_TagString: Shield
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 11131626a7f163e45a916ebce9c40289, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.50980395}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -224,7 +224,7 @@ PolygonCollider2D:
       - {x: 0.31, y: -2.71}
       - {x: 0.39999998, y: -2.7}
       - {x: 0.58, y: -2.6699998}
---- !u!114 &1734071260093755506
+--- !u!114 &-104842951852734741
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -233,8 +233,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6156330715000639679}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4697624afdf873c4785888a103b06774, type: 3}
+  m_Script: {fileID: 11500000, guid: 3443f8c82ff5df34e9b4a16ce3b76aa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 5
-  attack: {fileID: 11400000, guid: 6cede604f983eb047832f1ad3910f36a, type: 2}
+  shield: {fileID: 11400000, guid: 9c8f35446e8da5447a6f2639c5578aef, type: 2}

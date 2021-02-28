@@ -34,10 +34,12 @@ public class AppleMinionCOntroller : MonoBehaviour
         FindPrey();
     }
 
-    // Update is called once per frame
+    
     void FixedUpdate()
     {
-        gameObject.transform.position = Vector3.Lerp(gameObject.transform.position, target.transform.position, (minionSpeed * Time.deltaTime));
+        
+            gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, target.transform.position, (minionSpeed * Time.deltaTime));
+    
     }
 
     void OnCollisionEnter2D(Collision2D collision)

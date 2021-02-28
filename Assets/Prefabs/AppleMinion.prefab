@@ -224,6 +224,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d479f673417c50245983682924bde7a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minionSpeed: 0.5
+  minionSpeed: 1
   attacks:
   - {fileID: 11400000, guid: e46e69b677a3deb4e8160a4e21e81b1f, type: 2}
