@@ -237,4 +237,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timer: 5
-  attack: {fileID: 0}
+  attack: {fileID: 11400000, guid: 6cede604f983eb047832f1ad3910f36a, type: 2}

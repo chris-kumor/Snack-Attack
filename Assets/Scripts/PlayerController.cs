@@ -51,7 +51,14 @@ public class PlayerController : MonoBehaviour
         for (int i = 0; i < attacks.Length; i++)
             attacks[i].cooldownTimer = attacks[i].cooldown;
         this.playerHP = MaxHP;
-        
+        if(gameObject.tag == "MeleePlayer")
+        {
+            attacks[2].fireKey = "joystick 0 button 2";
+        }
+        else if(gameObject.tag == "RangedPlayer")
+        {
+            attacks[2].fireKey = "joystick 1 button 2";
+        }
 
     }
 

@@ -2548,7 +2548,7 @@ PrefabInstance:
     - target: {fileID: 2767826942437489522, guid: 43b2008cd5d32c34292f8453ad4166d8, type: 3}
       propertyPath: attacks.Array.data[2]
       value: 
-      objectReference: {fileID: 11400000, guid: 6f4440d3eee1a5849b8f3bf2b71a170d, type: 2}
+      objectReference: {fileID: 11400000, guid: 6cede604f983eb047832f1ad3910f36a, type: 2}
     - target: {fileID: 2767826943954322217, guid: 43b2008cd5d32c34292f8453ad4166d8, type: 3}
       propertyPath: m_CollisionDetection
       value: 0
@@ -3461,7 +3461,7 @@ PrefabInstance:
     - target: {fileID: 6213613206703919253, guid: ec4e637f3110d184bbd269966d584422, type: 3}
       propertyPath: attacks.Array.data[2]
       value: 
-      objectReference: {fileID: 11400000, guid: cf151b69febf1f74bb2b998a02087d40, type: 2}
+      objectReference: {fileID: 11400000, guid: 6cede604f983eb047832f1ad3910f36a, type: 2}
     - target: {fileID: 6213613206703919257, guid: ec4e637f3110d184bbd269966d584422, type: 3}
       propertyPath: m_RootOrder
       value: 4
