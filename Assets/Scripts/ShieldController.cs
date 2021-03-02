@@ -6,9 +6,12 @@ using static PlayerController;
 public class ShieldController : MonoBehaviour
 {
     public AtkStruct shield;
+    public ProgressBar shieldBar;
+
     private Rigidbody2D rb;
     private SpriteRenderer shieldSprite;
     Color ShieldFullColor ;
+
     
     // Start is called before the first frame update
     void Start()
@@ -35,7 +38,7 @@ public class ShieldController : MonoBehaviour
             shieldSprite.enabled = false;
         }
 
-    
+        shieldBar.BarValue = (shield.cooldownTimer / shield.cooldown) * 100;
 
 
     }
