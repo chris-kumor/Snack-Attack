@@ -5,10 +5,16 @@ using UnityEngine.SceneManagement;
 
 public class LoadMainGame : MonoBehaviour
 {
-
+    void Play()
+    {
+         SceneManager.LoadScene("MainGame", LoadSceneMode.Single);
+    }
     public void LoadingMainScene()
     {
-        SceneManager.LoadScene("MainGame", LoadSceneMode.Single);
+        Invoke("Play", 1.0f);
     }
+
+
+
 }
 

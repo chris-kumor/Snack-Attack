@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2314242864049820127}
   - component: {fileID: 2314242864049820121}
   - component: {fileID: 2314242864049820124}
-  - component: {fileID: 2314242864049820123}
+  - component: {fileID: 9194101224564133552}
   - component: {fileID: 2314242864049820120}
   m_Layer: 12
   m_Name: Boss
@@ -29,7 +29,7 @@ RectTransform:
   m_GameObject: {fileID: 2314242864049820118}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 1}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children:
   - {fileID: 2314242864465890782}
   m_Father: {fileID: 0}
@@ -80,8 +80,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 1aa77fbb5344f834d8bbd03d69cc0d1e, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: d9682dd29e4a3334c9e456a21eac393e, type: 3}
+  m_Color: {r: 0.39607847, g: 0.39607847, b: 0.39607847, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -102,17 +102,17 @@ Rigidbody2D:
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 100
-  m_LinearDrag: 0.5
-  m_AngularDrag: 0.5
+  m_UseAutoMass: 1
+  m_Mass: 215.16006
+  m_LinearDrag: 10
+  m_AngularDrag: 10
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!60 &2314242864049820123
+--- !u!60 &9194101224564133552
 PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -129,7 +129,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 38.399998, y: 21.599998}
+    oldSize: {x: 8, y: 4.5}
     newSize: {x: 0.2, y: 0.2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -585,7 +585,7 @@ MonoBehaviour:
   BossVelocity: 1
   MaxHP: 400
   minDist: 10
-  angularSpeed: 3
+  angularSpeed: 10
   attacks:
   - {fileID: 11400000, guid: ca08b6abfc21fbf458bb12074309eb68, type: 2}
 --- !u!1 &2314242864465890781
@@ -621,8 +621,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.49873984, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -52.06861, y: -1.315}
-  m_SizeDelta: {x: 182.92278, y: 100}
+  m_AnchoredPosition: {x: 0.91567993, y: 0.9}
+  m_SizeDelta: {x: 231.09135, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!20 &2314242864465890780
 Camera:
@@ -640,18 +640,18 @@ Camera:
   m_FOVAxisMode: 1
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
-  m_FocalLength: 2.257973
+  m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 0.68
-    height: 0.15
+    width: 1
+    height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 158.68715
+  field of view: 173.60454
   orthographic: 1
-  orthographic size: 1.29
+  orthographic size: 5.23
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2

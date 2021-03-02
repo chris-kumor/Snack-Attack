@@ -18,15 +18,13 @@ public class BossController : MonoBehaviour
     public float angularSpeed;
     public AtkStruct[] attacks;
     private SpriteRenderer BossIdleSprite;
+    private Vector3 BossDir;
+    public LayerMask layerMask;
 
     public float GetHP()
     {
         return this.HP;
     }
-
-
-
-
     // Start is called before the first frame update
     void Start()
     {
@@ -34,6 +32,8 @@ public class BossController : MonoBehaviour
         BossIdleSprite = gameObject.GetComponent<SpriteRenderer>();
         Prey = GameObject.FindWithTag(Preylabel[0]);
         this.HP = MaxHP;
+        BossDir = new Vector3(Random.Range(-1.0f, 1.0f), Random.Range(-1.0f, 1.0f), 1.0f);
+        
     
     }
     void Update()
@@ -57,17 +57,13 @@ public class BossController : MonoBehaviour
 
         if(Prey != null)
         {
+            BossRB2D.velocity = BossDir * (angularSpeed*100) * Time.deltaTime;
             if(BossLOS.WorldToViewportPoint(Prey.transform.position).x > 0 && BossLOS.WorldToViewportPoint(Prey.transform.position).x < 1 &&BossLOS.WorldToViewportPoint(Prey.transform.position).y > 0 && BossLOS.WorldToViewportPoint(Prey.transform.position).y <1)
             {
                 BossRB2D.angularVelocity *= 0.0f;
                 float distance = Vector2.Distance(BossRB2D.transform.position, Prey.transform.position);
                 Vector3 PreyDir = (Prey.transform.position - BossRB2D.transform.position);
-                
-                if( distance > minDist)
-                {
-                    BossRB2D.transform.position = Vector3.Lerp(BossRB2D.transform.position, Prey.transform.position, (BossVelocity * Time.deltaTime));
-                }
-                else if( distance <= minDist && attacks[0].canFire == true)
+                if( distance <= minDist && attacks[0].canFire == true)
                 {
                     
                     Debug.Log(PreyDir);
@@ -80,17 +76,7 @@ public class BossController : MonoBehaviour
                     attacks[0].canFire = false; 
                 }
             }
-            
-            else
-            {
-                /*BossRB2D.velocity = new Vector2(0.0f, 0.0f);
-                Vector3 preyDirection =  Prey.transform.position -  gameObject.transform.position; 
-                float singleStep = angularSpeed * Time.deltaTime;
-                Vector3 lookDir = Vector3.RotateTowards(gameObject.transform.position, preyDirection, singleStep, 0.0f);
-                BossRB2D.MoveRotation(Quaternion.LookRotation(lookDir, Vector3.forward));
-                BossRB2D.transform.rotation = Quaternion.AngleAxis(0, Vector3.up); 
-                BossRB2D.transform.rotation = Quaternion.AngleAxis(0, Vector3.right);*/
-            }             
+                        
         }
         else
         {
@@ -115,12 +101,18 @@ public class BossController : MonoBehaviour
             if(collision.collider.gameObject.tag == "Projectile")
             {
                 this.HP -= collision.collider.gameObject.GetComponent<PlayerShotController>().attack.damage;
-                GameStats.RangedDamage += collision.collider.gameObject.GetComponent<PlayerShotController>().attack.damage;;
+                GameStats.RangedDamage += collision.collider.gameObject.GetComponent<PlayerShotController>().attack.damage;
             }
             else if(collision.collider.gameObject.tag == "MeleeStrike")
             {
                 this.HP -= collision.collider.gameObject.GetComponent<PlayerStrikeController>().attack.damage;
                 GameStats.MeleeDamage += collision.collider.gameObject.GetComponent<PlayerStrikeController>().attack.damage;
+            }
+            else if(collision.collider.gameObject.layer == 10)
+            {
+                
+                angularSpeed += 5.00f;
+
             }
      
 

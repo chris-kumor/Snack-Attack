@@ -11,11 +11,10 @@ public class PlayerController : MonoBehaviour
     public AtkStruct[] attacks;
     public string vaxis;
     public string haxis;
-    public AtkStruct shield;
-    
     private Rigidbody2D PlayerRB2D;
     private Transform pos;
     private Vector2 MoveDir;
+    public AtkStruct shield;
     private SpriteRenderer Player_Sprite;
     private float playerHP;
     GameObject atk;

@@ -44,6 +44,6 @@ public class PlayerStrikeController : MonoBehaviour
         {
             gameObject.transform.position = RangedPlayer.transform.position;
         }
-         rb.transform.rotation = Quaternion.AngleAxis(0, Vector3.up); 
+         //rb.transform.rotation = Quaternion.AngleAxis(0, Vector3.up); 
     }
 }

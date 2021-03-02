@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class QuitGame : MonoBehaviour
 {
-    // Start is called before the first frame update
-   public void Quit()
+    void Quit()
     {
         Application.Quit();
     }
+    public void QuitingGame()
+    {
+        Invoke("Quit", 1.0f);
+    }
+    // Start is called before the first frame update
+
 }
 
