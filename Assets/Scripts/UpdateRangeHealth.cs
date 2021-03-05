@@ -6,11 +6,11 @@ using UnityEngine.UI;
 public class UpdateRangeHealth : MonoBehaviour
 {
     private Image RangedPlayerHealthBar;
-    private GameObject RangedPlayer;
+    public GameObject RangedPlayer;
     // Start is called before the first frame update
     void Start()
     {
-        RangedPlayer = GameObject.FindWithTag("RangedPlayer");
+        
         RangedPlayerHealthBar = gameObject.GetComponent<Image>();
     }
 

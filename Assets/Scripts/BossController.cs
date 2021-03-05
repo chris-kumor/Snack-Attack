@@ -33,6 +33,7 @@ public class BossController : MonoBehaviour
         Prey = GameObject.FindWithTag(Preylabel[0]);
         this.HP = MaxHP;
         BossDir = new Vector3(Random.Range(-1.0f, 1.0f), Random.Range(-1.0f, 1.0f), 1.0f);
+        BossRB2D.velocity = BossDir * (angularSpeed*100) * Time.deltaTime;
         
     
     }
@@ -57,7 +58,7 @@ public class BossController : MonoBehaviour
 
         if(Prey != null)
         {
-            BossRB2D.velocity = BossDir * (angularSpeed*100) * Time.deltaTime;
+           
             if(BossLOS.WorldToViewportPoint(Prey.transform.position).x > 0 && BossLOS.WorldToViewportPoint(Prey.transform.position).x < 1 &&BossLOS.WorldToViewportPoint(Prey.transform.position).y > 0 && BossLOS.WorldToViewportPoint(Prey.transform.position).y <1)
             {
                 BossRB2D.angularVelocity *= 0.0f;
@@ -111,7 +112,6 @@ public class BossController : MonoBehaviour
             else if(collision.collider.gameObject.layer == 10)
             {
                 
-                angularSpeed += 5.00f;
 
             }
      

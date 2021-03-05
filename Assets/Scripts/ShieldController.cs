@@ -8,7 +8,8 @@ public class ShieldController : MonoBehaviour
     public AtkStruct shield;
     private Rigidbody2D rb;
     private SpriteRenderer shieldSprite;
-    Color ShieldFullColor ;
+    Color ShieldFullColor;
+    private PolygonCollider2D shieldCollider;
     
     // Start is called before the first frame update
     void Start()
@@ -16,6 +17,7 @@ public class ShieldController : MonoBehaviour
         
         rb = gameObject.GetComponent<Rigidbody2D>();
         shieldSprite = gameObject.GetComponent<SpriteRenderer>();
+        shieldCollider = gameObject.GetComponent<PolygonCollider2D>();
         shield.cooldownTimer = shield.cooldown;
         shield.canFire = true;
         ShieldFullColor = new Color(shieldSprite.color[0], shieldSprite.color[1], shieldSprite.color[2], 0.75f);
@@ -29,12 +31,13 @@ public class ShieldController : MonoBehaviour
         if(Input.GetKey(shield.fireKey) && shield.canFire && shield.cooldownTimer > 0)
         {
             shieldSprite.enabled = true;
+            shieldCollider.enabled = true;
         }
         else
         {
             shieldSprite.enabled = false;
+            shieldCollider.enabled = false;
         }
-
     
 
 
