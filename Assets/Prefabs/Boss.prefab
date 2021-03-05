@@ -103,7 +103,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 1
-  m_Mass: 452.38922
+  m_Mass: 12.566369
   m_LinearDrag: 10
   m_AngularDrag: 10
   m_GravityScale: 0
@@ -150,6 +150,7 @@ MonoBehaviour:
   angularSpeed: 10
   attacks:
   - {fileID: 11400000, guid: ca08b6abfc21fbf458bb12074309eb68, type: 2}
+  - {fileID: 11400000, guid: bbb0390deadc8c54fa30fac23ed69046, type: 2}
   layerMask:
     serializedVersion: 2
     m_Bits: 0

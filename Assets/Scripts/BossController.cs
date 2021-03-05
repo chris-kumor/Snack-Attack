@@ -58,12 +58,12 @@ public class BossController : MonoBehaviour
 
         if(Prey != null)
         {
-           
+           float distance = Vector2.Distance(BossRB2D.transform.position, Prey.transform.position);
+           Vector3 PreyDir = (Prey.transform.position - BossRB2D.transform.position);
             if(BossLOS.WorldToViewportPoint(Prey.transform.position).x > 0 && BossLOS.WorldToViewportPoint(Prey.transform.position).x < 1 &&BossLOS.WorldToViewportPoint(Prey.transform.position).y > 0 && BossLOS.WorldToViewportPoint(Prey.transform.position).y <1)
             {
                 BossRB2D.angularVelocity *= 0.0f;
-                float distance = Vector2.Distance(BossRB2D.transform.position, Prey.transform.position);
-                Vector3 PreyDir = (Prey.transform.position - BossRB2D.transform.position);
+                
                 if( distance <= minDist && attacks[0].canFire == true)
                 {
                     
@@ -76,21 +76,35 @@ public class BossController : MonoBehaviour
                     Invoke("enableIdleSprite", 0.35f);
                     attacks[0].canFire = false; 
                 }
+
+               
+
             }
-                        
+             int pickAtk = Random.Range(1, attacks.Length);
+                if (attacks[pickAtk].canFire == true)
+                {
+
+                    
+                    GameObject atk = PlayerController.Attack(attacks[pickAtk].atkObj, BossRB2D.transform.position, PreyDir, attacks[pickAtk].atkDistance, BossRB2D.transform.rotation);
+                    atk = null;
+                    
+                    attacks[pickAtk].canFire = false;
+                }            
         }
         else
         {
             Prey = GameObject.FindWithTag(Preylabel[1]);
         }
 
-        if (attacks[0].cooldownTimer < 0 && attacks[0].canFire == false)
+        for (int i = 0; i < attacks.Length; i++)
         {
-            attacks[0].canFire = true;
-            attacks[0].cooldownTimer = attacks[0].cooldown;
+            if (attacks[i].cooldownTimer < 0 && attacks[i].canFire == false)
+            {
+                attacks[i].canFire = true;
+                attacks[i].cooldownTimer = attacks[i].cooldown;
+            }
+            attacks[i].cooldownTimer -= Time.deltaTime;
         }
-        attacks[0].cooldownTimer -= Time.deltaTime;
-            
         
         
     }
