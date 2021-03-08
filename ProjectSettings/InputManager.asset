@@ -16,7 +16,7 @@ InputManager:
     gravity: 0
     dead: 0.1
     sensitivity: 1
-    snap: 1
+    snap: 0
     invert: 0
     type: 2
     axis: 0
@@ -32,7 +32,7 @@ InputManager:
     gravity: 0
     dead: 0.1
     sensitivity: 1
-    snap: 1
+    snap: 0
     invert: 1
     type: 2
     axis: 1
@@ -114,9 +114,9 @@ InputManager:
     sensitivity: 0.1
     snap: 0
     invert: 0
-    type: 1
+    type: 2
     axis: 0
-    joyNum: 0
+    joyNum: 1
   - serializedVersion: 3
     m_Name: Mouse Y
     descriptiveName: 
@@ -130,9 +130,9 @@ InputManager:
     sensitivity: 0.1
     snap: 0
     invert: 0
-    type: 1
+    type: 2
     axis: 1
-    joyNum: 0
+    joyNum: 1
   - serializedVersion: 3
     m_Name: Mouse ScrollWheel
     descriptiveName: 
@@ -158,8 +158,8 @@ InputManager:
     altNegativeButton: 
     altPositiveButton: 
     gravity: 0
-    dead: 0.19
-    sensitivity: 1
+    dead: 0.1
+    sensitivity: 2
     snap: 0
     invert: 0
     type: 2
@@ -174,8 +174,8 @@ InputManager:
     altNegativeButton: 
     altPositiveButton: 
     gravity: 0
-    dead: 0.19
-    sensitivity: 1
+    dead: 0.1
+    sensitivity: 2
     snap: 0
     invert: 1
     type: 2
@@ -293,3 +293,35 @@ InputManager:
     type: 0
     axis: 0
     joyNum: 0
+  - serializedVersion: 3
+    m_Name: MenuH
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: 
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 0
+    dead: 0.1
+    sensitivity: 2
+    snap: 0
+    invert: 0
+    type: 2
+    axis: 0
+    joyNum: 1
+  - serializedVersion: 3
+    m_Name: MenuV
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: 
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 0
+    dead: 0.1
+    sensitivity: 2
+    snap: 0
+    invert: 1
+    type: 2
+    axis: 1
+    joyNum: 1

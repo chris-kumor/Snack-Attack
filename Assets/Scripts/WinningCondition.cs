@@ -12,6 +12,7 @@ public class WinningCondition : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Cursor.visible = false;
         Boss = GameObject.FindWithTag("Boss");
         MeleePlayer = GameObject.FindWithTag("MeleePlayer");
         RangedPlayer = GameObject.FindWithTag("RangedPlayer");

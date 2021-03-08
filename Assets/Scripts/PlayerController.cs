@@ -24,7 +24,8 @@ public class PlayerController : MonoBehaviour
     
 
 
-
+    //Base attack func used by boss and players
+    //Prefab of atack given , spawn loc, dir its going in, max distance traveled, rotational orientation
     public static GameObject Attack(GameObject Atk, Vector3 weaponPos, Vector3 targetDir, float atkDistance, Quaternion ProjectileRotation)
     {
         Vector3 atkPos = new Vector3(weaponPos.x + targetDir.x * atkDistance * Time.deltaTime, weaponPos.y + targetDir.y * atkDistance * Time.deltaTime, 1.00f);
@@ -50,6 +51,7 @@ public class PlayerController : MonoBehaviour
         Player_Sprite = gameObject.GetComponent<SpriteRenderer>();
         pos = gameObject.GetComponent<Transform>();
         MoveDir = new Vector2(0, 0);
+        //making sure 
         for (int i = 0; i < attacks.Length; i++)
             attacks[i].cooldownTimer = attacks[i].cooldown;
         this.playerHP = MaxHP;
@@ -68,7 +70,6 @@ public class PlayerController : MonoBehaviour
         {
             if(Input.GetKeyDown(attacks[i].fireKey) && attacks[i].canFire)
             {
-                
                 if(gameObject.tag == "MeleePlayer")
                 {
                     Player_Sprite.enabled = false;

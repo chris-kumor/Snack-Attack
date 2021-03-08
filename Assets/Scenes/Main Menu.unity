@@ -1183,6 +1183,7 @@ GameObject:
   - component: {fileID: 2121966775}
   - component: {fileID: 2121966774}
   - component: {fileID: 2121966773}
+  - component: {fileID: 2121966778}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1295,3 +1296,20 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &2121966778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2121966771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1abdd90b613bcf84c80dbc0354415b0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MouseClickTexture: {fileID: 2800000, guid: ef1184684874c83488162bfe2e3d8e62, type: 3}
+  MouseTexture: {fileID: 2800000, guid: 93f967adc17681b41acc580ebd2c557a, type: 3}
+  vaxis: MenuV
+  haxis: MenuH
+  speed: 4
