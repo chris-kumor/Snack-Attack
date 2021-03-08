@@ -10,6 +10,7 @@ public class ShieldController : MonoBehaviour
     private SpriteRenderer shieldSprite;
     Color ShieldFullColor;
     private PolygonCollider2D shieldCollider;
+    public PolygonCollider2D playerCollider;
     
     // Start is called before the first frame update
     void Start()
@@ -32,11 +33,14 @@ public class ShieldController : MonoBehaviour
         {
             shieldSprite.enabled = true;
             shieldCollider.enabled = true;
+            playerCollider.enabled = false;
         }
         else
         {
             shieldSprite.enabled = false;
             shieldCollider.enabled = false;
+            playerCollider.enabled = true;
+
         }
     
 

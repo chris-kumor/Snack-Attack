@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6107366159344439196}
   - component: {fileID: 2372308625822999306}
   - component: {fileID: -6325051167227606448}
-  - component: {fileID: 6485596041835259751}
+  - component: {fileID: 6193731656592803621}
   - component: {fileID: -104842951852734741}
   m_Layer: 14
   m_Name: RShield
@@ -106,7 +106,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!60 &6485596041835259751
+--- !u!60 &6193731656592803621
 PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

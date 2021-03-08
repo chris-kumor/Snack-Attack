@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!60 &42791888 stripped
+PolygonCollider2D:
+  m_CorrespondingSourceObject: {fileID: 2767826943954322216, guid: 43b2008cd5d32c34292f8453ad4166d8, type: 3}
+  m_PrefabInstance: {fileID: 549147849}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &74785985
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -439,6 +444,11 @@ MonoBehaviour:
 --- !u!1 &274173300 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6213613206703919252, guid: ec4e637f3110d184bbd269966d584422, type: 3}
+  m_PrefabInstance: {fileID: 2113953178}
+  m_PrefabAsset: {fileID: 0}
+--- !u!60 &274173302 stripped
+PolygonCollider2D:
+  m_CorrespondingSourceObject: {fileID: 6213613206703919258, guid: ec4e637f3110d184bbd269966d584422, type: 3}
   m_PrefabInstance: {fileID: 2113953178}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &480467227
@@ -2594,6 +2604,18 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2767826942437489522, guid: 43b2008cd5d32c34292f8453ad4166d8, type: 3}
+      propertyPath: aimHAxis
+      value: AimHP1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2767826942437489522, guid: 43b2008cd5d32c34292f8453ad4166d8, type: 3}
+      propertyPath: aimVAxis
+      value: AimVP1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2767826942437489522, guid: 43b2008cd5d32c34292f8453ad4166d8, type: 3}
+      propertyPath: AimSprite
+      value: 
+      objectReference: {fileID: 549147850}
     - target: {fileID: 2767826943954322214, guid: 43b2008cd5d32c34292f8453ad4166d8, type: 3}
       propertyPath: m_Name
       value: MeleePlayer
@@ -2654,6 +2676,10 @@ PrefabInstance:
       propertyPath: m_BodyType
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 3385331201235115513, guid: 43b2008cd5d32c34292f8453ad4166d8, type: 3}
+      propertyPath: m_Name
+      value: AimReticleM
+      objectReference: {fileID: 0}
     - target: {fileID: 6107366158681761289, guid: 43b2008cd5d32c34292f8453ad4166d8, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.80043936
@@ -2682,9 +2708,18 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9118529085379522430, guid: 43b2008cd5d32c34292f8453ad4166d8, type: 3}
+      propertyPath: playerCollider
+      value: 
+      objectReference: {fileID: 42791888}
     m_RemovedComponents:
     - {fileID: 2898320870289892293, guid: 43b2008cd5d32c34292f8453ad4166d8, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 43b2008cd5d32c34292f8453ad4166d8, type: 3}
+--- !u!1 &549147850 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3385331201235115513, guid: 43b2008cd5d32c34292f8453ad4166d8, type: 3}
+  m_PrefabInstance: {fileID: 549147849}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &570771512
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2843,7 +2878,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1111105084}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 480467228}
@@ -3166,6 +3201,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: RangePlayer
       objectReference: {fileID: 0}
+    - target: {fileID: 6213613206703919253, guid: ec4e637f3110d184bbd269966d584422, type: 3}
+      propertyPath: aimHAxis
+      value: AimHP2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6213613206703919253, guid: ec4e637f3110d184bbd269966d584422, type: 3}
+      propertyPath: aimVAxis
+      value: AimVP2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6213613206703919253, guid: ec4e637f3110d184bbd269966d584422, type: 3}
+      propertyPath: AimSprite
+      value: 
+      objectReference: {fileID: 2113953179}
     - target: {fileID: 6213613206703919257, guid: ec4e637f3110d184bbd269966d584422, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -3230,9 +3277,22 @@ PrefabInstance:
       propertyPath: m_UseAutoMass
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6948168361879466410, guid: ec4e637f3110d184bbd269966d584422, type: 3}
+      propertyPath: playerCollider
+      value: 
+      objectReference: {fileID: 274173302}
+    - target: {fileID: 7369801038657996814, guid: ec4e637f3110d184bbd269966d584422, type: 3}
+      propertyPath: m_Name
+      value: AimReticleR
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3954082211946904849, guid: ec4e637f3110d184bbd269966d584422, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: ec4e637f3110d184bbd269966d584422, type: 3}
+--- !u!1 &2113953179 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7369801038657996814, guid: ec4e637f3110d184bbd269966d584422, type: 3}
+  m_PrefabInstance: {fileID: 2113953178}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2120862636
 GameObject:
   m_ObjectHideFlags: 0
