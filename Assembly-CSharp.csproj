@@ -60,13 +60,34 @@
     <UnityVersion>2020.2.3f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\MeleePlayerController.cs" />
-    <Compile Include="Assets\Scripts\BossController.cs" />
-    <Compile Include="Assets\Art\Sprites\Characters\SpritesArchers\Scripts\Change_Sprite.cs" />
-    <Compile Include="Assets\Scripts\PlayerShotController.cs" />
+    <Compile Include="Assets\Scripts\AtkStruct.cs" />
+    <Compile Include="Assets\Scripts\AppleMinionCOntroller.cs" />
     <Compile Include="Assets\Scripts\PlayerStrikeController.cs" />
+    <Compile Include="Assets\Scripts\PausingGame.cs" />
+    <Compile Include="Assets\Scripts\GameStats.cs" />
+    <Compile Include="Assets\Scripts\QuitGame.cs" />
+    <Compile Include="Assets\UpdateRangedShield.cs" />
+    <Compile Include="Assets\Scripts\PlayerShotController.cs" />
+    <Compile Include="Assets\Scripts\WinningCondition.cs" />
+    <Compile Include="Assets\Scripts\ShieldController.cs" />
+    <Compile Include="Assets\Scripts\UpdateMeleeShield.cs" />
+    <Compile Include="Assets\Scripts\PlayerController.cs" />
+    <Compile Include="Assets\Scripts\LoadMainGame.cs" />
+    <Compile Include="Assets\Scripts\BossController.cs" />
+    <Compile Include="Assets\Scripts\UpdateMeleeHealth.cs" />
+    <Compile Include="Assets\Scripts\ShieldPowerUpController.cs" />
+    <Compile Include="Assets\ProgressBar\Script\ProgressBar.cs" />
+    <Compile Include="Assets\Art\Sprites\Characters\SpritesArchers\Scripts\Change_Sprite.cs" />
+    <Compile Include="Assets\Scripts\UpdateRangeHealth.cs" />
+    <Compile Include="Assets\Scripts\UpdateBossHealth.cs" />
+    <Compile Include="Assets\ProgressBar\Script\ProgressBarCircle.cs" />
+    <Compile Include="Assets\Scripts\SpawnMinion.cs" />
+    <Compile Include="Assets\Scripts\GameResults.cs" />
+    <Compile Include="Assets\PlayerShotHvyController.cs" />
+    <Compile Include="Assets\PlayerStrikeHvyController.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\Fonts\chocolate-bar-demo\Read_Me.txt" />
     <Reference Include="UnityEngine">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2020.2.3f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>

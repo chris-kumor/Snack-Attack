@@ -85,7 +85,7 @@ public class BossController : MonoBehaviour
                 {
 
                     
-                    GameObject atk = PlayerController.Attack(attacks[pickAtk].atkObj, BossRB2D.transform.position, PreyDir, attacks[pickAtk].atkDistance, BossRB2D.transform.rotation);
+                    GameObject atk = PlayerController.Attack(attacks[pickAtk].atkObj, BossRB2D.transform.position, BossDir, attacks[pickAtk].atkDistance, BossRB2D.transform.rotation);
                     atk = null;
                     
                     attacks[pickAtk].canFire = false;

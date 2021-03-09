@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8490866204436381579}
   m_Layer: 0
   m_Name: BossShotBasic
-  m_TagString: Untagged
+  m_TagString: BossRangeAttk
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
