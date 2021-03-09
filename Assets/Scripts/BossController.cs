@@ -60,6 +60,8 @@ public class BossController : MonoBehaviour
         {
            float distance = Vector2.Distance(BossRB2D.transform.position, Prey.transform.position);
            Vector3 PreyDir = (Prey.transform.position - BossRB2D.transform.position);
+           PreyDir = new Vector3(PreyDir.x, PreyDir.y, 0);
+           PreyDir.Normalize();
             if(BossLOS.WorldToViewportPoint(Prey.transform.position).x > 0 && BossLOS.WorldToViewportPoint(Prey.transform.position).x < 1 &&BossLOS.WorldToViewportPoint(Prey.transform.position).y > 0 && BossLOS.WorldToViewportPoint(Prey.transform.position).y <1)
             {
                 BossRB2D.angularVelocity *= 0.0f;
@@ -80,12 +82,15 @@ public class BossController : MonoBehaviour
                
 
             }
+
+            
              int pickAtk = Random.Range(1, attacks.Length);
                 if (attacks[pickAtk].canFire == true)
                 {
 
                     
                     GameObject atk = PlayerController.Attack(attacks[pickAtk].atkObj, BossRB2D.transform.position, BossDir, attacks[pickAtk].atkDistance, BossRB2D.transform.rotation);
+                    atk.transform.right = PreyDir;
                     atk = null;
                     
                     attacks[pickAtk].canFire = false;

@@ -85,6 +85,7 @@
     <Compile Include="Assets\Scripts\GameResults.cs" />
     <Compile Include="Assets\PlayerShotHvyController.cs" />
     <Compile Include="Assets\PlayerStrikeHvyController.cs" />
+    <Compile Include="Assets\SpreadAtkController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Fonts\chocolate-bar-demo\Read_Me.txt" />

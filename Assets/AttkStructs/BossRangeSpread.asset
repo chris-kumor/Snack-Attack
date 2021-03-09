@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da701d0cff681f94284035bc6e36094a, type: 3}
+  m_Name: BossRangeSpread
+  m_EditorClassIdentifier: 
+  fireKey: 
+  atkObj: {fileID: 1099850237785029253, guid: b7cd445390b7d2b4da09ed0bc19d4703, type: 3}
+  cooldownTimer: 1.2200007
+  cooldown: 2
+  canFire: 0
+  atkDistance: 0
+  damage: 0
