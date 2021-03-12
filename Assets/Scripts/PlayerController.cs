@@ -9,8 +9,8 @@ public class PlayerController : MonoBehaviour
     public float speed;
     public float MaxHP;
     public AtkStruct[] attacks;
-    public string vaxis;
-    public string haxis;
+    public string vaxis, haxis, aimVAxis, aimHAxis;
+    public GameObject AimSprite;
     private Rigidbody2D PlayerRB2D;
     private Transform pos;
     private Vector2 MoveDir;
@@ -18,15 +18,16 @@ public class PlayerController : MonoBehaviour
     public GameObject playerShield;
     private SpriteRenderer Player_Sprite;
     private float playerHP;
-    GameObject atk;
+    private GameObject atk;
+    private Vector2 AimDir;
+    private Quaternion AimAngle;
     
     
   
     
 
 
-    //Base attack func used by boss and players
-    //Prefab of atack given , spawn loc, dir its going in, max distance traveled, rotational orientation
+
     public static GameObject Attack(GameObject Atk, Vector3 weaponPos, Vector3 targetDir, float atkDistance, Quaternion ProjectileRotation)
     {
         Vector3 atkPos = new Vector3(weaponPos.x + targetDir.x * atkDistance * Time.deltaTime, weaponPos.y + targetDir.y * atkDistance * Time.deltaTime, 1.00f);
@@ -52,10 +53,11 @@ public class PlayerController : MonoBehaviour
         Player_Sprite = gameObject.GetComponent<SpriteRenderer>();
         pos = gameObject.GetComponent<Transform>();
         MoveDir = new Vector2(0, 0);
-        //making sure 
+        AimDir = new Vector2(0.0f, 0.0f);
         for (int i = 0; i < attacks.Length; i++)
             attacks[i].cooldownTimer = attacks[i].cooldown;
         this.playerHP = MaxHP;
+        AimSprite.GetComponent<SpriteRenderer>().enabled = false;
     }
 
     void Update()
@@ -69,14 +71,15 @@ public class PlayerController : MonoBehaviour
                  // Attacking
         for (int i = 0; i < attacks.Length; i++)
         {
-            if(Input.GetKeyDown(attacks[i].fireKey) && attacks[i].canFire)
+            if(Input.GetAxis(attacks[i].fireKey) == 1 && attacks[i].canFire)
             {
+                
                 if(gameObject.tag == "MeleePlayer")
                 {
                     Player_Sprite.enabled = false;
                 }
-                atk = Attack(attacks[i].atkObj, pos.position, MoveDir,attacks[i].atkDistance, pos.rotation);
-                atk.transform.right = new Vector3(MoveDir.x, MoveDir.y, 1.00f);
+                atk = Attack(attacks[i].atkObj, pos.position, AimDir,attacks[i].atkDistance, pos.rotation);
+                atk.transform.right = new Vector3(AimDir.x, AimDir.y, 1.00f);
                 atk = null;
                 attacks[i].canFire = false;
                 Invoke("enableIdleSprite",  0.3f);
@@ -109,6 +112,21 @@ public class PlayerController : MonoBehaviour
         {
             PlayerRB2D.velocity *= 0;
         }
+
+        if(Input.GetAxis(aimHAxis) != 0 || Input.GetAxis(aimVAxis) != 0)
+        {
+            AimDir = new Vector2(Input.GetAxis(aimHAxis), Input.GetAxis(aimVAxis));
+            AimDir.Normalize();
+            AimSprite.transform.position = gameObject.transform.position + (new Vector3(AimDir.x, AimDir.y, 1.0f) * 3);
+            AimAngle.eulerAngles = new Vector3(0.0f, 0.0f, 180 - (Mathf.Atan2(AimDir.x, AimDir.y) * Mathf.Rad2Deg));
+            AimSprite.transform.rotation = AimAngle;
+            AimSprite.GetComponent<SpriteRenderer>().enabled = true;
+        }
+        else
+        {
+            AimSprite.GetComponent<SpriteRenderer>().enabled = false;
+        }
+
         
     }
 
