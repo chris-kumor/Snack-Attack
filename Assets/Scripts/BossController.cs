@@ -20,6 +20,8 @@ public class BossController : MonoBehaviour
     private SpriteRenderer BossIdleSprite;
     private Vector3 BossDir;
     public LayerMask layerMask;
+    private int colorTimer = 0;
+    public int colorTime = 30;
 
     public float GetHP()
     {
@@ -39,7 +41,14 @@ public class BossController : MonoBehaviour
     }
     void Update()
     {
-        
+        if (colorTimer > 0)
+        {
+            BossIdleSprite.color = Color.red;
+            colorTimer--;
+        } else
+        {
+            BossIdleSprite.color = Color.white;
+        }
     }
 
     void enableIdleSprite()
@@ -122,11 +131,13 @@ public class BossController : MonoBehaviour
             {
                 this.HP -= collision.collider.gameObject.GetComponent<PlayerShotController>().attack.damage;
                 GameStats.RangedDamage += collision.collider.gameObject.GetComponent<PlayerShotController>().attack.damage;
+                colorTimer = colorTime;
             }
             else if(collision.collider.gameObject.tag == "MeleeStrike")
             {
                 this.HP -= collision.collider.gameObject.GetComponent<PlayerStrikeController>().attack.damage;
                 GameStats.MeleeDamage += collision.collider.gameObject.GetComponent<PlayerStrikeController>().attack.damage;
+                colorTimer = colorTime;
             }
             else if(collision.collider.gameObject.layer == 10)
             {

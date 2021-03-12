@@ -18,10 +18,11 @@ public class PlayerController : MonoBehaviour
     private SpriteRenderer Player_Sprite;
     private float playerHP;
     GameObject atk;
-    
-    
-  
-    
+    private int colorTimer = 0;
+    public int colorTime = 30;
+
+
+
 
 
 
@@ -89,7 +90,15 @@ public class PlayerController : MonoBehaviour
             attacks[i].cooldownTimer -= Time.deltaTime;
         }
 
-    
+        if (colorTimer > 0)
+        {
+            Player_Sprite.color = Color.red;
+            colorTimer--;
+        }
+        else
+        {
+            Player_Sprite.color = Color.white;
+        }
     }
 
     // Update is called once per x frame
@@ -115,10 +124,12 @@ public class PlayerController : MonoBehaviour
         if(collision.collider.gameObject.tag == "BossMeleeAtk")
         {
             this.playerHP -= collision.collider.gameObject.GetComponent<PlayerStrikeController>().attack.damage;
+            colorTimer = colorTime;
         }
         else if(collision.collider.gameObject.tag == "BossRangeAtk")
         {
             this.playerHP -= collision.collider.gameObject.GetComponent<PlayerShotController>().attack.damage;
+            colorTimer = colorTime;
         }
     }
 
