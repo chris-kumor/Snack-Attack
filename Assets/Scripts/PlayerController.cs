@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     private Transform pos;
     private Vector2 MoveDir;
     public AtkStruct shield;
+    public GameObject playerShield;
     private SpriteRenderer Player_Sprite;
     private float playerHP;
     GameObject atk;
@@ -113,14 +114,16 @@ public class PlayerController : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
+        float potentialDamage = 0.0f;
         if(collision.collider.gameObject.tag == "BossMeleeAtk")
         {
-            this.playerHP -= collision.collider.gameObject.GetComponent<PlayerStrikeController>().attack.damage;
+            potentialDamage= collision.collider.gameObject.GetComponent<PlayerStrikeController>().attack.damage ;
         }
         else if(collision.collider.gameObject.tag == "BossRangeAtk")
         {
-            this.playerHP -= collision.collider.gameObject.GetComponent<PlayerShotController>().attack.damage;
+            potentialDamage= collision.collider.gameObject.GetComponent<PlayerShotController>().attack.damage;
         }
+        this.playerHP -= potentialDamage * playerShield.GetComponent<ShieldController>().isExposed;
     }
 
 

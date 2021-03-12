@@ -10,6 +10,7 @@ public class ShieldController : MonoBehaviour
     private SpriteRenderer shieldSprite;
     Color ShieldFullColor;
     private PolygonCollider2D shieldCollider;
+    public int isExposed;
     
     // Start is called before the first frame update
     void Start()
@@ -22,6 +23,7 @@ public class ShieldController : MonoBehaviour
         shield.canFire = true;
         ShieldFullColor = new Color(shieldSprite.color[0], shieldSprite.color[1], shieldSprite.color[2], 0.75f);
         shieldSprite.color = ShieldFullColor;
+        isExposed = 1;
         
         
     }
@@ -31,12 +33,12 @@ public class ShieldController : MonoBehaviour
         if(Input.GetKey(shield.fireKey) && shield.canFire && shield.cooldownTimer > 0)
         {
             shieldSprite.enabled = true;
-            shieldCollider.enabled = true;
+            isExposed = 0;
         }
         else
         {
             shieldSprite.enabled = false;
-            shieldCollider.enabled = false;
+             isExposed = 1;
         }
     
 
