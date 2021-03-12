@@ -16,7 +16,10 @@ public class UpdateRangedShield : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        rangedShieldUI.fillAmount = RangedShield.GetComponent<ShieldController>().shield.cooldownTimer/RangedShield.GetComponent<ShieldController>().shield.cooldown;
+        if(RangedShield != null)
+        {
+            rangedShieldUI.fillAmount = RangedShield.GetComponent<ShieldController>().shield.cooldownTimer/RangedShield.GetComponent<ShieldController>().shield.cooldown;
+        }
     }
 
 }

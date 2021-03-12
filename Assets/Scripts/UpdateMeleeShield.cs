@@ -17,6 +17,9 @@ public class UpdateMeleeShield : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        meleeShieldUI.fillAmount = MeleeShield.GetComponent<ShieldController>().shield.cooldownTimer/MeleeShield.GetComponent<ShieldController>().shield.cooldown;
+        if(MeleeShield != null)
+        {
+            meleeShieldUI.fillAmount = MeleeShield.GetComponent<ShieldController>().shield.cooldownTimer/MeleeShield.GetComponent<ShieldController>().shield.cooldown;
+        }
     }
 }

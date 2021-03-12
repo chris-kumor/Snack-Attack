@@ -11,7 +11,7 @@ public class LoadMainGame : MonoBehaviour
     }
     public void LoadingMainScene()
     {
-        Invoke("Play", 1.0f);
+        Invoke("Play", 3.0f);
     }
 
 

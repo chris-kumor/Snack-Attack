@@ -5,12 +5,13 @@ using UnityEngine;
 
 
 
+
+
 public class MenuController : MonoBehaviour
 {
     public Texture2D MouseClickTexture;
     public Texture2D MouseTexture;
     public float speed;
-
     private Vector2 CursorDir;
   
     
@@ -24,7 +25,6 @@ public class MenuController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         if(Input.GetKey("joystick 1 button 0"))
         {
             Cursor.SetCursor(MouseClickTexture, Vector2.zero, CursorMode.Auto);
