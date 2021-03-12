@@ -11,16 +11,21 @@ public class PlayerController : MonoBehaviour
     public AtkStruct[] attacks;
     public string vaxis, haxis, aimVAxis, aimHAxis;
     public GameObject AimSprite;
-    private Rigidbody2D PlayerRB2D;
-    private Transform pos;
-    private Vector2 MoveDir;
     public AtkStruct shield;
     public GameObject playerShield;
+    public AudioClip playerDamaged;
+
     private SpriteRenderer Player_Sprite;
     private float playerHP;
     private GameObject atk;
     private Vector2 AimDir;
     private Quaternion AimAngle;
+    private AudioSource PlayerAudioSource;
+    private Rigidbody2D PlayerRB2D;
+    private Transform pos;
+    private Vector2 MoveDir;
+    
+
     
     
   
@@ -45,6 +50,11 @@ public class PlayerController : MonoBehaviour
         Player_Sprite.enabled = true;
     }
 
+    void switchClipPlaySource()
+    {
+
+    }
+
 
     // Start is called before the first frame update
     void Start()
@@ -58,6 +68,7 @@ public class PlayerController : MonoBehaviour
             attacks[i].cooldownTimer = attacks[i].cooldown;
         this.playerHP = MaxHP;
         AimSprite.GetComponent<SpriteRenderer>().enabled = false;
+        PlayerAudioSource = gameObject.GetComponent<AudioSource>();
     }
 
     void Update()
@@ -135,11 +146,13 @@ public class PlayerController : MonoBehaviour
         float potentialDamage = 0.0f;
         if(collision.collider.gameObject.tag == "BossMeleeAtk")
         {
-            potentialDamage= collision.collider.gameObject.GetComponent<PlayerStrikeController>().attack.damage ;
+            potentialDamage= collision.collider.gameObject.GetComponent<PlayerStrikeController>().attack.damage;
+            PlayerAudioSource.Play();
         }
         else if(collision.collider.gameObject.tag == "BossRangeAtk")
         {
             potentialDamage= collision.collider.gameObject.GetComponent<PlayerShotController>().attack.damage;
+            PlayerAudioSource.Play();
         }
         this.playerHP -= potentialDamage * playerShield.GetComponent<ShieldController>().isExposed;
     }

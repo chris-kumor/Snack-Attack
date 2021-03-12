@@ -176,11 +176,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b4dd88176f267734f8510ce8b9a8af07, type: 2}
   vaxis: Vertical
   haxis: Horizontal
-  aimVAxis: 
-  aimHAxis: 
-  AimSprite: {fileID: 0}
+  aimVAxis: AimVP1
+  aimHAxis: AimHP1
+  AimSprite: {fileID: 3385331201235115513}
   shield: {fileID: 11400000, guid: 9c8f35446e8da5447a6f2639c5578aef, type: 2}
-  playerShield: {fileID: 0}
+  playerShield: {fileID: 6156330714321189162}
+  playerDamaged: {fileID: 8300000, guid: 2ac195713f4f36343a1e9b4562f185de, type: 3}
 --- !u!82 &-5635098021040439401
 AudioSource:
   m_ObjectHideFlags: 0
@@ -191,7 +192,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 2ac195713f4f36343a1e9b4562f185de, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -485,6 +486,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 344f67af192339f42a11a7424d1a59b2, type: 3}
+--- !u!1 &6156330714321189162 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6156330715000639679, guid: 344f67af192339f42a11a7424d1a59b2, type: 3}
+  m_PrefabInstance: {fileID: 696281493}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6107366158681761289 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6107366159344439196, guid: 344f67af192339f42a11a7424d1a59b2, type: 3}

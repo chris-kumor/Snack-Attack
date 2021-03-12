@@ -25,6 +25,9 @@ public class BossController : MonoBehaviour
     private float peak;
     private float timer;
     public float peakTime;
+    private AudioSource BossAudioSource;
+    public AudioClip BossDamaged, BossDying;
+
 
 
     public float GetHP()
@@ -50,6 +53,7 @@ public class BossController : MonoBehaviour
     {
         BossRB2D = gameObject.GetComponent<Rigidbody2D>();
         BossIdleSprite = gameObject.GetComponent<SpriteRenderer>();
+        BossAudioSource = gameObject.GetComponent<AudioSource>();
         Prey = GameObject.FindWithTag(Preylabel[0]);
         this.HP = this.MaxHP;   
         timer = peakTime;
@@ -86,6 +90,8 @@ public class BossController : MonoBehaviour
         }
         else if(this.HP < 1.00f)
         {
+            BossAudioSource.clip = BossDying;
+            BossAudioSource.Play();
             Destroy(gameObject);
         }
         
@@ -151,11 +157,15 @@ public class BossController : MonoBehaviour
             {
                 this.HP -= collision.collider.gameObject.GetComponent<PlayerShotController>().attack.damage;
                 GameStats.RangedDamage += collision.collider.gameObject.GetComponent<PlayerShotController>().attack.damage;
+                BossAudioSource.clip = BossDamaged;
+                BossAudioSource.Play();
             }
             else if(collision.collider.gameObject.tag == "MeleeStrike")
             {
                 this.HP -= collision.collider.gameObject.GetComponent<PlayerStrikeController>().attack.damage;
                 GameStats.MeleeDamage += collision.collider.gameObject.GetComponent<PlayerStrikeController>().attack.damage;
+                BossAudioSource.clip = BossDamaged;
+                BossAudioSource.Play();
             }
     }
 
