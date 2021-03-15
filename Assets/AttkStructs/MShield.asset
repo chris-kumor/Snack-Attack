@@ -19,3 +19,4 @@ MonoBehaviour:
   canFire: 0
   atkDistance: 0
   damage: 0
+  soundToPlay: {fileID: 8300000, guid: 539e4d135c3abdf478fdac1d97951f56, type: 3}

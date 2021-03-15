@@ -21,6 +21,9 @@ public class PlayerController : MonoBehaviour
     private GameObject atk;
     private Vector2 AimDir;
     private Quaternion AimAngle;
+    private AudioSource PlayerAudioSource;
+
+
     
     
   
@@ -40,6 +43,18 @@ public class PlayerController : MonoBehaviour
         return this.playerHP;
     }
 
+    public void ChangeHealth(string opSymbol, float amnt)
+    {
+        if(opSymbol == "+")
+        {
+            this.playerHP += amnt;
+        }
+        else if(opSymbol == "-")
+        {
+            this.playerHP -= amnt;
+        }
+    }
+
     void enableIdleSprite()
     {
         Player_Sprite.enabled = true;
@@ -52,12 +67,14 @@ public class PlayerController : MonoBehaviour
         PlayerRB2D = gameObject.GetComponent<Rigidbody2D>();
         Player_Sprite = gameObject.GetComponent<SpriteRenderer>();
         pos = gameObject.GetComponent<Transform>();
-        MoveDir = new Vector2(0, 0);
+        MoveDir = new Vector2(0.0f, 0.0f);
         AimDir = new Vector2(0.0f, 0.0f);
         for (int i = 0; i < attacks.Length; i++)
             attacks[i].cooldownTimer = attacks[i].cooldown;
         this.playerHP = MaxHP;
         AimSprite.GetComponent<SpriteRenderer>().enabled = false;
+        PlayerAudioSource = gameObject.GetComponent<AudioSource>();
+
     }
 
     void Update()
@@ -66,6 +83,11 @@ public class PlayerController : MonoBehaviour
         if(this.playerHP <= 0)
         {
             Destroy(gameObject);
+        }
+
+        else if(this.playerHP > MaxHP)
+        {
+            this.playerHP = MaxHP;
         }
 
                  // Attacking
@@ -78,7 +100,8 @@ public class PlayerController : MonoBehaviour
                 {
                     Player_Sprite.enabled = false;
                 }
-                atk = Attack(attacks[i].atkObj, pos.position, AimDir,attacks[i].atkDistance, pos.rotation);
+                PlayerAudioSource.PlayOneShot(attacks[i].soundToPlay, 0.2f);
+                atk = Attack(attacks[i].atkObj, pos.position, AimDir, attacks[i].atkDistance, pos.rotation);
                 atk.transform.right = new Vector3(AimDir.x, AimDir.y, 1.00f);
                 atk = null;
                 attacks[i].canFire = false;

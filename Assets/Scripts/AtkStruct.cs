@@ -12,5 +12,6 @@ public class AtkStruct : ScriptableObject
     public bool canFire;
     public float atkDistance;
     public float damage;
+    public AudioClip soundToPlay;
 
 }

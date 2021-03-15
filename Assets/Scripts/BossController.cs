@@ -7,16 +7,20 @@ using static PlayerController;
 
 public class BossController : MonoBehaviour
 {
-    private Rigidbody2D BossRB2D;
-    public Camera BossLOS;
+
     public  string[] Preylabel = new string[2];
     public float BossVelocity;
     GameObject Prey;
-    private float HP;
     public float MaxHP;
     public float minDist;
     public float angularSpeed;
     public AtkStruct[] attacks;
+    public float peakTime;
+    public AudioClip BossDamaged, BossDying;
+
+    private float HP;
+    private Rigidbody2D BossRB2D;
+    private AudioSource BossAudioSource;
     private SpriteRenderer BossIdleSprite;
     private Vector3 BossDir;
     public LayerMask layerMask;
@@ -24,7 +28,8 @@ public class BossController : MonoBehaviour
     public PhysicsMaterial2D PureBounce;
     private float peak;
     private float timer;
-    public float peakTime;
+
+
 
 
     public float GetHP()
@@ -50,6 +55,7 @@ public class BossController : MonoBehaviour
     {
         BossRB2D = gameObject.GetComponent<Rigidbody2D>();
         BossIdleSprite = gameObject.GetComponent<SpriteRenderer>();
+        BossAudioSource = gameObject.GetComponent<AudioSource>();
         Prey = GameObject.FindWithTag(Preylabel[0]);
         this.HP = this.MaxHP;   
         timer = peakTime;
@@ -99,8 +105,7 @@ public class BossController : MonoBehaviour
         if(Prey != null)
         {
             RaycastHit2D hit = Physics2D.Raycast(BossRB2D.transform.position, BossRB2D.velocity, Mathf.Infinity);
-            Debug.DrawRay(BossRB2D.transform.position, BossRB2D.velocity*10, Color.red, 50.0f);
-            // If the secondary camera that follows the Boss sees the target player
+            // Debug.DrawRay(BossRB2D.transform.position, BossRB2D.velocity*10, Color.red, 50.0f);
             if(hit.collider !=null)
             {
                 
@@ -113,6 +118,7 @@ public class BossController : MonoBehaviour
                 {
                     Debug.Log(PreyDir);
                     BossIdleSprite.enabled = false;
+                    BossAudioSource.PlayOneShot(attacks[0].soundToPlay, 0.05f);
                     GameObject atk = PlayerController.Attack(attacks[0].atkObj, BossRB2D.transform.position, PreyDir, attacks[0].atkDistance, BossRB2D.transform.rotation);
                     atk = null;
                     Invoke("enableIdleSprite", 0.35f);
@@ -151,11 +157,14 @@ public class BossController : MonoBehaviour
             {
                 this.HP -= collision.collider.gameObject.GetComponent<PlayerShotController>().attack.damage;
                 GameStats.RangedDamage += collision.collider.gameObject.GetComponent<PlayerShotController>().attack.damage;
+
+                BossAudioSource.PlayOneShot(BossDamaged, 0.05f);
             }
             else if(collision.collider.gameObject.tag == "MeleeStrike")
             {
                 this.HP -= collision.collider.gameObject.GetComponent<PlayerStrikeController>().attack.damage;
                 GameStats.MeleeDamage += collision.collider.gameObject.GetComponent<PlayerStrikeController>().attack.damage;
+                BossAudioSource.PlayOneShot(BossDamaged, 0.05f);
             }
     }
 

@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fireKey: MeleeHeavyAtk
   atkObj: {fileID: 6622493913580591306, guid: c223c011012b10d4abc182fee70d033b, type: 3}
-  cooldownTimer: -27.175875
+  cooldownTimer: -1.2323401
   cooldown: 2
   canFire: 1
   atkDistance: 8
   damage: 5
+  soundToPlay: {fileID: 8300000, guid: 24978acd86db5d14a9b24969abd569a0, type: 3}

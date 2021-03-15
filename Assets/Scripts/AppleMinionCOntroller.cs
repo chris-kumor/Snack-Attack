@@ -8,6 +8,9 @@ public class AppleMinionCOntroller : MonoBehaviour
     private GameObject MeleePlayer, RangedPlayer;
     private GameObject target;
     public float minionSpeed;
+    public AudioSource GameAudioSource;
+    public AudioClip AppleMinionExplosionSound;
+
 
     public AtkStruct[] attacks;
     // Start is called before the first frame update
@@ -45,6 +48,7 @@ public class AppleMinionCOntroller : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision)
     {
         Vector3 PreyDir = (target.transform.position - gameObject.transform.position);
+        GameAudioSource.PlayOneShot(AppleMinionExplosionSound, 0.1f);
         GameObject atk = PlayerController.Attack(attacks[0].atkObj, gameObject.transform.position, PreyDir, attacks[0].atkDistance, gameObject.transform.rotation);
         atk = null;
         Destroy(gameObject);

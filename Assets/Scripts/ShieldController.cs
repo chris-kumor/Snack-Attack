@@ -11,6 +11,7 @@ public class ShieldController : MonoBehaviour
     Color ShieldFullColor;
     private PolygonCollider2D shieldCollider;
     public int isExposed;
+    private AudioSource ShieldAudioSource;
     
     // Start is called before the first frame update
     void Start()
@@ -24,6 +25,8 @@ public class ShieldController : MonoBehaviour
         ShieldFullColor = new Color(shieldSprite.color[0], shieldSprite.color[1], shieldSprite.color[2], 0.75f);
         shieldSprite.color = ShieldFullColor;
         isExposed = 1;
+        ShieldAudioSource = gameObject.GetComponent<AudioSource>();
+
         
         
     }
@@ -34,6 +37,7 @@ public class ShieldController : MonoBehaviour
         {
             shieldSprite.enabled = true;
             isExposed = 0;
+            ShieldAudioSource.PlayOneShot(shield.soundToPlay, 0.05f);
         }
         else
         {

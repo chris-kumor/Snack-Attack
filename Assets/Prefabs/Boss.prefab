@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2314242864049820121}
   - component: {fileID: 2314242864049820124}
   - component: {fileID: 6888939031749807449}
+  - component: {fileID: 7900505146256347089}
   - component: {fileID: 2314242864049820120}
   m_Layer: 12
   m_Name: Boss
@@ -127,6 +128,102 @@ CircleCollider2D:
   m_Offset: {x: -0.22315773, y: -0.089739285}
   serializedVersion: 2
   m_Radius: 2.1422336
+--- !u!82 &7900505146256347089
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2314242864049820118}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!114 &2314242864049820120
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -139,7 +236,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2293ca6106fdd8c4a82aaa8c9f598e61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BossLOS: {fileID: 0}
   Preylabel:
   - MeleePlayer
   - RangedPlayer
@@ -149,8 +245,10 @@ MonoBehaviour:
   angularSpeed: 10
   attacks:
   - {fileID: 11400000, guid: ca08b6abfc21fbf458bb12074309eb68, type: 2}
+  peakTime: 0
+  BossDamaged: {fileID: 8300000, guid: 9a25fedd72da8b04f81b00944a764d8b, type: 3}
+  BossDying: {fileID: 8300000, guid: e2de5e56690fae04cabec13244d44bc7, type: 3}
   layerMask:
     serializedVersion: 2
     m_Bits: 0
-  PureBounce: {fileID: 0}
-  peakTime: 0
+  PureBounce: {fileID: 6200000, guid: b01bb0bb479c157488f4a69d5d9dd7f3, type: 2}

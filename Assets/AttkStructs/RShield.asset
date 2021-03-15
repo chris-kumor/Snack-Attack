@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fireKey: joystick 2 button 2
   atkObj: {fileID: 6156330715000639679, guid: 12f22e714cfb895418ee0aa4848e3c03, type: 3}
-  cooldownTimer: 4.98
+  cooldownTimer: 5
   cooldown: 5
   canFire: 1
   atkDistance: 0
   damage: 0
+  soundToPlay: {fileID: 8300000, guid: 539e4d135c3abdf478fdac1d97951f56, type: 3}

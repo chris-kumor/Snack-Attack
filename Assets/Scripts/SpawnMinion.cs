@@ -8,7 +8,7 @@ public class SpawnMinion : MonoBehaviour
     public GameObject MinionSpawn1, MinionSpawn2;
     private GameObject[] minions;
 
-    public GameObject AppleMinion;
+    public Prefab AppleMinion;
 
     public int maxMinion;
     void Start()
