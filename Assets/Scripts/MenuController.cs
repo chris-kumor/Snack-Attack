@@ -9,9 +9,9 @@ using UnityEngine;
 
 public class MenuController : MonoBehaviour
 {
-    public Texture2D MouseClickTexture;
-    public Texture2D MouseTexture;
+    public Texture2D MouseClickTexture, MouseTexture;
     public float speed;
+
     private Vector2 CursorDir;
   
     

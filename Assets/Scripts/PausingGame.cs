@@ -7,6 +7,7 @@ public class PausingGame : MonoBehaviour
 {
     public string[] pauseButtons = new string[2];
     public bool isPaused;
+    
     private Text PausedText;
     // Start is called before the first frame update
     void Start()

@@ -7,12 +7,12 @@ public class AppleMinionCOntroller : MonoBehaviour
 {
     private GameObject MeleePlayer, RangedPlayer;
     private GameObject target;
+
     public float minionSpeed;
     public AudioSource GameAudioSource;
     public AudioClip AppleMinionExplosionSound;
-
-
     public AtkStruct[] attacks;
+    
     // Start is called before the first frame update
     void Start()
     {

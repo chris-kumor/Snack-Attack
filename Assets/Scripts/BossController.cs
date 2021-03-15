@@ -12,20 +12,19 @@ public class BossController : MonoBehaviour
     public float BossVelocity;
     GameObject Prey;
     public float MaxHP;
-    public float minDist;
+    public float minDist, maxDist;
     public float angularSpeed;
     public AtkStruct[] attacks;
     public float peakTime;
     public AudioClip BossDamaged, BossDying;
+    public PhysicsMaterial2D PureBounce;
 
     private float HP;
     private Rigidbody2D BossRB2D;
     private AudioSource BossAudioSource;
     private SpriteRenderer BossIdleSprite;
     private Vector3 BossDir;
-    public LayerMask layerMask;
     private Quaternion currentRotation;
-    public PhysicsMaterial2D PureBounce;
     private float peak;
     private float timer;
 
@@ -41,14 +40,6 @@ public class BossController : MonoBehaviour
     {
         BossIdleSprite.enabled = true;
     }
-
-    void Wait()
-    {
-
-    }
-        
-
-
 
     // Start is called before the first frame update
     void Start()
@@ -81,7 +72,8 @@ public class BossController : MonoBehaviour
             attacks[0].canFire = true;
             attacks[0].cooldownTimer = attacks[0].cooldown;
         }
-            
+
+        /* 
         if((2*(MaxHP/3)) > this.HP && this.HP >= (MaxHP/3))
         {
             Phase2Attack();
@@ -94,6 +86,7 @@ public class BossController : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        */
         
 
         //Boss rotates in the dir its moving.
@@ -116,19 +109,21 @@ public class BossController : MonoBehaviour
                 //Knowing the direction and dist of the target if its clsoe enough launch an attakc in its dir
                 if( distance <= minDist && attacks[0].canFire == true)
                 {
-                    Debug.Log(PreyDir);
                     BossIdleSprite.enabled = false;
                     BossAudioSource.PlayOneShot(attacks[0].soundToPlay, 0.05f);
                     GameObject atk = PlayerController.Attack(attacks[0].atkObj, BossRB2D.transform.position, PreyDir, attacks[0].atkDistance, BossRB2D.transform.rotation);
                     atk = null;
                     Invoke("enableIdleSprite", 0.35f);
                     attacks[0].canFire = false; 
-
                 }
+
                 //if not then exit loop so we will check to see if the target is still in the scene
-                else
+                else if(distance > minDist && distance < maxDist)
                 {
-                    return;
+                   for (int i = 1; i <= attacks.Length; i++)
+                   {
+
+                   }
                 }
             }
             else

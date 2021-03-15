@@ -6,11 +6,12 @@ using static PlayerController;
 public class ShieldController : MonoBehaviour
 {
     public AtkStruct shield;
+    public int isExposed;
+
     private Rigidbody2D rb;
     private SpriteRenderer shieldSprite;
-    Color ShieldFullColor;
+    private Color ShieldFullColor;
     private PolygonCollider2D shieldCollider;
-    public int isExposed;
     private AudioSource ShieldAudioSource;
     
     // Start is called before the first frame update

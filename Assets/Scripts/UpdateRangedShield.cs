@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 public class UpdateRangedShield : MonoBehaviour
 {
-   private Image rangedShieldUI;
+    private Image rangedShieldUI;
     public GameObject RangedShield;
     // Start is called before the first frame update
     void Start()

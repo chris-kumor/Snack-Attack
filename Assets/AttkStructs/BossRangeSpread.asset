@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: da701d0cff681f94284035bc6e36094a, type: 3}
-  m_Name: BossLightAttack
+  m_Name: BossRangeSpread
   m_EditorClassIdentifier: 
   fireKey: 
-  atkObj: {fileID: 4223610722966919070, guid: c197d6c692f008347899be8548440d25, type: 3}
-  cooldownTimer: 0.74000406
-  cooldown: 1
+  atkObj: {fileID: 891692703104489399, guid: c74c0672e5e51aa44a0c4561d9cf1170, type: 3}
+  cooldownTimer: 1.2200007
+  cooldown: 4
   canFire: 1
   atkDistance: 30
-  damage: 2
-  soundToPlay: {fileID: 8300000, guid: e96d314cd8cf3ac48872e020bf2259c8, type: 3}
+  damage: 20
+  soundToPlay: {fileID: 8300000, guid: c00be6922e0bbd44390609dff4fddc8c, type: 3}

@@ -6,11 +6,12 @@ public class SpawnMinion : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject MinionSpawn1, MinionSpawn2;
+    public GameObject AppleMinion;
+    public int maxMinion;
+    
     private GameObject[] minions;
 
-    public Prefab AppleMinion;
 
-    public int maxMinion;
     void Start()
     {
         minions = GameObject.FindGameObjectsWithTag("minion");

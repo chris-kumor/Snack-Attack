@@ -6,6 +6,7 @@ public class PlayerStrikeController : MonoBehaviour
 {
     public float timer;
     public AtkStruct attack;
+    
     private PolygonCollider2D AttkCollider;
     private GameObject MeleePlayer;
     private GameObject RangedPlayer;

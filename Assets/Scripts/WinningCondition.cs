@@ -9,6 +9,8 @@ public class WinningCondition : MonoBehaviour
     private GameObject Boss;
     private GameObject MeleePlayer;
     private GameObject RangedPlayer;
+
+    
     // Start is called before the first frame update
     void Start()
     {

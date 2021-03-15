@@ -6,6 +6,7 @@ public class PlayerShotController : MonoBehaviour
 {
     public float timer;
     public float speed;
+    
     public AtkStruct attack;
     private Vector2 angle;
     private Rigidbody2D rb;

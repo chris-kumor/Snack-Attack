@@ -8,8 +8,10 @@ public class GameResults : MonoBehaviour
 {
    
     public Text GameResult;
-    float MeleePlayerDamage, RangedPlayerDamage;
     public Text PlayersDamageText;
+    
+    private float MeleePlayerDamage, RangedPlayerDamage;
+    
     // Start is called before the first frame update
     public void Awake()
     {
