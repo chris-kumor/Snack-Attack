@@ -41,6 +41,17 @@ public class BossController : MonoBehaviour
         BossIdleSprite.enabled = true;
     }
 
+    void Waiting()
+    {
+
+    }
+
+    IEnumerator StopBossAndWait()
+    {
+        BossRB2D.velocity = Vector2.zero;
+        BossRB2D.angularVelocity = 0.0f;
+        yield return new WaitForSecondsRealtime(5);
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -58,19 +69,27 @@ public class BossController : MonoBehaviour
     {   
         //Debug.Log(this.HP);
 
-
+        //CoolDown for Bos Attack in action
+        for (int i = 0; i < attacks.Length; i++)
+        {
+            attacks[i].cooldownTimer -= Time.deltaTime;
+            //Allows Boss to attack again in x Seconds
+            if (attacks[i].cooldownTimer <= i && attacks[i].canFire == false)
+            {
+                attacks[i].canFire = true;
+                attacks[i].cooldownTimer = attacks[i].cooldown;
+            }
+        }
         
     }
 
     void FixedUpdate()
     {
-        //CoolDown for Bos Attack in action
-        attacks[0].cooldownTimer -= Time.deltaTime;
-        //Allows Boss to attack again in x Seconds
-        if (attacks[0].cooldownTimer <= 0 && attacks[0].canFire == false)
+
+
+        if(BossRB2D.velocity == new Vector2(0.0f, 0.0f))
         {
-            attacks[0].canFire = true;
-            attacks[0].cooldownTimer = attacks[0].cooldown;
+            Phase1Attack();
         }
 
         /* 
@@ -104,8 +123,10 @@ public class BossController : MonoBehaviour
                 
                 BossRB2D.angularVelocity *= 0.0f;
                 float distance = Vector2.Distance(BossRB2D.transform.position, Prey.transform.position);
-                Debug.Log(distance);
+ 
                 Vector3 PreyDir = (Prey.transform.position - BossRB2D.transform.position);
+                Debug.Log(PreyDir);
+                
                 //Knowing the direction and dist of the target if its clsoe enough launch an attakc in its dir
                 if( distance <= minDist && attacks[0].canFire == true)
                 {
@@ -115,15 +136,31 @@ public class BossController : MonoBehaviour
                     atk = null;
                     Invoke("enableIdleSprite", 0.35f);
                     attacks[0].canFire = false; 
+                    return;
                 }
 
                 //if not then exit loop so we will check to see if the target is still in the scene
-                else if(distance > minDist && distance < maxDist)
+                else if(distance > minDist && distance < maxDist && attacks[1].canFire == true)
                 {
-                   for (int i = 1; i <= attacks.Length; i++)
-                   {
+                    StartCoroutine(StopBossAndWait());
+                    BossAudioSource.PlayOneShot(attacks[1].soundToPlay, 0.05f);
+                    GameObject atk = PlayerController.Attack(attacks[1].atkObj, BossRB2D.transform.position, PreyDir, attacks[1].atkDistance, BossRB2D.transform.rotation);
+                    atk = null;
+                    attacks[1].canFire = false; 
+                    StartCoroutine(StopBossAndWait()); 
+                    return;
 
-                   }
+                }
+
+                else if(distance >= maxDist && attacks[2].canFire == true)
+                {
+                    StartCoroutine(StopBossAndWait());
+                    BossAudioSource.PlayOneShot(attacks[2].soundToPlay, 0.05f);
+                    GameObject atk = PlayerController.Attack(attacks[2].atkObj, BossRB2D.transform.position, PreyDir, attacks[2].atkDistance, BossRB2D.transform.rotation);
+                    atk = null;
+                    attacks[2].canFire = false; 
+                    StartCoroutine(StopBossAndWait());    
+                    return;
                 }
             }
             else
@@ -163,7 +200,7 @@ public class BossController : MonoBehaviour
             }
     }
 
-        void Phase1Attack()
+    void Phase1Attack()
     {
         Debug.Log("Im in Phase 1");
         gameObject.GetComponent<CircleCollider2D>().sharedMaterial = PureBounce;

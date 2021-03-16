@@ -7,20 +7,25 @@ public class SpreadAtkController : MonoBehaviour
     public float spread;
     public GameObject atkObj;
 
+    
+
     // Start is called before the first frame update
     void Start()
     {
     
         GameObject atk = PlayerController.Attack(atkObj, transform.position, transform.right, 0, transform.rotation);
         atk.transform.right = transform.right;
+        Destroy(atk);
         atk = null;
         transform.rotation = new Quaternion(transform.rotation.x, transform.rotation.y, transform.rotation.z + spread, transform.rotation.w);
         atk = PlayerController.Attack(atkObj, transform.position, transform.right, 0, transform.rotation);
         atk.transform.right = transform.right;
+        Destroy(atk);
         atk = null;
         transform.rotation = new Quaternion(transform.rotation.x, transform.rotation.y, transform.rotation.z - (spread * 2), transform.rotation.w);
         atk = PlayerController.Attack(atkObj, transform.position, transform.right, 0, transform.rotation);
         atk.transform.right = transform.right;
+        Destroy(atk);
         atk = null;
         Destroy(gameObject);
     }
@@ -29,5 +34,10 @@ public class SpreadAtkController : MonoBehaviour
     void Update()
     {
         
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        Destroy(gameObject);
     }
 }

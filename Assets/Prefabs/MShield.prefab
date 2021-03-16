@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6107366159344439196}
   - component: {fileID: 2372308625822999306}
-  - component: {fileID: -104842951852734741}
   - component: {fileID: -4550854440948959508}
+  - component: {fileID: -104842951852734741}
   m_Layer: 14
   m_Name: MShield
   m_TagString: Shield
@@ -84,20 +84,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &-104842951852734741
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6156330715000639679}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3443f8c82ff5df34e9b4a16ce3b76aa1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shield: {fileID: 11400000, guid: 9c8f35446e8da5447a6f2639c5578aef, type: 2}
-  isExposed: 0
 --- !u!82 &-4550854440948959508
 AudioSource:
   m_ObjectHideFlags: 0
@@ -194,3 +180,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-104842951852734741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6156330715000639679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3443f8c82ff5df34e9b4a16ce3b76aa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shield: {fileID: 11400000, guid: 9c8f35446e8da5447a6f2639c5578aef, type: 2}
+  isExposed: 0

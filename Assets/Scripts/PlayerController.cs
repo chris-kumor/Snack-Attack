@@ -76,6 +76,7 @@ public class PlayerController : MonoBehaviour
         AimSprite.GetComponent<SpriteRenderer>().enabled = false;
         PlayerAudioSource = gameObject.GetComponent<AudioSource>();
 
+
     }
 
     void Update()
@@ -141,7 +142,7 @@ public class PlayerController : MonoBehaviour
         {
             AimDir = new Vector2(Input.GetAxis(aimHAxis), Input.GetAxis(aimVAxis));
             AimDir.Normalize();
-            AimSprite.transform.position = gameObject.transform.position + (new Vector3(AimDir.x, AimDir.y, 1.0f) * 3);
+            AimSprite.transform.position = gameObject.transform.position + (new Vector3(AimDir.x, AimDir.y, 1.0f) * 3.50f                              );
             AimAngle.eulerAngles = new Vector3(0.0f, 0.0f, 180 - (Mathf.Atan2(AimDir.x, AimDir.y) * Mathf.Rad2Deg));
             AimSprite.transform.rotation = AimAngle;
             AimSprite.GetComponent<SpriteRenderer>().enabled = true;
@@ -161,7 +162,7 @@ public class PlayerController : MonoBehaviour
         {
             potentialDamage= collision.collider.gameObject.GetComponent<PlayerStrikeController>().attack.damage ;
         }
-        else if(collision.collider.gameObject.tag == "BossRangeAtk")
+        else if(collision.collider.gameObject.tag == "BossRangeAttk")
         {
             potentialDamage= collision.collider.gameObject.GetComponent<PlayerShotController>().attack.damage;
         }

@@ -71,6 +71,7 @@ GameObject:
   - component: {fileID: 6213613206703919258}
   - component: {fileID: 7616556262342317741}
   - component: {fileID: 6213613206703919253}
+  - component: {fileID: 6906314643370607707}
   m_Layer: 9
   m_Name: RangePlayer
   m_TagString: RangedPlayer
@@ -956,6 +957,21 @@ MonoBehaviour:
   AimSprite: {fileID: 7369801038657996814}
   shield: {fileID: 11400000, guid: 6cede604f983eb047832f1ad3910f36a, type: 2}
   playerShield: {fileID: 5442865686223464446}
+--- !u!114 &6906314643370607707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6213613206703919252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fcf279660b0f2545ab98b5ff188f047, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dashDistance: 10
+  dashStoppingSpeed: 0.1
+  DashButton: DashP2
 --- !u!1 &7369801038657996814
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: BossRangeBasic
   m_EditorClassIdentifier: 
   fireKey: 
-  atkObj: {fileID: 891692703104489399, guid: c74c0672e5e51aa44a0c4561d9cf1170, type: 3}
-  cooldownTimer: 0.96000004
-  cooldown: 1
-  canFire: 1
-  atkDistance: 30
+  atkObj: {fileID: 8947230292391117334, guid: 837bd74372c19114191ea5fd3688a261, type: 3}
+  cooldownTimer: 4.971908
+  cooldown: 5
+  canFire: 0
+  atkDistance: 10
   damage: 8
   soundToPlay: {fileID: 8300000, guid: 73cce76b1ece6534998d221e785d2e3a, type: 3}
