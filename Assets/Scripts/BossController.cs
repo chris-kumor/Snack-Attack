@@ -27,7 +27,7 @@ public class BossController : MonoBehaviour
     private Quaternion currentRotation;
     private float peak;
     private float timer;
-
+    private Vector3 PreyDir;
 
 
 
@@ -46,12 +46,24 @@ public class BossController : MonoBehaviour
 
     }
 
+    void RotateBossToTarget(Vector2 TargetVector)
+    {
+        Quaternion Looking = Quaternion.identity;
+        Looking.eulerAngles = new Vector3(0.0f, 0.0f,180-Mathf.Atan2(TargetVector.x, TargetVector.y) * Mathf.Rad2Deg);
+        gameObject.transform.rotation = Looking;
+    }
+
     IEnumerator StopBossAndWait()
     {
-        BossRB2D.velocity = Vector2.zero;
-        BossRB2D.angularVelocity = 0.0f;
-        yield return new WaitForSecondsRealtime(5);
+        BossRB2D.constraints = RigidbodyConstraints2D.FreezePosition;
+        RotateBossToTarget(PreyDir);
+        BossAudioSource.PlayOneShot(attacks[1].soundToPlay, 0.1f);
+        GameObject atk = PlayerController.Attack(attacks[1].atkObj, BossRB2D.transform.position, PreyDir, attacks[1].atkDistance, BossRB2D.transform.rotation);
+        atk = null;
+        attacks[1].canFire = false; 
+        yield return new WaitForSeconds(3.00f);
     }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -85,7 +97,7 @@ public class BossController : MonoBehaviour
 
     void FixedUpdate()
     {
-
+        PreyDir = (Prey.transform.position - BossRB2D.transform.position);
 
         if(BossRB2D.velocity == new Vector2(0.0f, 0.0f))
         {
@@ -109,9 +121,7 @@ public class BossController : MonoBehaviour
         
 
         //Boss rotates in the dir its moving.
-        Quaternion Looking = Quaternion.identity;
-        Looking.eulerAngles = new Vector3(0.0f, 0.0f,180-Mathf.Atan2(BossRB2D.velocity.x, BossRB2D.velocity.y) * Mathf.Rad2Deg);
-        gameObject.transform.rotation = Looking;
+        RotateBossToTarget(BossRB2D.velocity);
 
         //Making sure the player the boss is looking for is still in the game
         if(Prey != null)
@@ -124,7 +134,6 @@ public class BossController : MonoBehaviour
                 BossRB2D.angularVelocity *= 0.0f;
                 float distance = Vector2.Distance(BossRB2D.transform.position, Prey.transform.position);
  
-                Vector3 PreyDir = (Prey.transform.position - BossRB2D.transform.position);
                 Debug.Log(PreyDir);
                 
                 //Knowing the direction and dist of the target if its clsoe enough launch an attakc in its dir
@@ -142,25 +151,12 @@ public class BossController : MonoBehaviour
                 //if not then exit loop so we will check to see if the target is still in the scene
                 else if(distance > minDist && distance < maxDist && attacks[1].canFire == true)
                 {
+                    Vector2  prevVelocity = BossRB2D.velocity;
                     StartCoroutine(StopBossAndWait());
-                    BossAudioSource.PlayOneShot(attacks[1].soundToPlay, 0.05f);
-                    GameObject atk = PlayerController.Attack(attacks[1].atkObj, BossRB2D.transform.position, PreyDir, attacks[1].atkDistance, BossRB2D.transform.rotation);
-                    atk = null;
-                    attacks[1].canFire = false; 
-                    StartCoroutine(StopBossAndWait()); 
+                    BossRB2D.constraints = RigidbodyConstraints2D.None;
+                    BossRB2D.velocity = prevVelocity;
                     return;
 
-                }
-
-                else if(distance >= maxDist && attacks[2].canFire == true)
-                {
-                    StartCoroutine(StopBossAndWait());
-                    BossAudioSource.PlayOneShot(attacks[2].soundToPlay, 0.05f);
-                    GameObject atk = PlayerController.Attack(attacks[2].atkObj, BossRB2D.transform.position, PreyDir, attacks[2].atkDistance, BossRB2D.transform.rotation);
-                    atk = null;
-                    attacks[2].canFire = false; 
-                    StartCoroutine(StopBossAndWait());    
-                    return;
                 }
             }
             else
