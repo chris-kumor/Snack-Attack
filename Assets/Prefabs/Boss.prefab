@@ -242,13 +242,11 @@ MonoBehaviour:
   BossVelocity: 1
   MaxHP: 400
   minDist: 10
+  maxDist: 50
   angularSpeed: 10
   attacks:
   - {fileID: 11400000, guid: ca08b6abfc21fbf458bb12074309eb68, type: 2}
   peakTime: 0
   BossDamaged: {fileID: 8300000, guid: 9a25fedd72da8b04f81b00944a764d8b, type: 3}
   BossDying: {fileID: 8300000, guid: e2de5e56690fae04cabec13244d44bc7, type: 3}
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 0
   PureBounce: {fileID: 6200000, guid: b01bb0bb479c157488f4a69d5d9dd7f3, type: 2}
