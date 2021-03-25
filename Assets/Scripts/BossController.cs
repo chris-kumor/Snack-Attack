@@ -56,9 +56,15 @@ public class BossController : MonoBehaviour
     IEnumerator StopBossAndWait()
     {
         BossRB2D.constraints = RigidbodyConstraints2D.FreezePosition;
+<<<<<<< Updated upstream
         RotateBossToTarget(PreyDir);
         BossAudioSource.PlayOneShot(attacks[1].soundToPlay, 0.1f);
         GameObject atk = PlayerController.Attack(attacks[1].atkObj, BossRB2D.transform.position, PreyDir, attacks[1].atkDistance, BossRB2D.transform.rotation);
+=======
+        BossAudioSource.PlayOneShot(attacks[1].soundToPlay, 0.05f);
+        GameObject atk = PlayerController.Attack(attacks[1].atkObj, BossRB2D.transform.position + 2*PreyDir, PreyDir, attacks[1].atkDistance, BossRB2D.transform.rotation);
+        atk. transform.right = (PreyDir.x, PreyDir.y, 0.0f);
+>>>>>>> Stashed changes
         atk = null;
         attacks[1].canFire = false; 
         yield return new WaitForSeconds(3.00f);
