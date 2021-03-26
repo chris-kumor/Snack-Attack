@@ -85,6 +85,7 @@ public class BossController : MonoBehaviour
         BossRB2D.constraints = RigidbodyConstraints2D.FreezePosition;
         BossAudioSource.PlayOneShot(attacks[1].soundToPlay, 0.05f);
         GameObject atk = PlayerController.Attack(attacks[1].atkObj, BossRB2D.transform.position + 2*PreyDir, PreyDir, attacks[1].atkDistance, BossRB2D.transform.rotation);
+        atk.transform.right = new Vector3(PreyDir.x, PreyDir.y, 0f);
         atk = null;
         attacks[1].canFire = false;
         yield return new WaitForSeconds(waitTime);
