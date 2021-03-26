@@ -246,7 +246,8 @@ MonoBehaviour:
   angularSpeed: 10
   attacks:
   - {fileID: 11400000, guid: ca08b6abfc21fbf458bb12074309eb68, type: 2}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: bbb0390deadc8c54fa30fac23ed69046, type: 2}
+  - {fileID: 11400000, guid: e137a8c86e1040c408889891285a311f, type: 2}
   peakTime: 0
   BossDamaged: {fileID: 8300000, guid: 9a25fedd72da8b04f81b00944a764d8b, type: 3}
   BossDying: {fileID: 8300000, guid: e2de5e56690fae04cabec13244d44bc7, type: 3}
