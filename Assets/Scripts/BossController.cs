@@ -28,10 +28,7 @@ public class BossController : MonoBehaviour
     private float peak;
     private float timer;
     private Vector3 PreyDir;
-<<<<<<< HEAD
-=======
 
->>>>>>> main
 
 
 
@@ -50,25 +47,6 @@ public class BossController : MonoBehaviour
 
     }
 
-<<<<<<< HEAD
-    void RotateBossToTarget(Vector2 TargetVector)
-    {
-        Quaternion Looking = Quaternion.identity;
-        Looking.eulerAngles = new Vector3(0.0f, 0.0f,180-Mathf.Atan2(TargetVector.x, TargetVector.y) * Mathf.Rad2Deg);
-        gameObject.transform.rotation = Looking;
-    }
-
-    IEnumerator StopBossAndWait()
-    {
-        BossRB2D.constraints = RigidbodyConstraints2D.FreezePosition;
-        RotateBossToTarget(PreyDir);
-        BossAudioSource.PlayOneShot(attacks[1].soundToPlay, 0.1f);
-        GameObject atk = PlayerController.Attack(attacks[1].atkObj, BossRB2D.transform.position, PreyDir, attacks[1].atkDistance, BossRB2D.transform.rotation);
-        atk. transform.right = new Vector3(PreyDir.x, PreyDir.y, 0.0f);
-        atk = null;
-        attacks[1].canFire = false; 
-        yield return new WaitForSeconds(3.00f);
-=======
     void RotateBossToFace(Vector2 target)
     {
         Quaternion Looking = Quaternion.identity;
@@ -91,9 +69,7 @@ public class BossController : MonoBehaviour
         yield return new WaitForSeconds(waitTime);
         BossRB2D.constraints = RigidbodyConstraints2D.None;
         BossRB2D.velocity = prevVelocity;
->>>>>>> main
     }
-
     // Start is called before the first frame update
     void Start()
     {
@@ -127,7 +103,7 @@ public class BossController : MonoBehaviour
 
     void FixedUpdate()
     {
-        PreyDir = (Prey.transform.position - BossRB2D.transform.position);
+
 
         /* 
         if((2*(MaxHP/3)) > this.HP && this.HP >= (MaxHP/3))
@@ -146,11 +122,7 @@ public class BossController : MonoBehaviour
         
 
         //Boss rotates in the dir its moving.
-<<<<<<< HEAD
-        RotateBossToTarget(BossRB2D.velocity);
-=======
         
->>>>>>> main
 
         //Making sure the player the boss is looking for is still in the game
         if(Prey != null)
@@ -161,13 +133,8 @@ public class BossController : MonoBehaviour
             {
                 
                 float distance = Vector2.Distance(BossRB2D.transform.position, Prey.transform.position);
-<<<<<<< HEAD
- 
-                Debug.Log(PreyDir);
-=======
                 PreyDir = (Prey.transform.position - BossRB2D.transform.position);
                 //Debug.Log(PreyDir);
->>>>>>> main
                 
                 //Knowing the direction and dist of the target if its clsoe enough launch an attakc in its dir
                 if( distance <= minDist && attacks[0].canFire == true)
@@ -184,15 +151,6 @@ public class BossController : MonoBehaviour
                 //if not then exit loop so we will check to see if the target is still in the scene
                 else if(distance > minDist && distance < maxDist && attacks[1].canFire == true)
                 {
-<<<<<<< HEAD
-                    Vector2  prevVelocity = BossRB2D.velocity;
-                    StartCoroutine(StopBossAndWait());
-                    BossRB2D.constraints = RigidbodyConstraints2D.None;
-                    BossRB2D.velocity = prevVelocity;
-                    return;
-
-                }
-=======
                     
                     StartCoroutine(StopBossAndWait(1.00f));
                     RotateBossToFace(BossRB2D.velocity);
@@ -202,8 +160,8 @@ public class BossController : MonoBehaviour
 
                 else if(distance >= maxDist && attacks[2].canFire == true)
                 {
+                    
                 }
->>>>>>> main
             }
             else
             {
