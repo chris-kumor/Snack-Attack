@@ -52,9 +52,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: 
+  - name: floor
     uniqueID: 950921489
     locked: 0
-  - name: 
+  - name: vertical
     uniqueID: 1798551471
+    locked: 0
+  - name: horizontal
+    uniqueID: 44841215
+    locked: 0
+  - name: Objects
+    uniqueID: 2846358987
     locked: 0

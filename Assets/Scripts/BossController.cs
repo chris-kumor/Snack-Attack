@@ -28,6 +28,10 @@ public class BossController : MonoBehaviour
     private float peak;
     private float timer;
     private Vector3 PreyDir;
+<<<<<<< HEAD
+=======
+
+>>>>>>> main
 
 
 
@@ -46,6 +50,7 @@ public class BossController : MonoBehaviour
 
     }
 
+<<<<<<< HEAD
     void RotateBossToTarget(Vector2 TargetVector)
     {
         Quaternion Looking = Quaternion.identity;
@@ -68,6 +73,29 @@ public class BossController : MonoBehaviour
         atk = null;
         attacks[1].canFire = false; 
         yield return new WaitForSeconds(3.00f);
+=======
+    void RotateBossToFace(Vector2 target)
+    {
+        Quaternion Looking = Quaternion.identity;
+        Looking.eulerAngles = new Vector3(0.0f, 0.0f, Mathf.Atan2(target.x, target.y) * Mathf.Rad2Deg);
+        gameObject.transform.rotation = Looking;
+    }
+    IEnumerator StopBossAndWait(float waitTime)
+    {
+        PreyDir = (Prey.transform.position - BossRB2D.transform.position);
+        PreyDir.Normalize();
+        RotateBossToFace(PreyDir);
+        Vector2 prevVelocity = BossRB2D.velocity;
+        BossRB2D.velocity = Vector2.zero;
+        BossRB2D.constraints = RigidbodyConstraints2D.FreezePosition;
+        BossAudioSource.PlayOneShot(attacks[1].soundToPlay, 0.05f);
+        GameObject atk = PlayerController.Attack(attacks[1].atkObj, BossRB2D.transform.position + 2*PreyDir, PreyDir, attacks[1].atkDistance, BossRB2D.transform.rotation);
+        atk = null;
+        attacks[1].canFire = false;
+        yield return new WaitForSeconds(waitTime);
+        BossRB2D.constraints = RigidbodyConstraints2D.None;
+        BossRB2D.velocity = prevVelocity;
+>>>>>>> main
     }
 
     // Start is called before the first frame update
@@ -105,11 +133,6 @@ public class BossController : MonoBehaviour
     {
         PreyDir = (Prey.transform.position - BossRB2D.transform.position);
 
-        if(BossRB2D.velocity == new Vector2(0.0f, 0.0f))
-        {
-            Phase1Attack();
-        }
-
         /* 
         if((2*(MaxHP/3)) > this.HP && this.HP >= (MaxHP/3))
         {
@@ -127,20 +150,28 @@ public class BossController : MonoBehaviour
         
 
         //Boss rotates in the dir its moving.
+<<<<<<< HEAD
         RotateBossToTarget(BossRB2D.velocity);
+=======
+        
+>>>>>>> main
 
         //Making sure the player the boss is looking for is still in the game
         if(Prey != null)
         {
             RaycastHit2D hit = Physics2D.Raycast(BossRB2D.transform.position, BossRB2D.velocity, Mathf.Infinity);
             // Debug.DrawRay(BossRB2D.transform.position, BossRB2D.velocity*10, Color.red, 50.0f);
-            if(hit.collider !=null)
+            if(hit.collider != null)
             {
                 
-                BossRB2D.angularVelocity *= 0.0f;
                 float distance = Vector2.Distance(BossRB2D.transform.position, Prey.transform.position);
+<<<<<<< HEAD
  
                 Debug.Log(PreyDir);
+=======
+                PreyDir = (Prey.transform.position - BossRB2D.transform.position);
+                //Debug.Log(PreyDir);
+>>>>>>> main
                 
                 //Knowing the direction and dist of the target if its clsoe enough launch an attakc in its dir
                 if( distance <= minDist && attacks[0].canFire == true)
@@ -150,13 +181,14 @@ public class BossController : MonoBehaviour
                     GameObject atk = PlayerController.Attack(attacks[0].atkObj, BossRB2D.transform.position, PreyDir, attacks[0].atkDistance, BossRB2D.transform.rotation);
                     atk = null;
                     Invoke("enableIdleSprite", 0.35f);
-                    attacks[0].canFire = false; 
+                    attacks[0].canFire = false;
                     return;
                 }
 
                 //if not then exit loop so we will check to see if the target is still in the scene
                 else if(distance > minDist && distance < maxDist && attacks[1].canFire == true)
                 {
+<<<<<<< HEAD
                     Vector2  prevVelocity = BossRB2D.velocity;
                     StartCoroutine(StopBossAndWait());
                     BossRB2D.constraints = RigidbodyConstraints2D.None;
@@ -164,6 +196,18 @@ public class BossController : MonoBehaviour
                     return;
 
                 }
+=======
+                    
+                    StartCoroutine(StopBossAndWait(1.00f));
+                    RotateBossToFace(BossRB2D.velocity);
+                    return;
+
+                }
+
+                else if(distance >= maxDist && attacks[2].canFire == true)
+                {
+                }
+>>>>>>> main
             }
             else
             {
@@ -209,6 +253,7 @@ public class BossController : MonoBehaviour
         BossDir = new Vector3(Random.Range(-1.0f, 1.0f)+ 0.25f, Random.Range(-1.0f, 1.0f) + 0.25f, 1.0f);
         BossDir.Normalize();
         BossRB2D.velocity = BossDir * (angularSpeed*100) * Time.deltaTime;
+        RotateBossToFace(BossRB2D.velocity);
 
     }
 
