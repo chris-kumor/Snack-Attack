@@ -104,7 +104,7 @@ public class PlayerController : MonoBehaviour
                 }
                 PlayerAudioSource.PlayOneShot(attacks[i].soundToPlay, 0.2f);
                 atk = Attack(attacks[i].atkObj, pos.position, AimDir, attacks[i].atkDistance, pos.rotation);
-                atk.transform.right = new Vector3(AimDir.x, AimDir.y, 1.00f);
+                atk.transform.right = new Vector3(AimDir.x, AimDir.y, 0f);
                 atk = null;
                 attacks[i].canFire = false;
                 Invoke("enableIdleSprite",  0.3f);
