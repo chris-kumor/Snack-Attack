@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8490866204436381579}
   - component: {fileID: 6774278829102048835}
   - component: {fileID: 5439065683062146762}
-  m_Layer: 12
+  m_Layer: 16
   m_Name: BossShotBasic
   m_TagString: BossRangeAttk
   m_Icon: {fileID: 0}

@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     public GameObject AimSprite;
     public AtkStruct shield;
     public GameObject playerShield;
+    public Sprite meleeRunning, meleeIdle;
 
     private Rigidbody2D PlayerRB2D;
     private Transform pos;
@@ -25,6 +26,7 @@ public class PlayerController : MonoBehaviour
     private Quaternion AimAngle;
     private AudioSource PlayerAudioSource;
     private SinputSystems.InputDeviceSlot slot;
+    private string PlayerTag;
 
 
     public static GameObject Attack(GameObject Atk, Vector3 weaponPos, Vector3 targetDir, float atkDistance, Quaternion ProjectileRotation)
@@ -70,7 +72,8 @@ public class PlayerController : MonoBehaviour
         this.playerHP = MaxHP;
         AimSprite.GetComponent<SpriteRenderer>().enabled = false;
         PlayerAudioSource = gameObject.GetComponent<AudioSource>();
-        if(gameObject.tag == "MeleePlayer")
+        PlayerTag = gameObject.tag;
+        if(PlayerTag == "MeleePlayer")
         {
             slot = GameStats.MeleeSlot;
         }
@@ -84,12 +87,13 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+
+
         //Health Check
         if(this.playerHP <= 0)
         {
             Destroy(gameObject);
         }
-
         else if(this.playerHP > MaxHP)
         {
             this.playerHP = MaxHP;
@@ -132,13 +136,14 @@ public class PlayerController : MonoBehaviour
             //Movement
             if (Sinput.GetAxis(haxis, slot) != 0 || Sinput.GetAxis(vaxis, slot) != 0)
             {
-
+                //Player_Sprite.sprite = meleeRunning;
                 MoveDir = new Vector2(Sinput.GetAxis(haxis, slot), Sinput.GetAxis(vaxis, slot));
                 MoveDir.Normalize();
                 PlayerRB2D.MovePosition(PlayerRB2D.transform.position + (new Vector3(MoveDir.x,MoveDir.y, 1.00f)  * speed * Time.deltaTime));
             }
             else
             {
+                //Player_Sprite.sprite = meleeIdle;
                 PlayerRB2D.velocity *= 0;
             }
 

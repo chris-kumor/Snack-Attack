@@ -41,7 +41,7 @@ public class AppleMinionCOntroller : MonoBehaviour
     void FixedUpdate()
     {
         
-            gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, target.transform.position, (minionSpeed * Time.deltaTime));
+        gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, target.transform.position, (minionSpeed * Time.deltaTime));
     
     }
 

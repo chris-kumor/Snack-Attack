@@ -226,6 +226,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minionSpeed: 1
   GameAudioSource: {fileID: 0}
-  AppleMinionExplosionSound: {fileID: 0}
+  AppleMinionExplosionSound: {fileID: 8300000, guid: 9a939965d3ea75949a92c063fb283058, type: 3}
   attacks:
   - {fileID: 11400000, guid: e46e69b677a3deb4e8160a4e21e81b1f, type: 2}

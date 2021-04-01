@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 9168860458032579997}
   - component: {fileID: 5476943705210315846}
   - component: {fileID: 8151008840872758150}
-  m_Layer: 12
+  m_Layer: 16
   m_Name: BossLightAttack
   m_TagString: BossMeleeAtk
   m_Icon: {fileID: 0}

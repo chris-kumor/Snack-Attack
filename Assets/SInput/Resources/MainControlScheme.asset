@@ -98,6 +98,11 @@ MonoBehaviour:
     gamepadInputs: 01000000
     mouseInputs: 0c000000
     virtualInputs: []
+  - name: Pause
+    keyboardInputs: 32000000
+    gamepadInputs: 17000000
+    mouseInputs: 
+    virtualInputs: []
   smartControls:
   - name: Horizontal
     positiveControl: Right
@@ -122,7 +127,7 @@ MonoBehaviour:
     negativeControl: Look Left
     deadzone: 0.001
     gravity: 0
-    speed: 1
+    speed: 3
     snap: 0
     scale: 1
     invert: 0
@@ -131,7 +136,7 @@ MonoBehaviour:
     negativeControl: Look Down
     deadzone: 0.001
     gravity: 0
-    speed: 1
+    speed: 3
     snap: 0
     scale: 1
     invert: 0
