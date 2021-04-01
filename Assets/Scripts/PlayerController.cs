@@ -4,6 +4,7 @@ using UnityEngine;
 
 
 
+
 public class PlayerController : MonoBehaviour  
 {
     public float speed;
@@ -23,13 +24,7 @@ public class PlayerController : MonoBehaviour
     private Vector2 AimDir;
     private Quaternion AimAngle;
     private AudioSource PlayerAudioSource;
-
-
-    
-    
-  
-    
-
+    private SinputSystems.InputDeviceSlot slot;
 
 
     public static GameObject Attack(GameObject Atk, Vector3 weaponPos, Vector3 targetDir, float atkDistance, Quaternion ProjectileRotation)
@@ -75,7 +70,15 @@ public class PlayerController : MonoBehaviour
         this.playerHP = MaxHP;
         AimSprite.GetComponent<SpriteRenderer>().enabled = false;
         PlayerAudioSource = gameObject.GetComponent<AudioSource>();
-
+        if(gameObject.tag == "MeleePlayer")
+        {
+            slot = GameStats.MeleeSlot;
+        }
+        else
+        {
+            slot = GameStats.RangedSlot;
+        }
+        
 
     }
 
@@ -95,9 +98,9 @@ public class PlayerController : MonoBehaviour
                  // Attacking
         for (int i = 0; i < attacks.Length; i++)
         {
-            if(Input.GetAxis(attacks[i].fireKey) == 1 && attacks[i].canFire)
+            if(Sinput.GetAxis(attacks[i].fireKey, slot) == 1 && attacks[i].canFire)
             {
-                
+                    
                 if(gameObject.tag == "MeleePlayer")
                 {
                     Player_Sprite.enabled = false;
@@ -109,9 +112,9 @@ public class PlayerController : MonoBehaviour
                 attacks[i].canFire = false;
                 Invoke("enableIdleSprite",  0.3f);
             }
-
+        
                         
-            if (attacks[i].cooldownTimer < 0 && attacks[i].canFire == false)
+            if(attacks[i].cooldownTimer < 0 && attacks[i].canFire == false)
             {
                 attacks[i].canFire = true;
                 attacks[i].cooldownTimer = attacks[i].cooldown;
@@ -125,33 +128,33 @@ public class PlayerController : MonoBehaviour
     // Update is called once per x frame
     void FixedUpdate()
     {
+   
+            //Movement
+            if (Sinput.GetAxis(haxis, slot) != 0 || Sinput.GetAxis(vaxis, slot) != 0)
+            {
 
-        //Movement
-        if (Input.GetAxis(haxis) != 0 || Input.GetAxis(vaxis) != 0)
-        {
-            MoveDir = new Vector2(Input.GetAxis(haxis), Input.GetAxis(vaxis));
-            MoveDir.Normalize();
-            PlayerRB2D.MovePosition(PlayerRB2D.transform.position + (new Vector3(MoveDir.x,MoveDir.y, 1.00f)  * speed * Time.deltaTime));
-        }
-        else
-        {
-            PlayerRB2D.velocity *= 0;
-        }
+                MoveDir = new Vector2(Sinput.GetAxis(haxis, slot), Sinput.GetAxis(vaxis, slot));
+                MoveDir.Normalize();
+                PlayerRB2D.MovePosition(PlayerRB2D.transform.position + (new Vector3(MoveDir.x,MoveDir.y, 1.00f)  * speed * Time.deltaTime));
+            }
+            else
+            {
+                PlayerRB2D.velocity *= 0;
+            }
 
-        if(Input.GetAxis(aimHAxis) != 0 || Input.GetAxis(aimVAxis) != 0)
-        {
-            AimDir = new Vector2(Input.GetAxis(aimHAxis), Input.GetAxis(aimVAxis));
-            AimDir.Normalize();
-            AimSprite.transform.position = gameObject.transform.position + (new Vector3(AimDir.x, AimDir.y, 1.0f) * 3.50f                              );
-            AimAngle.eulerAngles = new Vector3(0.0f, 0.0f, 180 - (Mathf.Atan2(AimDir.x, AimDir.y) * Mathf.Rad2Deg));
-            AimSprite.transform.rotation = AimAngle;
-            AimSprite.GetComponent<SpriteRenderer>().enabled = true;
-        }
-        else
-        {
-            AimSprite.GetComponent<SpriteRenderer>().enabled = false;
-        }
-
+            if(Sinput.GetAxis(aimHAxis, slot) != 0 || Sinput.GetAxis(aimVAxis ,slot) != 0)
+            {
+                AimDir = new Vector2(Sinput.GetAxis(aimHAxis, slot), Sinput.GetAxis(aimVAxis, slot));
+                AimDir.Normalize();
+                AimSprite.transform.position = gameObject.transform.position + (new Vector3(AimDir.x, AimDir.y, 1.0f) * 3.50f                              );
+                AimAngle.eulerAngles = new Vector3(0.0f, 0.0f, 180 - (Mathf.Atan2(AimDir.x, AimDir.y) * Mathf.Rad2Deg));
+                AimSprite.transform.rotation = AimAngle;
+                AimSprite.GetComponent<SpriteRenderer>().enabled = true;
+            }
+            else
+            {
+                AimSprite.GetComponent<SpriteRenderer>().enabled = false;
+            }
         
     }
 

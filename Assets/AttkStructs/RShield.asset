@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da701d0cff681f94284035bc6e36094a, type: 3}
   m_Name: RShield
   m_EditorClassIdentifier: 
-  fireKey: joystick 2 button 2
+  fireKey: Fire3
   atkObj: {fileID: 6156330715000639679, guid: 12f22e714cfb895418ee0aa4848e3c03, type: 3}
   cooldownTimer: 5
   cooldown: 5

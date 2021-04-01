@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da701d0cff681f94284035bc6e36094a, type: 3}
   m_Name: MShield
   m_EditorClassIdentifier: 
-  fireKey: joystick 1 button 2
+  fireKey: Fire3
   atkObj: {fileID: 6156330715000639679, guid: 344f67af192339f42a11a7424d1a59b2, type: 3}
-  cooldownTimer: -0.019995797
+  cooldownTimer: 5
   cooldown: 5
-  canFire: 0
+  canFire: 1
   atkDistance: 0
   damage: 0
   soundToPlay: {fileID: 8300000, guid: 539e4d135c3abdf478fdac1d97951f56, type: 3}

@@ -13,6 +13,7 @@ public class ShieldController : MonoBehaviour
     private Color ShieldFullColor;
     private PolygonCollider2D shieldCollider;
     private AudioSource ShieldAudioSource;
+    private SinputSystems.InputDeviceSlot slot;
     
     // Start is called before the first frame update
     void Start()
@@ -27,14 +28,21 @@ public class ShieldController : MonoBehaviour
         shieldSprite.color = ShieldFullColor;
         isExposed = 1;
         ShieldAudioSource = gameObject.GetComponent<AudioSource>();
-
+        if(gameObject.tag == "MeleePlayer")
+        {
+            slot = GameStats.MeleeSlot;
+        }
+        else
+        {
+            slot = GameStats.RangedSlot;
+        }
         
         
     }
 
     void Update()
     {
-        if(Input.GetKey(shield.fireKey) && shield.canFire && shield.cooldownTimer > 0)
+        if(Sinput.GetButton(shield.fireKey, slot) && shield.canFire && shield.cooldownTimer > 0)
         {
             shieldSprite.enabled = true;
             isExposed = 0;

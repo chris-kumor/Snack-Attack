@@ -6,31 +6,44 @@ using UnityEngine.UI;
 public class CharacterSelectionMenuController : MonoBehaviour
 {
     
-    public Scrollbar RangedControlScrollBar, RangedPlayerScrollBar, MeleeControlScrollBar, MeleePlayerScrollBar;
     public Button PlayButton;
+    public Text MeleeControls, RangedControls;
     public Text WarningText;
 
+    
+    void Start()
+    {
+        //will cause both to be any
+        GameStats.MeleeSlot = Sinput.GetSlotPress("Join");
+        GameStats.RangedSlot = Sinput.GetSlotPress("Join");
+
+    }
     // Update is called once per frame
     void Update()
     {
-
-        GameStats.MeleeCharacter = Mathf.RoundToInt(MeleePlayerScrollBar.value);
-        GameStats.MeleeControls = Mathf.RoundToInt(MeleeControlScrollBar.value);
-        GameStats.RangedControls = Mathf.RoundToInt(RangedControlScrollBar.value);
-        GameStats.RangedCharacter = Mathf.RoundToInt(RangedPlayerScrollBar.value);
-        //Debug.Log("GameStats.MeleeCharacter" + GameStats.MeleeCharacter);
-        //Debug.Log("GameStats.RangeCharacter" + GameStats.RangedCharacter);
-
-        if(GameStats.MeleeCharacter == GameStats.RangedCharacter)
+        if(GameStats.MeleeSlot == SinputSystems.InputDeviceSlot.any)
         {
-            Debug.Log("Prevents the game starting.");
-            PlayButton.gameObject.SetActive(false);
-            WarningText.gameObject.SetActive(true);
+            GameStats.MeleeSlot = Sinput.GetSlotPress("Join");
+            if(GameStats.MeleeSlot != SinputSystems.InputDeviceSlot.any)
+                MeleeControls.text = GameStats.MeleeSlot.ToString();
+        }
+        else if(GameStats.RangedSlot == SinputSystems.InputDeviceSlot.any)
+        {
+            GameStats.RangedSlot = Sinput.GetSlotPress("Join");
+            if(GameStats.RangedSlot != SinputSystems.InputDeviceSlot.any)
+                RangedControls.text = GameStats.RangedSlot.ToString();
+
+        }
+
+        if(GameStats.MeleeSlot != SinputSystems.InputDeviceSlot.any && GameStats.RangedSlot != SinputSystems.InputDeviceSlot.any && GameStats.MeleeSlot != GameStats.RangedSlot)
+        {
+            PlayButton.gameObject.SetActive(true);
         }
         else
         {
-            PlayButton.gameObject.SetActive(true);
-            WarningText.gameObject.SetActive(false);
+            PlayButton.gameObject.SetActive(false);
         }
+
     }
+
 }

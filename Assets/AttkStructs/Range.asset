@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da701d0cff681f94284035bc6e36094a, type: 3}
   m_Name: Range
   m_EditorClassIdentifier: 
-  fireKey: RangedLightAtk
+  fireKey: Fire1
   atkObj: {fileID: 6868449655810605895, guid: 3de2e6b0015f7f349b7bfea1f3e547f4, type: 3}
-  cooldownTimer: -37.67673
+  cooldownTimer: -5.8088245
   cooldown: 0.5
   canFire: 1
   atkDistance: 1

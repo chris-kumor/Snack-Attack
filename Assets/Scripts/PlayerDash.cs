@@ -25,7 +25,7 @@ public class PlayerDash : MonoBehaviour
  
      // Update is called once per frame
      void Update () {
-         if (Input.GetButtonDown(DashButton)) //Right mouse button
+         if (Sinput.GetButtonDown(DashButton)) //Right mouse button
          {
              currentDashTime = 0;                
          }

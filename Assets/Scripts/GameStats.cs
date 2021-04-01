@@ -11,6 +11,7 @@ public static class GameStats
     public static float RangedDamage;
     public static bool isBossAlive;
     public static float ShieldTimer = 10.00f;
-    public static int MeleeCharacter, MeleeControls, RangedCharacter, RangedControls;
+    public static SinputSystems.InputDeviceSlot MeleeSlot, RangedSlot;
+    
 
 }

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -104842951852734741}
   m_Layer: 14
   m_Name: MShield
-  m_TagString: Shield
+  m_TagString: MeleePlayer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
