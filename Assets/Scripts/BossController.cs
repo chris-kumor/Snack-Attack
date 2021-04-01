@@ -18,6 +18,7 @@ public class BossController : MonoBehaviour
     public float peakTime;
     public AudioClip BossDamaged, BossDying;
     public PhysicsMaterial2D PureBounce;
+    public GameObject Eyes;
 
     private float HP;
     private Rigidbody2D BossRB2D;
@@ -53,22 +54,25 @@ public class BossController : MonoBehaviour
         Looking.eulerAngles = new Vector3(0.0f, 0.0f, Mathf.Atan2(target.x, target.y) * Mathf.Rad2Deg);
         gameObject.transform.rotation = Looking;
     }
-    IEnumerator StopBossAndWait(float waitTime)
+    IEnumerator StopBossAndWait(float waitTime, int attackNum)
     {
+        Eyes.gameObject.SetActive(true);
         PreyDir = (Prey.transform.position - BossRB2D.transform.position);
         PreyDir.Normalize();
         RotateBossToFace(PreyDir);
         Vector2 prevVelocity = BossRB2D.velocity;
         BossRB2D.velocity = Vector2.zero;
         BossRB2D.constraints = RigidbodyConstraints2D.FreezePosition;
-        BossAudioSource.PlayOneShot(attacks[1].soundToPlay, 0.05f);
-        GameObject atk = PlayerController.Attack(attacks[1].atkObj, BossRB2D.transform.position + 2*PreyDir, PreyDir, attacks[1].atkDistance, BossRB2D.transform.rotation);
+        new WaitForSeconds(waitTime * 2);
+        BossAudioSource.PlayOneShot(attacks[attackNum].soundToPlay, 0.05f);
+        GameObject atk = PlayerController.Attack(attacks[attackNum].atkObj, BossRB2D.transform.position + 2*PreyDir, PreyDir, attacks[attackNum].atkDistance, BossRB2D.transform.rotation);
         atk.transform.right = new Vector3(PreyDir.x, PreyDir.y, 0f);
         atk = null;
-        attacks[1].canFire = false;
+        attacks[attackNum].canFire = false;
         yield return new WaitForSeconds(waitTime);
         BossRB2D.constraints = RigidbodyConstraints2D.None;
         BossRB2D.velocity = prevVelocity;
+        Eyes.gameObject.SetActive(false);
     }
     // Start is called before the first frame update
     void Start()
@@ -152,14 +156,15 @@ public class BossController : MonoBehaviour
                 else if(distance > minDist && distance < maxDist && attacks[1].canFire == true)
                 {
                     
-                    StartCoroutine(StopBossAndWait(1.00f));
+                    StartCoroutine(StopBossAndWait(1.00f, 1));
                     RotateBossToFace(BossRB2D.velocity);
-                    return;
+                    return; 
 
                 }
 
                 else if(distance >= maxDist && attacks[2].canFire == true)
                 {
+
                 }
             }
             else
