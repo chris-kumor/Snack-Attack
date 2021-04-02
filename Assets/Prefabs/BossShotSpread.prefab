@@ -43,5 +43,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c73c9ec9161627418d524540e5e2a02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spread: 0.3
+  spread: 0.2
   atkObj: {fileID: 8947230292391117334, guid: 837bd74372c19114191ea5fd3688a261, type: 3}

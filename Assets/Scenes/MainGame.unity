@@ -2697,7 +2697,7 @@ PrefabInstance:
       objectReference: {fileID: 483573581}
     - target: {fileID: 2314242864049820120, guid: 8e6c1c951bfa30a4989630d7eb2cbb20, type: 3}
       propertyPath: maxDist
-      value: 50
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 2314242864049820120, guid: 8e6c1c951bfa30a4989630d7eb2cbb20, type: 3}
       propertyPath: peakTime
@@ -2707,6 +2707,10 @@ PrefabInstance:
       propertyPath: BossDying
       value: 
       objectReference: {fileID: 8300000, guid: e2de5e56690fae04cabec13244d44bc7, type: 3}
+    - target: {fileID: 2314242864049820120, guid: 8e6c1c951bfa30a4989630d7eb2cbb20, type: 3}
+      propertyPath: colorTime
+      value: 0.15
+      objectReference: {fileID: 0}
     - target: {fileID: 2314242864049820120, guid: 8e6c1c951bfa30a4989630d7eb2cbb20, type: 3}
       propertyPath: PureBounce
       value: 

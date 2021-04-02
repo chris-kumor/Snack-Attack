@@ -11,6 +11,8 @@ public class PlayerShotController : MonoBehaviour
     private Vector2 angle;
     private Rigidbody2D rb;
     private Transform pos;
+    private float spriteAngle;
+    private float angleDif;
 
     // Start is called before the first frame update
     void Start()
@@ -18,6 +20,7 @@ public class PlayerShotController : MonoBehaviour
         rb = gameObject.GetComponent<Rigidbody2D>();
         pos = gameObject.GetComponent<Transform>();
         angle = new Vector2(pos.right.x, pos.right.y);
+        angleDif = Random.Range(-10, 10);
     }
 
     void Update()
@@ -37,7 +40,8 @@ public class PlayerShotController : MonoBehaviour
     {
 
         rb.velocity = angle * speed * Time.deltaTime;
-        rb.transform.rotation = Quaternion.AngleAxis(0, Vector3.up);     
+        pos.rotation = Quaternion.AngleAxis(spriteAngle, Vector3.forward);
+        spriteAngle += angleDif;
         if (timer <= 0)
         {
             Destroy(gameObject);

@@ -30,7 +30,8 @@ public class BossController : MonoBehaviour
     private float timer;
     private Vector3 PreyDir;
 
-
+    public float colorTime;
+    private float colorTimer;
 
 
     public float GetHP()
@@ -102,7 +103,12 @@ public class BossController : MonoBehaviour
                 attacks[i].cooldownTimer = attacks[i].cooldown;
             }
         }
-        
+
+        if (colorTimer > 0)
+        {
+            colorTimer -= Time.deltaTime;
+        }
+        BossIdleSprite.color = Color.Lerp(Color.white, Color.red, colorTimer / colorTime);
     }
 
     void FixedUpdate()
@@ -164,7 +170,9 @@ public class BossController : MonoBehaviour
 
                 else if(distance >= maxDist && attacks[2].canFire == true)
                 {
-
+                    StartCoroutine(StopBossAndWait(1.00f, 2));
+                    RotateBossToFace(BossRB2D.velocity);
+                    return;
                 }
             }
             else
@@ -195,12 +203,14 @@ public class BossController : MonoBehaviour
                 GameStats.RangedDamage += collision.collider.gameObject.GetComponent<PlayerShotController>().attack.damage;
 
                 BossAudioSource.PlayOneShot(BossDamaged, 0.05f);
+            colorTimer = colorTime;
             }
             else if(collision.collider.gameObject.tag == "MeleeStrike")
             {
                 this.HP -= collision.collider.gameObject.GetComponent<PlayerStrikeController>().attack.damage;
                 GameStats.MeleeDamage += collision.collider.gameObject.GetComponent<PlayerStrikeController>().attack.damage;
                 BossAudioSource.PlayOneShot(BossDamaged, 0.05f);
+            colorTimer = colorTime;
             }
     }
 
