@@ -136,12 +136,12 @@ SpriteRenderer:
   m_SortingLayerID: -1448608309
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 8b43cd7d2ae6f944299a4826fcfed9ae, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fc893278b5f947244a35c664fc672888, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.84, y: 1.37}
+  m_Size: {x: 21.599998, y: 38.399998}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -186,7 +186,7 @@ PolygonCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 21.599998, y: 38.399998}
-    newSize: {x: 1.84, y: 1.37}
+    newSize: {x: 21.599998, y: 38.399998}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -957,6 +957,8 @@ MonoBehaviour:
   AimSprite: {fileID: 7369801038657996814}
   shield: {fileID: 11400000, guid: 6cede604f983eb047832f1ad3910f36a, type: 2}
   playerShield: {fileID: 5442865686223464446}
+  meleeRunning: {fileID: 0}
+  meleeIdle: {fileID: 0}
 --- !u!114 &6906314643370607707
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -969,9 +971,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fcf279660b0f2545ab98b5ff188f047, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dashDistance: 10
+  dashDistance: 100
   dashStoppingSpeed: 0.1
-  DashButton: Dash
 --- !u!1 &7369801038657996814
 GameObject:
   m_ObjectHideFlags: 0
