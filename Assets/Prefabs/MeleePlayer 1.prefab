@@ -292,9 +292,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fcf279660b0f2545ab98b5ff188f047, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dashDistance: 10
+  dashDistance: 100
   dashStoppingSpeed: 0.1
-  DashButton: Dash
 --- !u!1 &2767826943992206399
 GameObject:
   m_ObjectHideFlags: 0

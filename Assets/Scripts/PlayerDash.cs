@@ -9,29 +9,39 @@ public class PlayerDash : MonoBehaviour
     public const float maxDashTime = 1.0f;
     public float dashDistance = 10;
     public float dashStoppingSpeed = 0.1f;
-    public string DashButton;
+    
 
     private float currentDashTime = maxDashTime;
     private float dashSpeed = 6;
     private Rigidbody2D PlayerRB2D;
     private Vector3 moveDirection;
+    private SinputSystems.InputDeviceSlot slot; 
  
      
  
-     private void Awake()
+     public void Awake()
      {
          PlayerRB2D = GetComponent<Rigidbody2D>();
+         if(gameObject.tag == "MeleePlayer")
+         {
+             slot = GameStats.MeleeSlot;
+         }
+         else
+         {
+             slot = GameStats.RangedSlot;
+         }
      }
  
      // Update is called once per frame
      void Update () {
-         if (Sinput.GetButtonDown(DashButton)) //Right mouse button
+         if (Sinput.GetButton("Dash", slot)) //Right mouse button
          {
+             Debug.Log("I want to dash!");
              currentDashTime = 0;                
          }
          if(currentDashTime < maxDashTime)
          {
-             moveDirection = transform.forward * dashDistance;
+             moveDirection = transform.position * dashDistance;
              currentDashTime += dashStoppingSpeed;
          }
          else
