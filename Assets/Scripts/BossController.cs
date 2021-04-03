@@ -8,6 +8,7 @@ using static PlayerController;
 public class BossController : MonoBehaviour
 {
 
+    public bool isBattle = false;
     public  string[] Preylabel = new string[2];
     public float BossVelocity;
     GameObject Prey;
@@ -33,6 +34,11 @@ public class BossController : MonoBehaviour
     public float colorTime;
     private float colorTimer;
 
+    public void StartBattle()
+    {
+        isBattle = true;
+        Phase1Attack();
+    }
 
     public float GetHP()
     {
@@ -84,7 +90,7 @@ public class BossController : MonoBehaviour
         Prey = GameObject.FindWithTag(Preylabel[0]);
         this.HP = this.MaxHP;   
         timer = peakTime;
-        Phase1Attack();
+        
         
     }
 
@@ -114,104 +120,108 @@ public class BossController : MonoBehaviour
     void FixedUpdate()
     {
 
-
-        /* 
-        if((2*(MaxHP/3)) > this.HP && this.HP >= (MaxHP/3))
+        if (isBattle)
         {
-            Phase2Attack();
-        }
-        else if(this.MaxHP/3 > this.HP && this.HP >= 1.00f)
-        {
-            Phase3Attack();
-        }
-        else if(this.HP < 1.00f)
-        {
-            Destroy(gameObject);
-        }
-        */
-        
-
-        //Boss rotates in the dir its moving.
-        
-
-        //Making sure the player the boss is looking for is still in the game
-        if(Prey != null)
-        {
-            RaycastHit2D hit = Physics2D.Raycast(BossRB2D.transform.position, BossRB2D.velocity, Mathf.Infinity);
-            // Debug.DrawRay(BossRB2D.transform.position, BossRB2D.velocity*10, Color.red, 50.0f);
-            if(hit.collider != null)
+            /* 
+            if((2*(MaxHP/3)) > this.HP && this.HP >= (MaxHP/3))
             {
-                
-                float distance = Vector2.Distance(BossRB2D.transform.position, Prey.transform.position);
-                PreyDir = (Prey.transform.position - BossRB2D.transform.position);
-                //Debug.Log(PreyDir);
-                
-                //Knowing the direction and dist of the target if its clsoe enough launch an attakc in its dir
-                if( distance <= minDist && attacks[0].canFire == true)
-                {
-                    BossIdleSprite.enabled = false;
-                    BossAudioSource.PlayOneShot(attacks[0].soundToPlay, 0.05f);
-                    GameObject atk = PlayerController.Attack(attacks[0].atkObj, BossRB2D.transform.position, PreyDir, attacks[0].atkDistance, BossRB2D.transform.rotation);
-                    atk = null;
-                    Invoke("enableIdleSprite", 0.35f);
-                    attacks[0].canFire = false;
-                    return;
-                }
-
-                //if not then exit loop so we will check to see if the target is still in the scene
-                else if(distance > minDist && distance < maxDist && attacks[1].canFire == true)
-                {
-                    
-                    StartCoroutine(StopBossAndWait(1.00f, 1));
-                    RotateBossToFace(BossRB2D.velocity);
-                    return; 
-
-                }
-
-                else if(distance >= maxDist && attacks[2].canFire == true)
-                {
-                    StartCoroutine(StopBossAndWait(1.00f, 2));
-                    RotateBossToFace(BossRB2D.velocity);
-                    return;
-                }
+                Phase2Attack();
             }
+            else if(this.MaxHP/3 > this.HP && this.HP >= 1.00f)
+            {
+                Phase3Attack();
+            }
+            else if(this.HP < 1.00f)
+            {
+                Destroy(gameObject);
+            }
+            */
+
+
+            //Boss rotates in the dir its moving.
+
+
+            //Making sure the player the boss is looking for is still in the game
+            if (Prey != null)
+            {
+                RaycastHit2D hit = Physics2D.Raycast(BossRB2D.transform.position, BossRB2D.velocity, Mathf.Infinity);
+                // Debug.DrawRay(BossRB2D.transform.position, BossRB2D.velocity*10, Color.red, 50.0f);
+                if (hit.collider != null)
+                {
+
+                    float distance = Vector2.Distance(BossRB2D.transform.position, Prey.transform.position);
+                    PreyDir = (Prey.transform.position - BossRB2D.transform.position);
+                    //Debug.Log(PreyDir);
+
+                    //Knowing the direction and dist of the target if its clsoe enough launch an attakc in its dir
+                    if (distance <= minDist && attacks[0].canFire == true)
+                    {
+                        BossIdleSprite.enabled = false;
+                        BossAudioSource.PlayOneShot(attacks[0].soundToPlay, 0.05f);
+                        GameObject atk = PlayerController.Attack(attacks[0].atkObj, BossRB2D.transform.position, PreyDir, attacks[0].atkDistance, BossRB2D.transform.rotation);
+                        atk = null;
+                        Invoke("enableIdleSprite", 0.35f);
+                        attacks[0].canFire = false;
+                        return;
+                    }
+
+                    //if not then exit loop so we will check to see if the target is still in the scene
+                    else if (distance > minDist && distance < maxDist && attacks[1].canFire == true)
+                    {
+
+                        StartCoroutine(StopBossAndWait(1.00f, 1));
+                        RotateBossToFace(BossRB2D.velocity);
+                        return;
+
+                    }
+
+                    else if (distance >= maxDist && attacks[2].canFire == true)
+                    {
+                        StartCoroutine(StopBossAndWait(1.00f, 2));
+                        RotateBossToFace(BossRB2D.velocity);
+                        return;
+                    }
+                }
+                else
+                {
+                    return;
+                }
+
+            }
+            //Once the first terget is down look for next target
             else
             {
-                return;
+                Prey = GameObject.FindWithTag(Preylabel[1]);
             }
-                        
+
+
+
+
         }
-        //Once the first terget is down look for next target
-        else
-        {
-            Prey = GameObject.FindWithTag(Preylabel[1]);
-        }
-        
-
-     
-
-
     }
 
 
     void OnCollisionEnter2D(Collision2D collision)
     {
+        if (isBattle)
+        {
             //Depenind on the type of attack it will  damage the boss on damage carried by its script and store damage info to the right player
-            if(collision.collider.gameObject.tag == "Projectile")
+            if (collision.collider.gameObject.tag == "Projectile")
             {
                 this.HP -= collision.collider.gameObject.GetComponent<PlayerShotController>().attack.damage;
                 GameStats.RangedDamage += collision.collider.gameObject.GetComponent<PlayerShotController>().attack.damage;
 
                 BossAudioSource.PlayOneShot(BossDamaged, 0.05f);
-            colorTimer = colorTime;
+                colorTimer = colorTime;
             }
-            else if(collision.collider.gameObject.tag == "MeleeStrike")
+            else if (collision.collider.gameObject.tag == "MeleeStrike")
             {
                 this.HP -= collision.collider.gameObject.GetComponent<PlayerStrikeController>().attack.damage;
                 GameStats.MeleeDamage += collision.collider.gameObject.GetComponent<PlayerStrikeController>().attack.damage;
                 BossAudioSource.PlayOneShot(BossDamaged, 0.05f);
-            colorTimer = colorTime;
+                colorTimer = colorTime;
             }
+        }
     }
 
     void Phase1Attack()
@@ -221,7 +231,7 @@ public class BossController : MonoBehaviour
         BossDir = new Vector3(Random.Range(-1.0f, 1.0f)+ 0.25f, Random.Range(-1.0f, 1.0f) + 0.25f, 1.0f);
         BossDir.Normalize();
         BossRB2D.velocity = BossDir * (angularSpeed*100) * Time.deltaTime;
-        RotateBossToFace(BossRB2D.velocity);
+        //RotateBossToFace(BossRB2D.velocity);
 
     }
 
