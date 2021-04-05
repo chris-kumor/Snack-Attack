@@ -16,7 +16,7 @@ public class IntroController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Sinput.GetButton("Join", GameStats.MeleeSlot) && Sinput.GetButton("Join", GameStats.RangedSlot))
+        if (Sinput.GetButton("Join", GameStats.MeleeSlot) || Sinput.GetButton("Join", GameStats.RangedSlot))
         {
             boss.SendMessage("StartBattle");
             Destroy(gameObject);

@@ -49,29 +49,29 @@ MonoBehaviour:
     mouseInputs: 0d000000
     virtualInputs: []
   - name: Fire3
-    keyboardInputs: 20000000
+    keyboardInputs: 15000000
     gamepadInputs: 03000000
     mouseInputs: 
     virtualInputs: []
   - name: Look Left
     keyboardInputs: 
     gamepadInputs: 13000000
-    mouseInputs: 01000000
+    mouseInputs: 0a000000
     virtualInputs: []
   - name: Look Right
     keyboardInputs: 
     gamepadInputs: 14000000
-    mouseInputs: 02000000
+    mouseInputs: 0a000000
     virtualInputs: []
   - name: Look Up
     keyboardInputs: 
     gamepadInputs: 15000000
-    mouseInputs: 03000000
+    mouseInputs: 0b000000
     virtualInputs: []
   - name: Look Down
     keyboardInputs: 
     gamepadInputs: 16000000
-    mouseInputs: 04000000
+    mouseInputs: 0b000000
     virtualInputs: []
   - name: Submit
     keyboardInputs: 33000000

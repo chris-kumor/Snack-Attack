@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     public GameObject AimSprite;
     public AtkStruct shield;
     public GameObject playerShield;
+    public float AimReticleOffSet;
 
     private Rigidbody2D PlayerRB2D;
     private Transform pos;
@@ -26,6 +27,7 @@ public class PlayerController : MonoBehaviour
     private AudioSource PlayerAudioSource;
     private SinputSystems.InputDeviceSlot slot;
     private string PlayerTag;
+    private bool isMouseAiming;
 
 
     public static GameObject Attack(GameObject Atk, Vector3 weaponPos, Vector3 targetDir, float atkDistance, Quaternion ProjectileRotation)
@@ -81,6 +83,13 @@ public class PlayerController : MonoBehaviour
             slot = GameStats.RangedSlot;
         }
         
+        if(slot == SinputSystems.InputDeviceSlot.keyboardAndMouse)
+        {
+            isMouseAiming = true;
+        }
+        else{
+            isMouseAiming = false;
+        }
 
     }
 
@@ -101,7 +110,7 @@ public class PlayerController : MonoBehaviour
                  // Attacking
         for (int i = 0; i < attacks.Length; i++)
         {
-            if(Sinput.GetAxis(attacks[i].fireKey, slot) == 1 && attacks[i].canFire)
+            if(Sinput.GetButtonDown(attacks[i].fireKey, slot) && attacks[i].canFire)
             {
                     
                 if(gameObject.tag == "MeleePlayer")
@@ -132,33 +141,49 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
    
-            //Movement
-            if (Sinput.GetAxis(haxis, slot) != 0 || Sinput.GetAxis(vaxis, slot) != 0)
-            {
+        //Movement
+        if (Sinput.GetAxis(haxis, slot) != 0 || Sinput.GetAxis(vaxis, slot) != 0)
+        {
                 
-                MoveDir = new Vector2(Sinput.GetAxis(haxis, slot), Sinput.GetAxis(vaxis, slot));
-                MoveDir.Normalize();
-                PlayerRB2D.MovePosition(PlayerRB2D.transform.position + (new Vector3(MoveDir.x,MoveDir.y, 1.00f)  * speed * Time.deltaTime));
-            }
-            else
-            {
-                
-                PlayerRB2D.velocity *= 0;
-            }
+            MoveDir = new Vector2(Sinput.GetAxis(haxis, slot), Sinput.GetAxis(vaxis, slot));
+            MoveDir.Normalize();
+            PlayerRB2D.MovePosition(PlayerRB2D.transform.position + (new Vector3(MoveDir.x,MoveDir.y, 1.00f)  * speed * Time.deltaTime));
+        }
+        else
+        {   
+            PlayerRB2D.velocity *= 0;
+        }
 
+        Debug.Log(isMouseAiming);
+        if(isMouseAiming)
+        {
+            Vector3 MouseAimDir;
+            MouseAimDir = Input.mousePosition;
+            MouseAimDir.Normalize();
+            AimSprite.transform.position = gameObject.transform.position + (MouseAimDir * AimReticleOffSet);
+            AimAngle.eulerAngles = new Vector3(0.0f, 0.0f, 180 - (Mathf.Atan2(MouseAimDir.x, MouseAimDir.y) * Mathf.Rad2Deg));
+            AimSprite.transform.rotation = AimAngle;
+            AimSprite.GetComponent<SpriteRenderer>().enabled = true;
+        }
+
+        else if(isMouseAiming == false)
+        {
             if(Sinput.GetAxis(aimHAxis, slot) != 0 || Sinput.GetAxis(aimVAxis ,slot) != 0)
             {
                 AimDir = new Vector2(Sinput.GetAxis(aimHAxis, slot), Sinput.GetAxis(aimVAxis, slot));
                 AimDir.Normalize();
-                AimSprite.transform.position = gameObject.transform.position + (new Vector3(AimDir.x, AimDir.y, 1.0f) * 3.50f                              );
+                AimSprite.transform.position = gameObject.transform.position + (new Vector3(AimDir.x, AimDir.y, 1.0f) * AimReticleOffSet);
                 AimAngle.eulerAngles = new Vector3(0.0f, 0.0f, 180 - (Mathf.Atan2(AimDir.x, AimDir.y) * Mathf.Rad2Deg));
                 AimSprite.transform.rotation = AimAngle;
                 AimSprite.GetComponent<SpriteRenderer>().enabled = true;
             }
-            else
-            {
-                AimSprite.GetComponent<SpriteRenderer>().enabled = false;
-            }
+
+        }
+
+        else
+        {
+            AimSprite.GetComponent<SpriteRenderer>().enabled = false;
+        }
         
     }
 

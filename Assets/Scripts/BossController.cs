@@ -19,7 +19,7 @@ public class BossController : MonoBehaviour
     public float peakTime;
     public AudioClip BossDamaged, BossDying;
     public PhysicsMaterial2D PureBounce;
-    public GameObject Eyes;
+
 
     private float HP;
     private Rigidbody2D BossRB2D;
@@ -63,7 +63,6 @@ public class BossController : MonoBehaviour
     }
     IEnumerator StopBossAndWait(float waitTime, int attackNum)
     {
-        Eyes.gameObject.SetActive(true);
         PreyDir = (Prey.transform.position - BossRB2D.transform.position);
         PreyDir.Normalize();
         RotateBossToFace(PreyDir);
@@ -79,7 +78,6 @@ public class BossController : MonoBehaviour
         yield return new WaitForSeconds(waitTime);
         BossRB2D.constraints = RigidbodyConstraints2D.None;
         BossRB2D.velocity = prevVelocity;
-        Eyes.gameObject.SetActive(false);
     }
     // Start is called before the first frame update
     void Start()
@@ -175,7 +173,7 @@ public class BossController : MonoBehaviour
 
                     }
 
-                    else if (distance >= maxDist && attacks[2].canFire == true)
+                    else if (distance > maxDist && attacks[2].canFire == true)
                     {
                         StartCoroutine(StopBossAndWait(1.00f, 2));
                         RotateBossToFace(BossRB2D.velocity);

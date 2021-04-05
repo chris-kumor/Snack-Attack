@@ -298,6 +298,7 @@ MonoBehaviour:
   AimSprite: {fileID: 3385331201235115513}
   shield: {fileID: 11400000, guid: 9c8f35446e8da5447a6f2639c5578aef, type: 2}
   playerShield: {fileID: 6156330714321189162}
+  AimReticleOffSet: 3.5
 --- !u!114 &-1480674669538845503
 MonoBehaviour:
   m_ObjectHideFlags: 0

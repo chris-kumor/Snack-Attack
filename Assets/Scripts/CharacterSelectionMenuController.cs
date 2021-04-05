@@ -7,7 +7,8 @@ public class CharacterSelectionMenuController : MonoBehaviour
 {
     
     public Button PlayButton;
-    public Text MeleeControls, RangedControls;
+    public Image MeleeControls, RangedControls;
+    public Sprite Controller, KBM;
     public Text WarningText;
 
     
@@ -25,13 +26,32 @@ public class CharacterSelectionMenuController : MonoBehaviour
         {
             GameStats.MeleeSlot = Sinput.GetSlotPress("Join");
             if(GameStats.MeleeSlot != SinputSystems.InputDeviceSlot.any)
-                MeleeControls.text = GameStats.MeleeSlot.ToString();
+            {
+                if(GameStats.MeleeSlot == SinputSystems.InputDeviceSlot.keyboardAndMouse)
+                {
+                    MeleeControls.sprite = KBM;
+                }
+                else if(GameStats.MeleeSlot == SinputSystems.InputDeviceSlot.gamepad1 || GameStats.MeleeSlot == SinputSystems.InputDeviceSlot.gamepad2)
+                {
+                    MeleeControls.sprite = Controller;
+                }
+            }
+               
         }
         else if(GameStats.RangedSlot == SinputSystems.InputDeviceSlot.any)
         {
             GameStats.RangedSlot = Sinput.GetSlotPress("Join");
             if(GameStats.RangedSlot != SinputSystems.InputDeviceSlot.any)
-                RangedControls.text = GameStats.RangedSlot.ToString();
+            {
+                if(GameStats.RangedSlot == SinputSystems.InputDeviceSlot.keyboardAndMouse)
+                {
+                    RangedControls.sprite = KBM;
+                }
+                else if(GameStats.RangedSlot == SinputSystems.InputDeviceSlot.gamepad1 || GameStats.RangedSlot == SinputSystems.InputDeviceSlot.gamepad2)
+                {
+                    RangedControls.sprite = Controller;
+                }
+            }
 
         }
 
