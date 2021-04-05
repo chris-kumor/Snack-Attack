@@ -14,7 +14,6 @@ public class PlayerController : MonoBehaviour
     public GameObject AimSprite;
     public AtkStruct shield;
     public GameObject playerShield;
-    public Sprite meleeRunning, meleeIdle;
 
     private Rigidbody2D PlayerRB2D;
     private Transform pos;
@@ -136,14 +135,14 @@ public class PlayerController : MonoBehaviour
             //Movement
             if (Sinput.GetAxis(haxis, slot) != 0 || Sinput.GetAxis(vaxis, slot) != 0)
             {
-                //Player_Sprite.sprite = meleeRunning;
+                
                 MoveDir = new Vector2(Sinput.GetAxis(haxis, slot), Sinput.GetAxis(vaxis, slot));
                 MoveDir.Normalize();
                 PlayerRB2D.MovePosition(PlayerRB2D.transform.position + (new Vector3(MoveDir.x,MoveDir.y, 1.00f)  * speed * Time.deltaTime));
             }
             else
             {
-                //Player_Sprite.sprite = meleeIdle;
+                
                 PlayerRB2D.velocity *= 0;
             }
 

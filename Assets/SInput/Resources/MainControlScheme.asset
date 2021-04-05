@@ -90,7 +90,7 @@ MonoBehaviour:
     virtualInputs: []
   - name: Dash
     keyboardInputs: 33000000
-    gamepadInputs: 06000000
+    gamepadInputs: 02000000
     mouseInputs: 
     virtualInputs: []
   - name: Select
