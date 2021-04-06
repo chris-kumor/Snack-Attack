@@ -110,7 +110,7 @@ public class PlayerController : MonoBehaviour
                  // Attacking
         for (int i = 0; i < attacks.Length; i++)
         {
-            if(Sinput.GetButtonDown(attacks[i].fireKey, slot) && attacks[i].canFire && GameStats.isBattle)
+            if(Sinput.GetButtonDown(attacks[i].fireKey, slot) && attacks[i].canFire)
             {
                     
                 if(gameObject.tag == "MeleePlayer")
@@ -142,7 +142,7 @@ public class PlayerController : MonoBehaviour
     {
    
         //Movement
-        if (Sinput.GetAxis(haxis, slot) != 0 || Sinput.GetAxis(vaxis, slot) != 0 && GameStats.isBattle)
+        if (Sinput.GetAxis(haxis, slot) != 0 || Sinput.GetAxis(vaxis, slot) != 0)
         {
                 
             MoveDir = new Vector2(Sinput.GetAxis(haxis, slot), Sinput.GetAxis(vaxis, slot));

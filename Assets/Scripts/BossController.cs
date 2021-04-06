@@ -36,6 +36,7 @@ public class BossController : MonoBehaviour
     public void StartBattle()
     {
         GameStats.isBattle = true;
+        BossRB2D.isKinematic = false;
         Phase1Attack();
     }
 
@@ -194,6 +195,10 @@ public class BossController : MonoBehaviour
 
 
 
+        }
+        else
+        {
+            BossRB2D.isKinematic = true;
         }
     }
 
