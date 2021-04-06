@@ -56,22 +56,22 @@ MonoBehaviour:
   - name: Look Left
     keyboardInputs: 
     gamepadInputs: 13000000
-    mouseInputs: 0a000000
+    mouseInputs: 01000000
     virtualInputs: []
   - name: Look Right
     keyboardInputs: 
     gamepadInputs: 14000000
-    mouseInputs: 0a000000
+    mouseInputs: 02000000
     virtualInputs: []
   - name: Look Up
     keyboardInputs: 
     gamepadInputs: 15000000
-    mouseInputs: 0b000000
+    mouseInputs: 03000000
     virtualInputs: []
   - name: Look Down
     keyboardInputs: 
     gamepadInputs: 16000000
-    mouseInputs: 0b000000
+    mouseInputs: 04000000
     virtualInputs: []
   - name: Submit
     keyboardInputs: 33000000

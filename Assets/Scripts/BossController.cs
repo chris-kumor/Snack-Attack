@@ -8,7 +8,6 @@ using static PlayerController;
 public class BossController : MonoBehaviour
 {
 
-    public bool isBattle = false;
     public  string[] Preylabel = new string[2];
     public float BossVelocity;
     GameObject Prey;
@@ -36,7 +35,7 @@ public class BossController : MonoBehaviour
 
     public void StartBattle()
     {
-        isBattle = true;
+        GameStats.isBattle = true;
         Phase1Attack();
     }
 
@@ -118,7 +117,7 @@ public class BossController : MonoBehaviour
     void FixedUpdate()
     {
 
-        if (isBattle)
+        if (GameStats.isBattle)
         {
             /* 
             if((2*(MaxHP/3)) > this.HP && this.HP >= (MaxHP/3))
@@ -201,7 +200,7 @@ public class BossController : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (isBattle)
+        if (GameStats.isBattle)
         {
             //Depenind on the type of attack it will  damage the boss on damage carried by its script and store damage info to the right player
             if (collision.collider.gameObject.tag == "Projectile")
@@ -224,7 +223,7 @@ public class BossController : MonoBehaviour
 
     void Phase1Attack()
     {
-        Debug.Log("Im in Phase 1");
+        //Debug.Log("Im in Phase 1");
         gameObject.GetComponent<CircleCollider2D>().sharedMaterial = PureBounce;
         BossDir = new Vector3(Random.Range(-1.0f, 1.0f)+ 0.25f, Random.Range(-1.0f, 1.0f) + 0.25f, 1.0f);
         BossDir.Normalize();
@@ -236,7 +235,7 @@ public class BossController : MonoBehaviour
     void Phase2Attack()
     {
         gameObject.GetComponent<CircleCollider2D>().sharedMaterial = null;
-        Debug.Log("Im in Phase 2");
+        //Debug.Log("Im in Phase 2");
         //trigmethod
         //Oscillation on one dimension = wave ocsillation where wave propogates in dimension T to oscillating dimension
         //Oscillation in 2-D

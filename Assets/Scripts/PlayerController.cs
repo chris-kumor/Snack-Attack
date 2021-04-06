@@ -110,7 +110,7 @@ public class PlayerController : MonoBehaviour
                  // Attacking
         for (int i = 0; i < attacks.Length; i++)
         {
-            if(Sinput.GetButtonDown(attacks[i].fireKey, slot) && attacks[i].canFire)
+            if(Sinput.GetButtonDown(attacks[i].fireKey, slot) && attacks[i].canFire && GameStats.isBattle)
             {
                     
                 if(gameObject.tag == "MeleePlayer")
@@ -142,7 +142,7 @@ public class PlayerController : MonoBehaviour
     {
    
         //Movement
-        if (Sinput.GetAxis(haxis, slot) != 0 || Sinput.GetAxis(vaxis, slot) != 0)
+        if (Sinput.GetAxis(haxis, slot) != 0 || Sinput.GetAxis(vaxis, slot) != 0 && GameStats.isBattle)
         {
                 
             MoveDir = new Vector2(Sinput.GetAxis(haxis, slot), Sinput.GetAxis(vaxis, slot));
@@ -157,11 +157,11 @@ public class PlayerController : MonoBehaviour
         Debug.Log(isMouseAiming);
         if(isMouseAiming)
         {
-            Vector3 MouseAimDir;
-            MouseAimDir = Input.mousePosition;
-            MouseAimDir.Normalize();
-            AimSprite.transform.position = gameObject.transform.position + (MouseAimDir * AimReticleOffSet);
-            AimAngle.eulerAngles = new Vector3(0.0f, 0.0f, 180 - (Mathf.Atan2(MouseAimDir.x, MouseAimDir.y) * Mathf.Rad2Deg));
+            
+            AimDir = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - gameObject.transform.position);
+            AimDir.Normalize();
+            AimSprite.transform.position = gameObject.transform.position + (Vector3)(AimDir * AimReticleOffSet);
+            AimAngle.eulerAngles = new Vector3(0.0f, 0.0f, 180 - (Mathf.Atan2(AimDir.x, AimDir.y) * Mathf.Rad2Deg));
             AimSprite.transform.rotation = AimAngle;
             AimSprite.GetComponent<SpriteRenderer>().enabled = true;
         }

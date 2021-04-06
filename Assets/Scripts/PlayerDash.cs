@@ -36,7 +36,7 @@ public class PlayerDash : MonoBehaviour
      void Update () {
          if (Sinput.GetButton("Dash", slot)) //Right mouse button
          {
-             Debug.Log("I want to dash!");
+             //Debug.Log("I want to dash!");
              currentDashTime = 0;                
          }
          if(currentDashTime < maxDashTime)

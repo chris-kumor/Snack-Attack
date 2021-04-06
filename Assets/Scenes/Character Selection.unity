@@ -836,8 +836,8 @@ MonoBehaviour:
   PlayButton: {fileID: 1846111209}
   MeleeControls: {fileID: 2079830984}
   RangedControls: {fileID: 290826664}
-  Controller: {fileID: 21300000, guid: 3f25820dbac22314ba60068f8d8602e5, type: 3}
-  KBM: {fileID: 21300000, guid: 5487df2aa887989418c9d859b561e325, type: 3}
+  Controller: {fileID: 21300000, guid: ad6dd551aa94d704980bdc7507651458, type: 3}
+  KBM: {fileID: 21300000, guid: 6ab980fac91ef7c499a26f4ddbaacf42, type: 3}
   WarningText: {fileID: 2088568315}
 --- !u!1 &926328348
 GameObject:
@@ -1123,8 +1123,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 2ed62736e2b93a848b216ffe83258b58, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -1525,8 +1525,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 2ed62736e2b93a848b216ffe83258b58, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4

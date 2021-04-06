@@ -37,7 +37,9 @@ public class SpawnMinion : MonoBehaviour
 
     void SpawnMinions()
     {
-                 for(int i = 1; i <= maxMinion; i++)
+        if(GameStats.isBattle)
+        {
+            for(int i = 1; i <= maxMinion; i++)
             {
                 Instantiate(AppleMinion, MinionSpawn1.transform.position, Quaternion.identity);
             }
@@ -45,6 +47,7 @@ public class SpawnMinion : MonoBehaviour
             {
                 Instantiate(AppleMinion, MinionSpawn2.transform.position, Quaternion.identity);
             }
+        }
     }
 
     // Update is called once per frame

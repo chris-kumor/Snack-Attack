@@ -18,6 +18,7 @@ public class WinningCondition : MonoBehaviour
         Boss = GameObject.FindWithTag("Boss");
         MeleePlayer = GameObject.FindWithTag("MeleePlayer");
         RangedPlayer = GameObject.FindWithTag("RangedPlayer");
+        GameStats.isBattle = false;
     }
 
     // Update is called once per frame
