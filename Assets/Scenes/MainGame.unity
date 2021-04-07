@@ -1020,9 +1020,21 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2767826942437489522, guid: 4cf4e17743bc5ac4db356a52f994a9c2, type: 3}
+      propertyPath: speed
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 2767826943954322214, guid: 4cf4e17743bc5ac4db356a52f994a9c2, type: 3}
       propertyPath: m_Name
       value: 'MeleePlayer '
+      objectReference: {fileID: 0}
+    - target: {fileID: 2767826943954322216, guid: 4cf4e17743bc5ac4db356a52f994a9c2, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 3.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2767826943954322216, guid: 4cf4e17743bc5ac4db356a52f994a9c2, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 6.76
       objectReference: {fileID: 0}
     - target: {fileID: 2767826943954322217, guid: 4cf4e17743bc5ac4db356a52f994a9c2, type: 3}
       propertyPath: m_Mass
@@ -1034,7 +1046,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2767826943954322217, guid: 4cf4e17743bc5ac4db356a52f994a9c2, type: 3}
       propertyPath: m_Constraints
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2767826943954322217, guid: 4cf4e17743bc5ac4db356a52f994a9c2, type: 3}
       propertyPath: m_UseAutoMass
@@ -1043,7 +1055,7 @@ PrefabInstance:
     - target: {fileID: 2767826943954322218, guid: 4cf4e17743bc5ac4db356a52f994a9c2, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 217a4bbe6d61ab549be8a83d8298bf8a, type: 3}
+      objectReference: {fileID: 21300000, guid: 39fcc4082ec9dc7498aae4baecb707a6, type: 3}
     - target: {fileID: 2767826943954322219, guid: 4cf4e17743bc5ac4db356a52f994a9c2, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -2523,6 +2535,10 @@ PrefabInstance:
     - target: {fileID: 6213613206703919252, guid: ec4e637f3110d184bbd269966d584422, type: 3}
       propertyPath: m_Name
       value: RangePlayer
+      objectReference: {fileID: 0}
+    - target: {fileID: 6213613206703919253, guid: ec4e637f3110d184bbd269966d584422, type: 3}
+      propertyPath: speed
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6213613206703919253, guid: ec4e637f3110d184bbd269966d584422, type: 3}
       propertyPath: playerShield

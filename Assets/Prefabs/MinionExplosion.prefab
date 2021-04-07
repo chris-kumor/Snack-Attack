@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 418212552927413186}
   - component: {fileID: 4546677212157810203}
   - component: {fileID: 2144223788612911548}
+  - component: {fileID: -324039869753416882}
   - component: {fileID: 1063735180778755245}
   - component: {fileID: -2001709200566580906}
   m_Layer: 12
@@ -74,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: -1448608309
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 785adac380ea4d044a158fa2e6c90dd3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 73af045b4950e7a45988e63bcaab333f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -106,6 +107,25 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!95 &-324039869753416882
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6286601020115255354}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2da21ccafaa12fe40837b22ccf30ab70, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!60 &1063735180778755245
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -123,7 +143,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 5.12, y: 4.27}
+    oldSize: {x: 3, y: 3}
     newSize: {x: 5.12, y: 4.27}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

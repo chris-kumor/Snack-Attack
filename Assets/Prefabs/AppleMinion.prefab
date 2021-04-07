@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6288595381679465063}
   - component: {fileID: 4476605575066636806}
   - component: {fileID: 537926403962815143}
+  - component: {fileID: 5003410610145692735}
   m_Layer: 12
   m_Name: AppleMinion
   m_TagString: minion
@@ -326,3 +327,22 @@ MonoBehaviour:
   AppleMinionExplosionSound: {fileID: 8300000, guid: 9a939965d3ea75949a92c063fb283058, type: 3}
   attacks:
   - {fileID: 11400000, guid: e46e69b677a3deb4e8160a4e21e81b1f, type: 2}
+--- !u!95 &5003410610145692735
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4605721118578811385}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

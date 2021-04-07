@@ -15,11 +15,12 @@ public class PlayerController : MonoBehaviour
     public AtkStruct shield;
     public GameObject playerShield;
     public float AimReticleOffSet;
+    public Animator Animator;
+    public SpriteRenderer Player_Sprite;
 
     private Rigidbody2D PlayerRB2D;
     private Transform pos;
     private Vector2 MoveDir;
-    private SpriteRenderer Player_Sprite;
     private float playerHP;
     private GameObject atk;
     private Vector2 AimDir;
@@ -64,7 +65,6 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         PlayerRB2D = gameObject.GetComponent<Rigidbody2D>();
-        Player_Sprite = gameObject.GetComponent<SpriteRenderer>();
         pos = gameObject.GetComponent<Transform>();
         MoveDir = new Vector2(0.0f, 0.0f);
         AimDir = new Vector2(0.0f, 0.0f);
@@ -148,10 +148,21 @@ public class PlayerController : MonoBehaviour
             MoveDir = new Vector2(Sinput.GetAxis(haxis, slot), Sinput.GetAxis(vaxis, slot));
             MoveDir.Normalize();
             PlayerRB2D.MovePosition(PlayerRB2D.transform.position + (new Vector3(MoveDir.x,MoveDir.y, 1.00f)  * speed * Time.deltaTime));
+            Animator.SetFloat("speed", (Mathf.Abs(MoveDir.x) + Mathf.Abs(MoveDir.y)));
+            Debug.Log((Mathf.Abs(MoveDir.x) + Mathf.Abs(MoveDir.y)));
+            if(MoveDir.x < 0.0f)
+            {
+                Player_Sprite.flipX = true;
+            }
+            else
+            {
+                Player_Sprite.flipX = false;
+            }
         }
         else
         {   
             PlayerRB2D.velocity *= 0;
+            Animator.SetFloat("speed", 0.0f);
         }
 
         Debug.Log(isMouseAiming);

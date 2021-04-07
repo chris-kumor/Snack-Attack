@@ -265,7 +265,7 @@ Animator:
   m_GameObject: {fileID: 2767826943954322214}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a822ae960e30de8409d5bbe11e148bef, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -299,6 +299,8 @@ MonoBehaviour:
   shield: {fileID: 11400000, guid: 9c8f35446e8da5447a6f2639c5578aef, type: 2}
   playerShield: {fileID: 6156330714321189162}
   AimReticleOffSet: 3.5
+  Animator: {fileID: 7923635783740947525}
+  Player_Sprite: {fileID: 2767826943954322218}
 --- !u!114 &-1480674669538845503
 MonoBehaviour:
   m_ObjectHideFlags: 0

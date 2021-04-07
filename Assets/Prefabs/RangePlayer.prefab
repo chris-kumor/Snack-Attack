@@ -70,6 +70,7 @@ GameObject:
   - component: {fileID: 6213613206703919259}
   - component: {fileID: 6213613206703919258}
   - component: {fileID: 7616556262342317741}
+  - component: {fileID: 6713400606178898452}
   - component: {fileID: 6213613206703919253}
   - component: {fileID: 6906314643370607707}
   m_Layer: 9
@@ -933,6 +934,25 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &6713400606178898452
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6213613206703919252}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 04076e2bdb309714bbab4bc26a52973c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &6213613206703919253
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -958,6 +978,7 @@ MonoBehaviour:
   shield: {fileID: 11400000, guid: 6cede604f983eb047832f1ad3910f36a, type: 2}
   playerShield: {fileID: 5442865686223464446}
   AimReticleOffSet: 3.5
+  Animator: {fileID: 6713400606178898452}
 --- !u!114 &6906314643370607707
 MonoBehaviour:
   m_ObjectHideFlags: 0
