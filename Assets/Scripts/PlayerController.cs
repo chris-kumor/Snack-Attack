@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     public float AimReticleOffSet;
     public Animator Animator;
     public SpriteRenderer Player_Sprite;
+    public float colorTime;
 
     private Rigidbody2D PlayerRB2D;
     private Transform pos;
@@ -29,7 +30,7 @@ public class PlayerController : MonoBehaviour
     private SinputSystems.InputDeviceSlot slot;
     private string PlayerTag;
     private bool isMouseAiming;
-
+    private float colorTimer;
 
     public static GameObject Attack(GameObject Atk, Vector3 weaponPos, Vector3 targetDir, float atkDistance, Quaternion ProjectileRotation)
     {
@@ -106,6 +107,12 @@ public class PlayerController : MonoBehaviour
         {
             this.playerHP = MaxHP;
         }
+
+        if (colorTimer > 0)
+        {
+            colorTimer -= Time.deltaTime;
+        }
+        //Player_Sprite.color = Color.Lerp(Color.white, Color.red, colorTimer / colorTime);
 
                  // Attacking
         for (int i = 0; i < attacks.Length; i++)
@@ -203,11 +210,13 @@ public class PlayerController : MonoBehaviour
         float potentialDamage = 0.0f;
         if(collision.collider.gameObject.tag == "BossMeleeAtk")
         {
-            potentialDamage= collision.collider.gameObject.GetComponent<PlayerStrikeController>().attack.damage ;
+            potentialDamage= collision.collider.gameObject.GetComponent<PlayerStrikeController>().attack.damage;
+            colorTimer = colorTime;
         }
         else if(collision.collider.gameObject.tag == "BossRangeAttk")
         {
             potentialDamage= collision.collider.gameObject.GetComponent<PlayerShotController>().attack.damage;
+            colorTimer = colorTime;
         }
         this.playerHP -= potentialDamage * playerShield.GetComponent<ShieldController>().isExposed;
     }

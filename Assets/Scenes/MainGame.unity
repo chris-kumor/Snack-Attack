@@ -1125,6 +1125,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2767826943992206369, guid: 4cf4e17743bc5ac4db356a52f994a9c2, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2767826943992206399, guid: 4cf4e17743bc5ac4db356a52f994a9c2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4806490429897831573, guid: 4cf4e17743bc5ac4db356a52f994a9c2, type: 3}
       propertyPath: m_Color.b
       value: 0
@@ -2036,6 +2044,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Map
       objectReference: {fileID: 0}
+    - target: {fileID: 6477936107801817225, guid: 849f82f7064d0e145ba8e5a31b5de3f9, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 6477936107801817226, guid: 849f82f7064d0e145ba8e5a31b5de3f9, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -2556,6 +2568,10 @@ PrefabInstance:
     - target: {fileID: 5343211454076303581, guid: ec4e637f3110d184bbd269966d584422, type: 3}
       propertyPath: m_LocalPosition.y
       value: -5.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6213613206666823565, guid: ec4e637f3110d184bbd269966d584422, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6213613206703919252, guid: ec4e637f3110d184bbd269966d584422, type: 3}
       propertyPath: m_Name

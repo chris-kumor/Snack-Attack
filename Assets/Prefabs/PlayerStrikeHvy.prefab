@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5975419412570573012}
   - component: {fileID: 1568144237824210461}
   - component: {fileID: -7432424813578412569}
+  - component: {fileID: 6257047184162831672}
   - component: {fileID: 5815955490430641670}
   m_Layer: 13
   m_Name: PlayerStrikeHvy
@@ -176,6 +177,25 @@ PolygonCollider2D:
       - {x: -0.049999997, y: -0.385}
       - {x: 0.07, y: -0.435}
       - {x: 0.049999997, y: -0.565}
+--- !u!95 &6257047184162831672
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6622493913580591306}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 28b7124b0473b50449a18a77f4585cae, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &5815955490430641670
 MonoBehaviour:
   m_ObjectHideFlags: 0
