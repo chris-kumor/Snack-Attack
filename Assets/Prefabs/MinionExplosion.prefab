@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -324039869753416882}
   - component: {fileID: 1063735180778755245}
   - component: {fileID: -2001709200566580906}
-  m_Layer: 12
+  m_Layer: 18
   m_Name: MinionExplosion
   m_TagString: BossMeleeAtk
   m_Icon: {fileID: 0}
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1448608309
   m_SortingLayer: 4
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 73af045b4950e7a45988e63bcaab333f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -248,5 +248,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4697624afdf873c4785888a103b06774, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 0.1
+  timer: 0.35
   attack: {fileID: 11400000, guid: e46e69b677a3deb4e8160a4e21e81b1f, type: 2}

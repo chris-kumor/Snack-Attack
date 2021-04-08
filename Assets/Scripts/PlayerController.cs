@@ -150,11 +150,11 @@ public class PlayerController : MonoBehaviour
             PlayerRB2D.MovePosition(PlayerRB2D.transform.position + (new Vector3(MoveDir.x,MoveDir.y, 1.00f)  * speed * Time.deltaTime));
             Animator.SetFloat("speed", (Mathf.Abs(MoveDir.x) + Mathf.Abs(MoveDir.y)));
             Debug.Log((Mathf.Abs(MoveDir.x) + Mathf.Abs(MoveDir.y)));
-            if(MoveDir.x < 0.0f)
+            if(MoveDir.x < 0.0f )
             {
                 Player_Sprite.flipX = true;
             }
-            else
+            else if(MoveDir.x > 0.0f )
             {
                 Player_Sprite.flipX = false;
             }

@@ -7,18 +7,24 @@ public class AppleMinionCOntroller : MonoBehaviour
 {
     private GameObject MeleePlayer, RangedPlayer;
     private GameObject target;
+    private Vector3 PreyDir;
 
     public float minionSpeed;
     public AudioSource GameAudioSource;
     public AudioClip AppleMinionExplosionSound;
     public AtkStruct[] attacks;
+    public SpriteRenderer AppleMinnionSprite;
+    public Animator AppleMinnionAnimator;
     
     // Start is called before the first frame update
     void Start()
     {
         MeleePlayer = GameObject.FindWithTag("MeleePlayer");
         RangedPlayer = GameObject.FindWithTag("RangedPlayer");
+        
+
     }
+
 
     void FindPrey()
     {
@@ -40,17 +46,33 @@ public class AppleMinionCOntroller : MonoBehaviour
     
     void FixedUpdate()
     {
-        
+        PreyDir = (target.transform.position - gameObject.transform.position);
         gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, target.transform.position, (minionSpeed * Time.deltaTime));
+        if(PreyDir.x > 0.0f)
+        {
+            AppleMinnionSprite.flipX = true;
+        }
+        else if(PreyDir.x < 0.0f)
+        {
+            AppleMinnionSprite.flipX = false;
+        }
+        
     
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        Vector3 PreyDir = (target.transform.position - gameObject.transform.position);
-        GameAudioSource.PlayOneShot(AppleMinionExplosionSound, 0.1f);
-        GameObject atk = PlayerController.Attack(attacks[0].atkObj, gameObject.transform.position, PreyDir, attacks[0].atkDistance, gameObject.transform.rotation);
-        atk = null;
-        Destroy(gameObject);
+        if(collision.gameObject.tag == "MeleeStrike")
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            PreyDir = (target.transform.position - gameObject.transform.position);
+            GameAudioSource.PlayOneShot(AppleMinionExplosionSound, 0.1f);
+            GameObject atk = PlayerController.Attack(attacks[0].atkObj, gameObject.transform.position, PreyDir, attacks[0].atkDistance, gameObject.transform.rotation);
+            atk = null;
+            Destroy(gameObject);
+        }
     }
 }

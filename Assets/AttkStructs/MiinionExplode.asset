@@ -18,5 +18,5 @@ MonoBehaviour:
   cooldown: 0
   canFire: 0
   atkDistance: 0
-  damage: 25
+  damage: 10
   soundToPlay: {fileID: 8300000, guid: 9a939965d3ea75949a92c063fb283058, type: 3}

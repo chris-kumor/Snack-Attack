@@ -39,11 +39,11 @@ public class SpawnMinion : MonoBehaviour
     {
         if(GameStats.isBattle)
         {
-            for(int i = 1; i <= maxMinion; i++)
+            for(int i = 1; i <= maxMinion/2; i++)
             {
                 Instantiate(AppleMinion, MinionSpawn1.transform.position, Quaternion.identity);
             }
-            for(int i = 1; i <= maxMinion; i++)
+            for(int i = 1; i <= maxMinion/2; i++)
             {
                 Instantiate(AppleMinion, MinionSpawn2.transform.position, Quaternion.identity);
             }

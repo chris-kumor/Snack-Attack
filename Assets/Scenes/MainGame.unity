@@ -384,6 +384,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6213613206703919252, guid: ec4e637f3110d184bbd269966d584422, type: 3}
   m_PrefabInstance: {fileID: 2113953178}
   m_PrefabAsset: {fileID: 0}
+--- !u!212 &274173307 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 6213613206703919256, guid: ec4e637f3110d184bbd269966d584422, type: 3}
+  m_PrefabInstance: {fileID: 2113953178}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &416545498
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1022,7 +1027,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2767826942437489522, guid: 4cf4e17743bc5ac4db356a52f994a9c2, type: 3}
       propertyPath: speed
-      value: 7
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2767826942437489522, guid: 4cf4e17743bc5ac4db356a52f994a9c2, type: 3}
+      propertyPath: AimReticleOffSet
+      value: 4.5
       objectReference: {fileID: 0}
     - target: {fileID: 2767826943954322214, guid: 4cf4e17743bc5ac4db356a52f994a9c2, type: 3}
       propertyPath: m_Name
@@ -1030,15 +1039,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2767826943954322216, guid: 4cf4e17743bc5ac4db356a52f994a9c2, type: 3}
       propertyPath: m_SpriteTilingProperty.border.w
-      value: 0.04
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2767826943954322216, guid: 4cf4e17743bc5ac4db356a52f994a9c2, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 21.605225
+      value: 3.8
       objectReference: {fileID: 0}
     - target: {fileID: 2767826943954322216, guid: 4cf4e17743bc5ac4db356a52f994a9c2, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 27.5
+      value: 6.76
       objectReference: {fileID: 0}
     - target: {fileID: 2767826943954322217, guid: 4cf4e17743bc5ac4db356a52f994a9c2, type: 3}
       propertyPath: m_Mass
@@ -1066,27 +1075,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2767826943954322219, guid: 4cf4e17743bc5ac4db356a52f994a9c2, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.2068404
+      value: 1.3419738
       objectReference: {fileID: 0}
     - target: {fileID: 2767826943954322219, guid: 4cf4e17743bc5ac4db356a52f994a9c2, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.2068404
+      value: 1.3419738
       objectReference: {fileID: 0}
     - target: {fileID: 2767826943954322219, guid: 4cf4e17743bc5ac4db356a52f994a9c2, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1.2068404
+      value: 1.3419738
       objectReference: {fileID: 0}
     - target: {fileID: 2767826943954322219, guid: 4cf4e17743bc5ac4db356a52f994a9c2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -19.86
+      value: -19.48
       objectReference: {fileID: 0}
     - target: {fileID: 2767826943954322219, guid: 4cf4e17743bc5ac4db356a52f994a9c2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -8.21
+      value: -6.23
       objectReference: {fileID: 0}
     - target: {fileID: 2767826943954322219, guid: 4cf4e17743bc5ac4db356a52f994a9c2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.3375
+      value: 1.2023
       objectReference: {fileID: 0}
     - target: {fileID: 2767826943954322219, guid: 4cf4e17743bc5ac4db356a52f994a9c2, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1325,7 +1334,7 @@ MonoBehaviour:
   MinionSpawn1: {fileID: 1202235981}
   MinionSpawn2: {fileID: 1164072655}
   AppleMinion: {fileID: 4605721118578811385, guid: f868f04cad829544a841397a75d5e9bc, type: 3}
-  maxMinion: 3
+  maxMinion: 4
 --- !u!82 &1111105089
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2560,6 +2569,14 @@ PrefabInstance:
       propertyPath: playerShield
       value: 
       objectReference: {fileID: 2107642019}
+    - target: {fileID: 6213613206703919253, guid: ec4e637f3110d184bbd269966d584422, type: 3}
+      propertyPath: Player_Sprite
+      value: 
+      objectReference: {fileID: 274173307}
+    - target: {fileID: 6213613206703919253, guid: ec4e637f3110d184bbd269966d584422, type: 3}
+      propertyPath: AimReticleOffSet
+      value: 4.5
+      objectReference: {fileID: 0}
     - target: {fileID: 6213613206703919256, guid: ec4e637f3110d184bbd269966d584422, type: 3}
       propertyPath: m_Size.x
       value: 21.599998
@@ -3388,6 +3405,14 @@ PrefabInstance:
       propertyPath: attacks.Array.data[2]
       value: 
       objectReference: {fileID: 11400000, guid: e137a8c86e1040c408889891285a311f, type: 2}
+    - target: {fileID: 2314242864049820121, guid: 8e6c1c951bfa30a4989630d7eb2cbb20, type: 3}
+      propertyPath: m_FlipX
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2314242864049820121, guid: 8e6c1c951bfa30a4989630d7eb2cbb20, type: 3}
+      propertyPath: m_FlipY
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2314242864049820121, guid: 8e6c1c951bfa30a4989630d7eb2cbb20, type: 3}
       propertyPath: m_SortingLayer
       value: 4

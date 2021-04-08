@@ -11,7 +11,7 @@ public class HealthPickUpController : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision)
     {
         ItemAudioSource.PlayOneShot(Healing, 0.2f);
-        collision.collider.gameObject.GetComponent<PlayerController>().ChangeHealth("+", incrementHealth);
+        collision.gameObject.GetComponent<PlayerController>().ChangeHealth("+", incrementHealth);
         Destroy(gameObject);
     }
 }

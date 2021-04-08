@@ -12,6 +12,7 @@ public class PlayerStrikeController : MonoBehaviour
     private GameObject RangedPlayer;
     private Rigidbody2D rb;
     
+    
 
 
     // Start is called before the first frame update
@@ -22,6 +23,7 @@ public class PlayerStrikeController : MonoBehaviour
         MeleePlayer = GameObject.FindWithTag("MeleePlayer");
         RangedPlayer = GameObject.FindWithTag("RangedPlayer");
         rb = gameObject.GetComponent<Rigidbody2D>();
+
     }
 
     // Update is called once per frame
