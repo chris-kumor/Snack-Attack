@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6107366159344439196}
   - component: {fileID: 2372308625822999306}
   - component: {fileID: 3757675838903845660}
+  - component: {fileID: -2387789383967031898}
   - component: {fileID: -104842951852734741}
   m_Layer: 14
   m_Name: RShield
@@ -180,6 +181,22 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!58 &-2387789383967031898
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6156330715000639679}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.1805598, y: 0}
+  serializedVersion: 2
+  m_Radius: 3.1549916
 --- !u!114 &-104842951852734741
 MonoBehaviour:
   m_ObjectHideFlags: 0

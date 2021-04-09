@@ -515,3 +515,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timer: 0.1
   attack: {fileID: 11400000, guid: ca08b6abfc21fbf458bb12074309eb68, type: 2}
+  AttackSprite: {fileID: 2167253063460556466}

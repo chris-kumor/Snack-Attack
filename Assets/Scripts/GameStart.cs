@@ -14,5 +14,6 @@ public class GameStart : MonoBehaviour
         else{
             Cursor.visible = false;
         }
+        
     }
 }

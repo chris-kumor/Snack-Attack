@@ -33,7 +33,7 @@ public class GameResults : MonoBehaviour
             GameResult.text = "The players have emerged victorious!";
         }
 
-        PlayersDamageText.text = "Melee Player Damage: " + GameStats.MeleeDamage + "    Ranged Player Damage: " + GameStats.RangedDamage;
+        PlayersDamageText.text = "Melee Player Damage: " + GameStats.MeleeDamage + "\nRanged Player Damage: " + GameStats.RangedDamage;
 
     }
     public void Update()

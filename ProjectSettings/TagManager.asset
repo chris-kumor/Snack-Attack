@@ -15,6 +15,7 @@ TagManager:
   - minion
   - PickUp
   - PauseText
+  - ShieldPickUp
   layers:
   - Default
   - TransparentFX
@@ -25,18 +26,18 @@ TagManager:
   - 
   - 
   - Terrain
-  - Player
+  - MeleePlayer
   - World Bounds
   - Player Bound
   - Boss
   - Attack
   - Shield
-  - pickup
+  - Health PickUp
   - Boss Attack
   - MouseDetection
   - MinnionExplosion
-  - 
-  - 
+  - RangedPlayer
+  - Shield Pick Up
   - 
   - 
   - 

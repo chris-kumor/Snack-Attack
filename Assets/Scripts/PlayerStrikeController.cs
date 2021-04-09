@@ -6,6 +6,7 @@ public class PlayerStrikeController : MonoBehaviour
 {
     public float timer;
     public AtkStruct attack;
+    public SpriteRenderer AttackSprite;
     
     private PolygonCollider2D AttkCollider;
     private GameObject MeleePlayer;
@@ -38,6 +39,15 @@ public class PlayerStrikeController : MonoBehaviour
 
     void Update()
     {
+        Vector2 AimDir =  MeleePlayer.GetComponent<PlayerController>().GetAimDir();
+        if(AimDir.x < 0.0f && AimDir.y != 0.0f && gameObject.tag == "MeleeStrike")
+        {
+            AttackSprite.flipY = true;
+        }
+        else
+        {
+            AttackSprite.flipY = false;
+        }
         
         if(gameObject.tag == "Shield" && AttkCollider.bounds.Contains(MeleePlayer.transform.position))
         {
@@ -47,6 +57,6 @@ public class PlayerStrikeController : MonoBehaviour
         {
             gameObject.transform.position = RangedPlayer.transform.position;
         }
-         //rb.transform.rotation = Quaternion.AngleAxis(0, Vector3.up); 
+         //rb.transform.rotation = Quaternion.AngleAxis(0, Vector3.forward); 
     }
 }

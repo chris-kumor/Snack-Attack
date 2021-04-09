@@ -19,13 +19,13 @@ public class PausingGame : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Sinput.GetButtonDown("Pause") && !isPaused)
+        if(Sinput.GetButtonDown("Pause") && !isPaused && GameStats.isBattle == true)
         {
             isPaused = true;
             Time.timeScale = 0;
             PausedText.enabled = true;
         }
-        else if(Sinput.GetButtonDown("Pause") && isPaused)
+        else if(Sinput.GetButtonDown("Pause") && isPaused && GameStats.isBattle == true)
         {
             isPaused = false;
             Time.timeScale = 1;

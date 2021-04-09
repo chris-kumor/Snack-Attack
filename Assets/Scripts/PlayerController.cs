@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     public Animator Animator;
     public SpriteRenderer Player_Sprite;
     public float colorTime;
+    public AudioClip PlayerDamaged, PlayerHealing, PlayerShield;
 
     private Rigidbody2D PlayerRB2D;
     private Transform pos;
@@ -31,6 +32,7 @@ public class PlayerController : MonoBehaviour
     private string PlayerTag;
     private bool isMouseAiming;
     private float colorTimer;
+    private Color desiredColor;
 
     public static GameObject Attack(GameObject Atk, Vector3 weaponPos, Vector3 targetDir, float atkDistance, Quaternion ProjectileRotation)
     {
@@ -42,6 +44,11 @@ public class PlayerController : MonoBehaviour
     public float GetPlayerHP()
     {
         return this.playerHP;
+    }
+
+    public Vector2 GetAimDir()
+    {
+        return AimDir;
     }
 
     public void ChangeHealth(string opSymbol, float amnt)
@@ -112,14 +119,15 @@ public class PlayerController : MonoBehaviour
         {
             colorTimer -= Time.deltaTime;
         }
-        //Player_Sprite.color = Color.Lerp(Color.white, Color.red, colorTimer / colorTime);
+        Player_Sprite.color = Color.Lerp(Color.white, desiredColor, colorTimer / colorTime);
 
                  // Attacking
         for (int i = 0; i < attacks.Length; i++)
         {
             if(Sinput.GetButtonDown(attacks[i].fireKey, slot) && attacks[i].canFire)
             {
-                    
+
+                   
                 if(gameObject.tag == "MeleePlayer")
                 {
                     Player_Sprite.enabled = false;
@@ -129,7 +137,7 @@ public class PlayerController : MonoBehaviour
                 atk.transform.right = new Vector3(AimDir.x, AimDir.y, 0f);
                 atk = null;
                 attacks[i].canFire = false;
-                Invoke("enableIdleSprite",  0.3f);
+                Invoke("enableIdleSprite",  1.3f);
             }
         
                         
@@ -141,8 +149,16 @@ public class PlayerController : MonoBehaviour
             attacks[i].cooldownTimer -= Time.deltaTime;
         }
 
+        if(Sinput.GetButtonDown("Dash", slot))
+        {
+            desiredColor = Color.blue;
+            colorTimer = colorTime;
+        }
+
     
     }
+
+
 
     // Update is called once per x frame
     void FixedUpdate()
@@ -208,16 +224,37 @@ public class PlayerController : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision)
     {
         float potentialDamage = 0.0f;
+
         if(collision.collider.gameObject.tag == "BossMeleeAtk")
         {
+            desiredColor = Color.red;
             potentialDamage= collision.collider.gameObject.GetComponent<PlayerStrikeController>().attack.damage;
             colorTimer = colorTime;
+            PlayerAudioSource.PlayOneShot(PlayerDamaged, 0.4f);
+
         }
         else if(collision.collider.gameObject.tag == "BossRangeAttk")
         {
+            desiredColor = Color.red;
             potentialDamage= collision.collider.gameObject.GetComponent<PlayerShotController>().attack.damage;
             colorTimer = colorTime;
+            PlayerAudioSource.PlayOneShot(PlayerDamaged, 0.5f);
         }
+        else if(collision.gameObject.tag == "PickUp" && playerHP != MaxHP)
+        {
+            desiredColor = Color.yellow;
+            colorTimer = colorTime;
+            PlayerAudioSource.PlayOneShot(PlayerHealing, 0.5f);
+
+        }
+        else if(collision.gameObject.tag == "ShieldPickUp" && shield.cooldownTimer != shield.cooldown)
+        {
+            desiredColor = Color.green;
+            colorTimer = colorTime;
+            PlayerAudioSource.PlayOneShot(PlayerShield, 0.5f);
+
+        }
+
         this.playerHP -= potentialDamage * playerShield.GetComponent<ShieldController>().isExposed;
     }
 

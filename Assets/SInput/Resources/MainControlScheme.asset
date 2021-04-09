@@ -85,7 +85,7 @@ MonoBehaviour:
     virtualInputs: []
   - name: Join
     keyboardInputs: 30000000
-    gamepadInputs: 17000000
+    gamepadInputs: 18000000
     mouseInputs: 
     virtualInputs: []
   - name: Dash
@@ -96,7 +96,7 @@ MonoBehaviour:
   - name: Select
     keyboardInputs: 
     gamepadInputs: 01000000
-    mouseInputs: 0c000000
+    mouseInputs: 
     virtualInputs: []
   - name: Pause
     keyboardInputs: 32000000

@@ -26,12 +26,21 @@ public class MenuController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Sinput.GetButtonDown("Select"))
+        if(Sinput.GetButtonDown("Select", SinputSystems.InputDeviceSlot.gamepad1) || Sinput.GetButtonUp("Select", SinputSystems.InputDeviceSlot.gamepad2))
         {
             Cursor.SetCursor(MouseClickTexture, Vector2.zero, CursorMode.Auto);
             CursorControl.SimulateLeftClick();
         }
-        else if(Sinput.GetButtonUp("Select"))
+        else if(Input.GetMouseButtonDown(0))
+        {
+            Cursor.SetCursor(MouseClickTexture, Vector2.zero, CursorMode.Auto);
+        }
+
+        else if(Sinput.GetButtonUp("Select", SinputSystems.InputDeviceSlot.gamepad1) || Sinput.GetButtonUp("Select", SinputSystems.InputDeviceSlot.gamepad2))
+        {
+            Cursor.SetCursor(MouseTexture, Vector2.zero, CursorMode.Auto);
+        }
+        else if(Input.GetMouseButtonUp(0))
         {
             Cursor.SetCursor(MouseTexture, Vector2.zero, CursorMode.Auto);
         }

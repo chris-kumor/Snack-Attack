@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 8924853748207851028}
   - component: {fileID: 6051108904883526391}
   - component: {fileID: -2892030827009335201}
-  - component: {fileID: 5149915110482498706}
   - component: {fileID: -7998316008274085914}
   m_Layer: 15
   m_Name: HealthPickUp
@@ -655,102 +654,6 @@ PolygonCollider2D:
       - {x: 1.3299999, y: 2.26}
       - {x: 1.31, y: 2.25}
       - {x: 1.27, y: 2.22}
---- !u!82 &5149915110482498706
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3211158636464376710}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: f41d28ddf0490ee4d9f2d1d16bdfaf03, type: 3}
-  m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!114 &-7998316008274085914
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -763,6 +666,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 325aec4b6947dc34ea11d449c82353a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  incrementHealth: 10
-  Healing: {fileID: 8300000, guid: f41d28ddf0490ee4d9f2d1d16bdfaf03, type: 3}
-  ItemAudioSource: {fileID: 5149915110482498706}
+  incrementHealth: 25
+  MeleePlayer: {fileID: 2767826943954322214, guid: 4cf4e17743bc5ac4db356a52f994a9c2, type: 3}
+  RangedPlayer: {fileID: 6213613206703919252, guid: ec4e637f3110d184bbd269966d584422, type: 3}

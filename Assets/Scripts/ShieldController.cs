@@ -11,7 +11,7 @@ public class ShieldController : MonoBehaviour
     private Rigidbody2D rb;
     private SpriteRenderer shieldSprite;
     private Color ShieldFullColor;
-    private PolygonCollider2D shieldCollider;
+    private CircleCollider2D shieldCollider;
     private AudioSource ShieldAudioSource;
     private SinputSystems.InputDeviceSlot slot;
     
@@ -21,7 +21,7 @@ public class ShieldController : MonoBehaviour
         
         rb = gameObject.GetComponent<Rigidbody2D>();
         shieldSprite = gameObject.GetComponent<SpriteRenderer>();
-        shieldCollider = gameObject.GetComponent<PolygonCollider2D>();
+        shieldCollider = gameObject.GetComponent<CircleCollider2D>();
         shield.cooldownTimer = shield.cooldown;
         shield.canFire = true;
         ShieldFullColor = new Color(shieldSprite.color[0], shieldSprite.color[1], shieldSprite.color[2], 0.75f);
@@ -45,12 +45,14 @@ public class ShieldController : MonoBehaviour
         if(Sinput.GetButton(shield.fireKey, slot) && shield.canFire && shield.cooldownTimer > 0)
         {
             shieldSprite.enabled = true;
+            shieldCollider.enabled = true;
             isExposed = 0;
             ShieldAudioSource.PlayOneShot(shield.soundToPlay, 0.05f);
         }
         else
         {
             shieldSprite.enabled = false;
+            shieldCollider.enabled = false;
              isExposed = 1;
         }
     

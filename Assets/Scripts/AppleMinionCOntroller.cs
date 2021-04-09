@@ -69,7 +69,7 @@ public class AppleMinionCOntroller : MonoBehaviour
         else
         {
             PreyDir = (target.transform.position - gameObject.transform.position);
-            GameAudioSource.PlayOneShot(AppleMinionExplosionSound, 0.1f);
+            GameAudioSource.PlayOneShot(AppleMinionExplosionSound, 0.5f);
             GameObject atk = PlayerController.Attack(attacks[0].atkObj, gameObject.transform.position, PreyDir, attacks[0].atkDistance, gameObject.transform.rotation);
             atk = null;
             Destroy(gameObject);
