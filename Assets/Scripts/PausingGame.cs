@@ -6,13 +6,12 @@ using UnityEngine.UI;
 public class PausingGame : MonoBehaviour
 {
     public bool isPaused;
-    
-    private Text PausedText;
+    public Text PausedText;
     // Start is called before the first frame update
     void Start()
     {
         isPaused = false;
-        PausedText = GameObject.FindWithTag("PauseText").GetComponent<Text>();
+        //PausedText = GameObject.FindWithTag("PauseText").GetComponent<Text>();
         PausedText.enabled = false;
     }
 

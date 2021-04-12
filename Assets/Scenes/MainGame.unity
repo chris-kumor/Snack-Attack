@@ -666,6 +666,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPaused: 0
+  PausedText: {fileID: 1180219565}
 --- !u!1001 &559800594
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1149,7 +1150,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1111105084}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 62ad8aca6e04111448773059cfd30272, type: 3}
   m_Name: 
@@ -1157,7 +1158,7 @@ MonoBehaviour:
   MinionSpawn1: {fileID: 1202235981}
   MinionSpawn2: {fileID: 1164072655}
   AppleMinion: {fileID: 4605721118578811385, guid: f868f04cad829544a841397a75d5e9bc, type: 3}
-  maxMinion: 4
+  maxMinion: 6
 --- !u!82 &1111105089
 AudioSource:
   m_ObjectHideFlags: 0

@@ -5,43 +5,32 @@ using UnityEngine.UI;
 
 public class ShieldPowerUpController : MonoBehaviour
 {
-    private PolygonCollider2D MeleePlayerCollider, RangedPlayerCollider;
     public GameObject MeleePlayer, RangedPlayer;
+    private AtkStruct MShield, RShield;
 
-    // Start is called before the first frame update
     void Start()
     {
-
-        MeleePlayerCollider = MeleePlayer.GetComponent<PolygonCollider2D>();
-        RangedPlayerCollider = RangedPlayer.GetComponent<PolygonCollider2D>();
+        MShield = MeleePlayer.gameObject.GetComponent<PlayerController>().shield;
+        RShield = RangedPlayer.gameObject.GetComponent<PlayerController>().shield;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if(MeleePlayer.gameObject.GetComponent<PlayerController>().GetPlayerHP() == MeleePlayer.GetComponent<PlayerController>().MaxHP)
-        {
+        if(MShield.cooldownTimer == MShield.cooldown)
             Physics2D.IgnoreLayerCollision(9, 20, true);
-        }
-        else if(MeleePlayer.gameObject.GetComponent<PlayerController>().GetPlayerHP() != MeleePlayer.GetComponent<PlayerController>().MaxHP)
-        {
+        else if(MShield.cooldownTimer != MShield.cooldown)
             Physics2D.IgnoreLayerCollision(9, 20, false);
-        }
-
-        if(RangedPlayer.gameObject.GetComponent<PlayerController>().GetPlayerHP() == RangedPlayer.GetComponent<PlayerController>().MaxHP)
-        {
+        if(RShield.cooldownTimer == RShield.cooldown)
             Physics2D.IgnoreLayerCollision(19, 20, true);
-        }
-        else if(RangedPlayer.gameObject.GetComponent<PlayerController>().GetPlayerHP() != RangedPlayer.GetComponent<PlayerController>().MaxHP)
-        {
+        else if(RShield.cooldownTimer != RShield.cooldown)
             Physics2D.IgnoreLayerCollision(19, 20, false);
-        }
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
         //Shield PowerUp Collider colliding with a player's collider
-        if(collision.collider.gameObject.layer == 9 && collision.gameObject.GetComponent<PlayerController>().shield.cooldownTimer != collision.gameObject.GetComponent<PlayerController>().shield.cooldown)
+        if(collision.collider.gameObject.layer == 9 || collision.collider.gameObject.layer == 19)
         {
             collision.collider.gameObject.GetComponent<PlayerController>().shield.canFire = true;
             collision.collider.gameObject.GetComponent<PlayerController>().shield.cooldownTimer = collision.collider.gameObject.GetComponent<PlayerController>().shield.cooldown;

@@ -341,10 +341,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d479f673417c50245983682924bde7a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rigidbody: {fileID: 448208508957912386}
   minionSpeed: 2.5
-  GameAudioSource: {fileID: 4476605575066636806}
-  AppleMinionExplosionSound: {fileID: 8300000, guid: 9a939965d3ea75949a92c063fb283058, type: 3}
   attacks:
   - {fileID: 11400000, guid: e46e69b677a3deb4e8160a4e21e81b1f, type: 2}
   AppleMinnionSprite: {fileID: 5487727435274013693}
   AppleMinnionAnimator: {fileID: 5003410610145692735}
+  targets:
+  - {fileID: 2767826943954322214, guid: 4cf4e17743bc5ac4db356a52f994a9c2, type: 3}
+  - {fileID: 6213613206703919252, guid: ec4e637f3110d184bbd269966d584422, type: 3}

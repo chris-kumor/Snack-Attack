@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4026247776822615705}
   - component: {fileID: 3552322968029284975}
   - component: {fileID: -1976191717263797534}
-  - component: {fileID: -5906981213870717969}
+  - component: {fileID: 6026781452394069134}
   m_Layer: 20
   m_Name: RingPowerUp
   m_TagString: ShieldPickUp
@@ -3892,7 +3892,7 @@ PolygonCollider2D:
       - {x: 0.58, y: 4.35}
       - {x: 0.55, y: 4.35}
       - {x: 0.53999996, y: 4.36}
---- !u!114 &-5906981213870717969
+--- !u!114 &6026781452394069134
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -15,5 +15,6 @@ public class GameStart : MonoBehaviour
             Cursor.visible = false;
         }
         
+        GameStats.ShieldTimer = 10.00f;
     }
 }

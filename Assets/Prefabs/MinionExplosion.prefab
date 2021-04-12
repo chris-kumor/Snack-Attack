@@ -248,5 +248,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4697624afdf873c4785888a103b06774, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 0.35
   attack: {fileID: 11400000, guid: e46e69b677a3deb4e8160a4e21e81b1f, type: 2}
+  AttackSprite: {fileID: 4546677212157810203}
+  ParentTag: minion
+  rb: {fileID: 2144223788612911548}
+  AttkCollider: {fileID: 1063735180778755245}

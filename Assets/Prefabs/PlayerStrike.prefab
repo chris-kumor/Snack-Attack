@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 5975419412570573012}
   - component: {fileID: 4410831332631159111}
   - component: {fileID: 663018881576936745}
-  - component: {fileID: 5815955490430641670}
   - component: {fileID: -6527677311038103114}
+  - component: {fileID: 5815955490430641670}
   m_Layer: 13
   m_Name: PlayerStrike
   m_TagString: MeleeStrike
@@ -351,23 +351,6 @@ PolygonCollider2D:
       - {x: -0.25, y: 0.48}
       - {x: -0.26, y: 0.29999998}
       - {x: -0.26999998, y: 0.31}
---- !u!114 &5815955490430641670
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6622493913580591306}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4697624afdf873c4785888a103b06774, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attack: {fileID: 11400000, guid: 0741a930d6667bf4e9f56882862bb285, type: 2}
-  AttackSprite: {fileID: 5975419412570573012}
-  ParentTag: MeleePlayer
-  rb: {fileID: 4410831332631159111}
-  AttkCollider: {fileID: 663018881576936745}
 --- !u!95 &-6527677311038103114
 Animator:
   serializedVersion: 3
@@ -387,3 +370,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &5815955490430641670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6622493913580591306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4697624afdf873c4785888a103b06774, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attack: {fileID: 11400000, guid: 0741a930d6667bf4e9f56882862bb285, type: 2}
+  AttackSprite: {fileID: 5975419412570573012}
+  ParentTag: MeleePlayer

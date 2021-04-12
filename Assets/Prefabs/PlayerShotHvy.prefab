@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 9054755369502254081}
   - component: {fileID: 570426322716686817}
   - component: {fileID: -608399115184599519}
-  - component: {fileID: -6220014284299544586}
   - component: {fileID: 7408470654568452793}
+  - component: {fileID: -6220014284299544586}
   m_Layer: 13
   m_Name: PlayerShotHvy
   m_TagString: Projectile
@@ -387,23 +387,6 @@ PolygonCollider2D:
       - {x: -0.28, y: -0.5185272}
       - {x: -0.29999998, y: -0.5385272}
       - {x: -0.34, y: -0.5685272}
---- !u!114 &-6220014284299544586
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6868449655810605895}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 091d8fe8c1ffbae478927a7185524eac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timer: 10
-  speed: 400
-  rb: {fileID: 570426322716686817}
-  PlayerTag: RangedPlayer
-  attack: {fileID: 11400000, guid: d7bc9ee8a7eb7664eacbe814a8ab879d, type: 2}
 --- !u!82 &7408470654568452793
 AudioSource:
   m_ObjectHideFlags: 0
@@ -500,3 +483,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-6220014284299544586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6868449655810605895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 091d8fe8c1ffbae478927a7185524eac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 400
+  rb: {fileID: 570426322716686817}
+  PlayerTag: RangedPlayer
+  attack: {fileID: 11400000, guid: d7bc9ee8a7eb7664eacbe814a8ab879d, type: 2}

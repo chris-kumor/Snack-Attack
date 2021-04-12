@@ -9,6 +9,7 @@ public class SpreadAtkController : MonoBehaviour
     private Vector3 initAngle;
     private Vector3 initUp;
 
+
     // Start is called before the first frame update
     void Start()
     {

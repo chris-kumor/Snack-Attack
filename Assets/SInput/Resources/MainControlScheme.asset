@@ -103,6 +103,11 @@ MonoBehaviour:
     gamepadInputs: 17000000
     mouseInputs: 
     virtualInputs: []
+  - name: Revive
+    keyboardInputs: 09000000
+    gamepadInputs: 01000000
+    mouseInputs: 
+    virtualInputs: []
   smartControls:
   - name: Horizontal
     positiveControl: Right

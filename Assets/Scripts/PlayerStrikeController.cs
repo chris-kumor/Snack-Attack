@@ -8,8 +8,8 @@ public class PlayerStrikeController : MonoBehaviour
     public AtkStruct attack;
     public SpriteRenderer AttackSprite;
     public string ParentTag;
-    public Rigidbody2D rb;
-    public PolygonCollider2D AttkCollider;
+
+
 
     private GameObject Parent;
     
@@ -39,15 +39,13 @@ public class PlayerStrikeController : MonoBehaviour
 
     void Update()
     {
-        Vector2 AimDir =  Parent.GetComponent<PlayerController>().GetAimDir();
-        if(AimDir.x < 0.0f && AimDir.y != 0.0f && gameObject.tag == "MeleeStrike")
+        if(ParentTag == "MeleePlayer")
         {
-            AttackSprite.flipY = true;
+            Vector2 AimDir =  Parent.GetComponent<PlayerController>().GetAimDir();
+            if(AimDir.x < 0.0f && AimDir.y != 0.0f && gameObject.tag == "MeleeStrike")
+                AttackSprite.flipY = true;
+            else
+                AttackSprite.flipY = false;
         }
-        else
-        {
-            AttackSprite.flipY = false;
-        }
-        
     }
 }

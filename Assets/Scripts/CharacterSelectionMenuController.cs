@@ -9,7 +9,6 @@ public class CharacterSelectionMenuController : MonoBehaviour
     public Button PlayButton;
     public Image MeleeControls, RangedControls;
     public Sprite Controller, KBM;
-    public Text WarningText;
 
     
     void Start()

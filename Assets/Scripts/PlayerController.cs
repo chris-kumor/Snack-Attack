@@ -7,12 +7,10 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour  
 {
-    public float speed;
-    public float MaxHP;
+    public float speed, MaxHP, reviveDist;
     public AtkStruct[] attacks;
-    public GameObject AimSprite;
     public AtkStruct shield;
-    public GameObject playerShield;
+    public GameObject playerShield, otherPlayer, AimSprite;
     public float AimReticleOffSet;
     public Animator Animator;
     public SpriteRenderer Player_Sprite;
@@ -21,15 +19,15 @@ public class PlayerController : MonoBehaviour
     public Rigidbody2D PlayerRB2D;
     public AudioSource PlayerAudioSource;
     public string PlayerTag;
+    public bool isAlive;
 
-    private Vector2 MoveDir;
-    private float playerHP;
+
+    private Vector2 MoveDir, AimDir;
+    private float playerHP, colorTimer;
     private GameObject atk;
-    private Vector2 AimDir;
     private Quaternion AimAngle;
     private SinputSystems.InputDeviceSlot slot;
-    private bool isMouseAiming, isAttacking;
-    private float colorTimer;
+    private bool isMouseAiming, isAttacking, isRanged;
     private Color desiredColor;
 
     public static GameObject Attack(GameObject Atk, Vector3 weaponPos, Vector3 targetDir, float atkDistance, Quaternion ProjectileRotation)
@@ -62,13 +60,9 @@ public class PlayerController : MonoBehaviour
     public void ChangeHealth(string opSymbol, float amnt)
     {
         if(opSymbol == "+")
-        {
             this.playerHP += amnt;
-        }
         else if(opSymbol == "-")
-        {
             this.playerHP -= amnt;
-        }
     }
 
     void enableIdleSprite()
@@ -84,6 +78,7 @@ public class PlayerController : MonoBehaviour
         AimDir = new Vector2(0.0f, 0.0f);
         for (int i = 0; i < attacks.Length; i++)
             attacks[i].cooldownTimer = attacks[i].cooldown;
+        shield.cooldownTimer = shield.cooldown;
         AimSprite.GetComponent<SpriteRenderer>().enabled = false;
         this.playerHP = MaxHP;
         if(PlayerTag == "MeleePlayer")
@@ -95,6 +90,12 @@ public class PlayerController : MonoBehaviour
         else
             isMouseAiming = false;
         isAttacking = false;
+        isAlive = true;
+        if(gameObject.tag == "RangedPlayer")
+            isRanged = true;
+        else if(gameObject.tag != "RangedPlayer")
+            isRanged = false;
+        
     }
 
     void Update()
@@ -102,12 +103,17 @@ public class PlayerController : MonoBehaviour
         //Health Check
         if(this.playerHP <= 0)
         {
-            Destroy(gameObject);
+            PlayerRB2D.constraints = RigidbodyConstraints2D.FreezeAll;
+            isAlive = false;
         }
-        else if(this.playerHP > MaxHP)
+        else
         {
-            this.playerHP = MaxHP;
+            PlayerRB2D.constraints = RigidbodyConstraints2D.FreezeRotation;
+            isAlive = true;
         }
+        if(this.playerHP > MaxHP)
+            this.playerHP = MaxHP;
+        
         //Visually notify PlayerDash
         if(Sinput.GetButtonDown("Dash", slot))
         {
@@ -115,7 +121,9 @@ public class PlayerController : MonoBehaviour
             colorTimer = colorTime;
         }
 
-        
+        if(!otherPlayer.GetComponent<PlayerController>().isAlive && (Vector2.Distance(gameObject.transform.position, otherPlayer.transform.position) <= reviveDist) && Sinput.GetButtonDown("Revive", slot))
+            otherPlayer.GetComponent<PlayerController>().ChangeHealth("+", 33.0f);
+
         // Detecting Attacking
         if(!isAttacking)
         {
@@ -146,20 +154,16 @@ public class PlayerController : MonoBehaviour
         }
 
         //Detecting Movement
-        if ((Sinput.GetAxis("Horizontal", slot) != 0 || Sinput.GetAxis("Vertical", slot) != 0) && (!isAttacking || gameObject.tag == "RangedPlayer"))
+        if ((Sinput.GetAxis("Horizontal", slot) != 0 || Sinput.GetAxis("Vertical", slot) != 0) && (!isAttacking || isRanged) && isAlive)
         {
                 
             MoveDir = new Vector2(Sinput.GetAxis("Horizontal", slot), Sinput.GetAxis("Vertical", slot));
             MoveDir.Normalize();
             Animator.SetFloat("speed", (Mathf.Abs(MoveDir.x) + Mathf.Abs(MoveDir.y)));
             if(MoveDir.x < 0.0f )
-            {
                 Player_Sprite.flipX = true;
-            }
             else if(MoveDir.x > 0.0f )
-            {
                 Player_Sprite.flipX = false;
-            }
         }
         else
         {   
@@ -168,7 +172,7 @@ public class PlayerController : MonoBehaviour
         }
 
         //Mouse AimiNG
-        if(isMouseAiming  && (!isAttacking || gameObject.tag == "RangedPlayer"))
+        if(isMouseAiming  && (!isAttacking || isRanged) && isAlive)
         {
             
             AimDir = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - gameObject.transform.position);
@@ -180,7 +184,7 @@ public class PlayerController : MonoBehaviour
         }
 
         //Controllr Aiming
-        else if(isMouseAiming == false && (!isAttacking || gameObject.tag == "RangedPlayer"))
+        else if(isMouseAiming == false && (!isAttacking || isRanged) && isAlive)
         {
             if(Sinput.GetAxis("Look Horizontal", slot) != 0 || Sinput.GetAxis("Look Vertical" ,slot) != 0)
             {
@@ -191,13 +195,9 @@ public class PlayerController : MonoBehaviour
                 AimSprite.transform.rotation = AimAngle;
                 AimSprite.GetComponent<SpriteRenderer>().enabled = true;
             }
-
         }
-
         else
-        {
             AimSprite.GetComponent<SpriteRenderer>().enabled = false;
-        }
 
 
 
@@ -208,55 +208,48 @@ public class PlayerController : MonoBehaviour
     {
         //Flashing Player whatever color 
         if (colorTimer > 0)
-        {
             colorTimer -= Time.deltaTime;
-        }
         Player_Sprite.color = Color.Lerp(Color.white, desiredColor, colorTimer / colorTime);
 
    
         //Movement
-        if ((Sinput.GetAxis("Horizontal", slot) != 0 || Sinput.GetAxis("Vertical", slot) != 0) && (!isAttacking || gameObject.tag == "RangedPlayer"))
-        {
+        if ((Sinput.GetAxis("Horizontal", slot) != 0 || Sinput.GetAxis("Vertical", slot) != 0) && (!isAttacking || isRanged) && isAlive)
             PlayerRB2D.MovePosition(PlayerRB2D.transform.position + (new Vector3(MoveDir.x,MoveDir.y, 1.00f)  * speed * Time.deltaTime));
-        }
         
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
         float potentialDamage = 0.0f;
-
-        if(collision.collider.gameObject.tag == "BossMeleeAtk")
+        if(isAlive)
         {
-            desiredColor = Color.red;
-            potentialDamage= collision.collider.gameObject.GetComponent<PlayerStrikeController>().attack.damage;
-            colorTimer = colorTime;
-            PlayerAudioSource.PlayOneShot(PlayerDamaged, 0.4f);
+            if((collision.collider.gameObject.tag == "BossMeleeAtk" || collision.collider.gameObject.tag == "BossRangeAttk") && playerShield.gameObject.GetComponent<ShieldController>().isExposed == 1)
+            {
+                desiredColor = Color.red;
+                colorTimer = colorTime;
+                if(collision.collider.gameObject.tag == "BossMeleeAtk" )
+                    potentialDamage= collision.collider.gameObject.GetComponent<PlayerStrikeController>().attack.damage;
+                else if(collision.collider.gameObject.tag == "BossRangeAttk")
+                    potentialDamage= collision.collider.gameObject.GetComponent<PlayerShotController>().attack.damage;
+                PlayerAudioSource.PlayOneShot(PlayerDamaged, 0.4f);
+            }
+            else if(collision.gameObject.tag == "PickUp" && playerHP != MaxHP)
+            {
+                desiredColor = Color.yellow;
+                colorTimer = colorTime;
+                PlayerAudioSource.PlayOneShot(PlayerHealing, 0.5f);
 
+            }
+            
+            else if(collision.gameObject.tag == "ShieldPickUp" && shield.cooldownTimer != shield.cooldown)
+            {
+                desiredColor = Color.green;
+                colorTimer = colorTime;
+                PlayerAudioSource.PlayOneShot(PlayerShield, 0.5f);
+            }
+            
+            this.playerHP -= potentialDamage * playerShield.gameObject.GetComponent<ShieldController>().isExposed;
         }
-        else if(collision.collider.gameObject.tag == "BossRangeAttk")
-        {
-            desiredColor = Color.red;
-            potentialDamage= collision.collider.gameObject.GetComponent<PlayerShotController>().attack.damage;
-            colorTimer = colorTime;
-            PlayerAudioSource.PlayOneShot(PlayerDamaged, 0.5f);
-        }
-        else if(collision.gameObject.tag == "PickUp" && playerHP != MaxHP)
-        {
-            desiredColor = Color.yellow;
-            colorTimer = colorTime;
-            PlayerAudioSource.PlayOneShot(PlayerHealing, 0.5f);
-
-        }
-        else if(collision.gameObject.tag == "ShieldPickUp" && shield.cooldownTimer != shield.cooldown)
-        {
-            desiredColor = Color.green;
-            colorTimer = colorTime;
-            PlayerAudioSource.PlayOneShot(PlayerShield, 0.5f);
-
-        }
-
-        this.playerHP -= potentialDamage * playerShield.GetComponent<ShieldController>().isExposed;
     }
 
 

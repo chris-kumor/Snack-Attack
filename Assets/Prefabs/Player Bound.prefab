@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2831250982360239758
+--- !u!1 &7448988420311137548
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,8 +8,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2831250982360239761}
-  - component: {fileID: 2831250982360239760}
+  - component: {fileID: 7448988420311137555}
+  - component: {fileID: 7448988420311137554}
   m_Layer: 11
   m_Name: Player Bound
   m_TagString: Untagged
@@ -17,34 +17,34 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2831250982360239761
+--- !u!4 &7448988420311137555
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2831250982360239758}
+  m_GameObject: {fileID: 7448988420311137548}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.44, y: 0.06802, z: 0}
-  m_LocalScale: {x: 4.5047, y: 5.2306, z: 1}
+  m_LocalPosition: {x: 2.9, y: -2.8871, z: 0}
+  m_LocalScale: {x: 9.297195, y: 7.2658, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &2831250982360239760
+--- !u!61 &7448988420311137554
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2831250982360239758}
+  m_GameObject: {fileID: 7448988420311137548}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.06100344, y: -0.5171946}
+  m_Offset: {x: -0.41644195, y: -1.822309}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -55,5 +55,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.50976306, y: 0.15077901}
+  m_Size: {x: 2.4167485, y: 0.7516527}
   m_EdgeRadius: 0

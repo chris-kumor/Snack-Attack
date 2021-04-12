@@ -8,9 +8,8 @@ public class PlayerShotController : MonoBehaviour
     public float speed;
     public Rigidbody2D rb;
     public string PlayerTag;
-
-
     public AtkStruct attack;
+
     private Vector2 angle;
     private float spriteAngle;
     private float angleDif;
@@ -26,11 +25,6 @@ public class PlayerShotController : MonoBehaviour
         
     }
 
-    void Update()
-    {
-        
-
-    }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
@@ -42,7 +36,6 @@ public class PlayerShotController : MonoBehaviour
 
     void FixedUpdate()
     {
-
         rb.velocity = angle * speed * Time.deltaTime;
         rb.transform.rotation = Quaternion.AngleAxis(spriteAngle, Vector3.forward);
         spriteAngle += angleDif;

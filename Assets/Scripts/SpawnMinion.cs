@@ -8,7 +8,7 @@ public class SpawnMinion : MonoBehaviour
     public GameObject MinionSpawn1, MinionSpawn2;
     public GameObject AppleMinion;
     public int maxMinion;
-    
+
     private GameObject[] minions;
 
 
@@ -20,18 +20,10 @@ public class SpawnMinion : MonoBehaviour
 
     bool anyMinions()
     {
-        bool anyMinions = false;
-        for(int i = 0; i < minions.Length ; i++)
-        {
-            
-            if(minions[i] != null)
-            {
-                anyMinions = true;
-                return anyMinions;
-            }
-            
-        }
-        return anyMinions;
+        if(minions.Length != 0)
+            return true;
+        else
+            return false; 
 
     }
 
@@ -40,32 +32,22 @@ public class SpawnMinion : MonoBehaviour
         if(GameStats.isBattle)
         {
             for(int i = 1; i <= maxMinion/2; i++)
-            {
                 Instantiate(AppleMinion, MinionSpawn1.transform.position, Quaternion.identity);
-            }
             for(int i = 1; i <= maxMinion/2; i++)
-            {
                 Instantiate(AppleMinion, MinionSpawn2.transform.position, Quaternion.identity);
-            }
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        /*minions = GameObject.FindGameObjectsWithTag("minion");
-        if(!(anyMinions()))
+        minions = GameObject.FindGameObjectsWithTag("minion");
+        if(anyMinions())
         {
             for(int i = 1; i <= maxMinion; i++)
-            {
                 Instantiate(AppleMinion, MinionSpawn1.transform.position, Quaternion.identity);
-            }
             for(int i = 1; i <= maxMinion; i++)
-            {
                 Instantiate(AppleMinion, MinionSpawn2.transform.position, Quaternion.identity);
-            }
-        }*/
-        
-
+        }
     }
 }

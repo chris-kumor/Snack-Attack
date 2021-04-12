@@ -9,8 +9,7 @@ public class BossController : MonoBehaviour
 {
 
     public  string[] Preylabel = new string[2];
-    public float BossVelocity;
-    GameObject Prey;
+
     public float MaxHP;
     public float minDist, maxDist;
     public float angularSpeed;
@@ -24,12 +23,13 @@ public class BossController : MonoBehaviour
 
     private float HP;
     private Vector3 BossDir;
-    private Quaternion currentRotation;
+
     private float peak;
     private float timer;
     private Vector3 PreyDir;
     public float colorTime;
     private float colorTimer;
+    private GameObject Prey;
 
     public void StartBattle()
     {

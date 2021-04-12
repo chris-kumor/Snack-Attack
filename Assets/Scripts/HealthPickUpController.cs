@@ -18,9 +18,8 @@ public class HealthPickUpController : MonoBehaviour
     void Update()
     {
         if(MeleePlayer.gameObject.GetComponent<PlayerController>().GetPlayerHP() == MeleePlayer.GetComponent<PlayerController>().MaxHP)
-        {
             Physics2D.IgnoreLayerCollision(9, 15, true);
-        }
+    
         else if(MeleePlayer.gameObject.GetComponent<PlayerController>().GetPlayerHP() != MeleePlayer.GetComponent<PlayerController>().MaxHP)
         {
             Physics2D.IgnoreLayerCollision(9, 15, false);

@@ -8,7 +8,7 @@ public class ShieldController : MonoBehaviour
     public AtkStruct shield;
     public int isExposed;
     public SpriteRenderer shieldSprite;
-    public CircleCollider2D shieldCollider;
+    public PolygonCollider2D shieldCollider;
     public AudioSource ShieldAudioSource;
     public GameObject Player;
 
@@ -18,8 +18,6 @@ public class ShieldController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        shieldSprite = gameObject.GetComponent<SpriteRenderer>();
-        shieldCollider = gameObject.GetComponent<CircleCollider2D>();
         shield.cooldownTimer = shield.cooldown;
         shield.canFire = true;
         ShieldFullColor = new Color(shieldSprite.color[0], shieldSprite.color[1], shieldSprite.color[2], 0.75f);
@@ -27,13 +25,9 @@ public class ShieldController : MonoBehaviour
         isExposed = 1;
         ShieldAudioSource = gameObject.GetComponent<AudioSource>();
         if(gameObject.tag == "MeleePlayer")
-        {
             slot = GameStats.MeleeSlot;
-        }
         else
-        {
             slot = GameStats.RangedSlot;
-        }
         
         
     }

@@ -8,18 +8,9 @@ public class GameResults : MonoBehaviour
 {
    
     public Text GameResult;
+
     public Text PlayersDamageText;
     
-    private float MeleePlayerDamage, RangedPlayerDamage;
-    
-    // Start is called before the first frame update
-    public void Awake()
-    {
-
-        MeleePlayerDamage = GameStats.MeleeDamage;
-        RangedPlayerDamage = GameStats.RangedDamage;
-        
-    }
     // Update is called once per frameS
     public void Start()
     {
