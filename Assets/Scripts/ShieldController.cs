@@ -7,19 +7,17 @@ public class ShieldController : MonoBehaviour
 {
     public AtkStruct shield;
     public int isExposed;
+    public SpriteRenderer shieldSprite;
+    public CircleCollider2D shieldCollider;
+    public AudioSource ShieldAudioSource;
+    public GameObject Player;
 
-    private Rigidbody2D rb;
-    private SpriteRenderer shieldSprite;
-    private Color ShieldFullColor;
-    private CircleCollider2D shieldCollider;
-    private AudioSource ShieldAudioSource;
     private SinputSystems.InputDeviceSlot slot;
+    private Color ShieldFullColor;
     
     // Start is called before the first frame update
     void Start()
     {
-        
-        rb = gameObject.GetComponent<Rigidbody2D>();
         shieldSprite = gameObject.GetComponent<SpriteRenderer>();
         shieldCollider = gameObject.GetComponent<CircleCollider2D>();
         shield.cooldownTimer = shield.cooldown;
@@ -42,17 +40,25 @@ public class ShieldController : MonoBehaviour
 
     void Update()
     {
-        if(Sinput.GetButton(shield.fireKey, slot) && shield.canFire && shield.cooldownTimer > 0)
+        if(Sinput.GetButton(shield.fireKey, slot) && shield.canFire && shield.cooldownTimer > 0 && !(Player.GetComponent<PlayerController>().attackStatus()))
         {
             shieldSprite.enabled = true;
             shieldCollider.enabled = true;
             isExposed = 0;
+            if(slot == GameStats.MeleeSlot)
+                Physics2D.IgnoreLayerCollision(9, 16, true);
+            else if(slot == GameStats.RangedSlot)
+                Physics2D.IgnoreLayerCollision(19, 16, true);
             ShieldAudioSource.PlayOneShot(shield.soundToPlay, 0.05f);
         }
         else
         {
             shieldSprite.enabled = false;
             shieldCollider.enabled = false;
+            if(slot == GameStats.MeleeSlot)
+                Physics2D.IgnoreLayerCollision(9, 16, false);
+            else if(slot == GameStats.RangedSlot)
+                Physics2D.IgnoreLayerCollision(19, 16, false);
              isExposed = 1;
         }
     

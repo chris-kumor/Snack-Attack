@@ -888,20 +888,19 @@ MonoBehaviour:
   attacks:
   - {fileID: 11400000, guid: 01d06c9cf477bc441a1cb14bf216aac1, type: 2}
   - {fileID: 11400000, guid: d7bc9ee8a7eb7664eacbe814a8ab879d, type: 2}
-  vaxis: Vertical
-  haxis: Horizontal
-  aimVAxis: Look Vertical
-  aimHAxis: Look Horizontal
   AimSprite: {fileID: 7369801038657996814}
   shield: {fileID: 11400000, guid: 6cede604f983eb047832f1ad3910f36a, type: 2}
   playerShield: {fileID: 5442865686223464446}
-  AimReticleOffSet: 4.5
+  AimReticleOffSet: 5
   Animator: {fileID: 6713400606178898452}
   Player_Sprite: {fileID: 6213613206703919256}
   colorTime: 0.15
   PlayerDamaged: {fileID: 8300000, guid: 2ac195713f4f36343a1e9b4562f185de, type: 3}
   PlayerHealing: {fileID: 8300000, guid: f41d28ddf0490ee4d9f2d1d16bdfaf03, type: 3}
   PlayerShield: {fileID: 8300000, guid: 8471eedc86c760747bdd2951508a2bf1, type: 3}
+  PlayerRB2D: {fileID: 6213613206703919259}
+  PlayerAudioSource: {fileID: 7616556262342317741}
+  PlayerTag: RangedPlayer
 --- !u!114 &6906314643370607707
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1067,6 +1066,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6213613206703919257}
     m_Modifications:
+    - target: {fileID: -104842951852734741, guid: 12f22e714cfb895418ee0aa4848e3c03, type: 3}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 6213613206703919252}
     - target: {fileID: 2372308625822999306, guid: 12f22e714cfb895418ee0aa4848e3c03, type: 3}
       propertyPath: m_Enabled
       value: 0

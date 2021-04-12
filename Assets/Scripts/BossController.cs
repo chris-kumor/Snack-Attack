@@ -18,18 +18,16 @@ public class BossController : MonoBehaviour
     public float peakTime;
     public AudioClip BossDamaged, BossDying;
     public PhysicsMaterial2D PureBounce;
-
+    public Rigidbody2D BossRB2D;
+    public AudioSource BossAudioSource;
+    public SpriteRenderer BossIdleSprite;
 
     private float HP;
-    private Rigidbody2D BossRB2D;
-    private AudioSource BossAudioSource;
-    private SpriteRenderer BossIdleSprite;
     private Vector3 BossDir;
     private Quaternion currentRotation;
     private float peak;
     private float timer;
     private Vector3 PreyDir;
-
     public float colorTime;
     private float colorTimer;
 
@@ -61,6 +59,7 @@ public class BossController : MonoBehaviour
         Looking.eulerAngles = new Vector3(0.0f, 0.0f, Mathf.Atan2(target.x, target.y) * Mathf.Rad2Deg);
         gameObject.transform.rotation = Looking;
     }
+
     IEnumerator StopBossAndWait(float waitTime, int attackNum)
     {
         PreyDir = (Prey.transform.position - BossRB2D.transform.position);
@@ -82,14 +81,9 @@ public class BossController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        BossRB2D = gameObject.GetComponent<Rigidbody2D>();
-        BossIdleSprite = gameObject.GetComponent<SpriteRenderer>();
-        BossAudioSource = gameObject.GetComponent<AudioSource>();
         Prey = GameObject.FindWithTag(Preylabel[0]);
         this.HP = this.MaxHP;   
         timer = peakTime;
-        
-        
     }
 
     void Update()

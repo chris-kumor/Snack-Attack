@@ -211,3 +211,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shield: {fileID: 11400000, guid: 6cede604f983eb047832f1ad3910f36a, type: 2}
   isExposed: 0
+  shieldSprite: {fileID: 2372308625822999306}
+  shieldCollider: {fileID: -2387789383967031898}
+  ShieldAudioSource: {fileID: 3757675838903845660}
+  Player: {fileID: 6213613206703919252, guid: ec4e637f3110d184bbd269966d584422, type: 3}

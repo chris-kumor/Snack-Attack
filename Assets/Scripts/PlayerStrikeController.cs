@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class PlayerStrikeController : MonoBehaviour
 {
-    public float timer;
+    private float timer;
     public AtkStruct attack;
     public SpriteRenderer AttackSprite;
+    public string ParentTag;
+    public Rigidbody2D rb;
+    public PolygonCollider2D AttkCollider;
+
+    private GameObject Parent;
     
-    private PolygonCollider2D AttkCollider;
-    private GameObject MeleePlayer;
-    private GameObject RangedPlayer;
-    private Rigidbody2D rb;
     
     
 
@@ -19,11 +20,8 @@ public class PlayerStrikeController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
-        AttkCollider = gameObject.GetComponent<PolygonCollider2D>();
-        MeleePlayer = GameObject.FindWithTag("MeleePlayer");
-        RangedPlayer = GameObject.FindWithTag("RangedPlayer");
-        rb = gameObject.GetComponent<Rigidbody2D>();
+        timer = attack.cooldown;
+        Parent = GameObject.FindWithTag(ParentTag);
 
     }
 
@@ -31,7 +29,9 @@ public class PlayerStrikeController : MonoBehaviour
     void FixedUpdate()
     {
         if (timer <= 0)
-        {
+        {   
+            if(ParentTag == "MeleePlayer")
+                Parent.SendMessage("CanAttack");
             Destroy(gameObject);
         }
         timer -= Time.deltaTime;
@@ -39,7 +39,7 @@ public class PlayerStrikeController : MonoBehaviour
 
     void Update()
     {
-        Vector2 AimDir =  MeleePlayer.GetComponent<PlayerController>().GetAimDir();
+        Vector2 AimDir =  Parent.GetComponent<PlayerController>().GetAimDir();
         if(AimDir.x < 0.0f && AimDir.y != 0.0f && gameObject.tag == "MeleeStrike")
         {
             AttackSprite.flipY = true;
@@ -49,14 +49,5 @@ public class PlayerStrikeController : MonoBehaviour
             AttackSprite.flipY = false;
         }
         
-        if(gameObject.tag == "Shield" && AttkCollider.bounds.Contains(MeleePlayer.transform.position))
-        {
-            gameObject.transform.position = MeleePlayer.transform.position;
-        }
-        if(gameObject.tag == "Shield" && AttkCollider.bounds.Contains(RangedPlayer.transform.position))
-        {
-            gameObject.transform.position = RangedPlayer.transform.position;
-        }
-         //rb.transform.rotation = Quaternion.AngleAxis(0, Vector3.forward); 
     }
 }

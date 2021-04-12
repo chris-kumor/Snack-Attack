@@ -252,4 +252,7 @@ MonoBehaviour:
   BossDamaged: {fileID: 8300000, guid: 9a25fedd72da8b04f81b00944a764d8b, type: 3}
   BossDying: {fileID: 8300000, guid: e2de5e56690fae04cabec13244d44bc7, type: 3}
   PureBounce: {fileID: 6200000, guid: b01bb0bb479c157488f4a69d5d9dd7f3, type: 2}
+  BossRB2D: {fileID: 2314242864049820124}
+  BossAudioSource: {fileID: 7900505146256347089}
+  BossIdleSprite: {fileID: 2314242864049820121}
   colorTime: 0

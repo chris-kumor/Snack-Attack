@@ -4,23 +4,26 @@ using UnityEngine;
 
 public class PlayerShotController : MonoBehaviour
 {
-    public float timer;
+
     public float speed;
-    
+    public Rigidbody2D rb;
+    public string PlayerTag;
+
+
     public AtkStruct attack;
     private Vector2 angle;
-    private Rigidbody2D rb;
-    private Transform pos;
     private float spriteAngle;
     private float angleDif;
+    private GameObject Player;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        rb = gameObject.GetComponent<Rigidbody2D>();
-        pos = gameObject.GetComponent<Transform>();
-        angle = new Vector2(pos.right.x, pos.right.y);
+        Player = GameObject.FindWithTag(PlayerTag);
+        angle = new Vector2(rb.transform.right.x, rb.transform.right.y);
         angleDif = Random.Range(-10, 10);
+        
     }
 
     void Update()
@@ -31,7 +34,8 @@ public class PlayerShotController : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-
+        if(PlayerTag == "RangedPlayer")
+            Player.SendMessage("CanAttack");
         Destroy(gameObject);
     }
 
@@ -40,13 +44,8 @@ public class PlayerShotController : MonoBehaviour
     {
 
         rb.velocity = angle * speed * Time.deltaTime;
-        pos.rotation = Quaternion.AngleAxis(spriteAngle, Vector3.forward);
+        rb.transform.rotation = Quaternion.AngleAxis(spriteAngle, Vector3.forward);
         spriteAngle += angleDif;
-        if (timer <= 0)
-        {
-            Destroy(gameObject);
-        }
-        timer -= Time.deltaTime;
     }
 
  

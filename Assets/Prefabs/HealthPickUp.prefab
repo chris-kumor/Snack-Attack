@@ -666,6 +666,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 325aec4b6947dc34ea11d449c82353a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  incrementHealth: 25
+  incrementHealth: 50
   MeleePlayer: {fileID: 2767826943954322214, guid: 4cf4e17743bc5ac4db356a52f994a9c2, type: 3}
   RangedPlayer: {fileID: 6213613206703919252, guid: ec4e637f3110d184bbd269966d584422, type: 3}

@@ -29,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6622493913580591306}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.31575, y: 0.59208, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 1}
   m_LocalScale: {x: 1.3273066, y: 1.3273066, z: 0.18961522}
   m_Children: []
   m_Father: {fileID: 0}
@@ -382,6 +382,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4697624afdf873c4785888a103b06774, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 1.1
   attack: {fileID: 11400000, guid: b4dd88176f267734f8510ce8b9a8af07, type: 2}
   AttackSprite: {fileID: 5975419412570573012}
+  ParentTag: MeleePlayer
+  rb: {fileID: 1568144237824210461}
+  AttkCollider: {fileID: -7432424813578412569}
