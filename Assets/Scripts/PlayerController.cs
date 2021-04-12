@@ -95,18 +95,20 @@ public class PlayerController : MonoBehaviour
             isRanged = true;
         else if(gameObject.tag != "RangedPlayer")
             isRanged = false;
+
         
     }
 
     void Update()
     {
+        Debug.Log(Vector2.Distance(gameObject.transform.position, otherPlayer.transform.position));
         //Health Check
         if(this.playerHP <= 0)
         {
             PlayerRB2D.constraints = RigidbodyConstraints2D.FreezeAll;
             isAlive = false;
         }
-        else
+        else if(this.playerHP > 0)
         {
             PlayerRB2D.constraints = RigidbodyConstraints2D.FreezeRotation;
             isAlive = true;
@@ -121,11 +123,11 @@ public class PlayerController : MonoBehaviour
             colorTimer = colorTime;
         }
 
-        if(!otherPlayer.GetComponent<PlayerController>().isAlive && (Vector2.Distance(gameObject.transform.position, otherPlayer.transform.position) <= reviveDist) && Sinput.GetButtonDown("Revive", slot))
+        if((otherPlayer.GetComponent<PlayerController>().isAlive == false) && (Vector2.Distance(gameObject.transform.position, otherPlayer.transform.position) <= reviveDist) && Sinput.GetButtonDown("Revive", slot))
             otherPlayer.GetComponent<PlayerController>().ChangeHealth("+", 33.0f);
 
         // Detecting Attacking
-        if(!isAttacking)
+        if(!isAttacking && isAlive)
         {
             for (int i = 0; i < attacks.Length; i++)
             {
@@ -142,14 +144,12 @@ public class PlayerController : MonoBehaviour
                     Invoke("enableIdleSprite",  attacks[i].cooldown);
                     
                 }
-
                 if(attacks[i].cooldownTimer < 0 && attacks[i].canFire == false)
                 {
                     attacks[i].canFire = true;
                     attacks[i].cooldownTimer = attacks[i].cooldown;
                 }
                 attacks[i].cooldownTimer -= Time.deltaTime;
-            
             }
         }
 
@@ -209,7 +209,7 @@ public class PlayerController : MonoBehaviour
         //Flashing Player whatever color 
         if (colorTimer > 0)
             colorTimer -= Time.deltaTime;
-        Player_Sprite.color = Color.Lerp(Color.white, desiredColor, colorTimer / colorTime);
+        Player_Sprite.color = Color.Lerp(Color.white, desiredColor, colorTimer/colorTime);
 
    
         //Movement
@@ -238,7 +238,6 @@ public class PlayerController : MonoBehaviour
                 desiredColor = Color.yellow;
                 colorTimer = colorTime;
                 PlayerAudioSource.PlayOneShot(PlayerHealing, 0.5f);
-
             }
             
             else if(collision.gameObject.tag == "ShieldPickUp" && shield.cooldownTimer != shield.cooldown)
@@ -247,7 +246,6 @@ public class PlayerController : MonoBehaviour
                 colorTimer = colorTime;
                 PlayerAudioSource.PlayOneShot(PlayerShield, 0.5f);
             }
-            
             this.playerHP -= potentialDamage * playerShield.gameObject.GetComponent<ShieldController>().isExposed;
         }
     }
