@@ -57,6 +57,11 @@ public class PlayerController : MonoBehaviour
         return isAttacking;
     }
 
+    public void updateSpriteCollider()
+    {
+        
+    }
+
     public void ChangeHealth(string opSymbol, float amnt)
     {
         if(opSymbol == "+")

@@ -129,7 +129,7 @@ PolygonCollider2D:
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
-  m_AutoTiling: 0
+  m_AutoTiling: 1
   m_Points:
     m_Paths:
     - - {x: -1.28, y: -3.48}
@@ -385,5 +385,3 @@ MonoBehaviour:
   attack: {fileID: 11400000, guid: b4dd88176f267734f8510ce8b9a8af07, type: 2}
   AttackSprite: {fileID: 5975419412570573012}
   ParentTag: MeleePlayer
-  rb: {fileID: 1568144237824210461}
-  AttkCollider: {fileID: -7432424813578412569}

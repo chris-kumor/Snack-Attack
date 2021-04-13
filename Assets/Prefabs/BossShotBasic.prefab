@@ -281,7 +281,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 091d8fe8c1ffbae478927a7185524eac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 3
   speed: 600
   rb: {fileID: 8490866204436381579}
   PlayerTag: Boss

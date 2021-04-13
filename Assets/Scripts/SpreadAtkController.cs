@@ -9,6 +9,8 @@ public class SpreadAtkController : MonoBehaviour
     private Vector3 initAngle;
     private Vector3 initUp;
 
+    private GameObject[] atk = new GameObject[3];
+
 
     // Start is called before the first frame update
     void Start()
@@ -16,26 +18,26 @@ public class SpreadAtkController : MonoBehaviour
 
         initAngle = transform.right;
         initUp = transform.up;
-        GameObject atk = PlayerController.Attack(atkObj, transform.position, transform.right, 0, transform.rotation);
-        atk.transform.right = transform.right;
-        atk = null;
+        for(int i = 0; i < atk.Length; i++)
+        {
+            if(i != 0)
+            {
 
-        transform.right = Vector3.Slerp(initAngle, transform.up, spread);
-        atk = PlayerController.Attack(atkObj, transform.position, transform.right, 0, transform.rotation);
-        atk.transform.right = transform.right;
-        atk = null;
+                transform.right = Vector3.Slerp(initAngle, transform.up, spread);
+                atk[i] = PlayerController.Attack(atkObj, transform.position, transform.right, 0, transform.rotation);
+                atk[i].transform.right = transform.right;
+                atk[i] = null;
 
-        transform.right = Vector3.Slerp(initAngle, -initUp, spread);
-        atk = PlayerController.Attack(atkObj, transform.position, transform.right, 0, transform.rotation);
-        atk.transform.right = transform.right;
-        atk = null;
+            }
+            else
+            {
+                atk[i] = PlayerController.Attack(atkObj, transform.position, transform.right, 0, transform.rotation);
+                atk[i].transform.right = transform.right;
+                atk[i] = null;
+
+            }
+        }
         Destroy(gameObject);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 
 }

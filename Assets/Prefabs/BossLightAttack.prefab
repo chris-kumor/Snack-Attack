@@ -516,5 +516,3 @@ MonoBehaviour:
   attack: {fileID: 11400000, guid: ca08b6abfc21fbf458bb12074309eb68, type: 2}
   AttackSprite: {fileID: 2167253063460556466}
   ParentTag: Boss
-  rb: {fileID: 9168860458032579997}
-  AttkCollider: {fileID: 5476943705210315846}

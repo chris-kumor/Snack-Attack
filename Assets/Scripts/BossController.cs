@@ -5,12 +5,13 @@ using static PlayerController;
 
 
 
+
 public class BossController : MonoBehaviour
 {
 
     public float MaxHP;
     public float minDist, maxDist, lookRadius;
-    public float angularSpeed;
+    public float angularSpeed, shakeTime;
     public AtkStruct[] attacks;
     public float peakTime;
     public AudioClip BossDamaged, BossDying;
@@ -20,6 +21,8 @@ public class BossController : MonoBehaviour
     public SpriteRenderer BossSprite;
     public GameObject[] Prey;
     public Animator bossAnimator;
+
+    public Camera MainCam;
 
 
 
@@ -218,7 +221,8 @@ public class BossController : MonoBehaviour
             }
             else if (collision.collider.gameObject.tag == "MeleeStrike")
             {
-
+                if(collision.collider.gameObject.GetComponent<PlayerStrikeController>().attack.fireKey == "Fire2")
+                    MainCam.GetComponent<CameraController>().SetTimer(shakeTime);
                 this.HP -= collision.collider.gameObject.GetComponent<PlayerStrikeController>().attack.damage;
                 GameStats.MeleeDamage += collision.collider.gameObject.GetComponent<PlayerStrikeController>().attack.damage;
                 BossAudioSource.PlayOneShot(BossDamaged, 0.05f);

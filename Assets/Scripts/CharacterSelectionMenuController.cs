@@ -27,13 +27,10 @@ public class CharacterSelectionMenuController : MonoBehaviour
             if(GameStats.MeleeSlot != SinputSystems.InputDeviceSlot.any)
             {
                 if(GameStats.MeleeSlot == SinputSystems.InputDeviceSlot.keyboardAndMouse)
-                {
                     MeleeControls.sprite = KBM;
-                }
                 else if(GameStats.MeleeSlot == SinputSystems.InputDeviceSlot.gamepad1 || GameStats.MeleeSlot == SinputSystems.InputDeviceSlot.gamepad2)
-                {
                     MeleeControls.sprite = Controller;
-                }
+
             }
                
         }
@@ -43,25 +40,25 @@ public class CharacterSelectionMenuController : MonoBehaviour
             if(GameStats.RangedSlot != SinputSystems.InputDeviceSlot.any)
             {
                 if(GameStats.RangedSlot == SinputSystems.InputDeviceSlot.keyboardAndMouse)
-                {
                     RangedControls.sprite = KBM;
-                }
                 else if(GameStats.RangedSlot == SinputSystems.InputDeviceSlot.gamepad1 || GameStats.RangedSlot == SinputSystems.InputDeviceSlot.gamepad2)
-                {
                     RangedControls.sprite = Controller;
-                }
             }
 
         }
 
         if(GameStats.MeleeSlot != SinputSystems.InputDeviceSlot.any && GameStats.RangedSlot != SinputSystems.InputDeviceSlot.any && GameStats.MeleeSlot != GameStats.RangedSlot)
-        {
             PlayButton.gameObject.SetActive(true);
-        }
-        else
+        else if(GameStats.RangedSlot == GameStats.MeleeSlot)
         {
             PlayButton.gameObject.SetActive(false);
+            GameStats.MeleeSlot = SinputSystems.InputDeviceSlot.any;
+            GameStats.RangedSlot = SinputSystems.InputDeviceSlot.any;
+            MeleeControls.sprite = null;
+            RangedControls.sprite = null;
         }
+        else
+            PlayButton.gameObject.SetActive(false);
 
     }
 

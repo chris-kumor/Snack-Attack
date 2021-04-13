@@ -11,10 +11,13 @@ public class GameStart : MonoBehaviour
         {
             Cursor.visible = false;
         }
-        else{
-            Cursor.visible = false;
-        }
+       
         
         GameStats.ShieldTimer = 10.00f;
+    }
+
+    void Update()
+    {
+        Cursor.visible = false;
     }
 }

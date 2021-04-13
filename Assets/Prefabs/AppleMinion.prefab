@@ -130,7 +130,7 @@ PolygonCollider2D:
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
-  m_AutoTiling: 0
+  m_AutoTiling: 1
   m_Points:
     m_Paths:
     - - {x: 0.31, y: -0.68}
@@ -346,7 +346,6 @@ MonoBehaviour:
   attacks:
   - {fileID: 11400000, guid: e46e69b677a3deb4e8160a4e21e81b1f, type: 2}
   AppleMinnionSprite: {fileID: 5487727435274013693}
-  AppleMinnionAnimator: {fileID: 5003410610145692735}
   targets:
   - {fileID: 2767826943954322214, guid: 4cf4e17743bc5ac4db356a52f994a9c2, type: 3}
   - {fileID: 6213613206703919252, guid: ec4e637f3110d184bbd269966d584422, type: 3}

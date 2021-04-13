@@ -51,7 +51,7 @@ TextureImporter:
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
-  spriteTessellationDetail: -1
+  spriteTessellationDetail: 0
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
@@ -75,11 +75,140 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: tvOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Lumin
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites: []
     outline: []
-    physicsShape: []
+    physicsShape:
+    - - {x: 29, y: -341}
+      - {x: -40, y: -335}
+      - {x: -70, y: -315}
+      - {x: -63, y: -264}
+      - {x: -34, y: -213}
+      - {x: -4, y: -158}
+      - {x: -22, y: -153}
+      - {x: -59, y: -167}
+      - {x: -115, y: -164}
+      - {x: -136, y: -192}
+      - {x: -171, y: -181}
+      - {x: -113, y: -95}
+      - {x: -78, y: -107}
+      - {x: -30, y: -105}
+      - {x: 21, y: -96}
+      - {x: 4, y: -48}
+      - {x: -37, y: -35}
+      - {x: -9, y: 52}
+      - {x: 33, y: 90}
+      - {x: 45, y: 144}
+      - {x: 41, y: 189}
+      - {x: 6, y: 239}
+      - {x: 42, y: 292}
+      - {x: 99, y: 288}
+      - {x: 117, y: 249}
+      - {x: 140, y: 286}
+      - {x: 196, y: 291}
+      - {x: 228, y: 265}
+      - {x: 214, y: 191}
+      - {x: 205, y: 173}
+      - {x: 212, y: 134}
+      - {x: 199, y: 115}
+      - {x: 238, y: 56}
+      - {x: 213, y: 54}
+      - {x: 187, y: 33}
+      - {x: 156, y: 82}
+      - {x: 121, y: 55}
+      - {x: 107, y: 21}
+      - {x: 123, y: -48}
+      - {x: 130, y: -97}
+      - {x: 116, y: -144}
+      - {x: 86, y: -158}
+      - {x: -5, y: -265}
+      - {x: -1, y: -293}
+      - {x: 29, y: -312}
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
     internalID: 0

@@ -51,7 +51,7 @@ TextureImporter:
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
-  spriteTessellationDetail: -1
+  spriteTessellationDetail: 1
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
@@ -75,11 +75,143 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: tvOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Lumin
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites: []
     outline: []
-    physicsShape: []
+    physicsShape:
+    - - {x: 25, y: -266}
+      - {x: 88, y: -64}
+      - {x: 62, y: -52}
+      - {x: 28, y: -141}
+      - {x: -62, y: -206}
+      - {x: -96, y: -247}
+      - {x: -99, y: -269}
+      - {x: -69, y: -302}
+      - {x: -101, y: -318}
+      - {x: -146, y: -294}
+      - {x: -174, y: -262}
+      - {x: -112, y: -190}
+      - {x: -37, y: -107}
+      - {x: -24, y: -73}
+      - {x: -15, y: -34}
+      - {x: -61, y: -7}
+      - {x: -30, y: 69}
+      - {x: 5, y: 79}
+      - {x: 22, y: 96}
+      - {x: -7, y: 119}
+      - {x: 6, y: 151}
+      - {x: 31, y: 168}
+      - {x: 42, y: 187}
+      - {x: 58, y: 242}
+      - {x: 17, y: 282}
+      - {x: 30, y: 332}
+      - {x: 93, y: 341}
+      - {x: 124, y: 320}
+      - {x: 116, y: 263}
+      - {x: 160, y: 293}
+      - {x: 188, y: 292}
+      - {x: 217, y: 270}
+      - {x: 215, y: 212}
+      - {x: 210, y: 177}
+      - {x: 208, y: 140}
+      - {x: 190, y: 116}
+      - {x: 180, y: 49}
+      - {x: 144, y: 54}
+      - {x: 129, y: 81}
+      - {x: 103, y: 55}
+      - {x: 130, y: 12}
+      - {x: 155, y: -37}
+      - {x: 153, y: -105}
+      - {x: 112, y: -162}
+      - {x: 96, y: -205}
+      - {x: 97, y: -238}
+      - {x: 149, y: -275}
+      - {x: 129, y: -293}
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
