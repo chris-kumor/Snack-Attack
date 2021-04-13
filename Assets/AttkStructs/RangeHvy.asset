@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fireKey: Fire2
   atkObj: {fileID: 6868449655810605895, guid: 80a5b3b863e6426478cd0ae93e789b87, type: 3}
-  cooldownTimer: -18.99192
-  cooldown: 2
+  cooldownTimer: -1.9057162
+  cooldown: 1
   canFire: 1
   atkDistance: 2
   damage: 10

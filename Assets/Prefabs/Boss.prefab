@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6888939031749807449}
   - component: {fileID: 7900505146256347089}
   - component: {fileID: 2314242864049820120}
+  - component: {fileID: 6993151883307608213}
   m_Layer: 12
   m_Name: Boss
   m_TagString: Boss
@@ -80,12 +81,12 @@ SpriteRenderer:
   m_SortingLayerID: -1448608309
   m_SortingLayer: 4
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: d9682dd29e4a3334c9e456a21eac393e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e01c335a720242947857e600c8e32c8b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.2, y: 0.2}
+  m_Size: {x: 8, y: 4.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -236,13 +237,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2293ca6106fdd8c4a82aaa8c9f598e61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Preylabel:
-  - MeleePlayer
-  - RangedPlayer
-  BossVelocity: 1
   MaxHP: 400
   minDist: 10
   maxDist: 50
+  lookRadius: 0
   angularSpeed: 10
   attacks:
   - {fileID: 11400000, guid: ca08b6abfc21fbf458bb12074309eb68, type: 2}
@@ -254,5 +252,28 @@ MonoBehaviour:
   PureBounce: {fileID: 6200000, guid: b01bb0bb479c157488f4a69d5d9dd7f3, type: 2}
   BossRB2D: {fileID: 2314242864049820124}
   BossAudioSource: {fileID: 7900505146256347089}
-  BossIdleSprite: {fileID: 2314242864049820121}
-  colorTime: 0
+  BossSprite: {fileID: 2314242864049820121}
+  Prey:
+  - {fileID: 2767826943954322214, guid: 4cf4e17743bc5ac4db356a52f994a9c2, type: 3}
+  - {fileID: 6213613206703919252, guid: ec4e637f3110d184bbd269966d584422, type: 3}
+  bossAnimator: {fileID: 6993151883307608213}
+  colorTime: 1
+--- !u!95 &6993151883307608213
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2314242864049820118}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e6bdb3dac426f96419a570f5a256fcb4, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

@@ -9,7 +9,7 @@ public class GameStart : MonoBehaviour
     {
         if(GameStats.MeleeSlot == SinputSystems.InputDeviceSlot.keyboardAndMouse || GameStats.RangedSlot == SinputSystems.InputDeviceSlot.keyboardAndMouse)
         {
-            Cursor.visible = true;
+            Cursor.visible = false;
         }
         else{
             Cursor.visible = false;

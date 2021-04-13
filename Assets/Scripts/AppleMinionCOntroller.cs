@@ -33,10 +33,6 @@ public class AppleMinionCOntroller : MonoBehaviour
             AppleMinnionSprite.flipX = true;
         else if(rigidbody.velocity.x < 0.0f)
             AppleMinnionSprite.flipX = false;
-
-        
-        
-    
     }
 
     void OnCollisionEnter2D(Collision2D collision)

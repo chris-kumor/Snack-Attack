@@ -101,7 +101,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(Vector2.Distance(gameObject.transform.position, otherPlayer.transform.position));
+        //Debug.Log(Vector2.Distance(gameObject.transform.position, otherPlayer.transform.position));
         //Health Check
         if(this.playerHP <= 0)
         {
