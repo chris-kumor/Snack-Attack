@@ -13,13 +13,15 @@ public class AppleMinionCOntroller : MonoBehaviour
     public float minionSpeed;
     public AtkStruct[] attacks;
     public SpriteRenderer AppleMinnionSprite;
-    public GameObject[] targets = new GameObject[2];
+    private GameObject[] targets = new GameObject[2];
 
     
     // Start is called before the first frame update
     void Start()
     {
-        if(Vector2.Distance(gameObject.transform.position, targets[0].transform.position) < Vector2.Distance(gameObject.transform.position, targets[1].transform.position))
+        targets[0] = GameObject.FindWithTag("MeleePlayer");
+        targets[1] = GameObject.FindWithTag("RangedPlayer");
+        if(Vector2.Distance(targets[0].transform.position, gameObject.transform.position) < Vector2.Distance(targets[1].transform.position, gameObject.transform.position))
             currentTarget = targets[0];
          else
             currentTarget = targets[1];

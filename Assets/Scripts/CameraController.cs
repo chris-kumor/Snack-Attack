@@ -4,17 +4,11 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    public float shakeMagnitude, dampingSpeed;
-
-    private float timer;
+    public float shakeMagnitude, dampingSpeed, timer;
 
     Vector3 initPos;
     // Start is called before the first frame update
 
-    public void SetTimer(float amnt)
-    {
-        timer = amnt;
-    }
     void OnEnable()
     {
         initPos = gameObject.transform.localPosition;
@@ -22,7 +16,7 @@ public class CameraController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if(timer > 0)
         {

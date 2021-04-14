@@ -9,15 +9,10 @@ public class GameStart : MonoBehaviour
     {
         if(GameStats.MeleeSlot == SinputSystems.InputDeviceSlot.keyboardAndMouse || GameStats.RangedSlot == SinputSystems.InputDeviceSlot.keyboardAndMouse)
         {
-            Cursor.visible = false;
+            Cursor.visible = true;
         }
        
         
         GameStats.ShieldTimer = 10.00f;
-    }
-
-    void Update()
-    {
-        Cursor.visible = false;
     }
 }

@@ -667,7 +667,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   incrementHealth: 50
-  MeleePlayerCollider: {fileID: -2892030827009335201}
-  RangedPlayerCollider: {fileID: 0}
+  maxPlayerHP: 100
   MeleePlayer: {fileID: 2767826943954322214, guid: 4cf4e17743bc5ac4db356a52f994a9c2, type: 3}
   RangedPlayer: {fileID: 6213613206703919252, guid: ec4e637f3110d184bbd269966d584422, type: 3}

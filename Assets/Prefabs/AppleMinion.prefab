@@ -342,7 +342,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidbody: {fileID: 448208508957912386}
-  minionSpeed: 2.5
+  minionSpeed: 3
   attacks:
   - {fileID: 11400000, guid: e46e69b677a3deb4e8160a4e21e81b1f, type: 2}
   AppleMinnionSprite: {fileID: 5487727435274013693}

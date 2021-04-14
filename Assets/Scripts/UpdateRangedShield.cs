@@ -6,20 +6,19 @@ public class UpdateRangedShield : MonoBehaviour
 {
     private Image rangedShieldUI;
     public GameObject RangedShield;
+    private AtkStruct shield;
     // Start is called before the first frame update
     void Start()
     {
         rangedShieldUI = gameObject.GetComponent<Image>();
-        rangedShieldUI.fillAmount = 1;
+        shield = RangedShield.GetComponent<ShieldController>().shield;
     }
 
     // Update is called once per frame
     void Update()
     {
         if(RangedShield != null)
-        {
-            rangedShieldUI.fillAmount = RangedShield.GetComponent<ShieldController>().shield.cooldownTimer/RangedShield.GetComponent<ShieldController>().shield.cooldown;
-        }
+            rangedShieldUI.fillAmount = shield.cooldownTimer/shield.cooldown;
     }
 
 }

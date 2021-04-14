@@ -5,21 +5,21 @@ using UnityEngine.UI;
 
 public class UpdateMeleeHealth : MonoBehaviour
 {
-    private Image MeleePlayerHealthBar;
-    private GameObject MeleePlayer;
+    public Image MeleePlayerHealthBar;
+    public GameObject MeleePlayer;
+    
+    private PlayerController meleeController;
     // Start is called before the first frame update
     void Start()
     {
-        MeleePlayer = GameObject.FindWithTag("MeleePlayer");
-        MeleePlayerHealthBar = gameObject.GetComponent<Image>();
+        meleeController = MeleePlayer.GetComponent<PlayerController>();
+        MeleePlayerHealthBar.fillAmount = 1;
     }
 
     // Update is called once per frame
     void Update()
     {
         if(MeleePlayer != null)
-        {
-            MeleePlayerHealthBar.fillAmount = (MeleePlayer.GetComponent<PlayerController>().GetPlayerHP()/MeleePlayer.GetComponent<PlayerController>().MaxHP);
-        }
+            MeleePlayerHealthBar.fillAmount = (meleeController.playerHP/meleeController.MaxHP);
     }
 }

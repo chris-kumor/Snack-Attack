@@ -5,22 +5,21 @@ using UnityEngine.UI;
 
 public class UpdateBossHealth : MonoBehaviour
 {
-    private Image BossHealthBar;
-    private GameObject Boss;
+    public Image BossHealthBar;
+    public GameObject Boss;
+    private BossController bossController;
+  
 
     // Start is called before the first frame update
     void Start()
     {
-        BossHealthBar = gameObject.GetComponent<Image>();
-        Boss = GameObject.FindWithTag("Boss");
+        bossController = Boss.GetComponent<BossController>();
     }
 
     // Update is called once per frame
     void Update()
     {
         if(Boss != null)
-        {
-            BossHealthBar.fillAmount = (Boss.GetComponent<BossController>().GetHP()/Boss.GetComponent<BossController>().MaxHP);
-        }
+            BossHealthBar.fillAmount = (bossController.HP/bossController.MaxHP);
     }
 }

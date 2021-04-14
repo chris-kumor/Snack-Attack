@@ -5,21 +5,21 @@ using UnityEngine.UI;
 
 public class UpdateRangeHealth : MonoBehaviour
 {
-    private Image RangedPlayerHealthBar;
+    public Image RangedPlayerHealthBar;
     public GameObject RangedPlayer;
+    private PlayerController rangedController;
+ 
     // Start is called before the first frame update
     void Start()
     {
+        rangedController = RangedPlayer.GetComponent<PlayerController>();
         
-        RangedPlayerHealthBar = gameObject.GetComponent<Image>();
     }
 
     // Update is called once per frame
     void Update()
     {
         if(RangedPlayer != null)
-        {
-            RangedPlayerHealthBar.fillAmount = (RangedPlayer.GetComponent<PlayerController>().GetPlayerHP()/RangedPlayer.GetComponent<PlayerController>().MaxHP);
-        }
+            RangedPlayerHealthBar.fillAmount = (rangedController.playerHP/rangedController.MaxHP);
     }
 }

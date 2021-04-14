@@ -484,12 +484,12 @@ MonoBehaviour:
   speed: 10
   MaxHP: 100
   reviveDist: 1
+  playerHP: 100
   attacks:
   - {fileID: 11400000, guid: 0741a930d6667bf4e9f56882862bb285, type: 2}
   - {fileID: 11400000, guid: b4dd88176f267734f8510ce8b9a8af07, type: 2}
   shield: {fileID: 11400000, guid: 9c8f35446e8da5447a6f2639c5578aef, type: 2}
   playerShield: {fileID: 6156330714321189162}
-  otherPlayer: {fileID: 6213613206703919252, guid: ec4e637f3110d184bbd269966d584422, type: 3}
   AimSprite: {fileID: 3385331201235115513}
   AimReticleOffSet: 5
   Animator: {fileID: 7923635783740947525}
@@ -501,7 +501,9 @@ MonoBehaviour:
   PlayerRB2D: {fileID: 2767826943954322217}
   PlayerAudioSource: {fileID: -5635098021040439401}
   PlayerTag: MeleePlayer
-  isAlive: 0
+  otherPlayerTag: RangedPlayer
+  isAlive: 1
+  AimSpriteEnabled: 1
 --- !u!114 &-1480674669538845503
 MonoBehaviour:
   m_ObjectHideFlags: 0

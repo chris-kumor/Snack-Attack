@@ -5,31 +5,37 @@ using UnityEngine;
 public class HealthPickUpController : MonoBehaviour
 {
     public float incrementHealth;
-    private PolygonCollider2D MeleePlayerCollider, RangedPlayerCollider;
-    public GameObject MeleePlayer, RangedPlayer;
+
+    private GameObject MeleePlayer, RangedPlayer;
+    private PlayerController meleeController, rangedController;
+
+
     
     void Start()
     {
-        
-        MeleePlayerCollider = MeleePlayer.GetComponent<PolygonCollider2D>();
-        RangedPlayerCollider = RangedPlayer.GetComponent<PolygonCollider2D>();
+        MeleePlayer = GameObject.FindWithTag("MeleePlayer");
+        RangedPlayer = GameObject.FindWithTag("RangedPlayer");
+        meleeController = MeleePlayer.gameObject.GetComponent<PlayerController>();
+        rangedController = RangedPlayer.gameObject.GetComponent<PlayerController>();
     }
 
     void Update()
     {
-        if(MeleePlayer.gameObject.GetComponent<PlayerController>().GetPlayerHP() == MeleePlayer.GetComponent<PlayerController>().MaxHP)
+        //Debug.Log("Melee Health" + meleeController.playerHP);
+        //Debug.Log("Ranged Health" + rangedController.playerHP);
+        if(meleeController.playerHP == meleeController.MaxHP)
             Physics2D.IgnoreLayerCollision(9, 15, true);
     
-        else if(MeleePlayer.gameObject.GetComponent<PlayerController>().GetPlayerHP() != MeleePlayer.GetComponent<PlayerController>().MaxHP)
+        else if(meleeController.playerHP != meleeController.MaxHP)
         {
             Physics2D.IgnoreLayerCollision(9, 15, false);
         }
 
-        if(RangedPlayer.gameObject.GetComponent<PlayerController>().GetPlayerHP() == RangedPlayer.GetComponent<PlayerController>().MaxHP)
+        if(rangedController.playerHP == rangedController.MaxHP)
         {
             Physics2D.IgnoreLayerCollision(19, 15, true);
         }
-        else if(RangedPlayer.gameObject.GetComponent<PlayerController>().GetPlayerHP() != RangedPlayer.GetComponent<PlayerController>().MaxHP)
+        else if(rangedController.playerHP != rangedController.MaxHP)
         {
             Physics2D.IgnoreLayerCollision(19, 15, false);
         }
@@ -40,10 +46,10 @@ public class HealthPickUpController : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if(GameStats.isBattle && collision.gameObject.GetComponent<PlayerController>().GetPlayerHP() != collision.gameObject.GetComponent<PlayerController>().MaxHP)
+        if(GameStats.isBattle && collision.gameObject.GetComponent<PlayerController>().playerHP != meleeController.MaxHP)
         {
-        collision.gameObject.GetComponent<PlayerController>().ChangeHealth("+", incrementHealth);
-        Destroy(gameObject);
+            collision.gameObject.GetComponent<PlayerController>().playerHP += incrementHealth;
+            Destroy(gameObject);
         }
     }
 }

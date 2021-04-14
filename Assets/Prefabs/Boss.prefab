@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 2314242864049820124}
   - component: {fileID: 6888939031749807449}
   - component: {fileID: 7900505146256347089}
-  - component: {fileID: 2314242864049820120}
   - component: {fileID: 6993151883307608213}
+  - component: {fileID: 2314242864049820120}
   m_Layer: 12
   m_Name: Boss
   m_TagString: Boss
@@ -225,39 +225,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &2314242864049820120
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2314242864049820118}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2293ca6106fdd8c4a82aaa8c9f598e61, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MaxHP: 400
-  minDist: 10
-  maxDist: 50
-  lookRadius: 0
-  angularSpeed: 10
-  attacks:
-  - {fileID: 11400000, guid: ca08b6abfc21fbf458bb12074309eb68, type: 2}
-  - {fileID: 11400000, guid: bbb0390deadc8c54fa30fac23ed69046, type: 2}
-  - {fileID: 11400000, guid: e137a8c86e1040c408889891285a311f, type: 2}
-  peakTime: 0
-  BossDamaged: {fileID: 8300000, guid: 9a25fedd72da8b04f81b00944a764d8b, type: 3}
-  BossDying: {fileID: 8300000, guid: e2de5e56690fae04cabec13244d44bc7, type: 3}
-  PureBounce: {fileID: 6200000, guid: b01bb0bb479c157488f4a69d5d9dd7f3, type: 2}
-  BossRB2D: {fileID: 2314242864049820124}
-  BossAudioSource: {fileID: 7900505146256347089}
-  BossSprite: {fileID: 2314242864049820121}
-  Prey:
-  - {fileID: 2767826943954322214, guid: 4cf4e17743bc5ac4db356a52f994a9c2, type: 3}
-  - {fileID: 6213613206703919252, guid: ec4e637f3110d184bbd269966d584422, type: 3}
-  bossAnimator: {fileID: 6993151883307608213}
-  colorTime: 1
 --- !u!95 &6993151883307608213
 Animator:
   serializedVersion: 3
@@ -277,3 +244,41 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &2314242864049820120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2314242864049820118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2293ca6106fdd8c4a82aaa8c9f598e61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxHP: 400
+  HP: 0
+  FOV: 0
+  minDist: 10
+  maxDist: 50
+  lookRadius: 20
+  angularSpeed: 100
+  shakeTime: 0.5
+  attacks:
+  - {fileID: 11400000, guid: ca08b6abfc21fbf458bb12074309eb68, type: 2}
+  - {fileID: 11400000, guid: bbb0390deadc8c54fa30fac23ed69046, type: 2}
+  - {fileID: 11400000, guid: e137a8c86e1040c408889891285a311f, type: 2}
+  peakTime: 0
+  BossDamaged: {fileID: 8300000, guid: 9a25fedd72da8b04f81b00944a764d8b, type: 3}
+  BossDying: {fileID: 8300000, guid: e2de5e56690fae04cabec13244d44bc7, type: 3}
+  PureBounce: {fileID: 6200000, guid: b01bb0bb479c157488f4a69d5d9dd7f3, type: 2}
+  BossRB2D: {fileID: 2314242864049820124}
+  BossAudioSource: {fileID: 7900505146256347089}
+  BossSprite: {fileID: 2314242864049820121}
+  Prey:
+  - {fileID: 2767826943954322214, guid: 4cf4e17743bc5ac4db356a52f994a9c2, type: 3}
+  - {fileID: 6213613206703919252, guid: ec4e637f3110d184bbd269966d584422, type: 3}
+  bossAnimator: {fileID: 6993151883307608213}
+  MainCamera: {fileID: 9068206927868322941, guid: 2d63f9426ac345b4faa7ffeb69e46dff, type: 3}
+  bossCircleCollider: {fileID: 6888939031749807449}
+  colorTime: 1

@@ -7,10 +7,10 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour  
 {
-    public float speed, MaxHP, reviveDist;
+    public float speed, MaxHP, reviveDist, playerHP;
     public AtkStruct[] attacks;
     public AtkStruct shield;
-    public GameObject playerShield, otherPlayer, AimSprite;
+    public GameObject playerShield, AimSprite;
     public float AimReticleOffSet;
     public Animator Animator;
     public SpriteRenderer Player_Sprite;
@@ -18,28 +18,25 @@ public class PlayerController : MonoBehaviour
     public AudioClip PlayerDamaged, PlayerHealing, PlayerShield;
     public Rigidbody2D PlayerRB2D;
     public AudioSource PlayerAudioSource;
-    public string PlayerTag;
-    public bool isAlive;
+    public string PlayerTag, otherPlayerTag;
+    public bool isAlive, AimSpriteEnabled;
 
 
     private Vector2 MoveDir, AimDir;
-    private float playerHP, colorTimer;
-    private GameObject atk;
+    private float colorTimer, otherPlayerHP;
+    private GameObject atk, otherPlayer;
     private Quaternion AimAngle;
     private SinputSystems.InputDeviceSlot slot;
-    private bool isMouseAiming, isAttacking, isRanged;
+    private bool isMouseAiming, isAttacking, isRanged, otherPlayerAlive;
     private Color desiredColor;
+    private ShieldController shieldController;
+    private PlayerController otherPlayerController;
 
     public static GameObject Attack(GameObject Atk, Vector3 weaponPos, Vector3 targetDir, float atkDistance, Quaternion ProjectileRotation)
     {
         Vector3 atkPos = new Vector3(weaponPos.x + targetDir.x * atkDistance * Time.deltaTime, weaponPos.y + targetDir.y * atkDistance * Time.deltaTime, 1.00f);
         GameObject atk = Instantiate(Atk, atkPos, ProjectileRotation);
         return atk;
-    }
-
-    public float GetPlayerHP()
-    {
-        return this.playerHP;
     }
 
     public Vector2 GetAimDir()
@@ -62,14 +59,6 @@ public class PlayerController : MonoBehaviour
         
     }
 
-    public void ChangeHealth(string opSymbol, float amnt)
-    {
-        if(opSymbol == "+")
-            this.playerHP += amnt;
-        else if(opSymbol == "-")
-            this.playerHP -= amnt;
-    }
-
     void enableIdleSprite()
     {
         Player_Sprite.enabled = true;
@@ -84,12 +73,17 @@ public class PlayerController : MonoBehaviour
         for (int i = 0; i < attacks.Length; i++)
             attacks[i].cooldownTimer = attacks[i].cooldown;
         shield.cooldownTimer = shield.cooldown;
-        AimSprite.GetComponent<SpriteRenderer>().enabled = false;
+        otherPlayer = GameObject.FindWithTag(otherPlayerTag);
+        otherPlayerController = otherPlayer.GetComponent<PlayerController>();
+        otherPlayerHP = otherPlayer.GetComponent<PlayerController>().playerHP;
+        shieldController = playerShield.gameObject.GetComponent<ShieldController>();
+        AimSprite.SetActive(true);
         this.playerHP = MaxHP;
         if(PlayerTag == "MeleePlayer")
             slot = GameStats.MeleeSlot;
         else
             slot = GameStats.RangedSlot;
+
         if(slot == SinputSystems.InputDeviceSlot.keyboardAndMouse)
             isMouseAiming = true;
         else
@@ -128,8 +122,8 @@ public class PlayerController : MonoBehaviour
             colorTimer = colorTime;
         }
 
-        if((otherPlayer.GetComponent<PlayerController>().isAlive == false) && (Vector2.Distance(gameObject.transform.position, otherPlayer.transform.position) <= reviveDist) && Sinput.GetButtonDown("Revive", slot))
-            otherPlayer.GetComponent<PlayerController>().ChangeHealth("+", 33.0f);
+        if(!(otherPlayerController.isAlive) && (Vector2.Distance(otherPlayer.transform.position, gameObject.transform.position) <= reviveDist) && Sinput.GetButtonDown("Revive", slot))
+            otherPlayerController.playerHP += 33.0f;
 
         // Detecting Attacking
         if(!isAttacking && isAlive)
@@ -185,11 +179,11 @@ public class PlayerController : MonoBehaviour
             AimSprite.transform.position = gameObject.transform.position + (Vector3)(AimDir * AimReticleOffSet);
             AimAngle.eulerAngles = new Vector3(0.0f, 0.0f, 180 - (Mathf.Atan2(AimDir.x, AimDir.y) * Mathf.Rad2Deg));
             AimSprite.transform.rotation = AimAngle;
-            AimSprite.GetComponent<SpriteRenderer>().enabled = true;
+            AimSprite.SetActive(true);
         }
 
         //Controllr Aiming
-        else if(isMouseAiming == false && (!isAttacking || isRanged) && isAlive)
+        else if(!isMouseAiming  && (!isAttacking || isRanged) && isAlive)
         {
             if(Sinput.GetAxis("Look Horizontal", slot) != 0 || Sinput.GetAxis("Look Vertical" ,slot) != 0)
             {
@@ -198,11 +192,11 @@ public class PlayerController : MonoBehaviour
                 AimSprite.transform.position = gameObject.transform.position + (new Vector3(AimDir.x, AimDir.y, 1.0f) * AimReticleOffSet);
                 AimAngle.eulerAngles = new Vector3(0.0f, 0.0f, 180 - (Mathf.Atan2(AimDir.x, AimDir.y) * Mathf.Rad2Deg));
                 AimSprite.transform.rotation = AimAngle;
-                AimSprite.GetComponent<SpriteRenderer>().enabled = true;
+                AimSprite.SetActive(true);
             }
         }
         else
-            AimSprite.GetComponent<SpriteRenderer>().enabled = false;
+            AimSprite.SetActive(false);
 
 
 
@@ -228,7 +222,7 @@ public class PlayerController : MonoBehaviour
         float potentialDamage = 0.0f;
         if(isAlive)
         {
-            if((collision.collider.gameObject.tag == "BossMeleeAtk" || collision.collider.gameObject.tag == "BossRangeAttk") && playerShield.gameObject.GetComponent<ShieldController>().isExposed == 1)
+            if((collision.collider.gameObject.tag == "BossMeleeAtk" || collision.collider.gameObject.tag == "BossRangeAttk") && shieldController.isExposed == 1)
             {
                 desiredColor = Color.red;
                 colorTimer = colorTime;
@@ -238,20 +232,20 @@ public class PlayerController : MonoBehaviour
                     potentialDamage= collision.collider.gameObject.GetComponent<PlayerShotController>().attack.damage;
                 PlayerAudioSource.PlayOneShot(PlayerDamaged, 0.4f);
             }
-            else if(collision.gameObject.tag == "PickUp" && playerHP != MaxHP)
+            else if(collision.gameObject.layer == 15 && playerHP != MaxHP)
             {
                 desiredColor = Color.yellow;
                 colorTimer = colorTime;
                 PlayerAudioSource.PlayOneShot(PlayerHealing, 0.5f);
             }
             
-            else if(collision.gameObject.tag == "ShieldPickUp" && shield.cooldownTimer != shield.cooldown)
+            else if(collision.gameObject.layer == 20 && shield.cooldownTimer != shield.cooldown)
             {
                 desiredColor = Color.green;
                 colorTimer = colorTime;
                 PlayerAudioSource.PlayOneShot(PlayerShield, 0.5f);
             }
-            this.playerHP -= potentialDamage * playerShield.gameObject.GetComponent<ShieldController>().isExposed;
+            this.playerHP -= potentialDamage * shieldController.isExposed;
         }
     }
 
