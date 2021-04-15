@@ -16,6 +16,10 @@ TagManager:
   - PickUp
   - PauseText
   - ShieldPickUp
+  - MeleeShield
+  - RangedShield
+  - Map
+  - Boss Shield
   layers:
   - Default
   - TransparentFX
@@ -38,7 +42,7 @@ TagManager:
   - MinnionExplosion
   - RangedPlayer
   - Shield Pick Up
-  - 
+  - BossShield
   - 
   - 
   - 

@@ -31,7 +31,7 @@ public class WinningCondition : MonoBehaviour
     {
         if(Boss == null || (!(rangedController.isAlive) && !(meleeController.isAlive)))
         {
-            Debug.Log("The game is over!");
+            //Debug.Log("The game is over!");
             if(Boss == null)
                 GameStats.isBossAlive = false;
             else

@@ -8,12 +8,12 @@ public class ShieldController : MonoBehaviour
     public AtkStruct shield;
     public int isExposed;
     public SpriteRenderer shieldSprite;
-    public PolygonCollider2D shieldCollider;
+    public CircleCollider2D shieldCollider;
     public AudioSource ShieldAudioSource;
     public GameObject Player;
 
     private SinputSystems.InputDeviceSlot slot;
-    private Color ShieldFullColor;
+    private Color ShieldFullColor = new Color(1.00f, 0.0f, 0.0f, 0.75f);
     private PlayerController playerController;
     
     // Start is called before the first frame update
@@ -21,12 +21,11 @@ public class ShieldController : MonoBehaviour
     {
         shield.cooldownTimer = shield.cooldown;
         shield.canFire = true;
-        ShieldFullColor = new Color(shieldSprite.color[0], shieldSprite.color[1], shieldSprite.color[2], 0.75f);
         shieldSprite.color = ShieldFullColor;
         isExposed = 1;
         ShieldAudioSource = gameObject.GetComponent<AudioSource>();
         playerController = Player.GetComponent<PlayerController>();
-        if(gameObject.tag == "MeleePlayer")
+        if(gameObject.tag == "MeleeShield")
             slot = GameStats.MeleeSlot;
         else
             slot = GameStats.RangedSlot;

@@ -5,11 +5,12 @@ using UnityEngine.UI;
 public class UpdateRangedShield : MonoBehaviour
 {
     private Image rangedShieldUI;
-    public GameObject RangedShield;
+    private GameObject RangedShield;
     private AtkStruct shield;
     // Start is called before the first frame update
     void Start()
     {
+        RangedShield = GameObject.FindWithTag("RangedShield");
         rangedShieldUI = gameObject.GetComponent<Image>();
         shield = RangedShield.GetComponent<ShieldController>().shield;
     }

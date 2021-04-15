@@ -918,7 +918,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fcf279660b0f2545ab98b5ff188f047, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dashDistance: 100
+  maxDashTime: 10
+  dashDistance: 300
   dashStoppingSpeed: 0.1
 --- !u!1 &7369801038657996814
 GameObject:
@@ -1035,7 +1036,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6107366159344439196, guid: 12f22e714cfb895418ee0aa4848e3c03, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.337
+      value: -0.8
       objectReference: {fileID: 0}
     - target: {fileID: 6107366159344439196, guid: 12f22e714cfb895418ee0aa4848e3c03, type: 3}
       propertyPath: m_LocalPosition.y

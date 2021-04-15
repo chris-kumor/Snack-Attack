@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class UpdateMeleeShield : MonoBehaviour
 {
     private Image meleeShieldUI;
-    public GameObject MeleeShield;
+    private GameObject MeleeShield;
     private AtkStruct shield;
     // Start is called before the first frame update
 
@@ -14,6 +14,7 @@ public class UpdateMeleeShield : MonoBehaviour
     {
         meleeShieldUI=gameObject.GetComponent<Image>();
         meleeShieldUI.fillAmount = 1;
+        MeleeShield = GameObject.FindWithTag("MeleeShield");
         shield = MeleeShield.GetComponent<ShieldController>().shield;
     }
 

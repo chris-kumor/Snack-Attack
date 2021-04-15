@@ -8,19 +8,22 @@ public class AppleMinionCOntroller : MonoBehaviour
 
     private Vector3 PreyDir;
     public Rigidbody2D rigidbody;
-    private GameObject currentTarget;
+    private GameObject currentTarget, Map;
     
     public float minionSpeed;
     public AtkStruct[] attacks;
     public SpriteRenderer AppleMinnionSprite;
     private GameObject[] targets = new GameObject[2];
+    private SpawnMinion spawnMinionController;
 
     
     // Start is called before the first frame update
     void Start()
     {
+        Map = GameObject.FindWithTag("Map");
         targets[0] = GameObject.FindWithTag("MeleePlayer");
         targets[1] = GameObject.FindWithTag("RangedPlayer");
+        spawnMinionController = Map.GetComponent<SpawnMinion>();
         if(Vector2.Distance(targets[0].transform.position, gameObject.transform.position) < Vector2.Distance(targets[1].transform.position, gameObject.transform.position))
             currentTarget = targets[0];
          else
@@ -41,6 +44,7 @@ public class AppleMinionCOntroller : MonoBehaviour
     {
         PreyDir = rigidbody.velocity;
         PreyDir.Normalize();
+        spawnMinionController.minions -= 1;
         if(collision.gameObject.tag == "MeleeStrike")
             Destroy(gameObject);
         else

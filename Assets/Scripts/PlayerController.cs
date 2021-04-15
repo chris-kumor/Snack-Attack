@@ -31,6 +31,7 @@ public class PlayerController : MonoBehaviour
     private Color desiredColor;
     private ShieldController shieldController;
     private PlayerController otherPlayerController;
+ 
 
     public static GameObject Attack(GameObject Atk, Vector3 weaponPos, Vector3 targetDir, float atkDistance, Quaternion ProjectileRotation)
     {
@@ -77,7 +78,7 @@ public class PlayerController : MonoBehaviour
         otherPlayerController = otherPlayer.GetComponent<PlayerController>();
         otherPlayerHP = otherPlayer.GetComponent<PlayerController>().playerHP;
         shieldController = playerShield.gameObject.GetComponent<ShieldController>();
-        AimSprite.SetActive(true);
+        AimSprite.SetActive(false);
         this.playerHP = MaxHP;
         if(PlayerTag == "MeleePlayer")
             slot = GameStats.MeleeSlot;
@@ -116,7 +117,7 @@ public class PlayerController : MonoBehaviour
             this.playerHP = MaxHP;
         
         //Visually notify PlayerDash
-        if(Sinput.GetButtonDown("Dash", slot))
+        if(Sinput.GetButtonDown("Dash", slot) && !isAttacking)
         {
             desiredColor = Color.blue;
             colorTimer = colorTime;
@@ -239,7 +240,7 @@ public class PlayerController : MonoBehaviour
                 PlayerAudioSource.PlayOneShot(PlayerHealing, 0.5f);
             }
             
-            else if(collision.gameObject.layer == 20 && shield.cooldownTimer != shield.cooldown)
+            else if(collision.gameObject.layer == 20 && shield.cooldownTimer != shield.cooldown && shieldController.isExposed == 1)
             {
                 desiredColor = Color.green;
                 colorTimer = colorTime;
