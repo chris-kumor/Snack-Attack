@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
     public Rigidbody2D PlayerRB2D;
     public AudioSource PlayerAudioSource;
     public string PlayerTag, otherPlayerTag;
-    public bool isAlive, AimSpriteEnabled;
+    public bool isAlive, AimSpriteEnabled, isDashing;
 
 
     private Vector2 MoveDir, AimDir;
@@ -91,6 +91,7 @@ public class PlayerController : MonoBehaviour
             isMouseAiming = false;
         isAttacking = false;
         isAlive = true;
+        isDashing = false;
         if(gameObject.tag == "RangedPlayer")
             isRanged = true;
         else if(gameObject.tag != "RangedPlayer")
@@ -127,7 +128,7 @@ public class PlayerController : MonoBehaviour
             otherPlayerController.playerHP += 33.0f;
 
         // Detecting Attacking
-        if(!isAttacking && isAlive)
+        if(!isAttacking && isAlive && !isDashing)
         {
             for (int i = 0; i < attacks.Length; i++)
             {
@@ -154,7 +155,7 @@ public class PlayerController : MonoBehaviour
         }
 
         //Detecting Movement
-        if ((Sinput.GetAxis("Horizontal", slot) != 0 || Sinput.GetAxis("Vertical", slot) != 0) && (!isAttacking || isRanged) && isAlive)
+        if ((Sinput.GetAxis("Horizontal", slot) != 0 || Sinput.GetAxis("Vertical", slot) != 0) && (!isAttacking || isRanged) && isAlive && !isDashing)
         {
                 
             MoveDir = new Vector2(Sinput.GetAxis("Horizontal", slot), Sinput.GetAxis("Vertical", slot));
@@ -172,7 +173,7 @@ public class PlayerController : MonoBehaviour
         }
 
         //Mouse AimiNG
-        if(isMouseAiming  && (!isAttacking || isRanged) && isAlive)
+        if(isMouseAiming  && (!isAttacking || isRanged) && isAlive && !isDashing)
         {
             
             AimDir = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - gameObject.transform.position);
@@ -184,7 +185,7 @@ public class PlayerController : MonoBehaviour
         }
 
         //Controllr Aiming
-        else if(!isMouseAiming  && (!isAttacking || isRanged) && isAlive)
+        else if(!isMouseAiming  && (!isAttacking || isRanged) && isAlive && !isDashing)
         {
             if(Sinput.GetAxis("Look Horizontal", slot) != 0 || Sinput.GetAxis("Look Vertical" ,slot) != 0)
             {

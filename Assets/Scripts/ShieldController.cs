@@ -33,7 +33,7 @@ public class ShieldController : MonoBehaviour
 
     void Update()
     {
-        if(Sinput.GetButton(shield.fireKey, slot) && shield.canFire && shield.cooldownTimer > 0 && !playerController.attackStatus())
+        if(Sinput.GetButton(shield.fireKey, slot) && shield.canFire && shield.cooldownTimer > 0 && !playerController.attackStatus() && !playerController.isDashing)
         {
             shieldSprite.enabled = true;
             shieldCollider.enabled = true;

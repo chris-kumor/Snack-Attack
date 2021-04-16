@@ -21,6 +21,7 @@ public class CharacterSelectionMenuController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //IF melee controls undecided
         if(GameStats.MeleeSlot == SinputSystems.InputDeviceSlot.any)
         {
             GameStats.MeleeSlot = Sinput.GetSlotPress("Join");
@@ -30,10 +31,10 @@ public class CharacterSelectionMenuController : MonoBehaviour
                     MeleeControls.sprite = KBM;
                 else if(GameStats.MeleeSlot == SinputSystems.InputDeviceSlot.gamepad1 || GameStats.MeleeSlot == SinputSystems.InputDeviceSlot.gamepad2)
                     MeleeControls.sprite = Controller;
-
             }
                
         }
+        //
         else if(GameStats.RangedSlot == SinputSystems.InputDeviceSlot.any)
         {
             GameStats.RangedSlot = Sinput.GetSlotPress("Join");
@@ -49,6 +50,8 @@ public class CharacterSelectionMenuController : MonoBehaviour
 
         if(GameStats.MeleeSlot != SinputSystems.InputDeviceSlot.any && GameStats.RangedSlot != SinputSystems.InputDeviceSlot.any && GameStats.MeleeSlot != GameStats.RangedSlot)
             PlayButton.gameObject.SetActive(true);
+       
+       /*
         else if(GameStats.RangedSlot == GameStats.MeleeSlot)
         {
             PlayButton.gameObject.SetActive(false);
@@ -57,6 +60,7 @@ public class CharacterSelectionMenuController : MonoBehaviour
             MeleeControls.sprite = null;
             RangedControls.sprite = null;
         }
+        */
         else
             PlayButton.gameObject.SetActive(false);
 

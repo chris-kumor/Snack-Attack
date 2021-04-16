@@ -20,6 +20,8 @@ TagManager:
   - RangedShield
   - Map
   - Boss Shield
+  - MReviveIcon
+  - RReviveIcon
   layers:
   - Default
   - TransparentFX

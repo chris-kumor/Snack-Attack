@@ -19,7 +19,7 @@ public class BossController : MonoBehaviour
     public Rigidbody2D BossRB2D;
     public AudioSource BossAudioSource;
     public SpriteRenderer BossSprite;
-    private GameObject[] Prey = new GameObject[2];
+    public GameObject[] Prey;
     public Animator bossAnimator;
     public GameObject MainCamera;
     public CircleCollider2D bossCircleCollider;
@@ -87,8 +87,8 @@ public class BossController : MonoBehaviour
     {
         this.HP = this.MaxHP;   
         timer = peakTime;
-        Prey[0] = GameObject.FindWithTag("MeleePlayer");
-        Prey[1] = GameObject.FindWithTag("RangedPlayer");
+        //Prey[0] = GameObject.FindWithTag("MeleePlayer");
+        //Prey[1] = GameObject.FindWithTag("RangedPlayer");
         MeleeController= Prey[0].GetComponent<PlayerController>();
         RangedController = Prey[1].GetComponent<PlayerController>();
         MainCamController = MainCamera.GetComponent<CameraController>();

@@ -44,10 +44,13 @@ public class PlayerDash : MonoBehaviour
         
          //AimDir.Normalize();
 
-        if (Sinput.GetButtonDown("Dash", slot)) 
-             currentDashTime = 0;            
+        if (Sinput.GetButtonDown("Dash", slot))
+        {   
+             currentDashTime = 0;
+             playerController.isDashing = true;
+        }           
 
-        if(currentDashTime <= maxDashTime)
+        if(currentDashTime <= maxDashTime && playerController.isAlive && !playerController.attackStatus())
         {
              AimDir = playerController.GetAimDir();
              Debug.Log(AimDir);
@@ -56,7 +59,10 @@ public class PlayerDash : MonoBehaviour
              PlayerRB2D.AddForceAtPosition(moveDirection, PlayerRB2D.position, ForceMode2D.Force);
          }
          else
+         {
              moveDirection = Vector3.zero;
+             playerController.isDashing = false;
+         }
             
      }
 }

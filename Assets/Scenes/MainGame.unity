@@ -773,7 +773,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8aeb5498febdfbb4d828d6a50561748f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shakeMagnitude: 0.35
+  shakeMagnitude: 0.2
   dampingSpeed: 1
   timer: 0
 --- !u!114 &570771512
@@ -1145,11 +1145,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -1480674669538845503, guid: 4cf4e17743bc5ac4db356a52f994a9c2, type: 3}
       propertyPath: maxDashTime
-      value: 10
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: -1480674669538845503, guid: 4cf4e17743bc5ac4db356a52f994a9c2, type: 3}
       propertyPath: dashDistance
-      value: 300
+      value: 1400
       objectReference: {fileID: 0}
     - target: {fileID: 1042742136978533569, guid: 4cf4e17743bc5ac4db356a52f994a9c2, type: 3}
       propertyPath: m_RootOrder
@@ -2907,6 +2907,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6319228320523191649, guid: 4cf4e17743bc5ac4db356a52f994a9c2, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6319228320523191649, guid: 4cf4e17743bc5ac4db356a52f994a9c2, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6319228320523191649, guid: 4cf4e17743bc5ac4db356a52f994a9c2, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4cf4e17743bc5ac4db356a52f994a9c2, type: 3}
 --- !u!1 &1111105084
@@ -3824,6 +3836,11 @@ EdgeCollider2D:
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
   m_UseAdjacentEndPoint: 0
+--- !u!1 &1639109461 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2130795644996263939, guid: 4cf4e17743bc5ac4db356a52f994a9c2, type: 3}
+  m_PrefabInstance: {fileID: 940651094}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1759584757 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2314242864049820118, guid: 8e6c1c951bfa30a4989630d7eb2cbb20, type: 3}
@@ -3833,6 +3850,11 @@ GameObject:
 CircleCollider2D:
   m_CorrespondingSourceObject: {fileID: 6888939031749807449, guid: 8e6c1c951bfa30a4989630d7eb2cbb20, type: 3}
   m_PrefabInstance: {fileID: 2314242864499215761}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1774797809 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5921536666205034109, guid: ec4e637f3110d184bbd269966d584422, type: 3}
+  m_PrefabInstance: {fileID: 2113953178}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1826116502
 GameObject:
@@ -3862,7 +3884,7 @@ RectTransform:
   m_GameObject: {fileID: 1826116502}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.7290118, y: 1.7290123, z: 0.34580246}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1438829360}
   m_RootOrder: 5
@@ -3886,6 +3908,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MeleePlayer: {fileID: 423767426}
   RangedPlayer: {fileID: 274173300}
+  MReviveIcon: {fileID: 1639109461}
+  RReviveIcon: {fileID: 1774797809}
   ReviveStatus: {fileID: 1826116505}
 --- !u!114 &1826116505
 MonoBehaviour:
@@ -4205,7 +4229,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6213613206666823565, guid: ec4e637f3110d184bbd269966d584422, type: 3}
       propertyPath: m_Layer
-      value: 19
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 6213613206666823565, guid: ec4e637f3110d184bbd269966d584422, type: 3}
       propertyPath: m_IsActive
@@ -4377,11 +4401,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6906314643370607707, guid: ec4e637f3110d184bbd269966d584422, type: 3}
       propertyPath: maxDashTime
-      value: 10
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 6906314643370607707, guid: ec4e637f3110d184bbd269966d584422, type: 3}
       propertyPath: dashDistance
-      value: 300
+      value: 1400
       objectReference: {fileID: 0}
     - target: {fileID: 6948168361879466410, guid: ec4e637f3110d184bbd269966d584422, type: 3}
       propertyPath: Enemy
@@ -5045,9 +5069,21 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2314242864049820120, guid: 8e6c1c951bfa30a4989630d7eb2cbb20, type: 3}
+      propertyPath: Prey.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2314242864049820120, guid: 8e6c1c951bfa30a4989630d7eb2cbb20, type: 3}
       propertyPath: layerMask.m_Bits
       value: 4294967295
       objectReference: {fileID: 0}
+    - target: {fileID: 2314242864049820120, guid: 8e6c1c951bfa30a4989630d7eb2cbb20, type: 3}
+      propertyPath: Prey.Array.data[0]
+      value: 
+      objectReference: {fileID: 423767426}
+    - target: {fileID: 2314242864049820120, guid: 8e6c1c951bfa30a4989630d7eb2cbb20, type: 3}
+      propertyPath: Prey.Array.data[1]
+      value: 
+      objectReference: {fileID: 274173300}
     - target: {fileID: 2314242864049820120, guid: 8e6c1c951bfa30a4989630d7eb2cbb20, type: 3}
       propertyPath: attacks.Array.size
       value: 3
