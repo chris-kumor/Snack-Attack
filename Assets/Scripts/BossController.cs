@@ -43,6 +43,13 @@ public class BossController : MonoBehaviour
 
 
   
+   private void OnDrawGizmosSelected() 
+   {
+     Gizmos.color = Color.red;
+     Gizmos.DrawWireSphere (gameObject.transform.position, lookRadius);
+   }
+ 
+
     public void StartBattle()
     {
         GameStats.isBattle = true;
@@ -93,6 +100,7 @@ public class BossController : MonoBehaviour
         RangedController = Prey[1].GetComponent<PlayerController>();
         MainCamController = MainCamera.GetComponent<CameraController>();
         isAttacking = false;
+        OnDrawGizmosSelected();
     }
 
     void Update()
@@ -121,24 +129,18 @@ public class BossController : MonoBehaviour
     {
         if (GameStats.isBattle)
         {
-            
             /*if((2*(MaxHP/3)) > this.HP && this.HP >= (MaxHP/3))
-            {
                 Phase2Attack();
-            }
             //else if(this.MaxHP/3 > this.HP && this.HP >= 1.00f)
-            {
                 Phase3Attack();
-            }
             */
             if(this.HP < 1.00f)
                 Destroy(gameObject);
-            //Debug.Log(BossRB2D.velocity.magnitude);
             bossAnimator.SetFloat("speed", (Mathf.Abs(BossRB2D.velocity.magnitude)));
             if(BossRB2D.velocity.x < 0.0f)
-                BossSprite.flipX = true;
-            else if(BossRB2D.velocity.x > 0.0f)
                 BossSprite.flipX = false;
+            else if(BossRB2D.velocity.x > 0.0f)
+                BossSprite.flipX = true;
             if(BossRB2D.velocity == Vector2.zero)
                 bossAnimator.SetFloat("speed", 0.0f);
 
@@ -150,7 +152,9 @@ public class BossController : MonoBehaviour
                 {
                     for(int i = 0; i < visibleEnemies.Length; i++)
                     {
-                        if ((visibleEnemies[i].gameObject.tag == "MeleePlayer") || (visibleEnemies[i].gameObject.tag == "RangedPlayer") && Vector2.Angle(BossRB2D.velocity, visibleEnemies[i].gameObject.transform.position) <= FOV) 
+                        float angle = Vector2.Angle(BossRB2D.velocity, visibleEnemies[i].gameObject.transform.position);
+                        Debug.Log("Angle from " + visibleEnemies[i].gameObject.tag + " is " +  angle);
+                        if ((visibleEnemies[i].gameObject.tag == "MeleePlayer") || (visibleEnemies[i].gameObject.tag == "RangedPlayer") && angle <= FOV) 
                         {
                             float distance = Vector2.Distance(visibleEnemies[i].gameObject.transform.position, BossRB2D.transform.position);
                             PreyDir = (visibleEnemies[i].gameObject.transform.position - BossRB2D.transform.position);
@@ -171,14 +175,14 @@ public class BossController : MonoBehaviour
                             else if (distance > minDist && distance < maxDist && attacks[1].canFire == true)
                             {
                                 StartCoroutine(StopBossAndWait(1.00f, 1));
-                                BossRB2D.constraints = RigidbodyConstraints2D.None;
+                                BossRB2D.constraints = RigidbodyConstraints2D.FreezeRotation;
                                 BossRB2D.velocity = prevVelocity;
                                 //RotateBossToFace(BossRB2D.velocity);
                             }
                             else if (distance > maxDist && attacks[2].canFire == true)
                             {
                                 StartCoroutine(StopBossAndWait(1.00f, 2));
-                                BossRB2D.constraints = RigidbodyConstraints2D.None;
+                                BossRB2D.constraints = RigidbodyConstraints2D.FreezeRotation;
                                 BossRB2D.velocity = prevVelocity;
                                 //RotateBossToFace(BossRB2D.velocity);
                             }
@@ -232,7 +236,7 @@ public class BossController : MonoBehaviour
         BossDir = new Vector2(Random.Range(-1.0f, 1.0f), Random.Range(-1.0f, 1.0f));
         BossDir.Normalize();
         BossRB2D.velocity = BossDir * (angularSpeed * Time.deltaTime);
-        RotateBossToFace(BossRB2D.velocity);
+        //RotateBossToFace(BossRB2D.velocity);
     }
 
     void Phase2Attack()

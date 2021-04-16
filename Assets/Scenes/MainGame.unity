@@ -5010,7 +5010,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2314242864049820120, guid: 8e6c1c951bfa30a4989630d7eb2cbb20, type: 3}
       propertyPath: FOV
-      value: 80
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 2314242864049820120, guid: 8e6c1c951bfa30a4989630d7eb2cbb20, type: 3}
       propertyPath: Eyes
@@ -5058,7 +5058,7 @@ PrefabInstance:
       objectReference: {fileID: 6200000, guid: b01bb0bb479c157488f4a69d5d9dd7f3, type: 2}
     - target: {fileID: 2314242864049820120, guid: 8e6c1c951bfa30a4989630d7eb2cbb20, type: 3}
       propertyPath: lookRadius
-      value: 250
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 2314242864049820120, guid: 8e6c1c951bfa30a4989630d7eb2cbb20, type: 3}
       propertyPath: BossDamaged

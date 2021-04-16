@@ -53,7 +53,7 @@ public class PlayerDash : MonoBehaviour
         if(currentDashTime <= maxDashTime && playerController.isAlive && !playerController.attackStatus())
         {
              AimDir = playerController.GetAimDir();
-             Debug.Log(AimDir);
+             //Debug.Log(AimDir);
              moveDirection = new Vector2(AimDir.x * dashDistance, AimDir.y * dashDistance);
              currentDashTime += dashStoppingSpeed;
              PlayerRB2D.AddForceAtPosition(moveDirection, PlayerRB2D.position, ForceMode2D.Force);
