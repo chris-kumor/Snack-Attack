@@ -172,7 +172,7 @@ public class BossController : MonoBehaviour
         {
             attacks[i].cooldownTimer -= Time.deltaTime;
             //Allows Boss to attack again in x Seconds
-            if (attacks[i].cooldownTimer <= i && attacks[i].canFire == false)
+            if (attacks[i].cooldownTimer <= 0.0f && attacks[i].canFire == false)
             {
                 attacks[i].canFire = true;
                 attacks[i].cooldownTimer = attacks[i].cooldown;
@@ -264,7 +264,7 @@ public class BossController : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (GameStats.isBattle)
+        if (GameStats.isBattle && !GameStats.bossShielded)
         {
             //Depenind on the type of attack it will  damage the boss on damage carried by its script and store damage info to the right player
             if (collision.collider.gameObject.tag == "Projectile")

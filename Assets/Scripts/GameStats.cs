@@ -12,7 +12,7 @@ public static class GameStats
     public static bool isBossAlive;
     public static float ShieldTimer;
     public static SinputSystems.InputDeviceSlot MeleeSlot, RangedSlot;
-    public static bool bothPlayersKB, isBattle;
+    public static bool bothPlayersKB, isBattle, bossShielded;
     
 
 }

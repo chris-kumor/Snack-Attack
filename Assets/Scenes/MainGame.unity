@@ -5254,7 +5254,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2573390145374900396, guid: 8e6c1c951bfa30a4989630d7eb2cbb20, type: 3}
       propertyPath: MaxHP
-      value: 5
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 2573390145374900396, guid: 8e6c1c951bfa30a4989630d7eb2cbb20, type: 3}
       propertyPath: bossCollider

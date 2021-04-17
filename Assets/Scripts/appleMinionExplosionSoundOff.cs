@@ -8,9 +8,9 @@ public class appleMinionExplosionSoundOff : MonoBehaviour
     public AudioSource ExplosionSoundSource;
     public AudioClip explosionAudioClip;
 
-    void OnDestroyEnter()
+    void Start()
     {
-        ExplosionSoundSource.PlayOneShot(explosionAudioClip, 0.5f);
+        ExplosionSoundSource.PlayOneShot(explosionAudioClip, 0.1f);
     }
 
 }

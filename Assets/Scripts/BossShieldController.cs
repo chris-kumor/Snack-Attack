@@ -13,9 +13,11 @@ public class BossShieldController : MonoBehaviour
     public AudioSource ShieldAudioSource;
 
 
+
     // Start is called before the first frame update
     void Start()
     {
+        GameStats.bossShielded = true;
         shieldHP = MaxHP;
         shieldSprite.color = shieldFullColor;
     }
@@ -29,7 +31,7 @@ public class BossShieldController : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D coll)
     {
-        if(coll.collider.gameObject.layer == 13)
+        if(coll.collider.gameObject.layer == 13 && GameStats.isBattle)
         {
             if(coll.collider.gameObject.tag == "Projectile")
             {
@@ -47,6 +49,7 @@ public class BossShieldController : MonoBehaviour
     void OnDestroy()
     {
         ShieldAudioSource.PlayOneShot(shieldDestroy, 0.5f);
+        GameStats.bossShielded = false;
         bossCollider.enabled = true;
     }
 }
