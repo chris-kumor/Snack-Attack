@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: Melee
   m_EditorClassIdentifier: 
   fireKey: Fire1
+  altFireKey: AltMFire1
   atkObj: {fileID: 6622493913580591306, guid: 09cc03701db9d544983b55d3da430729, type: 3}
-  cooldownTimer: -9.447241
+  cooldownTimer: -13.984088
   cooldown: 0.5
   canFire: 1
   atkDistance: 50

@@ -18,33 +18,51 @@ public class PlayerDash : MonoBehaviour
     private SinputSystems.InputDeviceSlot slot; 
     private Vector2 AimDir;
 
+    private bool isMelee, useDash;
+
     private PlayerController playerController;
 
  
      
  
-     public void Awake()
+     public void Start()
      {
+         
+         if(gameObject.tag == "MeleePlayer")
+            isMelee = true;
+        else
+            isMelee = false;
          PlayerRB2D = GetComponent<Rigidbody2D>();
          playerController = GetComponent<PlayerController>();
 
-         if(gameObject.tag == "MeleePlayer")
+         if(isMelee)
              slot = GameStats.MeleeSlot;
-         else
-             slot = GameStats.RangedSlot;
-
+         else 
+             slot = GameStats.RangedSlot; 
         currentDashTime = maxDashTime;
 
      }
+
+    public void isDashing()
+    {
+        if(GameStats.bothPlayersKB)
+        {
+            if(isMelee)
+                useDash = Sinput.GetButtonDown("Dash", slot);
+            else
+                useDash = Sinput.GetButtonDown("AltRDash", slot);
+        }
+    }
+
  
      // Update is called once per frame
      void Update () 
-     {
-
-        
+     {        
          //AimDir.Normalize();
+        
+        isDashing();
 
-        if (Sinput.GetButtonDown("Dash", slot))
+        if (useDash && !playerController.isDashing)
         {   
              currentDashTime = 0;
              playerController.isDashing = true;

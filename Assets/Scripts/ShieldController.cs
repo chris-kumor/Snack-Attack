@@ -12,28 +12,17 @@ public class ShieldController : MonoBehaviour
     public AudioSource ShieldAudioSource;
     public GameObject Player;
 
+
     private SinputSystems.InputDeviceSlot slot;
     private Color ShieldFullColor = new Color(1.00f, 0.0f, 0.0f, 0.75f);
     private PlayerController playerController;
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        shield.cooldownTimer = shield.cooldown;
-        shield.canFire = true;
-        shieldSprite.color = ShieldFullColor;
-        isExposed = 1;
-        ShieldAudioSource = gameObject.GetComponent<AudioSource>();
-        playerController = Player.GetComponent<PlayerController>();
-        if(gameObject.tag == "MeleeShield")
-            slot = GameStats.MeleeSlot;
-        else
-            slot = GameStats.RangedSlot;
-    }
 
-    void Update()
+    public string shieldName; 
+    private bool isMShield;
+
+    public void PlayerShielding(string shieldFireKey)
     {
-        if(Sinput.GetButton(shield.fireKey, slot) && shield.canFire && shield.cooldownTimer > 0 && !playerController.attackStatus() && !playerController.isDashing)
+        if(Sinput.GetButton(shieldFireKey, slot) && shield.canFire && shield.cooldownTimer > 0 && !playerController.attackStatus() && !playerController.isDashing)
         {
             shieldSprite.enabled = true;
             shieldCollider.enabled = true;
@@ -54,6 +43,34 @@ public class ShieldController : MonoBehaviour
                 Physics2D.IgnoreLayerCollision(19, 16, false);
              isExposed = 1;
         }
+    }
+
+    
+    // Start is called before the first frame update
+    void Start()
+    {
+        isMShield = (gameObject.tag == "MeleeShield");
+        shieldName = shield.fireKey;
+        shield.cooldownTimer = shield.cooldown;
+        shield.canFire = true;
+        shieldSprite.color = ShieldFullColor;
+        isExposed = 1;
+        ShieldAudioSource = gameObject.GetComponent<AudioSource>();
+        playerController = Player.GetComponent<PlayerController>();
+        if(isMShield)
+            slot = GameStats.MeleeSlot;
+        else
+            slot = GameStats.RangedSlot;
+
+        if(GameStats.bothPlayersKB)
+            shieldName = shield.altFireKey;
+
+
+    }
+
+    void Update()
+    {
+
     
 
 
@@ -61,6 +78,7 @@ public class ShieldController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        PlayerShielding(shieldName);
         if(shieldSprite.enabled == true && shield.cooldownTimer > 0)
         {
             shield.cooldownTimer -= Time.deltaTime;

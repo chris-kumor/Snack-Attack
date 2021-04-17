@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: RShield
   m_EditorClassIdentifier: 
   fireKey: Fire3
+  altFireKey: AltRFire3
   atkObj: {fileID: 6156330715000639679, guid: 12f22e714cfb895418ee0aa4848e3c03, type: 3}
   cooldownTimer: 5
   cooldown: 5

@@ -108,6 +108,51 @@ MonoBehaviour:
     gamepadInputs: 01000000
     mouseInputs: 
     virtualInputs: []
+  - name: AltMFire1
+    keyboardInputs: 09000000
+    gamepadInputs: 
+    mouseInputs: 
+    virtualInputs: []
+  - name: AltMFire2
+    keyboardInputs: 15000000
+    gamepadInputs: 
+    mouseInputs: 
+    virtualInputs: []
+  - name: AltMFire3
+    keyboardInputs: 0a000000
+    gamepadInputs: 
+    mouseInputs: 
+    virtualInputs: []
+  - name: AltRDash
+    keyboardInputs: 19000000
+    gamepadInputs: 
+    mouseInputs: 
+    virtualInputs: []
+  - name: AltRLeft
+    keyboardInputs: 0e000000
+    gamepadInputs: 
+    mouseInputs: 
+    virtualInputs: []
+  - name: AltRRight
+    keyboardInputs: 10000000
+    gamepadInputs: 
+    mouseInputs: 
+    virtualInputs: []
+  - name: AltRUp
+    keyboardInputs: 0d000000
+    gamepadInputs: 
+    mouseInputs: 
+    virtualInputs: []
+  - name: AltRDown
+    keyboardInputs: 0f000000
+    gamepadInputs: 
+    mouseInputs: 
+    virtualInputs: []
+  - name: AltRFire3
+    keyboardInputs: 13000000
+    gamepadInputs: 
+    mouseInputs: 
+    virtualInputs: []
   smartControls:
   - name: Horizontal
     positiveControl: Right
@@ -141,6 +186,24 @@ MonoBehaviour:
     negativeControl: Look Down
     deadzone: 0.001
     gravity: 0
+    speed: 3
+    snap: 0
+    scale: 1
+    invert: 0
+  - name: AltRHorizontal
+    positiveControl: AltRRight
+    negativeControl: AltRLeft
+    deadzone: 0.001
+    gravity: 3
+    speed: 3
+    snap: 0
+    scale: 1
+    invert: 0
+  - name: AltRVertical
+    positiveControl: AltRUp
+    negativeControl: AltRDown
+    deadzone: 0.001
+    gravity: 3
     speed: 3
     snap: 0
     scale: 1

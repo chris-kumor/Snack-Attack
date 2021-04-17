@@ -583,10 +583,10 @@ MonoBehaviour:
   PlayerShield: {fileID: 8300000, guid: 8471eedc86c760747bdd2951508a2bf1, type: 3}
   PlayerRB2D: {fileID: 2767826943954322217}
   PlayerAudioSource: {fileID: -5635098021040439401}
-  PlayerTag: MeleePlayer
   otherPlayerTag: RangedPlayer
   isAlive: 1
   AimSpriteEnabled: 1
+  isDashing: 0
 --- !u!114 &-1480674669538845503
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -612,7 +612,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1682236100628630115}
   - component: {fileID: 4806490429897831573}
-  m_Layer: 9
+  m_Layer: 5
   m_Name: AimReticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}

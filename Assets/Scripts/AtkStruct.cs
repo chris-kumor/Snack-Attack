@@ -6,6 +6,7 @@ using UnityEngine;
 public class AtkStruct : ScriptableObject
 {
     public string fireKey;
+    public string altFireKey;
     public GameObject atkObj;
     public float cooldownTimer;
     public float cooldown;

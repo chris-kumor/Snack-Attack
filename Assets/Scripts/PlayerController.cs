@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
     public AudioClip PlayerDamaged, PlayerHealing, PlayerShield;
     public Rigidbody2D PlayerRB2D;
     public AudioSource PlayerAudioSource;
-    public string PlayerTag, otherPlayerTag;
+    public string otherPlayerTag;
     public bool isAlive, AimSpriteEnabled, isDashing;
 
 
@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
     private GameObject atk, otherPlayer;
     private Quaternion AimAngle;
     private SinputSystems.InputDeviceSlot slot;
-    private bool isMouseAiming, isAttacking, isRanged, otherPlayerAlive;
+    private bool isMouseAiming, isAttacking, isRanged, otherPlayerAlive, isMelee, isMoving;
     private Color desiredColor;
     private ShieldController shieldController;
     private PlayerController otherPlayerController;
@@ -38,6 +38,55 @@ public class PlayerController : MonoBehaviour
         Vector3 atkPos = new Vector3(weaponPos.x + targetDir.x * atkDistance * Time.deltaTime, weaponPos.y + targetDir.y * atkDistance * Time.deltaTime, 1.00f);
         GameObject atk = Instantiate(Atk, atkPos, ProjectileRotation);
         return atk;
+    }
+
+    public void PlayerMovement(string HSmartControl, string VSmartControl)
+    {
+                //Detecting Movement
+        if ((Sinput.GetAxis(HSmartControl, slot) != 0 || Sinput.GetAxis(VSmartControl, slot) != 0) && (!isAttacking || isRanged) && isAlive && !isDashing)
+        {
+            isMoving = true;    
+            MoveDir = new Vector2(Sinput.GetAxis(HSmartControl, slot), Sinput.GetAxis(VSmartControl, slot));
+            MoveDir.Normalize();
+            Animator.SetFloat("speed", (Mathf.Abs(MoveDir.x) + Mathf.Abs(MoveDir.y)));
+            if(MoveDir.x < 0.0f )
+                Player_Sprite.flipX = true;
+            else if(MoveDir.x > 0.0f )
+                Player_Sprite.flipX = false;
+            if(GameStats.bothPlayersKB && isMelee)
+            {
+                AimDir = MoveDir;
+                UpdateAimSpriteTransform();
+            }
+        }
+        else
+        {   
+            isMoving = false;
+            PlayerRB2D.velocity *= 0;
+            Animator.SetFloat("speed", 0.0f);
+        }
+
+
+
+    }
+    public void UpdateAimSpriteTransform()
+    {
+        AimDir.Normalize();
+        AimSprite.transform.position = gameObject.transform.position + (Vector3)(AimDir * AimReticleOffSet);
+        AimAngle.eulerAngles = new Vector3(0.0f, 0.0f, 180 - (Mathf.Atan2(AimDir.x, AimDir.y) * Mathf.Rad2Deg));
+        AimSprite.transform.rotation = AimAngle;
+        AimSprite.SetActive(true);
+    }
+
+    public void MouseAim()
+    {
+        isMouseAiming = true;
+        //Mouse AimiNG
+        if(isMouseAiming  && (!isAttacking || isRanged) && isAlive && !isDashing)
+        {
+            AimDir = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - gameObject.transform.position);
+            UpdateAimSpriteTransform();
+        }
     }
 
     public Vector2 GetAimDir()
@@ -69,6 +118,10 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        isMoving = false;
+        isRanged = false;
+        isMelee = false;
+        isMouseAiming = false;
         MoveDir = new Vector2(0.0f, 0.0f);
         AimDir = new Vector2(0.0f, 0.0f);
         for (int i = 0; i < attacks.Length; i++)
@@ -80,24 +133,20 @@ public class PlayerController : MonoBehaviour
         shieldController = playerShield.gameObject.GetComponent<ShieldController>();
         AimSprite.SetActive(false);
         this.playerHP = MaxHP;
-        if(PlayerTag == "MeleePlayer")
-            slot = GameStats.MeleeSlot;
-        else
-            slot = GameStats.RangedSlot;
-
-        if(slot == SinputSystems.InputDeviceSlot.keyboardAndMouse)
-            isMouseAiming = true;
-        else
-            isMouseAiming = false;
         isAttacking = false;
         isAlive = true;
         isDashing = false;
         if(gameObject.tag == "RangedPlayer")
+        {
             isRanged = true;
-        else if(gameObject.tag != "RangedPlayer")
-            isRanged = false;
+            slot = GameStats.RangedSlot;
+        }
+        else if(gameObject.tag == "MeleePlayer")
+        {
+            isMelee = true;
+            slot = GameStats.MeleeSlot;
+        }
 
-        
     }
 
     void Update()
@@ -118,11 +167,12 @@ public class PlayerController : MonoBehaviour
             this.playerHP = MaxHP;
         
         //Visually notify PlayerDash
-        if(Sinput.GetButtonDown("Dash", slot) && !isAttacking)
+        if(!isAttacking && isDashing)
         {
             desiredColor = Color.blue;
             colorTimer = colorTime;
         }
+
 
         if(!(otherPlayerController.isAlive) && (Vector2.Distance(otherPlayer.transform.position, gameObject.transform.position) <= reviveDist) && Sinput.GetButtonDown("Revive", slot))
             otherPlayerController.playerHP += 33.0f;
@@ -132,7 +182,13 @@ public class PlayerController : MonoBehaviour
         {
             for (int i = 0; i < attacks.Length; i++)
             {
-                if(Sinput.GetButtonDown(attacks[i].fireKey, slot) && attacks[i].canFire)
+                bool isNormAtk;
+                if(!GameStats.bothPlayersKB)
+                    isNormAtk = (Sinput.GetButtonDown(attacks[i].fireKey, slot) && attacks[i].canFire);
+                else
+                    isNormAtk = (Sinput.GetButtonDown(attacks[i].altFireKey, slot) && attacks[i].canFire);
+
+                if(isNormAtk)
                 {
                     isAttacking = true;
                     if(gameObject.tag == "MeleePlayer")
@@ -154,51 +210,36 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        //Detecting Movement
-        if ((Sinput.GetAxis("Horizontal", slot) != 0 || Sinput.GetAxis("Vertical", slot) != 0) && (!isAttacking || isRanged) && isAlive && !isDashing)
+        //Player Movement
+        if(GameStats.bothPlayersKB)
         {
-                
-            MoveDir = new Vector2(Sinput.GetAxis("Horizontal", slot), Sinput.GetAxis("Vertical", slot));
-            MoveDir.Normalize();
-            Animator.SetFloat("speed", (Mathf.Abs(MoveDir.x) + Mathf.Abs(MoveDir.y)));
-            if(MoveDir.x < 0.0f )
-                Player_Sprite.flipX = true;
-            else if(MoveDir.x > 0.0f )
-                Player_Sprite.flipX = false;
+            if(isMelee)
+            {
+                PlayerMovement("Horizontal", "Vertical");
+            }
+            else if(isRanged)
+            {
+                PlayerMovement("AltRHorizontal", "AltRVertical");
+                MouseAim();
+            }
         }
-        else
-        {   
-            PlayerRB2D.velocity *= 0;
-            Animator.SetFloat("speed", 0.0f);
+        else if(!GameStats.bothPlayersKB)
+        {
+            PlayerMovement("Horizontal", "Vertical");
+            MouseAim();
         }
 
-        //Mouse AimiNG
-        if(isMouseAiming  && (!isAttacking || isRanged) && isAlive && !isDashing)
-        {
-            
-            AimDir = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - gameObject.transform.position);
-            AimDir.Normalize();
-            AimSprite.transform.position = gameObject.transform.position + (Vector3)(AimDir * AimReticleOffSet);
-            AimAngle.eulerAngles = new Vector3(0.0f, 0.0f, 180 - (Mathf.Atan2(AimDir.x, AimDir.y) * Mathf.Rad2Deg));
-            AimSprite.transform.rotation = AimAngle;
-            AimSprite.SetActive(true);
-        }
-
-        //Controllr Aiming
-        else if(!isMouseAiming  && (!isAttacking || isRanged) && isAlive && !isDashing)
+        //Controller Aiming
+        if(!isMouseAiming  && (!isAttacking || isRanged) && isAlive && !isDashing && !GameStats.bothPlayersKB)
         {
             if(Sinput.GetAxis("Look Horizontal", slot) != 0 || Sinput.GetAxis("Look Vertical" ,slot) != 0)
             {
                 AimDir = new Vector2(Sinput.GetAxis("Look Horizontal", slot), Sinput.GetAxis("Look Vertical", slot));
-                AimDir.Normalize();
-                AimSprite.transform.position = gameObject.transform.position + (new Vector3(AimDir.x, AimDir.y, 1.0f) * AimReticleOffSet);
-                AimAngle.eulerAngles = new Vector3(0.0f, 0.0f, 180 - (Mathf.Atan2(AimDir.x, AimDir.y) * Mathf.Rad2Deg));
-                AimSprite.transform.rotation = AimAngle;
-                AimSprite.SetActive(true);
+                UpdateAimSpriteTransform();
             }
         }
-        else
-            AimSprite.SetActive(false);
+       // else
+           // AimSprite.SetActive(false);
 
 
 
@@ -214,7 +255,7 @@ public class PlayerController : MonoBehaviour
 
    
         //Movement
-        if ((Sinput.GetAxis("Horizontal", slot) != 0 || Sinput.GetAxis("Vertical", slot) != 0) && (!isAttacking || isRanged) && isAlive)
+        if (isMoving && (!isAttacking || isRanged) && isAlive)
             PlayerRB2D.MovePosition(PlayerRB2D.transform.position + (new Vector3(MoveDir.x,MoveDir.y, 1.00f)  * speed * Time.deltaTime));
         
     }

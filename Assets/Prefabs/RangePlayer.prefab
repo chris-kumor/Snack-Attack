@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 6713400606178898452}
   - component: {fileID: 6213613206703919253}
   - component: {fileID: 6906314643370607707}
-  m_Layer: 9
+  m_Layer: 19
   m_Name: RangePlayer
   m_TagString: RangedPlayer
   m_Icon: {fileID: 0}
@@ -985,10 +985,10 @@ MonoBehaviour:
   PlayerShield: {fileID: 8300000, guid: 8471eedc86c760747bdd2951508a2bf1, type: 3}
   PlayerRB2D: {fileID: 6213613206703919259}
   PlayerAudioSource: {fileID: 7616556262342317741}
-  PlayerTag: RangedPlayer
   otherPlayerTag: MeleePlayer
   isAlive: 1
   AimSpriteEnabled: 1
+  isDashing: 0
 --- !u!114 &6906314643370607707
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1014,7 +1014,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4027749169815052387}
   - component: {fileID: 1085731509272721562}
-  m_Layer: 9
+  m_Layer: 5
   m_Name: AimReticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1162,6 +1162,10 @@ PrefabInstance:
       value: RShield
       objectReference: {fileID: 0}
     - target: {fileID: 6156330715000639679, guid: 12f22e714cfb895418ee0aa4848e3c03, type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 6156330715000639679, guid: 12f22e714cfb895418ee0aa4848e3c03, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -1188,6 +1192,10 @@ PrefabInstance:
     - target: {fileID: 7448988420311137548, guid: b25e351df519aab4793116580794a20c, type: 3}
       propertyPath: m_Name
       value: Player Bound
+      objectReference: {fileID: 0}
+    - target: {fileID: 7448988420311137548, guid: b25e351df519aab4793116580794a20c, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 7448988420311137555, guid: b25e351df519aab4793116580794a20c, type: 3}
       propertyPath: m_RootOrder

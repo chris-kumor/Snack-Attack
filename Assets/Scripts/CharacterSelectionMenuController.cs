@@ -16,6 +16,7 @@ public class CharacterSelectionMenuController : MonoBehaviour
         //will cause both to be any
         GameStats.MeleeSlot = Sinput.GetSlotPress("Join");
         GameStats.RangedSlot = Sinput.GetSlotPress("Join");
+        GameStats.bothPlayersKB = false;
 
     }
     // Update is called once per frame
@@ -48,9 +49,12 @@ public class CharacterSelectionMenuController : MonoBehaviour
 
         }
 
-        if(GameStats.MeleeSlot != SinputSystems.InputDeviceSlot.any && GameStats.RangedSlot != SinputSystems.InputDeviceSlot.any && GameStats.MeleeSlot != GameStats.RangedSlot)
+        if(GameStats.MeleeSlot != SinputSystems.InputDeviceSlot.any && GameStats.RangedSlot != SinputSystems.InputDeviceSlot.any )
+        {
             PlayButton.gameObject.SetActive(true);
-       
+            if(GameStats.MeleeSlot == SinputSystems.InputDeviceSlot.keyboardAndMouse && GameStats.RangedSlot == SinputSystems.InputDeviceSlot.keyboardAndMouse)
+                GameStats.bothPlayersKB = true;
+        }
        /*
         else if(GameStats.RangedSlot == GameStats.MeleeSlot)
         {

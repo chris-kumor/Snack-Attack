@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: Range
   m_EditorClassIdentifier: 
   fireKey: Fire1
+  altFireKey: Fire1
   atkObj: {fileID: 6868449655810605895, guid: 3de2e6b0015f7f349b7bfea1f3e547f4, type: 3}
-  cooldownTimer: 0.1
+  cooldownTimer: -1.0384874
   cooldown: 0.1
   canFire: 1
   atkDistance: 2
