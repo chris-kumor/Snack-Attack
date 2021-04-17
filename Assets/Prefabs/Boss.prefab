@@ -121,6 +121,10 @@ MonoBehaviour:
   MaxHP: 100
   shieldSprite: {fileID: 4004940043073159791}
   bossCollider: {fileID: 6888939031749807449}
+  atkReflected: {fileID: 8300000, guid: 34767cf246fa02c459a2449d48f0a154, type: 3}
+  atkAbsorbed: {fileID: 8300000, guid: 532a4053b0cf760408a076ede8e9c3d1, type: 3}
+  shieldDestroy: {fileID: 8300000, guid: 42dd3e1649e4a7748b6c2ea13dfb1f71, type: 3}
+  ShieldAudioSource: {fileID: 7900505146256347089}
 --- !u!1 &2314242864049820118
 GameObject:
   m_ObjectHideFlags: 0
@@ -397,6 +401,7 @@ MonoBehaviour:
   BossRB2D: {fileID: 2314242864049820124}
   BossAudioSource: {fileID: 7900505146256347089}
   BossSprite: {fileID: 2314242864049820121}
+  Prey: []
   bossAnimator: {fileID: 6993151883307608213}
   MainCamera: {fileID: 9068206927868322941, guid: 2d63f9426ac345b4faa7ffeb69e46dff, type: 3}
   bossCircleCollider: {fileID: 6888939031749807449}

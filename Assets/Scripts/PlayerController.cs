@@ -288,6 +288,7 @@ public class PlayerController : MonoBehaviour
                 colorTimer = colorTime;
                 PlayerAudioSource.PlayOneShot(PlayerShield, 0.5f);
             }
+ 
             this.playerHP -= potentialDamage * shieldController.isExposed;
         }
     }

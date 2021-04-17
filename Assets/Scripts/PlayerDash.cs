@@ -12,7 +12,7 @@ public class PlayerDash : MonoBehaviour
     
 
     private float currentDashTime;
-    private float dashSpeed = 6;
+    //private float dashSpeed = 6;
     private Rigidbody2D PlayerRB2D;
     private Vector2 moveDirection;
     private SinputSystems.InputDeviceSlot slot; 

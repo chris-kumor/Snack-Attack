@@ -24,9 +24,6 @@ public class BossController : MonoBehaviour
     public GameObject MainCamera;
     public CircleCollider2D bossCircleCollider;
 
-
-
-
     private Vector2 BossDir;
     public float peak;
     private float timer;
@@ -49,7 +46,6 @@ public class BossController : MonoBehaviour
      Gizmos.DrawWireSphere (gameObject.transform.position, lookRadius);
    }
  
-
     public void StartBattle()
     {
         GameStats.isBattle = true;
@@ -72,6 +68,71 @@ public class BossController : MonoBehaviour
         Quaternion Looking = Quaternion.identity;
         Looking.eulerAngles = new Vector3(0.0f, 0.0f, Mathf.Atan2(target.x, target.y) * Mathf.Rad2Deg);
         gameObject.transform.rotation = Looking;
+    }
+
+    void Phase1Attack()
+    {
+        //Debug.Log("Im in Phase 1");
+        bossCircleCollider.enabled = false;
+        BossDir = new Vector2(Random.Range(-1.0f, 1.0f), Random.Range(-1.0f, 1.0f));
+        BossDir.Normalize();
+        BossRB2D.velocity = BossDir * (angularSpeed * Time.deltaTime);
+        //RotateBossToFace(BossRB2D.velocity);
+    }
+
+    void Phase2Attack()
+    {
+        //Debug.Log("Im in Phase 2");
+        //trigmethod
+        //Oscillation on one dimension = wave ocsillation where wave propogates in dimension T to oscillating dimension
+        //Oscillation in 2-D
+        //Obj oscillates on same trig func in both dimensions, obj oscillates between a start and end point on resulted vector
+        //WHen Obj oscillates on both dimensions with using sin() and cos() respiectivelly results in circular oscillation 
+        //where the diamater is equal to the peak in the oscillation shared by bnoth trig funcs
+        //peak = 2.50f;
+        //BossRB2D.velocity = new Vector2(peak * Mathf.Cos(Time.time), peak * Mathf.Cos(Time.time));
+        //modulusmethod
+        //Oscillation is hard coded as Base of Value of timer @ some inst point in time mod Time it takes to reach crest/trough result is multiplied by velocity variable
+        //This speed variable can help us control how much ground before x time until we go back in the opposite direction for the same amount of time.
+        float oscillationWithModulus = (Mathf.Pow(2, Time.time) % 7 )* angularSpeed;
+        if(timer > 0.0f )
+        {
+            if(timerIteration == 1)
+            {
+                BossRB2D.velocity = new Vector3 (oscillationWithModulus, -oscillationWithModulus, 0.0f);
+                timerIteration = 2;
+            }
+            else if(timerIteration == 3)
+            {
+                BossRB2D.velocity = new Vector3 (-oscillationWithModulus, oscillationWithModulus, 0.0f);
+                timerIteration = 4;
+            }
+        }
+        else if(timer >= (-peakTime))
+        {
+            if(timerIteration == 2)
+            {
+                BossRB2D.velocity = new Vector3 (-oscillationWithModulus, -oscillationWithModulus, 0.0f);
+                timerIteration = 3;
+            }
+            else if(timerIteration == 4)
+            {
+                BossRB2D.velocity = new Vector3 (oscillationWithModulus, oscillationWithModulus, 0.0f);
+                timerIteration = 1;
+            }
+        }
+        else
+            timer = peakTime;
+        timer -= Time.deltaTime;
+        
+        
+
+    }
+
+    void Phase3Attack()
+    {
+        //Debug.Log("Im in Phase 3");
+
     }
 
     IEnumerator StopBossAndWait(float waitTime, int attackNum)
@@ -229,68 +290,8 @@ public class BossController : MonoBehaviour
         }
     }
 
-    void Phase1Attack()
+    void OnDestroyEnter()
     {
-        //Debug.Log("Im in Phase 1");
-        bossCircleCollider.enabled = false;
-        BossDir = new Vector2(Random.Range(-1.0f, 1.0f), Random.Range(-1.0f, 1.0f));
-        BossDir.Normalize();
-        BossRB2D.velocity = BossDir * (angularSpeed * Time.deltaTime);
-        //RotateBossToFace(BossRB2D.velocity);
-    }
-
-    void Phase2Attack()
-    {
-        //Debug.Log("Im in Phase 2");
-        //trigmethod
-        //Oscillation on one dimension = wave ocsillation where wave propogates in dimension T to oscillating dimension
-        //Oscillation in 2-D
-        //Obj oscillates on same trig func in both dimensions, obj oscillates between a start and end point on resulted vector
-        //WHen Obj oscillates on both dimensions with using sin() and cos() respiectivelly results in circular oscillation 
-        //where the diamater is equal to the peak in the oscillation shared by bnoth trig funcs
-        //peak = 2.50f;
-        //BossRB2D.velocity = new Vector2(peak * Mathf.Cos(Time.time), peak * Mathf.Cos(Time.time));
-        //modulusmethod
-        //Oscillation is hard coded as Base of Value of timer @ some inst point in time mod Time it takes to reach crest/trough result is multiplied by velocity variable
-        //This speed variable can help us control how much ground before x time until we go back in the opposite direction for the same amount of time.
-        float oscillationWithModulus = (Mathf.Pow(2, Time.time) % 7 )* angularSpeed;
-        if(timer > 0.0f )
-        {
-            if(timerIteration == 1)
-            {
-                BossRB2D.velocity = new Vector3 (oscillationWithModulus, -oscillationWithModulus, 0.0f);
-                timerIteration = 2;
-            }
-            else if(timerIteration == 3)
-            {
-                BossRB2D.velocity = new Vector3 (-oscillationWithModulus, oscillationWithModulus, 0.0f);
-                timerIteration = 4;
-            }
-        }
-        else if(timer >= (-peakTime))
-        {
-            if(timerIteration == 2)
-            {
-                BossRB2D.velocity = new Vector3 (-oscillationWithModulus, -oscillationWithModulus, 0.0f);
-                timerIteration = 3;
-            }
-            else if(timerIteration == 4)
-            {
-                BossRB2D.velocity = new Vector3 (oscillationWithModulus, oscillationWithModulus, 0.0f);
-                timerIteration = 1;
-            }
-        }
-        else
-            timer = peakTime;
-        timer -= Time.deltaTime;
-        
-        
-
-    }
-
-    void Phase3Attack()
-    {
-        //Debug.Log("Im in Phase 3");
-
+        BossAudioSource.PlayOneShot(BossDying, 0.5f);
     }
 }

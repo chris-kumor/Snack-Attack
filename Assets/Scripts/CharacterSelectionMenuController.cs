@@ -49,7 +49,7 @@ public class CharacterSelectionMenuController : MonoBehaviour
 
         }
 
-        if(GameStats.MeleeSlot != SinputSystems.InputDeviceSlot.any && GameStats.RangedSlot != SinputSystems.InputDeviceSlot.any )
+        if(GameStats.MeleeSlot != SinputSystems.InputDeviceSlot.any && GameStats.RangedSlot != SinputSystems.InputDeviceSlot.any)
         {
             PlayButton.gameObject.SetActive(true);
             if(GameStats.MeleeSlot == SinputSystems.InputDeviceSlot.keyboardAndMouse && GameStats.RangedSlot == SinputSystems.InputDeviceSlot.keyboardAndMouse)

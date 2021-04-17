@@ -9,6 +9,9 @@ public class BossShieldController : MonoBehaviour
     private Color shieldFullColor = new Color(1.0f, 1.0f, 1.0f, 0.75f);
     public CircleCollider2D bossCollider;
 
+    public AudioClip atkReflected, atkAbsorbed, shieldDestroy;
+    public AudioSource ShieldAudioSource;
+
 
     // Start is called before the first frame update
     void Start()
@@ -29,15 +32,21 @@ public class BossShieldController : MonoBehaviour
         if(coll.collider.gameObject.layer == 13)
         {
             if(coll.collider.gameObject.tag == "Projectile")
+            {
                 shieldHP -= coll.collider.gameObject.GetComponent<PlayerShotController>().attack.damage;
+                shieldSprite.color = new Color(shieldSprite.color[0], shieldSprite.color[1], shieldSprite.color[2], shieldSprite.color[3] - (Time.deltaTime/10));
+                ShieldAudioSource.PlayOneShot(atkAbsorbed, 0.5f);
+            }
             else if(coll.collider.gameObject.tag == "MeleeStrike") 
-                shieldHP -= coll.collider.gameObject.GetComponent<PlayerStrikeController>().attack.damage;
-            shieldSprite.color = new Color(shieldSprite.color[0], shieldSprite.color[1], shieldSprite.color[2], shieldSprite.color[3] - (Time.deltaTime/10));
+            {
+                ShieldAudioSource.PlayOneShot(atkReflected, 0.5f);
+            }
         }
     }
 
     void OnDestroy()
     {
+        ShieldAudioSource.PlayOneShot(shieldDestroy, 0.5f);
         bossCollider.enabled = true;
     }
 }
