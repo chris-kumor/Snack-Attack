@@ -178,7 +178,7 @@ public class PlayerController : MonoBehaviour
             otherPlayerController.playerHP += 33.0f;
 
         // Detecting Attacking
-        if(!isAttacking && isAlive && !isDashing)
+        if(!isAttacking && isAlive && !isDashing && !GameStats.isPaused)
         {
             for (int i = 0; i < attacks.Length; i++)
             {
@@ -198,6 +198,8 @@ public class PlayerController : MonoBehaviour
                     atk.transform.right = new Vector3(AimDir.x, AimDir.y, 0f);
                     atk = null;
                     attacks[i].canFire = false;
+                    if(!isAttacking)
+                        enableIdleSprite();
                     Invoke("enableIdleSprite",  attacks[i].cooldown);
                     
                 }
@@ -273,20 +275,20 @@ public class PlayerController : MonoBehaviour
                     potentialDamage= collision.collider.gameObject.GetComponent<PlayerStrikeController>().attack.damage;
                 else if(collision.collider.gameObject.tag == "BossRangeAttk")
                     potentialDamage= collision.collider.gameObject.GetComponent<PlayerShotController>().attack.damage;
-                PlayerAudioSource.PlayOneShot(PlayerDamaged, 0.4f);
+                PlayerAudioSource.PlayOneShot(PlayerDamaged, GameStats.gameVol);
             }
             else if(collision.gameObject.layer == 15 && playerHP != MaxHP)
             {
                 desiredColor = Color.yellow;
                 colorTimer = colorTime;
-                PlayerAudioSource.PlayOneShot(PlayerHealing, 0.5f);
+                PlayerAudioSource.PlayOneShot(PlayerHealing, GameStats.gameVol);
             }
             
             else if(collision.gameObject.layer == 20 && shield.cooldownTimer != shield.cooldown && shieldController.isExposed == 1)
             {
                 desiredColor = Color.green;
                 colorTimer = colorTime;
-                PlayerAudioSource.PlayOneShot(PlayerShield, 0.5f);
+                PlayerAudioSource.PlayOneShot(PlayerShield, GameStats.gameVol);
             }
  
             this.playerHP -= potentialDamage * shieldController.isExposed;

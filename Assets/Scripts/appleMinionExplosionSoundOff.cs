@@ -10,7 +10,7 @@ public class appleMinionExplosionSoundOff : MonoBehaviour
 
     void Start()
     {
-        ExplosionSoundSource.PlayOneShot(explosionAudioClip, 0.1f);
+        ExplosionSoundSource.PlayOneShot(explosionAudioClip, GameStats.gameVol);
     }
 
 }

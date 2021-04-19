@@ -31,7 +31,7 @@ public class ShieldController : MonoBehaviour
                 Physics2D.IgnoreLayerCollision(9, 16, true);
             else if(slot == GameStats.RangedSlot)
                 Physics2D.IgnoreLayerCollision(19, 16, true);
-            ShieldAudioSource.PlayOneShot(shield.soundToPlay, 0.05f);
+            ShieldAudioSource.PlayOneShot(shield.soundToPlay, GameStats.gameVol);
         }
         else
         {

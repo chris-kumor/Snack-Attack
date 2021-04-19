@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2573390145374900396}
   m_Layer: 21
   m_Name: BossShield
-  m_TagString: Untagged
+  m_TagString: Boss Shield
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -121,10 +121,13 @@ MonoBehaviour:
   MaxHP: 100
   shieldSprite: {fileID: 4004940043073159791}
   bossCollider: {fileID: 6888939031749807449}
+  shieldCollider: {fileID: 0}
   atkReflected: {fileID: 8300000, guid: 34767cf246fa02c459a2449d48f0a154, type: 3}
   atkAbsorbed: {fileID: 8300000, guid: 532a4053b0cf760408a076ede8e9c3d1, type: 3}
-  shieldDestroy: {fileID: 8300000, guid: 42dd3e1649e4a7748b6c2ea13dfb1f71, type: 3}
+  shieldDestroyed: {fileID: 0}
+  shieldRestored: {fileID: 0}
   ShieldAudioSource: {fileID: 7900505146256347089}
+  Boss: {fileID: 0}
 --- !u!1 &2314242864049820118
 GameObject:
   m_ObjectHideFlags: 0

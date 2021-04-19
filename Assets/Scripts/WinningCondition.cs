@@ -7,6 +7,9 @@ using UnityEngine.SceneManagement;
 public class WinningCondition : MonoBehaviour
 {
     public GameObject Boss, MeleePlayer, RangedPlayer;
+    public AudioSource gameAudioSource;
+
+    public AudioClip BossDying;
     private PlayerController meleeController, rangedController;
 
     public float sceneDelayTimer;
@@ -33,7 +36,10 @@ public class WinningCondition : MonoBehaviour
         {
             //Debug.Log("The game is over!");
             if(Boss == null)
+            {
                 GameStats.isBossAlive = false;
+                gameAudioSource.PlayOneShot(BossDying, 0.5f);
+            }
             else
                 GameStats.isBossAlive = true;
 

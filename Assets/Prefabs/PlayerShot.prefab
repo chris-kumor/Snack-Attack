@@ -398,8 +398,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 091d8fe8c1ffbae478927a7185524eac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 5
-  speed: 1000
+  speed: 1500
   rb: {fileID: 570426322716686817}
   PlayerTag: RangedPlayer
   attack: {fileID: 11400000, guid: 01d06c9cf477bc441a1cb14bf216aac1, type: 2}

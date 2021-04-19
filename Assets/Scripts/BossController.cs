@@ -14,7 +14,7 @@ public class BossController : MonoBehaviour
     public float angularSpeed, shakeTime;
     public AtkStruct[] attacks;
     public float peakTime;
-    public AudioClip BossDamaged, BossDying;
+    public AudioClip BossDamaged, BossStuned;
     public PhysicsMaterial2D PureBounce;
     public Rigidbody2D BossRB2D;
     public AudioSource BossAudioSource;
@@ -35,8 +35,10 @@ public class BossController : MonoBehaviour
     private Collider2D[] visibleEnemies;
     private PlayerController MeleeController, RangedController;
     private CameraController MainCamController;
+    public GameObject BossShield;
+    private BossShieldController bossShieldController;
     private  int timerIteration = 1;
-    private bool isAttacking;
+    private bool isAttacking, isPhase1, isStunned;
 
 
   
@@ -45,12 +47,27 @@ public class BossController : MonoBehaviour
      Gizmos.color = Color.red;
      Gizmos.DrawWireSphere (gameObject.transform.position, lookRadius);
    }
+
+   void restoreShieldHP()
+   {
+      bossShieldController.restoreShieldHP();
+   }
+
+   public void UnFreezeBoss()
+   {
+       BossRB2D.constraints = RigidbodyConstraints2D.FreezeRotation;
+   }
  
     public void StartBattle()
     {
         GameStats.isBattle = true;
         BossRB2D.isKinematic = false;
         Phase1Attack();
+    }
+
+    public Vector2 GetPreyDir()
+    {
+        return PreyDir;
     }
 
     void enableIdleSprite()
@@ -76,7 +93,7 @@ public class BossController : MonoBehaviour
         bossCircleCollider.enabled = false;
         BossDir = new Vector2(Random.Range(-1.0f, 1.0f), Random.Range(-1.0f, 1.0f));
         BossDir.Normalize();
-        BossRB2D.velocity = BossDir * (angularSpeed * Time.deltaTime);
+        BossRB2D.velocity = BossDir * (angularSpeed);
         //RotateBossToFace(BossRB2D.velocity);
     }
 
@@ -124,9 +141,6 @@ public class BossController : MonoBehaviour
         else
             timer = peakTime;
         timer -= Time.deltaTime;
-        
-        
-
     }
 
     void Phase3Attack()
@@ -155,12 +169,15 @@ public class BossController : MonoBehaviour
     {
         this.HP = this.MaxHP;   
         timer = peakTime;
-        //Prey[0] = GameObject.FindWithTag("MeleePlayer");
-        //Prey[1] = GameObject.FindWithTag("RangedPlayer");
         MeleeController= Prey[0].GetComponent<PlayerController>();
         RangedController = Prey[1].GetComponent<PlayerController>();
         MainCamController = MainCamera.GetComponent<CameraController>();
+        bossShieldController = BossShield.GetComponent<BossShieldController>();
         isAttacking = false;
+        isPhase1 = true;
+        isStunned = false;
+        for(int i = 0; i < attacks.Length; i++)
+            attacks[i].cooldownTimer = attacks[i].cooldown;
         OnDrawGizmosSelected();
     }
 
@@ -198,17 +215,17 @@ public class BossController : MonoBehaviour
             if(this.HP < 1.00f)
                 Destroy(gameObject);
             bossAnimator.SetFloat("speed", (Mathf.Abs(BossRB2D.velocity.magnitude)));
-            if(BossRB2D.velocity.x < 0.0f)
+            if(BossRB2D.velocity.x < 0.0f && !isStunned)
                 BossSprite.flipX = false;
-            else if(BossRB2D.velocity.x > 0.0f)
+            else if(BossRB2D.velocity.x > 0.0f && isStunned)
                 BossSprite.flipX = true;
             if(BossRB2D.velocity == Vector2.zero)
                 bossAnimator.SetFloat("speed", 0.0f);
 
             //Making sure the player the boss is looking for is still in the game
-            if ((MeleeController.isAlive || RangedController.isAlive) && !isAttacking)
+            if ((MeleeController.isAlive || RangedController.isAlive) && !isAttacking && !isStunned)
             {
-                visibleEnemies = Physics2D.OverlapCircleAll(gameObject.transform.position, lookRadius);
+                visibleEnemies = Physics2D.OverlapCircleAll(gameObject.transform.position, lookRadius, 9 << 19);
                 if(visibleEnemies.Length != 0)
                 {
                     for(int i = 0; i < visibleEnemies.Length; i++)
@@ -230,7 +247,7 @@ public class BossController : MonoBehaviour
                                 atk = null;
                                 Invoke("enableIdleSprite", 0.35f);
                                 attacks[0].canFire = false;
-                                
+                               
                             }
                             //if not then exit loop so we will check to see if the target is still in the scene
                             else if (distance > minDist && distance < maxDist && attacks[1].canFire == true)
@@ -239,6 +256,7 @@ public class BossController : MonoBehaviour
                                 BossRB2D.constraints = RigidbodyConstraints2D.FreezeRotation;
                                 BossRB2D.velocity = prevVelocity;
                                 //RotateBossToFace(BossRB2D.velocity);
+                                
                             }
                             else if (distance > maxDist && attacks[2].canFire == true)
                             {
@@ -247,10 +265,8 @@ public class BossController : MonoBehaviour
                                 BossRB2D.velocity = prevVelocity;
                                 //RotateBossToFace(BossRB2D.velocity);
                             }
-                            isAttacking = false;
                         }
-                        else
-                            return;
+                        isAttacking = false;
                     }
                 }
                 
@@ -272,26 +288,34 @@ public class BossController : MonoBehaviour
                 PlayerShotController playerAttackController = collision.collider.gameObject.GetComponent<PlayerShotController>();
                 this.HP -= playerAttackController.attack.damage;
                 GameStats.RangedDamage += playerAttackController.attack.damage;
-                BossAudioSource.PlayOneShot(BossDamaged, 0.05f);
+                BossAudioSource.PlayOneShot(BossDamaged, GameStats.gameVol);
                 colorTimer = colorTime;
             }
             else if (collision.collider.gameObject.tag == "MeleeStrike")
             {
                 PlayerStrikeController playerAttackController = collision.collider.gameObject.GetComponent<PlayerStrikeController>();
+                MainCamController.shakeMagnitude = 0.2f;
                 if(playerAttackController.attack.fireKey == "Fire2")
                     MainCamController.timer = shakeTime;
                 this.HP -= playerAttackController.attack.damage;
                 GameStats.MeleeDamage += playerAttackController.attack.damage;
-                BossAudioSource.PlayOneShot(BossDamaged, 0.05f);
+                BossAudioSource.PlayOneShot(BossDamaged, GameStats.gameVol);
                 colorTimer = colorTime;
-
-
             }
-        }
-    }
+            else if(collision.collider.gameObject.layer == 10 && isPhase1 && !GameStats.bossShielded)
+            {
+                BossAudioSource.PlayOneShot(BossStuned, GameStats.gameVol);
+                BossRB2D.constraints = RigidbodyConstraints2D.FreezeAll;
+                isStunned = true;
+                MainCamController.shakeMagnitude = 0.4f;
+                MainCamController.timer = shakeTime * 2;
+                Invoke("restoreShieldHP", 5.0f);
+                Invoke("UnFreezeBoss", 5.0f);
+                Invoke("Phase1Attack", 5.0f);
+            }
 
-    void OnDestroyEnter()
-    {
-        BossAudioSource.PlayOneShot(BossDying, 0.5f);
+
+
+        }
     }
 }

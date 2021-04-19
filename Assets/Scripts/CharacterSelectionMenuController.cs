@@ -8,7 +8,9 @@ public class CharacterSelectionMenuController : MonoBehaviour
     
     public Button PlayButton;
     public Image MeleeControls, RangedControls;
-    public Sprite Controller, KBM;
+    public Sprite Controller, KBM, defultImage;
+
+    
 
     
     void Start()
@@ -17,6 +19,16 @@ public class CharacterSelectionMenuController : MonoBehaviour
         GameStats.MeleeSlot = Sinput.GetSlotPress("Join");
         GameStats.RangedSlot = Sinput.GetSlotPress("Join");
         GameStats.bothPlayersKB = false;
+    
+
+    }
+
+    public void clearControlIcons()
+    {
+        MeleeControls.sprite = defultImage;
+        RangedControls.sprite = defultImage;
+        GameStats.MeleeSlot = SinputSystems.InputDeviceSlot.any;
+        GameStats.RangedSlot = SinputSystems.InputDeviceSlot.any;
 
     }
     // Update is called once per frame
