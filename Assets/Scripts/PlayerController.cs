@@ -80,7 +80,6 @@ public class PlayerController : MonoBehaviour
 
     public void MouseAim()
     {
-        isMouseAiming = true;
         //Mouse AimiNG
         if(isMouseAiming  && (!isAttacking || isRanged) && isAlive && !isDashing)
         {
@@ -146,6 +145,8 @@ public class PlayerController : MonoBehaviour
             isMelee = true;
             slot = GameStats.MeleeSlot;
         }
+        if(slot == SinputSystems.InputDeviceSlot.keyboardAndMouse)
+            isMouseAiming = true;
 
     }
 
