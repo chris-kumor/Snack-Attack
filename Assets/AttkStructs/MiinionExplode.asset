@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: MiinionExplode
   m_EditorClassIdentifier: 
   fireKey: 
+  altFireKey: 
   atkObj: {fileID: 6286601020115255354, guid: e50fe5b7ce5c659428fdd61f708e0d18, type: 3}
   cooldownTimer: 0
-  cooldown: 0.5
+  cooldown: 1.1
   canFire: 0
   atkDistance: 0
   damage: 10

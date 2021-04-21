@@ -1,4 +1,4 @@
-using System.Collections;
+   using System.Collections;
 using System.Collections.Generic; 
 using UnityEngine;
 
@@ -175,8 +175,22 @@ public class PlayerController : MonoBehaviour
         }
 
 
-        if(!(otherPlayerController.isAlive) && (Vector2.Distance(otherPlayer.transform.position, gameObject.transform.position) <= reviveDist) && Sinput.GetButtonDown("Revive", slot))
-            otherPlayerController.playerHP += 33.0f;
+        if(!(otherPlayerController.isAlive) && (Vector2.Distance(otherPlayer.transform.position, gameObject.transform.position) <= reviveDist))
+        {
+            bool isRevive = false;
+            if(!GameStats.bothPlayersKB)
+                isRevive = Sinput.GetButtonDown("Revive", slot);
+            else if(GameStats.bothPlayersKB)
+            {
+                if(isMelee)
+                    isRevive = Sinput.GetButtonDown("Revive", slot);
+                else
+                    isRevive = Sinput.GetButtonDown("AltRRevive", slot);
+            }
+            if(isRevive)
+                otherPlayerController.playerHP += 33.0f;
+        }
+            
 
         // Detecting Attacking
         if(!isAttacking && isAlive && !isDashing && !GameStats.isPaused)
@@ -194,15 +208,12 @@ public class PlayerController : MonoBehaviour
                     isAttacking = true;
                     if(gameObject.tag == "MeleePlayer")
                         Player_Sprite.enabled = false;
-                    PlayerAudioSource.PlayOneShot(attacks[i].soundToPlay, 0.2f);
+                    PlayerAudioSource.PlayOneShot(attacks[i].soundToPlay, GameStats.gameVol);
                     atk = Attack(attacks[i].atkObj, PlayerRB2D.position, AimDir, attacks[i].atkDistance, PlayerRB2D.transform.rotation);
                     atk.transform.right = new Vector3(AimDir.x, AimDir.y, 0f);
                     atk = null;
                     attacks[i].canFire = false;
-                    if(!isAttacking)
-                        enableIdleSprite();
                     Invoke("enableIdleSprite",  attacks[i].cooldown);
-                    
                 }
                 if(attacks[i].cooldownTimer < 0 && attacks[i].canFire == false)
                 {
@@ -266,17 +277,20 @@ public class PlayerController : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision)
     {
         float potentialDamage = 0.0f;
-        if(isAlive)
+        if(isAlive && collision.collider.gameObject != null)
         {
             if((collision.collider.gameObject.tag == "BossMeleeAtk" || collision.collider.gameObject.tag == "BossRangeAttk") && shieldController.isExposed == 1)
             {
                 desiredColor = Color.red;
                 colorTimer = colorTime;
                 if(collision.collider.gameObject.tag == "BossMeleeAtk" )
+                {
                     potentialDamage= collision.collider.gameObject.GetComponent<PlayerStrikeController>().attack.damage;
+                    PlayerRB2D.AddForce(new Vector2(-MoveDir.x, -MoveDir.y) * 250);
+                }
                 else if(collision.collider.gameObject.tag == "BossRangeAttk")
                     potentialDamage= collision.collider.gameObject.GetComponent<PlayerShotController>().attack.damage;
-                PlayerAudioSource.PlayOneShot(PlayerDamaged, GameStats.gameVol);
+                PlayerAudioSource.PlayOneShot(PlayerDamaged, GameStats.gameVol); 
             }
             else if(collision.gameObject.layer == 15 && playerHP != MaxHP)
             {
@@ -285,7 +299,7 @@ public class PlayerController : MonoBehaviour
                 PlayerAudioSource.PlayOneShot(PlayerHealing, GameStats.gameVol);
             }
             
-            else if(collision.gameObject.layer == 20 && shield.cooldownTimer != shield.cooldown && shieldController.isExposed == 1)
+            else if(collision.gameObject.layer == 9 && shield.cooldownTimer != shield.cooldown && shieldController.isExposed == 1)
             {
                 desiredColor = Color.green;
                 colorTimer = colorTime;

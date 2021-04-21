@@ -18,6 +18,6 @@ MonoBehaviour:
   cooldownTimer: -13.984088
   cooldown: 0.5
   canFire: 1
-  atkDistance: 50
+  atkDistance: 25
   damage: 5
   soundToPlay: {fileID: 8300000, guid: e51dc4707a24def4fb60433925be3c3d, type: 3}

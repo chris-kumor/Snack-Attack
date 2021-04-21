@@ -32,7 +32,7 @@ TagManager:
   - 
   - 
   - Terrain
-  - MeleePlayer
+  - Shield Pick Up
   - World Bounds
   - Player Bound
   - Boss
@@ -43,7 +43,7 @@ TagManager:
   - MouseDetection
   - MinnionExplosion
   - RangedPlayer
-  - Shield Pick Up
+  - MeleePlayer
   - BossShield
   - 
   - 

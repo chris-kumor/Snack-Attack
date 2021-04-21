@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: BossLightAttack
   m_EditorClassIdentifier: 
   fireKey: 
+  altFireKey: 
   atkObj: {fileID: 4223610722966919070, guid: c197d6c692f008347899be8548440d25, type: 3}
-  cooldownTimer: -29.238785
-  cooldown: 1
+  cooldownTimer: -21.198708
+  cooldown: 0.5
   canFire: 1
-  atkDistance: 30
-  damage: 2
+  atkDistance: 15
+  damage: 5
   soundToPlay: {fileID: 8300000, guid: e96d314cd8cf3ac48872e020bf2259c8, type: 3}

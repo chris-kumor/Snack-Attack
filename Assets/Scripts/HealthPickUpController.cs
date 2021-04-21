@@ -27,11 +27,11 @@ public class HealthPickUpController : MonoBehaviour
         //Debug.Log("Melee Health" + meleeController.playerHP);
         //Debug.Log("Ranged Health" + rangedController.playerHP);
         if(meleeController.playerHP == meleeController.MaxHP)
-            Physics2D.IgnoreLayerCollision(9, 15, true);
+            Physics2D.IgnoreLayerCollision(20, 15, true);
     
         else if(meleeController.playerHP != meleeController.MaxHP)
         {
-            Physics2D.IgnoreLayerCollision(9, 15, false);
+            Physics2D.IgnoreLayerCollision(20, 15, false);
         }
 
         if(rangedController.playerHP == rangedController.MaxHP)

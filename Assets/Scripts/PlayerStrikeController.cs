@@ -22,6 +22,7 @@ public class PlayerStrikeController : MonoBehaviour
     void Start()
     {
         timer = attack.cooldown;
+
         Parent = GameObject.FindWithTag(ParentTag);
         if(ParentTag == "MeleePlayer")
             AimDir = Parent.GetComponent<PlayerController>().GetAimDir();
@@ -35,7 +36,7 @@ public class PlayerStrikeController : MonoBehaviour
     {
         if (timer <= 0)
         {   
-            if(ParentTag == "MeleePlayer")
+            if(ParentTag == "MeleePlayer" || ParentTag == "Boss")
                 Parent.SendMessage("CanAttack");
             Destroy(gameObject);
         }
@@ -44,11 +45,11 @@ public class PlayerStrikeController : MonoBehaviour
 
     void Update()
     {
-            if(AimDir.x < 0.0f && AimDir.y != 0.0f && gameObject.tag == "MeleeStrike")
+            if(AimDir.x < 0.0f && AimDir.y != 0.0f)
                 AttackSprite.flipY = true;
             else
                 AttackSprite.flipY = false;
         
     }
-
+    
 }

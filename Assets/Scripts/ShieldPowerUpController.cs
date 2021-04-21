@@ -29,19 +29,19 @@ public class ShieldPowerUpController : MonoBehaviour
     void FixedUpdate()
     {
         if(MController.shield.cooldownTimer == MController.shield.cooldown)
-            Physics2D.IgnoreLayerCollision(9, 20, true);
+            Physics2D.IgnoreLayerCollision(20, 9, true);
         else if(MController.shield.cooldownTimer != MController.shield.cooldown && mShieldController.isExposed == 1)
-            Physics2D.IgnoreLayerCollision(9, 20, false);
+            Physics2D.IgnoreLayerCollision(20, 9, false);
         if(RController.shield.cooldownTimer == RController.shield.cooldown)
-            Physics2D.IgnoreLayerCollision(19, 20, true);
+            Physics2D.IgnoreLayerCollision(19, 9, true);
         else if(RController.shield.cooldownTimer != RController.shield.cooldown && rShieldController.isExposed == 1)
-            Physics2D.IgnoreLayerCollision(19, 20, false);
+            Physics2D.IgnoreLayerCollision(19, 9, false);
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
         //Shield PowerUp Collider colliding with a player's collider
-        if((collision.collider.gameObject.layer == 9 || collision.collider.gameObject.layer == 19))
+        if((collision.collider.gameObject.layer == 20 || collision.collider.gameObject.layer == 19))
         {
             PlayerController collidedPlayerController = collision.collider.gameObject.GetComponent<PlayerController>();
             if(collidedPlayerController != null)
