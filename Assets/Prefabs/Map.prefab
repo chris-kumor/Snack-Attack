@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6477936107801817226}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Map
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,7 +45,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6477936107958039531}
   - component: {fileID: 6477936107958039530}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Apple wall (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -127,7 +127,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6477936108411767726}
   - component: {fileID: 6477936108411767725}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Apple wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -209,7 +209,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6477936108562877813}
   - component: {fileID: 6477936108562877812}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Fruit floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -291,7 +291,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6477936108765999365}
   - component: {fileID: 6477936108765999364}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Apple wall (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -373,7 +373,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6477936108766397627}
   - component: {fileID: 6477936108766397626}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Apple wall (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

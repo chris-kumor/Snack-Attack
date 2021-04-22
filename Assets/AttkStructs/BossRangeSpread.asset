@@ -15,9 +15,9 @@ MonoBehaviour:
   fireKey: 
   altFireKey: 
   atkObj: {fileID: 1099850237785029253, guid: b7cd445390b7d2b4da09ed0bc19d4703, type: 3}
-  cooldownTimer: 6.312229
+  cooldownTimer: 4.366845
   cooldown: 10
-  canFire: 1
-  atkDistance: 1
+  canFire: 0
+  atkDistance: 10
   damage: 15
   soundToPlay: {fileID: 8300000, guid: c00be6922e0bbd44390609dff4fddc8c, type: 3}

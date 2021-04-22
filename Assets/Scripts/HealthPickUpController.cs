@@ -6,20 +6,21 @@ public class HealthPickUpController : MonoBehaviour
 {
     public float incrementHealth;
 
-    private GameObject MeleePlayer, RangedPlayer, Map;
+
+    private GameObject MeleePlayer, RangedPlayer;
     private PlayerController meleeController, rangedController;
-    private SpawnItems itemSpawner;
+
 
 
     
     void Start()
     {
-        Map = GameObject.FindWithTag("Map");
+  
         MeleePlayer = GameObject.FindWithTag("MeleePlayer");
         RangedPlayer = GameObject.FindWithTag("RangedPlayer");
         meleeController = MeleePlayer.gameObject.GetComponent<PlayerController>();
         rangedController = RangedPlayer.gameObject.GetComponent<PlayerController>();
-        itemSpawner = Map.GetComponent<SpawnItems>();
+    
     }
 
     void Update()
@@ -49,11 +50,14 @@ public class HealthPickUpController : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if(GameStats.isBattle && collision.gameObject.GetComponent<PlayerController>().playerHP != meleeController.MaxHP)
+        if(collision.gameObject != null)
         {
-            collision.gameObject.GetComponent<PlayerController>().playerHP += incrementHealth;
-            itemSpawner.items -= 1;
-            Destroy(gameObject);
+            if(GameStats.isBattle && collision.gameObject.GetComponent<PlayerController>().playerHP != meleeController.MaxHP)
+            {
+                collision.gameObject.GetComponent<PlayerController>().playerHP += incrementHealth;
+                GameStats.items -= 1;
+                Destroy(gameObject);
+            }
         }
     }
 }

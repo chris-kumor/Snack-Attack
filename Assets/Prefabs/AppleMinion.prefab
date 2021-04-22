@@ -13,13 +13,13 @@ GameObject:
   - component: {fileID: 448208508957912386}
   - component: {fileID: -8414334363118356619}
   - component: {fileID: 5003410610145692735}
-  - component: {fileID: 537926403962815143}
+  - component: {fileID: 1083755829396168737}
   m_Layer: 18
   m_Name: AppleMinion
   m_TagString: minion
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &3915304561709009759
 Transform:
@@ -102,7 +102,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 6e7c3effca18f8d46a0dd8adf5e8a82d, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -116,7 +116,7 @@ CircleCollider2D:
   m_GameObject: {fileID: 4605721118578811385}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 6e7c3effca18f8d46a0dd8adf5e8a82d, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -142,7 +142,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &537926403962815143
+--- !u!114 &1083755829396168737
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -151,11 +151,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4605721118578811385}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d479f673417c50245983682924bde7a2, type: 3}
+  m_Script: {fileID: 11500000, guid: d266eb68473d97b4ebf25b02f952c6b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rigidbody: {fileID: 448208508957912386}
   minionSpeed: 3
   attack: {fileID: 11400000, guid: e46e69b677a3deb4e8160a4e21e81b1f, type: 2}
   AppleMinnionSprite: {fileID: 5487727435274013693}
-  atkObj: {fileID: 6286601020115255354, guid: e50fe5b7ce5c659428fdd61f708e0d18, type: 3}

@@ -136,5 +136,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 600
   rb: {fileID: 8490866204436381579}
-  PlayerTag: Boss
   attack: {fileID: 11400000, guid: bbb0390deadc8c54fa30fac23ed69046, type: 2}
+  playerTag: Boss

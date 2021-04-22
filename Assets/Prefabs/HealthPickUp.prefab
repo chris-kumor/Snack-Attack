@@ -123,3 +123,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   incrementHealth: 50
+  Map: {fileID: 2800893159832959671, guid: 7a407fa0f882ea64b98b903691f36239, type: 3}

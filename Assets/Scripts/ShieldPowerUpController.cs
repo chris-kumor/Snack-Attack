@@ -5,15 +5,13 @@ using UnityEngine.UI;
 
 public class ShieldPowerUpController : MonoBehaviour
 {
-    private GameObject MeleePlayer, RangedPlayer, Map, MeleeShield, RangedShield;
+    private GameObject MeleePlayer, RangedPlayer, MeleeShield, RangedShield;
     private PlayerController MController, RController;
-    private SpawnItems itemSpawner;
     private ShieldController rShieldController, mShieldController;
 
 
     void Start()
     {
-        Map = GameObject.FindWithTag("Map");
         MeleeShield = GameObject.FindWithTag("MeleeShield");
         RangedShield = GameObject.FindWithTag("RangedShield");
         MeleePlayer = GameObject.FindWithTag("MeleePlayer");
@@ -22,7 +20,6 @@ public class ShieldPowerUpController : MonoBehaviour
         RController = RangedPlayer.gameObject.GetComponent<PlayerController>();
         rShieldController = RangedShield.GetComponent<ShieldController>();
         mShieldController = MeleeShield.GetComponent<ShieldController>();
-        itemSpawner = Map.GetComponent<SpawnItems>();
     }
 
     // Update is called once per frame
@@ -40,16 +37,19 @@ public class ShieldPowerUpController : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        //Shield PowerUp Collider colliding with a player's collider
-        if((collision.collider.gameObject.layer == 20 || collision.collider.gameObject.layer == 19))
+        if(collision.gameObject != null)
         {
-            PlayerController collidedPlayerController = collision.collider.gameObject.GetComponent<PlayerController>();
-            if(collidedPlayerController != null)
+            //Shield PowerUp Collider colliding with a player's collider
+            if((collision.collider.gameObject.layer == 20 || collision.collider.gameObject.layer == 19))
             {
-                collidedPlayerController.shield.canFire = true;
-                collidedPlayerController.shield.cooldownTimer = collidedPlayerController.shield.cooldown;
-                itemSpawner.items -= 1;
-                Destroy(gameObject);
+                PlayerController collidedPlayerController = collision.collider.gameObject.GetComponent<PlayerController>();
+                if(collidedPlayerController != null)
+                {
+                    collidedPlayerController.shield.canFire = true;
+                    collidedPlayerController.shield.cooldownTimer = collidedPlayerController.shield.cooldown;
+                    GameStats.items -= 1;
+                    Destroy(gameObject);
+                }
             }
         }
     }

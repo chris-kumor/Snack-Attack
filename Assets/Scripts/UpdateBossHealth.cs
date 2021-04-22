@@ -14,6 +14,7 @@ public class UpdateBossHealth : MonoBehaviour
     void Start()
     {
         bossController = Boss.GetComponent<BossController>();
+        BossHealthBar.fillAmount = 1.00f;
     }
 
     // Update is called once per frame

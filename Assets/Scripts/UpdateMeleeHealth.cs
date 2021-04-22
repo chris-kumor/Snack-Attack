@@ -7,7 +7,6 @@ public class UpdateMeleeHealth : MonoBehaviour
 {
     public Image MeleePlayerHealthBar;
     public GameObject MeleePlayer;
-    
     private PlayerController meleeController;
     // Start is called before the first frame update
     void Start()

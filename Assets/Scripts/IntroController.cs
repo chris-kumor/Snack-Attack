@@ -6,10 +6,12 @@ public class IntroController : MonoBehaviour
 {
 
     public GameObject boss;
+    private BossController bossController;
 
     // Start is called before the first frame update
     void Start()
     {
+        bossController = boss.GetComponent<BossController>();
         GameStats.isBattle = false;
     }
 
@@ -18,7 +20,7 @@ public class IntroController : MonoBehaviour
     {
         if (Sinput.GetButton("Join", GameStats.MeleeSlot) || Sinput.GetButton("Join", GameStats.RangedSlot))
         {
-            boss.SendMessage("StartBattle");
+            bossController.StartBattle();
             Destroy(gameObject);
         }
     }

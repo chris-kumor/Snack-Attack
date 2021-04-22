@@ -7,11 +7,9 @@ public class PlayerStrikeController : MonoBehaviour
     private float timer;
     public AtkStruct attack;
     public SpriteRenderer AttackSprite;
-    public string ParentTag;
-
     private GameObject Parent;
-
     private Vector2 AimDir;
+    public string parentTag;
 
     
     
@@ -21,15 +19,15 @@ public class PlayerStrikeController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Parent = GameObject.FindWithTag(parentTag);
         timer = attack.cooldown;
-        Parent = GameObject.FindWithTag(ParentTag);
-        if(ParentTag == "MeleePlayer")
+        //Parent = GameObject.FindWithTag(ParentTag);
+        if(Parent.tag == "MeleePlayer")
             AimDir = Parent.GetComponent<PlayerController>().GetAimDir();
-        else if(ParentTag == "Boss")
+        else if(Parent.tag == "Boss")
             AimDir = Parent.GetComponent<BossController>().GetPreyDir();
-        else if(ParentTag == "minion")
-            AimDir = (Vector2)Parent.GetComponent<AppleMinionCOntroller>().GetPreyDir();
-
+        else if(Parent.tag == "minion")
+            AimDir = (Vector2)Parent.GetComponent<AppleMinnionController>().GetPreyDir();
     }
 
     // Update is called once per frame
@@ -37,11 +35,17 @@ public class PlayerStrikeController : MonoBehaviour
     {
         if (timer <= 0)
         {   
-            if(ParentTag == "MeleePlayer" || ParentTag == "Boss")
+            if(Parent != null)
             {
-                Parent.SendMessage("CanAttack");
-                if(ParentTag == "Boss")
-                    Parent.SendMessage("UnFreezeBoss");
+                if((Parent.tag == "MeleePlayer" || Parent.tag == "Boss"))
+                {
+                    if(Parent.tag == "Boss")
+                    {
+                        Parent.SendMessage("UnFreezeBoss");
+                        Parent.SendMessage("enableIdleSprite");
+                    }
+                    Parent.SendMessage("CanAttack");
+                }
             }
             Destroy(gameObject);
         }
@@ -53,8 +57,7 @@ public class PlayerStrikeController : MonoBehaviour
             if(AimDir.x < 0.0f && AimDir.y != 0.0f)
                 AttackSprite.flipY = true;
             else               
-                AttackSprite.flipY = false;
-        
+                AttackSprite.flipY = false;  
     }
     
 }

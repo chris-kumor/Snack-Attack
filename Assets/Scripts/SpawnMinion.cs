@@ -8,31 +8,28 @@ public class SpawnMinion : MonoBehaviour
     public GameObject MinionSpawn1, MinionSpawn2;
     public GameObject AppleMinion;
 
-    public int minions;
-
-    void Wait()
-    {
-
-    }
+    private GameObject minion1, minion2;
 
     void Start()
     {
-        minions = 0;
+        GameStats.minions = 0;
     }
 
     void SpawnMinions()
     {
-        Instantiate(AppleMinion, MinionSpawn1.transform.position, Quaternion.identity);
-        Instantiate(AppleMinion, MinionSpawn2.transform.position, Quaternion.identity);
+        minion1 = Instantiate(AppleMinion, MinionSpawn1.transform.position, Quaternion.identity);
+        minion2 = Instantiate(AppleMinion, MinionSpawn2.transform.position, Quaternion.identity);
+        minion1 = null;
+        minion2 = null;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(minions == 0 && GameStats.isBattle)
+        if(GameStats.minions == 0 && GameStats.isBattle)
         {
             SpawnMinions();
-            minions += 2;
+            GameStats.minions = 2;
         }
     }
 }

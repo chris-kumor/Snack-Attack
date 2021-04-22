@@ -27,7 +27,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8411141763914777832}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: 1.3229067}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -79,7 +79,7 @@ SpriteRenderer:
   m_SortingLayer: 4
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 11131626a7f163e45a916ebce9c40289, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.6862745}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.6}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -98,7 +98,7 @@ CircleCollider2D:
   m_GameObject: {fileID: 8411141763914777832}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: 6e7c3effca18f8d46a0dd8adf5e8a82d, type: 2}
+  m_Material: {fileID: 6200000, guid: b01bb0bb479c157488f4a69d5d9dd7f3, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -118,14 +118,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shieldHP: 0
-  MaxHP: 100
+  MaxHP: 25
   shieldSprite: {fileID: 5933365433081933057}
-  bossCollider: {fileID: 0}
+  bossCollider: {fileID: 685139814176341746, guid: 8e6c1c951bfa30a4989630d7eb2cbb20, type: 3}
   shieldCollider: {fileID: 8287068652842632213}
   atkReflected: {fileID: 8300000, guid: 34767cf246fa02c459a2449d48f0a154, type: 3}
   atkAbsorbed: {fileID: 8300000, guid: 532a4053b0cf760408a076ede8e9c3d1, type: 3}
-  shieldDestroyed: {fileID: 0}
-  shieldRestored: {fileID: 0}
-  ShieldAudioSource: {fileID: 0}
-  Boss: {fileID: 0}
-  BossRB2D: {fileID: 0}
+  shieldDestroyed: {fileID: 8300000, guid: b3f902abe94773840bf0afe6baeb914d, type: 3}
+  shieldRestored: {fileID: 8300000, guid: 42dd3e1649e4a7748b6c2ea13dfb1f71, type: 3}
+  ShieldAudioSource: {fileID: 6386279540130714213, guid: 8e6c1c951bfa30a4989630d7eb2cbb20, type: 3}
+  Boss: {fileID: 6386279540130714216, guid: 8e6c1c951bfa30a4989630d7eb2cbb20, type: 3}
+  BossRB2D: {fileID: 6386279540130714215, guid: 8e6c1c951bfa30a4989630d7eb2cbb20, type: 3}

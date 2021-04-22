@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    public float shakeMagnitude, dampingSpeed, timer;
+    public float  dampingSpeed;
 
     Vector3 initPos;
     // Start is called before the first frame update
@@ -18,14 +18,15 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if(timer > 0)
+
+        if(GameStats.ShakeTime > 0)
         {
-            gameObject.transform.localPosition = initPos + Random.insideUnitSphere * shakeMagnitude; 
-            timer -= Time.deltaTime * dampingSpeed;
+            gameObject.transform.localPosition = initPos + Random.insideUnitSphere * GameStats.shakeMagnitude; 
+            GameStats.ShakeTime -= Time.deltaTime * dampingSpeed;
         }
         else
         {
-            timer = 0.0f;
+            GameStats.ShakeTime = 0.0f;
             gameObject.transform.localPosition = initPos;
         }
     }
