@@ -26,7 +26,6 @@ public class WinningCondition : MonoBehaviour
         GameStats.isBattle = false;
         meleeController = MeleePlayer.GetComponent<PlayerController>();
         rangedController = RangedPlayer.GetComponent<PlayerController>();
-
     }
 
     // Update is called once per frame
@@ -34,7 +33,6 @@ public class WinningCondition : MonoBehaviour
     {
         if(Boss == null || (!(rangedController.isAlive) && !(meleeController.isAlive)))
         {
-            //Debug.Log("The game is over!");
             if(Boss == null)
             {
                 GameStats.isBossAlive = false;
@@ -42,9 +40,7 @@ public class WinningCondition : MonoBehaviour
             }
             else
                 GameStats.isBossAlive = true;
-
             Invoke("WaitToChangeScene", sceneDelayTimer);
-            
         }
     }
 }

@@ -17,7 +17,7 @@ public class GameResults : MonoBehaviour
         Cursor.visible = true;
         if(GameStats.isBossAlive)
         {
-            GameResult.text = "The players were defeated.";
+            GameResult.text = "The players were defeated";
         }
         else
         {

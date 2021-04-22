@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1273513679315433413}
   - component: {fileID: 4357934087170224878}
-  m_Layer: 12
+  m_Layer: 16
   m_Name: BossShotSpread
-  m_TagString: BossRangeAttk
+  m_TagString: BossSpreadShells
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -44,4 +44,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spread: 0.2
-  atkObj: {fileID: 8947230292391117334, guid: 837bd74372c19114191ea5fd3688a261, type: 3}
+  atkObj: {fileID: 8947230292391117334, guid: d968da64c01d56c42aba61d41c476a4d, type: 3}

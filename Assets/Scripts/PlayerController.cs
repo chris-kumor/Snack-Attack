@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
     public Rigidbody2D PlayerRB2D;
     public AudioSource PlayerAudioSource;
     public string otherPlayerTag;
-    public bool isAlive, AimSpriteEnabled, isDashing;
+    public bool isAlive, AimSpriteEnabled, isDashing, isMoving;
 
 
     private Vector2 MoveDir, AimDir;
@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
     private GameObject atk, otherPlayer;
     private Quaternion AimAngle;
     private SinputSystems.InputDeviceSlot slot;
-    private bool isMouseAiming, isAttacking, isRanged, otherPlayerAlive, isMelee, isMoving;
+    private bool isMouseAiming, isAttacking, isRanged, otherPlayerAlive, isMelee;
     private Color desiredColor;
     private ShieldController shieldController;
     private PlayerController otherPlayerController;
@@ -43,12 +43,12 @@ public class PlayerController : MonoBehaviour
     public void PlayerMovement(string HSmartControl, string VSmartControl)
     {
                 //Detecting Movement
-        if ((Sinput.GetAxis(HSmartControl, slot) != 0 || Sinput.GetAxis(VSmartControl, slot) != 0) && (!isAttacking || isRanged) && isAlive && !isDashing)
+        if ((Sinput.GetAxis(HSmartControl, slot) != 0 || Sinput.GetAxis(VSmartControl, slot) != 0) && (!isAttacking || isRanged) && isAlive)
         {
             isMoving = true;    
             MoveDir = new Vector2(Sinput.GetAxis(HSmartControl, slot), Sinput.GetAxis(VSmartControl, slot));
             MoveDir.Normalize();
-            Animator.SetFloat("speed", (Mathf.Abs(MoveDir.x) + Mathf.Abs(MoveDir.y)));
+            Animator.SetFloat("speed", 1.0f);
             if(MoveDir.x < 0.0f )
                 Player_Sprite.flipX = true;
             else if(MoveDir.x > 0.0f )
@@ -96,6 +96,11 @@ public class PlayerController : MonoBehaviour
     public void CanAttack()
     {
         isAttacking = false;
+    }
+
+    public Vector2 GetMoveDir()
+    {
+        return MoveDir;
     }
 
     public bool attackStatus()
@@ -152,6 +157,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        Animator.SetBool("isDashing", isDashing);
         //Debug.Log(Vector2.Distance(gameObject.transform.position, otherPlayer.transform.position));
         //Health Check
         if(this.playerHP <= 0)
@@ -170,8 +176,16 @@ public class PlayerController : MonoBehaviour
         //Visually notify PlayerDash
         if(!isAttacking && isDashing)
         {
-            desiredColor = Color.blue;
-            colorTimer = colorTime;
+            //desiredColor = new Color(0.0f, 0.0f, 1.0f, 0.501f);
+            //colorTimer = colorTime;
+        }
+
+        if(PlayerRB2D.velocity == Vector2.zero)
+        {
+            if(AimDir.x < 0.0f )
+                Player_Sprite.flipX = true;
+            else if(AimDir.x > 0.0f )
+                Player_Sprite.flipX = false;
         }
 
 
@@ -279,17 +293,19 @@ public class PlayerController : MonoBehaviour
         float potentialDamage = 0.0f;
         if(isAlive && collision.collider.gameObject != null)
         {
-            if((collision.collider.gameObject.tag == "BossMeleeAtk" || collision.collider.gameObject.tag == "BossRangeAttk") && shieldController.isExposed == 1)
+            if(collision.collider.gameObject.layer == 16 && shieldController.isExposed == 1)
             {
                 desiredColor = Color.red;
                 colorTimer = colorTime;
                 if(collision.collider.gameObject.tag == "BossMeleeAtk" )
-                {
                     potentialDamage= collision.collider.gameObject.GetComponent<PlayerStrikeController>().attack.damage;
-                    PlayerRB2D.AddForce(new Vector2(-MoveDir.x, -MoveDir.y) * 250);
-                }
+    
                 else if(collision.collider.gameObject.tag == "BossRangeAttk")
                     potentialDamage= collision.collider.gameObject.GetComponent<PlayerShotController>().attack.damage;
+
+                else if(collision.collider.gameObject.tag == "BossSpreadAtk")
+                    potentialDamage= collision.collider.gameObject.GetComponent<UpdateShellCounter>().attack.damage;
+
                 PlayerAudioSource.PlayOneShot(PlayerDamaged, GameStats.gameVol); 
             }
             else if(collision.gameObject.layer == 15 && playerHP != MaxHP)

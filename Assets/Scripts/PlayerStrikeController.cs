@@ -22,12 +22,13 @@ public class PlayerStrikeController : MonoBehaviour
     void Start()
     {
         timer = attack.cooldown;
-
         Parent = GameObject.FindWithTag(ParentTag);
         if(ParentTag == "MeleePlayer")
             AimDir = Parent.GetComponent<PlayerController>().GetAimDir();
         else if(ParentTag == "Boss")
             AimDir = Parent.GetComponent<BossController>().GetPreyDir();
+        else if(ParentTag == "minion")
+            AimDir = (Vector2)Parent.GetComponent<AppleMinionCOntroller>().GetPreyDir();
 
     }
 
@@ -37,7 +38,11 @@ public class PlayerStrikeController : MonoBehaviour
         if (timer <= 0)
         {   
             if(ParentTag == "MeleePlayer" || ParentTag == "Boss")
+            {
                 Parent.SendMessage("CanAttack");
+                if(ParentTag == "Boss")
+                    Parent.SendMessage("UnFreezeBoss");
+            }
             Destroy(gameObject);
         }
         timer -= Time.deltaTime;
@@ -47,7 +52,7 @@ public class PlayerStrikeController : MonoBehaviour
     {
             if(AimDir.x < 0.0f && AimDir.y != 0.0f)
                 AttackSprite.flipY = true;
-            else
+            else               
                 AttackSprite.flipY = false;
         
     }

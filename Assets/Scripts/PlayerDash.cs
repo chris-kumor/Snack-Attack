@@ -24,6 +24,7 @@ public class PlayerDash : MonoBehaviour
     public ParticleSystem  dashPartSprint, dashPartTrail;
     public RectTransform dashEffectTransform;
     public Rigidbody2D AimSpriteRB2D;
+    private ParticleSystemRenderer DashPartRendSprite;
 
  
      
@@ -37,6 +38,7 @@ public class PlayerDash : MonoBehaviour
             isMelee = false;
          PlayerRB2D = GetComponent<Rigidbody2D>();
          playerController = GetComponent<PlayerController>();
+         DashPartRendSprite = dashPartSprint.GetComponent<ParticleSystemRenderer>();
          if(isMelee)
              slot = GameStats.MeleeSlot;
          else 
@@ -68,7 +70,7 @@ public class PlayerDash : MonoBehaviour
         
         isDashing();
 
-        if (useDash && !playerController.isDashing)
+        if (useDash && !playerController.isDashing && !playerController.isMoving)
         {   
              currentDashTime = 0;
              playerController.isDashing = true;
@@ -79,12 +81,9 @@ public class PlayerDash : MonoBehaviour
         if(currentDashTime <= maxDashTime && playerController.isAlive && !playerController.attackStatus())
         {
              AimDir = playerController.GetAimDir();
-             //Debug.Log(AimDir);
              moveDirection = new Vector2(AimDir.x * dashDistance, AimDir.y * dashDistance);
              currentDashTime += dashStoppingSpeed;
-             Debug.Log(AimSpriteRB2D.rotation);
              dashEffectTransform.rotation = Quaternion.Euler(0.0f, 0.0f, AimSpriteRB2D.rotation-90.0f);
-             ParticleSystemRenderer DashPartRendSprite = dashPartSprint.GetComponent<ParticleSystemRenderer>();
              if(AimDir.x < 0.0f)
              {
                  DashPartRendSprite.flip = new Vector3(1.0f, 0.0f, 0.0f);

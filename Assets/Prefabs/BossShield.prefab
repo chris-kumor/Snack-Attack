@@ -98,7 +98,7 @@ CircleCollider2D:
   m_GameObject: {fileID: 8411141763914777832}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 6e7c3effca18f8d46a0dd8adf5e8a82d, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -121,10 +121,11 @@ MonoBehaviour:
   MaxHP: 100
   shieldSprite: {fileID: 5933365433081933057}
   bossCollider: {fileID: 0}
-  shieldCollider: {fileID: 0}
+  shieldCollider: {fileID: 8287068652842632213}
   atkReflected: {fileID: 8300000, guid: 34767cf246fa02c459a2449d48f0a154, type: 3}
   atkAbsorbed: {fileID: 8300000, guid: 532a4053b0cf760408a076ede8e9c3d1, type: 3}
   shieldDestroyed: {fileID: 0}
   shieldRestored: {fileID: 0}
   ShieldAudioSource: {fileID: 0}
   Boss: {fileID: 0}
+  BossRB2D: {fileID: 0}

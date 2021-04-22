@@ -28,7 +28,7 @@ public class PlayerShotController : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if(PlayerTag == "RangedPlayer")
+        if(PlayerTag == "RangedPlayer" || PlayerTag == "Boss")
             Player.SendMessage("CanAttack");
         Destroy(gameObject);
     }
@@ -40,6 +40,4 @@ public class PlayerShotController : MonoBehaviour
         rb.transform.rotation = Quaternion.AngleAxis(spriteAngle, Vector3.forward);
         spriteAngle += angleDif;
     }
-
- 
 }

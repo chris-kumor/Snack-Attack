@@ -11,10 +11,17 @@ public class AppleMinionCOntroller : MonoBehaviour
     private GameObject currentTarget, Map;
     
     public float minionSpeed;
-    public AtkStruct[] attacks;
+    public AtkStruct attack;
     public SpriteRenderer AppleMinnionSprite;
     private GameObject[] targets = new GameObject[2];
     private SpawnMinion spawnMinionController;
+
+    public GameObject atkObj;
+
+    public Vector3 GetPreyDir()
+    {
+        return PreyDir;
+    }
 
     
     // Start is called before the first frame update
@@ -42,16 +49,19 @@ public class AppleMinionCOntroller : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        PreyDir = rigidbody.velocity;
-        PreyDir.Normalize();
-        spawnMinionController.minions -= 1;
-        if(collision.gameObject.tag == "MeleeStrike")
-            Destroy(gameObject);
-        else
+        if(collision.gameObject != null)
         {
-            GameObject atk = PlayerController.Attack(attacks[0].atkObj, gameObject.transform.position, PreyDir, attacks[0].atkDistance, gameObject.transform.rotation);
-            atk = null;
-            Destroy(gameObject);
+            PreyDir = rigidbody.velocity;
+            PreyDir.Normalize();
+            spawnMinionController.minions -= 1;
+            if(collision.gameObject.tag == "MeleeStrike")
+                Destroy(gameObject);
+            else
+            {
+                GameObject atk = PlayerController.Attack(atkObj, gameObject.transform.position, PreyDir, attack.atkDistance, gameObject.transform.rotation);
+                atk = null;
+                Destroy(gameObject);
+            }
         }
     }
 }

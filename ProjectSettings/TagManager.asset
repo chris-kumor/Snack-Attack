@@ -22,6 +22,8 @@ TagManager:
   - Boss Shield
   - MReviveIcon
   - RReviveIcon
+  - BossSpreadShells
+  - BossSpreadAtk
   layers:
   - Default
   - TransparentFX
@@ -45,7 +47,7 @@ TagManager:
   - RangedPlayer
   - MeleePlayer
   - BossShield
-  - 
+  - Bounce Border
   - 
   - 
   - 

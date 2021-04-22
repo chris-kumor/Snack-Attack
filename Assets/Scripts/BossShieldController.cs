@@ -12,6 +12,8 @@ public class BossShieldController : MonoBehaviour
     public AudioClip atkReflected, atkAbsorbed, shieldDestroyed, shieldRestored;
     public AudioSource ShieldAudioSource;
     public GameObject Boss;
+
+    public Rigidbody2D BossRB2D;
     private BossController  bossController;
 
     public void shieldDestroy()
@@ -63,22 +65,29 @@ public class BossShieldController : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D coll)
     {
-        if(coll.collider.gameObject.layer == 13 && GameStats.isBattle)
+        if(GameStats.isBattle)
         {
-            if(coll.collider.gameObject != null)
+            if(coll.collider.gameObject.layer == 13)
             {
-                if(coll.collider.gameObject.tag == "Projectile")
+                if(coll.collider.gameObject != null)
                 {
-                    shieldHP -= coll.collider.gameObject.GetComponent<PlayerShotController>().attack.damage;
-                    shieldSprite.color = new Color(shieldSprite.color[0], shieldSprite.color[1], shieldSprite.color[2], shieldHP/MaxHP);
-                    ShieldAudioSource.PlayOneShot(atkAbsorbed, GameStats.gameVol);
-                }
-                else if(coll.collider.gameObject.tag == "MeleeStrike") 
-                {
-                    ShieldAudioSource.PlayOneShot(atkReflected, GameStats.gameVol);
+                    if(coll.collider.gameObject.tag == "Projectile")
+                    {
+                        shieldHP -= coll.collider.gameObject.GetComponent<PlayerShotController>().attack.damage;
+                        shieldSprite.color = new Color(shieldSprite.color[0], shieldSprite.color[1], shieldSprite.color[2], shieldHP/MaxHP);
+                        ShieldAudioSource.PlayOneShot(atkAbsorbed, GameStats.gameVol);
+                    }
+                    else if(coll.collider.gameObject.tag == "MeleeStrike") 
+                    {
+                        ShieldAudioSource.PlayOneShot(atkReflected, GameStats.gameVol);
+                    }
                 }
             }
+            else if(coll.collider.gameObject.layer != 19 || coll.collider.gameObject.layer != 20)
+                BossRB2D.velocity += new Vector2(BossRB2D.velocity.x * 0.03f, BossRB2D.velocity.y * 0.03f);
         }
+
+
     }
 
 }
