@@ -9,7 +9,7 @@ using static PlayerController;
 public class BossController : MonoBehaviour
 {
     
-    public float MaxHP, HP, FOV, minDist, maxDist, lookRadius, angularSpeed, shakeTime, peakTime, peak,  colorTime;
+    public float MaxHP, HP, FOV, minDist, maxDist, lookRadius, angularSpeed, shakeTime, peakTime, peak,  colorTime, timeToAttack;
     public AtkStruct[] attacks;
     public AudioClip BossDamaged, BossStuned;
     public PhysicsMaterial2D PureBounce;
@@ -34,11 +34,6 @@ public class BossController : MonoBehaviour
     private string EnemyTag;
     private LayerMask layerMask;
 
-   void restoreshieldHP()
-   {
-       bossShieldController.restoreShield();
-   }
-
    public void UnFreezeBoss()
    {
        BossRB2D.constraints = RigidbodyConstraints2D.FreezeRotation;
@@ -46,12 +41,16 @@ public class BossController : MonoBehaviour
 
    }
  
+    /*Unfreezes Boss 
+    triggers Phase 1 Attack:
+    Wait X secs before we allow Boss to trigger attack code in FixedUpdate()
+    */
     public void StartBattle()
     {
         GameStats.isBattle = true;
         BossRB2D.isKinematic = false;
         Phase1Attack();
-        Invoke("CanAttack", 20.00f);
+        Invoke("CanAttack", timeToAttack);
     }
 
     public Vector2 GetPreyDir()
@@ -71,8 +70,9 @@ public class BossController : MonoBehaviour
 
     void Phase1Attack()
     {
-        //Debug.Log("Im in Phase 1");
+        //Making sure boss cnt be attacked whiels shielded
         bossCapsuleCollider.enabled = false;
+        //Assign boss rndom Direction at angularSpeed;
         BossDir = new Vector2(Random.Range(-1.0f, 1.0f), Random.Range(-1.0f, 1.0f));
         BossDir.Normalize();
         BossRB2D.velocity = new Vector2(BossDir.x * angularSpeed, BossDir.y * angularSpeed);
@@ -80,13 +80,14 @@ public class BossController : MonoBehaviour
     IEnumerator UnStunBoss()
     {   
         yield return new WaitForSeconds(5.00f);
-        restoreshieldHP();
+        bossShieldController.restoreShield();
         UnFreezeBoss();
-        Phase1Attack();
         isStunned = false;
     }
+
     IEnumerator StopBossAndWait(float waitTime, int attackNum)
     {
+        
         PreyDir.Normalize();
         BossRB2D.constraints = RigidbodyConstraints2D.FreezeAll;
         BossAudioSource.PlayOneShot(attacks[attackNum].soundToPlay, GameStats.gameVol);
@@ -100,6 +101,7 @@ public class BossController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         layerMask = LayerMask.GetMask("MeleePlayer","RangedPlayer");
         this.HP = MaxHP;
         colorTimer = 0.0f;   
@@ -136,9 +138,9 @@ public class BossController : MonoBehaviour
             }
         }
 
+        //Boss Damaged, buffed, etc: Boss sprite renderer Color changes in value and below is timer to keep track of time before Color is back to normal
         if (colorTimer > 0)
             colorTimer -= Time.deltaTime;
-
         BossSprite.color = Color.Lerp(Color.white, Color.red, colorTimer / colorTime);
     }
 
@@ -146,11 +148,6 @@ public class BossController : MonoBehaviour
     {
         if (GameStats.isBattle)
         {
-            /*if((2*(MaxHP/3)) > this.HP && this.HP >= (MaxHP/3))
-                Phase2Attack();
-            //else if(this.MaxHP/3 > this.HP && this.HP >= 1.00f)
-                Phase3Attack();
-            */
             if(this.HP < 1.00f)
                 Destroy(gameObject);
             //flipping sprite
@@ -214,8 +211,8 @@ public class BossController : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (GameStats.isBattle && !GameStats.bossShielded)
-        {
+   
+        {     if (GameStats.isBattle && !GameStats.bossShielded)
             //Depenind on the type of attack it will  damage the boss on damage carried by its script and store damage info to the right player
             if (collision.collider.gameObject.tag == "Projectile")
             {

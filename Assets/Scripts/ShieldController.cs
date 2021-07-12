@@ -64,18 +64,8 @@ public class ShieldController : MonoBehaviour
 
         if(GameStats.bothPlayersKB)
             shieldName = shield.altFireKey;
-
-
     }
-
-    void Update()
-    {
-
     
-
-
-    }
-    // Update is called once per frame
     void FixedUpdate()
     {
         PlayerShielding(shieldName);

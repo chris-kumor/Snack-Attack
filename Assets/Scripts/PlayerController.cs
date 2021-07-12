@@ -1,9 +1,7 @@
-   using System.Collections;
+using System.Collections;
 using System.Collections.Generic; 
 using UnityEngine;
-
-
-
+using UnityEditor;
 
 public class PlayerController : MonoBehaviour  
 {
@@ -46,7 +44,7 @@ public class PlayerController : MonoBehaviour
         if ((Sinput.GetAxis(HSmartControl, slot) != 0 || Sinput.GetAxis(VSmartControl, slot) != 0) && (!isAttacking || isRanged) && isAlive)
         {
             isMoving = true;    
-            MoveDir = new Vector2(Sinput.GetAxis(HSmartControl, slot), Sinput.GetAxis(VSmartControl, slot));
+            MoveDir = Sinput.GetVector(HSmartControl, VSmartControl, slot);
             MoveDir.Normalize();
             Animator.SetFloat("speed", 1.0f);
             if(MoveDir.x < 0.0f )
@@ -108,11 +106,6 @@ public class PlayerController : MonoBehaviour
         return isAttacking;
     }
 
-    public void updateSpriteCollider()
-    {
-        
-    }
-
     void enableIdleSprite()
     {
         Player_Sprite.enabled = true;
@@ -172,14 +165,6 @@ public class PlayerController : MonoBehaviour
         }
         if(this.playerHP > MaxHP)
             this.playerHP = MaxHP;
-        
-        //Visually notify PlayerDash
-        if(!isAttacking && isDashing)
-        {
-            //desiredColor = new Color(0.0f, 0.0f, 1.0f, 0.501f);
-            //colorTimer = colorTime;
-        }
-
         if(PlayerRB2D.velocity == Vector2.zero)
         {
             if(AimDir.x < 0.0f )
@@ -187,8 +172,6 @@ public class PlayerController : MonoBehaviour
             else if(AimDir.x > 0.0f )
                 Player_Sprite.flipX = false;
         }
-
-
         if(!(otherPlayerController.isAlive) && (Vector2.Distance(otherPlayer.transform.position, gameObject.transform.position) <= reviveDist))
         {
             bool isRevive = false;
@@ -204,8 +187,6 @@ public class PlayerController : MonoBehaviour
             if(isRevive)
                 otherPlayerController.playerHP += 33.0f;
         }
-            
-
         // Detecting Attacking
         if(!isAttacking && isAlive && !isDashing && !GameStats.isPaused)
         {
@@ -262,7 +243,7 @@ public class PlayerController : MonoBehaviour
         {
             if(Sinput.GetAxis("Look Horizontal", slot) != 0 || Sinput.GetAxis("Look Vertical" ,slot) != 0)
             {
-                AimDir = new Vector2(Sinput.GetAxis("Look Horizontal", slot), Sinput.GetAxis("Look Vertical", slot));
+                AimDir = Sinput.GetVector("Look Horizontal","Look Vertical", slot);
                 UpdateAimSpriteTransform();
             }
         }

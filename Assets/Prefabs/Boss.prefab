@@ -263,11 +263,12 @@ MonoBehaviour:
   minDist: 10
   maxDist: 30
   lookRadius: 35
-  angularSpeed: 40
+  angularSpeed: 30
   shakeTime: 1
   peakTime: 3
   peak: 5
   colorTime: 1
+  timeToAttack: 0
   attacks:
   - {fileID: 11400000, guid: ca08b6abfc21fbf458bb12074309eb68, type: 2}
   - {fileID: 11400000, guid: bbb0390deadc8c54fa30fac23ed69046, type: 2}
