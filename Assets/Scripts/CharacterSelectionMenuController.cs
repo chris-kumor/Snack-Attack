@@ -7,79 +7,53 @@ public class CharacterSelectionMenuController : MonoBehaviour
 {
     
     public Button PlayButton;
-    public Image MeleeControls, RangedControls;
-    public Sprite Controller, KBM, defultImage;
+    public Slider RangedInputSlider, RangedPlayerSlider, MeleeInputSlider, MeleePlayerSlider;
+ 
 
     
 
     
     void Start()
     {
-        //will cause both to be any
-        GameStats.MeleeSlot = Sinput.GetSlotPress("Join");
-        GameStats.RangedSlot = Sinput.GetSlotPress("Join");
-        GameStats.bothPlayersKB = false;
-    
+        
+        PlayButton.interactable = false;
 
     }
 
-    public void clearControlIcons()
-    {
-        MeleeControls.sprite = defultImage;
-        RangedControls.sprite = defultImage;
-        GameStats.MeleeSlot = SinputSystems.InputDeviceSlot.any;
-        GameStats.RangedSlot = SinputSystems.InputDeviceSlot.any;
-
-    }
+  
     // Update is called once per frame
     void Update()
     {
-        //IF melee controls undecided
-        if(GameStats.MeleeSlot == SinputSystems.InputDeviceSlot.any)
+        if(!PlayButton.interactable)
         {
-            GameStats.MeleeSlot = Sinput.GetSlotPress("Join");
-            if(GameStats.MeleeSlot != SinputSystems.InputDeviceSlot.any)
+            if(RangedInputSlider.value == 0)
+                GameStats.RangedSlot = SinputSystems.InputDeviceSlot.keyboardAndMouse;
+            else if(RangedInputSlider.value == 1)
             {
-                if(GameStats.MeleeSlot == SinputSystems.InputDeviceSlot.keyboardAndMouse)
-                    MeleeControls.sprite = KBM;
-                else if(GameStats.MeleeSlot == SinputSystems.InputDeviceSlot.gamepad1 || GameStats.MeleeSlot == SinputSystems.InputDeviceSlot.gamepad2)
-                    MeleeControls.sprite = Controller;
+                if(RangedPlayerSlider.value == 0)
+                    GameStats.RangedSlot = SinputSystems.InputDeviceSlot.gamepad1;
+                else if(RangedPlayerSlider.value == 1)
+                    GameStats.RangedSlot = SinputSystems.InputDeviceSlot.gamepad2;
             }
-               
-        }
-        //
-        else if(GameStats.RangedSlot == SinputSystems.InputDeviceSlot.any)
-        {
-            GameStats.RangedSlot = Sinput.GetSlotPress("Join");
-            if(GameStats.RangedSlot != SinputSystems.InputDeviceSlot.any)
+            if(MeleeInputSlider.value == 0)
+                GameStats.MeleeSlot = SinputSystems.InputDeviceSlot.keyboardAndMouse;
+            else if(MeleeInputSlider.value == 1)
             {
-                if(GameStats.RangedSlot == SinputSystems.InputDeviceSlot.keyboardAndMouse)
-                    RangedControls.sprite = KBM;
-                else if(GameStats.RangedSlot == SinputSystems.InputDeviceSlot.gamepad1 || GameStats.RangedSlot == SinputSystems.InputDeviceSlot.gamepad2)
-                    RangedControls.sprite = Controller;
+                if(MeleePlayerSlider.value == 0)
+                    GameStats.MeleeSlot = SinputSystems.InputDeviceSlot.gamepad1;
+                else if(MeleePlayerSlider.value == 1)
+                    GameStats.MeleeSlot = SinputSystems.InputDeviceSlot.gamepad2;
             }
-
+            if(RangedPlayerSlider.value != MeleePlayerSlider.value && (GameStats.RangedSlot != SinputSystems.InputDeviceSlot.any ||GameStats.MeleeSlot != SinputSystems.InputDeviceSlot.any))
+                PlayButton.interactable = true;
         }
-
-        if(GameStats.MeleeSlot != SinputSystems.InputDeviceSlot.any && GameStats.RangedSlot != SinputSystems.InputDeviceSlot.any)
+        else if(RangedPlayerSlider.value == MeleePlayerSlider.value)
         {
-            PlayButton.gameObject.SetActive(true);
-            if(GameStats.MeleeSlot == SinputSystems.InputDeviceSlot.keyboardAndMouse && GameStats.RangedSlot == SinputSystems.InputDeviceSlot.keyboardAndMouse)
-                GameStats.bothPlayersKB = true;
+            PlayButton.interactable = false;
         }
-       /*
-        else if(GameStats.RangedSlot == GameStats.MeleeSlot)
-        {
-            PlayButton.gameObject.SetActive(false);
-            GameStats.MeleeSlot = SinputSystems.InputDeviceSlot.any;
-            GameStats.RangedSlot = SinputSystems.InputDeviceSlot.any;
-            MeleeControls.sprite = null;
-            RangedControls.sprite = null;
-        }
-        */
-        else
-            PlayButton.gameObject.SetActive(false);
 
+        GameStats.bothPlayersKB = (GameStats.MeleeSlot == SinputSystems.InputDeviceSlot.keyboardAndMouse && GameStats.RangedSlot == SinputSystems.InputDeviceSlot.keyboardAndMouse);
+            
     }
 
 }

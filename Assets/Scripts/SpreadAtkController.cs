@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using static AttackCOntroller;
 public class SpreadAtkController : MonoBehaviour
 {
     public float spread;
@@ -31,7 +31,7 @@ public class SpreadAtkController : MonoBehaviour
         {
             if(i != 0)
                 transform.right = Vector3.Slerp(initAngle, transform.up, spread);
-            atk[i] = PlayerController.Attack(atkObj, transform.position, transform.right, 0, transform.rotation);
+            atk[i] = AttackCOntroller.Attack(atkObj, transform.position, transform.right, 0, transform.rotation);
             atk[i].transform.right = transform.right;
             atk[i] = null;
         }

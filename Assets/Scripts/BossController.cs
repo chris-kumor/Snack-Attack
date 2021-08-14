@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static PlayerController;
+using static AttackCOntroller;
 
 
 
@@ -16,7 +16,7 @@ public class BossController : MonoBehaviour
     public Rigidbody2D BossRB2D;
     public AudioSource BossAudioSource;
     public SpriteRenderer BossSprite;
-    public GameObject[] Prey;
+    GameObject[] Prey;
     public Animator bossAnimator;
     public GameObject MainCamera;
     public CapsuleCollider2D bossCapsuleCollider;
@@ -91,7 +91,7 @@ public class BossController : MonoBehaviour
         PreyDir.Normalize();
         BossRB2D.constraints = RigidbodyConstraints2D.FreezeAll;
         BossAudioSource.PlayOneShot(attacks[attackNum].soundToPlay, GameStats.gameVol);
-        GameObject atk = PlayerController.Attack(attacks[attackNum].atkObj, BossRB2D.transform.position + 2*PreyDir, PreyDir, attacks[attackNum].atkDistance, BossRB2D.transform.rotation);
+        GameObject atk = AttackCOntroller.Attack(attacks[attackNum].atkObj, BossRB2D.transform.position + 2*PreyDir, PreyDir, attacks[attackNum].atkDistance, BossRB2D.transform.rotation);
         atk.transform.right = new Vector3(PreyDir.x, PreyDir.y, 0f);
         atk = null;
         attacks[attackNum].canFire = false;
@@ -101,7 +101,8 @@ public class BossController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        Prey[0] = GameObject.FindWithTag("RangedPlayer");
+        Prey[1] = GameObject.FindWithTag("MeleePlayer");
         layerMask = LayerMask.GetMask("MeleePlayer","RangedPlayer");
         this.HP = MaxHP;
         colorTimer = 0.0f;   
@@ -148,6 +149,7 @@ public class BossController : MonoBehaviour
     {
         if (GameStats.isBattle)
         {
+            
             if(this.HP < 1.00f)
                 Destroy(gameObject);
             //flipping sprite

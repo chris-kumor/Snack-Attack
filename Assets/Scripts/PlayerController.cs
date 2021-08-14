@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic; 
 using UnityEngine;
 using UnityEditor;
+using static AttackCOntroller;
 
 public class PlayerController : MonoBehaviour  
 {
@@ -31,16 +32,11 @@ public class PlayerController : MonoBehaviour
     private PlayerController otherPlayerController;
  
 
-    public static GameObject Attack(GameObject Atk, Vector3 weaponPos, Vector3 targetDir, float atkDistance, Quaternion ProjectileRotation)
-    {
-        Vector3 atkPos = new Vector3(weaponPos.x + targetDir.x * atkDistance * Time.deltaTime, weaponPos.y + targetDir.y * atkDistance * Time.deltaTime, 1.00f);
-        GameObject atk = Instantiate(Atk, atkPos, ProjectileRotation);
-        return atk;
-    }
+
 
     public void PlayerMovement(string HSmartControl, string VSmartControl)
-    {
-                //Detecting Movement
+    {   
+         //Detecting Movement
         if ((Sinput.GetAxis(HSmartControl, slot) != 0 || Sinput.GetAxis(VSmartControl, slot) != 0) && (!isAttacking || isRanged) && isAlive)
         {
             isMoving = true;    
@@ -63,9 +59,6 @@ public class PlayerController : MonoBehaviour
             PlayerRB2D.velocity *= 0;
             Animator.SetFloat("speed", 0.0f);
         }
-
-
-
     }
     public void UpdateAimSpriteTransform()
     {
@@ -204,7 +197,7 @@ public class PlayerController : MonoBehaviour
                     if(gameObject.tag == "MeleePlayer")
                         Player_Sprite.enabled = false;
                     PlayerAudioSource.PlayOneShot(attacks[i].soundToPlay, GameStats.gameVol);
-                    atk = Attack(attacks[i].atkObj, PlayerRB2D.position, AimDir, attacks[i].atkDistance, PlayerRB2D.transform.rotation);
+                    atk = AttackCOntroller.Attack(attacks[i].atkObj, PlayerRB2D.position, AimDir, attacks[i].atkDistance, PlayerRB2D.transform.rotation);
                     atk.transform.right = new Vector3(AimDir.x, AimDir.y, 0f);
                     atk = null;
                     attacks[i].canFire = false;

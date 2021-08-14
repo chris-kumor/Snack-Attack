@@ -1,18 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static PlayerController;
+using static AttackCOntroller;
 
 public class AppleMinnionController : MonoBehaviour
 {
 
-    private Vector3 PreyDir;
-    public Rigidbody2D rigidbody;
-    private GameObject currentTarget;
-    public float minionSpeed;
-    public AtkStruct attack;
-    public SpriteRenderer AppleMinnionSprite;
-    private GameObject[] targets = new GameObject[2];
+    #region Private Fields
+    Vector3 PreyDir;
+    GameObject[] targets = new GameObject[2];
+    GameObject currentTarget;
+    #endregion
+    
+    #region Public Fields
+    Rigidbody2D rigidbody;
+    float minionSpeed;
+    AtkStruct attack;
+    SpriteRenderer AppleMinnionSprite;
+    #endregion
 
     public Vector2 GetPreyDir()
     {
@@ -47,7 +52,7 @@ public class AppleMinnionController : MonoBehaviour
             PreyDir = rigidbody.velocity;
             PreyDir.Normalize();
             GameStats.minions -= 1;
-            GameObject atk = PlayerController.Attack(attack.atkObj, gameObject.transform.position, PreyDir, attack.atkDistance, gameObject.transform.rotation);
+            GameObject atk = AttackCOntroller.Attack(attack.atkObj, gameObject.transform.position, PreyDir, attack.atkDistance, gameObject.transform.rotation);
             atk = null;
             Destroy(gameObject);
             

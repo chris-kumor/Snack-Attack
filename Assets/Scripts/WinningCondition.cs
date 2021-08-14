@@ -6,7 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class WinningCondition : MonoBehaviour
 {
-    public GameObject Boss, MeleePlayer, RangedPlayer;
+    GameObject MeleePlayer, RangedPlayer;
+    public GameObject Boss;
     public AudioSource gameAudioSource;
 
     public AudioClip BossDying;
@@ -19,18 +20,41 @@ public class WinningCondition : MonoBehaviour
         SceneManager.LoadScene("Results", LoadSceneMode.Single);
     }
 
+    void findMelee()
+    {
+        MeleePlayer = GameObject.FindWithTag("MeleePlayer");
+        meleeController = MeleePlayer.GetComponent<PlayerController>();
+    }
+
+    void findRanged()
+    {
+        RangedPlayer = GameObject.FindWithTag("RangedPlayer");
+        rangedController = RangedPlayer.GetComponent<PlayerController>();
+    }
+    void findPlayers()
+    {
+        findMelee();
+        findRanged();
+    }
+
     
     // Start is called before the first frame update
     void Start()
     {
+        Boss =  GameObject.FindWithTag("Boss");
+        findPlayers();
         GameStats.isBattle = false;
-        meleeController = MeleePlayer.GetComponent<PlayerController>();
-        rangedController = RangedPlayer.GetComponent<PlayerController>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        if(MeleePlayer == null)
+            findMelee();
+        if(RangedPlayer == null)
+            findRanged();
         if(Boss == null || (!(rangedController.isAlive) && !(meleeController.isAlive)))
         {
             if(Boss == null)
