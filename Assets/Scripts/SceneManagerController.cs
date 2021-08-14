@@ -21,6 +21,14 @@ public class SceneManagerController : MonoBehaviour
     {
         Invoke("LoadingLocalCharacterSelection", 3.0f);
     }
+    public void loadingOnlineMenu()
+    {
+        SceneManager.LoadScene("OnlineMenu", LoadSceneMode.Single);
+    }
+    public void OnlineMenu()
+    {
+        Invoke("loadingOnlineMenu", 3.0f);
+    }
 
     public void Quit()
     {
