@@ -3,15 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class RoomController : MonoBehaviourPunCallbacks
-{
+public class RoomController : MonoBehaviourPunCallbacks{
+    public GameObject meleePlayer, rangedPlayer;
 
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start(){
         //making sure we are in a room, if for some reson we are not, back to the lobby
-        if(PhotonNetwork.CurrentRoom == null)
-        {
+        if(PhotonNetwork.CurrentRoom == null){
             Debug.Log("Is no in the room, returning back to the lobby");
             UnityEngine.SceneManagement.SceneManager.LoadScene("OnlineMenu");
             return;
@@ -21,24 +19,24 @@ public class RoomController : MonoBehaviourPunCallbacks
     }
 
     // Update is called once per frame
-    void OnGUI()
-    {
+    void OnGUI(){
         if(PhotonNetwork.CurrentRoom == null)
             return;
-        for(int i = 0; i < PhotonNetwork.PlayerList.Length; i++)
-        {
+        for(int i = 0; i < PhotonNetwork.PlayerList.Length; i++){
             string isMasterClient = (PhotonNetwork.PlayerList[i].IsMasterClient ? ": MasterClient" : "");
             GUI.Label(new Rect(5, 35+30*i, 200, 25), PhotonNetwork.PlayerList[i].NickName + isMasterClient);
         }
     }
 
-    public void LeaveRoom()
-    {
+    public void LeaveRoom(){
         PhotonNetwork.LeaveRoom();
     }
 
-    public override void OnLeftRoom()
-    {
+    public override void OnJoinedRoom(){
+
+    }
+
+    public override void OnLeftRoom(){
         UnityEngine.SceneManagement.SceneManager.LoadScene("OnlineMenu");
     }
 }

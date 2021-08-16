@@ -14,10 +14,9 @@ public static class GameStats
     public static bool isBossAlive, isPaused;
     public static float ShieldTimer, shakeMagnitude, ShakeTime;
     public static SinputSystems.InputDeviceSlot MeleeSlot, RangedSlot, localPlayerSlot;
-    public static bool bothPlayersKB, isBattle, bossShielded;
+    public static bool bothPlayersKB, isBattle, bossShielded, isOnline;
     public static int items, minions;
     public static GameObject playerPrefab;
-    
     public static Transform spawnPoint;
 
 }

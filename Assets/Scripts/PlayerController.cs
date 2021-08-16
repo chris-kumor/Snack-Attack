@@ -212,44 +212,33 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        //Player Movement
-        if(GameStats.bothPlayersKB)
-        {
-            if(isMelee)
-            {
+
+            //Player Movement
+        if(GameStats.bothPlayersKB && !GameStats.isOnline){
+            if(isMelee){
                 PlayerMovement("Horizontal", "Vertical");
             }
-            else if(isRanged)
-            {
+            else if(isRanged){
                 PlayerMovement("AltRHorizontal", "AltRVertical");
                 MouseAim();
             }
         }
-        else if(!GameStats.bothPlayersKB)
-        {
-            PlayerMovement("Horizontal", "Vertical");
-            MouseAim();
+        else{
+                PlayerMovement("Horizontal", "Vertical");
         }
-
         //Controller Aiming
-        if(!isMouseAiming  && (!isAttacking || isRanged) && isAlive && !isDashing && !GameStats.bothPlayersKB)
-        {
-            if(Sinput.GetAxis("Look Horizontal", slot) != 0 || Sinput.GetAxis("Look Vertical" ,slot) != 0)
-            {
+        if(!isMouseAiming  && (!isAttacking || isRanged) && isAlive && !isDashing && !GameStats.bothPlayersKB){
+            if(Sinput.GetAxis("Look Horizontal", slot) != 0 || Sinput.GetAxis("Look Vertical" ,slot) != 0){
                 AimDir = Sinput.GetVector("Look Horizontal","Look Vertical", slot);
                 UpdateAimSpriteTransform();
             }
         }
        // else
            // AimSprite.SetActive(false);
-
-
-
     }
 
     // Update is called once per x frame
-    void FixedUpdate()
-    {
+    void FixedUpdate(){
         //Flashing Player whatever color 
         if (colorTimer > 0)
             colorTimer -= Time.deltaTime;
@@ -262,13 +251,10 @@ public class PlayerController : MonoBehaviour
         
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
-    {
+    void OnCollisionEnter2D(Collision2D collision){
         float potentialDamage = 0.0f;
-        if(isAlive && collision.collider.gameObject != null)
-        {
-            if(collision.collider.gameObject.layer == 16 && shieldController.isExposed == 1)
-            {
+        if(isAlive && collision.collider.gameObject != null){
+            if(collision.collider.gameObject.layer == 16 && shieldController.isExposed == 1){
                 desiredColor = Color.red;
                 colorTimer = colorTime;
                 if(collision.collider.gameObject.tag == "BossMeleeAtk" )
@@ -282,15 +268,13 @@ public class PlayerController : MonoBehaviour
 
                 PlayerAudioSource.PlayOneShot(PlayerDamaged, GameStats.gameVol); 
             }
-            else if(collision.gameObject.layer == 15 && playerHP != MaxHP)
-            {
+            else if(collision.gameObject.layer == 15 && playerHP != MaxHP){
                 desiredColor = Color.yellow;
                 colorTimer = colorTime;
                 PlayerAudioSource.PlayOneShot(PlayerHealing, GameStats.gameVol);
             }
             
-            else if(collision.gameObject.layer == 9 && shield.cooldownTimer != shield.cooldown && shieldController.isExposed == 1)
-            {
+            else if(collision.gameObject.layer == 9 && shield.cooldownTimer != shield.cooldown && shieldController.isExposed == 1){
                 desiredColor = Color.green;
                 colorTimer = colorTime;
                 PlayerAudioSource.PlayOneShot(PlayerShield, GameStats.gameVol);

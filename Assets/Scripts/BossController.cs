@@ -108,7 +108,8 @@ public class BossController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        seekTargets();
+        if(!GameStats.isOnline)
+            seekTargets();
         this.HP = MaxHP;
         colorTimer = 0.0f;   
         timer = peakTime;
