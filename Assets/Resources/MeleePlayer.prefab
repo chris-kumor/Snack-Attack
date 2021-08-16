@@ -404,6 +404,7 @@ MonoBehaviour:
   - {fileID: 3386579857895384458}
   localObjects:
   - {fileID: 3386579857895384459}
+  localPlayerRB: {fileID: 3386579857895384449}
 --- !u!1 &3386579858312484549
 GameObject:
   m_ObjectHideFlags: 0

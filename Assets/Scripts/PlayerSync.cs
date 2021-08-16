@@ -14,13 +14,17 @@ public class PlayerSync : MonoBehaviourPun, IPunObservable
     Vector3 latestPos, velocity;
     float angularVelocity;
     Quaternion latestRot;
-
     bool valsReceived = false;
+
     // Start is called before the first frame update
     void Start()
     {
         if(photonView.IsMine)
+        {
             Debug.Log("The player is local.");
+            gameObject.tag = "Player";
+            localPlayerRB.isKinematic = true;
+        }
         /*else{
             for(int i = 0; i < localScripts.Length; i++)
                 localScripts[i].enabled = false;
@@ -59,6 +63,15 @@ public class PlayerSync : MonoBehaviourPun, IPunObservable
             localPlayerRB.velocity = velocity;
             localPlayerRB.angularVelocity = angularVelocity;
 
+        }
+    }
+
+    void OnCollisionEnter(Collision contact){
+        if(!photonView.IsMine){
+            Transform collisionObjectRoot = contact.transform.root;
+            //PhotonView of Rigidbody owned by local player now
+            if(collisionObjectRoot.CompareTag("Player"))
+                photonView.TransferOwnership(PhotonNetwork.LocalPlayer);
         }
     }
 
