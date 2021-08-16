@@ -77,6 +77,13 @@ public class BossController : MonoBehaviour
         BossDir.Normalize();
         BossRB2D.velocity = new Vector2(BossDir.x * angularSpeed, BossDir.y * angularSpeed);
     }
+
+    void seekTargets()
+    {
+        Prey[0] = GameObject.FindWithTag("RangedPlayer");
+        Prey[1] = GameObject.FindWithTag("MeleePlayer");
+        layerMask = LayerMask.GetMask("MeleePlayer","RangedPlayer");
+    }
     IEnumerator UnStunBoss()
     {   
         yield return new WaitForSeconds(5.00f);
@@ -101,9 +108,7 @@ public class BossController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Prey[0] = GameObject.FindWithTag("RangedPlayer");
-        Prey[1] = GameObject.FindWithTag("MeleePlayer");
-        layerMask = LayerMask.GetMask("MeleePlayer","RangedPlayer");
+        seekTargets();
         this.HP = MaxHP;
         colorTimer = 0.0f;   
         timer = peakTime;
@@ -123,6 +128,8 @@ public class BossController : MonoBehaviour
 
     void Update()
     {   
+        if(Prey[0] == null || Prey[1] == null)
+            seekTargets();
         //Debug.Log(this.HP);
         //CoolDown for Bos Attack in action
         for (int i = 0; i < attacks.Length; i++)

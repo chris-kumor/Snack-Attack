@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Photon.Pun;
+
 
 
 public class WinningCondition : MonoBehaviour
@@ -64,6 +66,7 @@ public class WinningCondition : MonoBehaviour
             }
             else
                 GameStats.isBossAlive = true;
+            PhotonNetwork.LeaveRoom();
             Invoke("WaitToChangeScene", sceneDelayTimer);
         }
     }

@@ -5206,6 +5206,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   localScripts:
   - {fileID: 6229573821599280898}
+  - {fileID: 6229573821599280897}
   localObjects:
   - {fileID: 6229573821599280896}
 --- !u!1 &6229573821792803617

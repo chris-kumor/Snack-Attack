@@ -9,9 +9,9 @@ public class SceneManagerController : MonoBehaviour
     {
          Invoke("LoadingMainScene", 3.0f);
     }
-    public void LoadingMainScene()
+    public void LoadingLocalGame()
     {
-        SceneManager.LoadScene("MainGame", LoadSceneMode.Single);
+        SceneManager.LoadScene("LocalMainGame", LoadSceneMode.Single);
     }
     public void LoadingLocalCharacterSelection()
     {
@@ -28,6 +28,14 @@ public class SceneManagerController : MonoBehaviour
     public void OnlineMenu()
     {
         Invoke("loadingOnlineMenu", 3.0f);
+    }
+    public void LoadingMainMenu()
+    {
+        SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
+    }
+    public void MainMenu()
+    {
+        Invoke("LoadingMainMenu", 3.00f);
     }
 
     public void Quit()
