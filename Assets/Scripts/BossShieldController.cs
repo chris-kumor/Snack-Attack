@@ -17,16 +17,14 @@ public class BossShieldController : MonoBehaviour
     public Rigidbody2D BossRB2D;
     private BossController  bossController;
 
-    public void shieldDestroy()
-    {
+    public void shieldDestroy(){
         GameStats.bossShielded = false;
         shieldCollider.enabled =false;
         bossCollider.enabled = true;
         shieldSprite.enabled = false;
     }
 
-    public void restoreShield()
-    {
+    public void restoreShield(){
         shieldHP = MaxHP;
         shieldSprite.enabled = true;
         shieldSprite.color = shieldFullColor;
@@ -37,8 +35,7 @@ public class BossShieldController : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start(){
         bossController = Boss.GetComponent<BossController>();
         GameStats.bossShielded = true;
         shieldHP = MaxHP;
@@ -46,10 +43,8 @@ public class BossShieldController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        if(GameStats.bossShielded && shieldHP <= 0.0f)
-        {
+    void Update(){
+        if(GameStats.bossShielded && shieldHP <= 0.0f){
             ShieldAudioSource.PlayOneShot(shieldDestroyed, GameStats.gameVol-0.1f);
             shieldDestroy();
         }
@@ -57,24 +52,18 @@ public class BossShieldController : MonoBehaviour
     
     }
 
-    void OnCollisionEnter2D(Collision2D coll)
-    {
-        if(GameStats.isBattle)
-        {
-            if(coll.collider.gameObject.layer == 13)
-            {
-                if(coll.collider.gameObject != null)
-                {
+    void OnCollisionEnter2D(Collision2D coll){
+        if(GameStats.isBattle){
+            if(coll.collider.gameObject.layer == 13){
+                if(coll.collider.gameObject != null){
                     if(coll.collider.gameObject.tag == "Projectile")
                         ShieldAudioSource.PlayOneShot(atkReflected, GameStats.gameVol);
 
-                    else if(coll.collider.gameObject.tag == "MeleeStrike") 
-                    {
+                    else if(coll.collider.gameObject.tag == "MeleeStrike"){
                         shieldHP -= coll.collider.gameObject.GetComponent<PlayerStrikeController>().attack.damage;
                         shieldSprite.color = new Color(1.00f, 1.00f, 1.00f, (shieldHP/MaxHP)*0.6f);
                         ShieldAudioSource.PlayOneShot(atkAbsorbed, GameStats.gameVol);
-                    }
-                    
+                    } 
                 }
             }
             //else if(coll.collider.gameObject.layer != 19 || coll.collider.gameObject.layer != 20)

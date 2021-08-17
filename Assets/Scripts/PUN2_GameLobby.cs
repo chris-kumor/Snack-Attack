@@ -149,6 +149,7 @@ public class PUN2_GameLobby : MonoBehaviourPunCallbacks
     {
         Debug.Log("OnCreatedRoom");
         PhotonNetwork.NickName = playerName;
+        GameStats.isOnline = true;
         PhotonNetwork.LoadLevel("GameLevel");
     }
 

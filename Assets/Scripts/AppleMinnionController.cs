@@ -19,14 +19,12 @@ public class AppleMinnionController : MonoBehaviour
     SpriteRenderer AppleMinnionSprite;
     #endregion
 
-    public Vector2 GetPreyDir()
-    {
+    public Vector2 GetPreyDir(){
         return PreyDir;
     }
     
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start(){
         targets[0] = GameObject.FindWithTag("MeleePlayer");
         targets[1] = GameObject.FindWithTag("RangedPlayer");
         if(Vector2.Distance(targets[0].transform.position, gameObject.transform.position) < Vector2.Distance(targets[1].transform.position, gameObject.transform.position))
@@ -36,8 +34,7 @@ public class AppleMinnionController : MonoBehaviour
     }
 
     
-    void FixedUpdate()
-    {
+    void FixedUpdate(){
         gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, currentTarget.transform.position, (minionSpeed * Time.deltaTime));
         if(rigidbody.velocity.x > 0.0f)
             AppleMinnionSprite.flipX = true;
@@ -45,10 +42,8 @@ public class AppleMinnionController : MonoBehaviour
             AppleMinnionSprite.flipX = false;
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        if(collision.gameObject != null)
-        {
+    void OnCollisionEnter2D(Collision2D collision){
+        if(collision.gameObject != null){
             PreyDir = rigidbody.velocity;
             PreyDir.Normalize();
             GameStats.minions -= 1;
