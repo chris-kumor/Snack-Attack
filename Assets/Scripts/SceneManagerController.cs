@@ -5,45 +5,35 @@ using UnityEngine.SceneManagement;
 
 public class SceneManagerController : MonoBehaviour
 {
-    public void PlayGame()
-    {
+    public void PlayGame(){
          Invoke("LoadingMainScene", 3.0f);
     }
-    public void LoadingLocalGame()
-    {
+    public void LoadingLocalGame(){
         SceneManager.LoadScene("LocalMainGame", LoadSceneMode.Single);
     }
-    public void LoadingLocalCharacterSelection()
-    {
+    public void LoadingLocalCharacterSelection(){
          SceneManager.LoadScene("LocalMenu", LoadSceneMode.Single);
     } 
-    public void LocalCharacterSelection()
-    {
+    public void LocalCharacterSelection(){
         Invoke("LoadingLocalCharacterSelection", 3.0f);
     }
-    public void loadingOnlineMenu()
-    {
+    public void loadingOnlineMenu(){
         SceneManager.LoadScene("OnlineMenu", LoadSceneMode.Single);
     }
-    public void OnlineMenu()
-    {
+    public void OnlineMenu(){
         Invoke("loadingOnlineMenu", 3.0f);
     }
-    public void LoadingMainMenu()
-    {
+    public void LoadingMainMenu(){
         SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
     }
-    public void MainMenu()
-    {
+    public void MainMenu(){
         Invoke("LoadingMainMenu", 3.00f);
     }
 
-    public void Quit()
-    {
+    public void Quit(){
         Application.Quit();
     }
-    public void QuitingGame()
-    {
+    public void QuitingGame(){
         Invoke("Quit", 1.0f);
     }
     // Start is called before the first frame update

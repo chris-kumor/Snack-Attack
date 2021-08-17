@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using static AttackCOntroller;
-
-public class PlayerController : MonoBehaviour  
-{
+public class PlayerController : MonoBehaviour{
     public float speed, MaxHP, reviveDist, playerHP;
     public AtkStruct[] attacks;
     public AtkStruct shield;
@@ -19,8 +17,6 @@ public class PlayerController : MonoBehaviour
     public AudioSource PlayerAudioSource;
     public string otherPlayerTag;
     public bool isAlive, AimSpriteEnabled, isDashing, isMoving;
-
-
     private Vector2 MoveDir, AimDir;
     private float colorTimer, otherPlayerHP;
     private GameObject atk, otherPlayer;
@@ -30,15 +26,9 @@ public class PlayerController : MonoBehaviour
     private Color desiredColor;
     private ShieldController shieldController;
     private PlayerController otherPlayerController;
- 
-
-
-
-    public void PlayerMovement(string HSmartControl, string VSmartControl)
-    {   
+    public void PlayerMovement(string HSmartControl, string VSmartControl){   
          //Detecting Movement
-        if ((Sinput.GetAxis(HSmartControl, slot) != 0 || Sinput.GetAxis(VSmartControl, slot) != 0) && (!isAttacking || isRanged) && isAlive)
-        {
+        if ((Sinput.GetAxis(HSmartControl, slot) != 0 || Sinput.GetAxis(VSmartControl, slot) != 0) && (!isAttacking || isRanged) && isAlive){
             isMoving = true;    
             MoveDir = Sinput.GetVector(HSmartControl, VSmartControl, slot);
             MoveDir.Normalize();
@@ -47,30 +37,25 @@ public class PlayerController : MonoBehaviour
                 Player_Sprite.flipX = true;
             else if(MoveDir.x > 0.0f )
                 Player_Sprite.flipX = false;
-            if(GameStats.bothPlayersKB && isMelee)
-            {
+            if(GameStats.bothPlayersKB && isMelee){
                 AimDir = MoveDir;
                 UpdateAimSpriteTransform();
             }
         }
-        else
-        {   
+        else{   
             isMoving = false;
             PlayerRB2D.velocity *= 0;
             Animator.SetFloat("speed", 0.0f);
         }
     }
-    public void UpdateAimSpriteTransform()
-    {
+    public void UpdateAimSpriteTransform(){
         AimDir.Normalize();
         AimSprite.transform.position = gameObject.transform.position + (Vector3)(AimDir * AimReticleOffSet);
         AimAngle.eulerAngles = new Vector3(0.0f, 0.0f, 180 - (Mathf.Atan2(AimDir.x, AimDir.y) * Mathf.Rad2Deg));
         AimSprite.transform.rotation = AimAngle;
         AimSprite.SetActive(true);
     }
-
-    public void MouseAim()
-    {
+    public void MouseAim(){
         //Mouse AimiNG
         if(isMouseAiming  && (!isAttacking || isRanged) && isAlive && !isDashing)
         {
@@ -79,33 +64,27 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public Vector2 GetAimDir()
-    {
+    public Vector2 GetAimDir(){
         return AimDir;
     }
 
-    public void CanAttack()
-    {
+    public void CanAttack(){
         isAttacking = false;
     }
 
-    public Vector2 GetMoveDir()
-    {
+    public Vector2 GetMoveDir(){
         return MoveDir;
     }
 
-    public bool attackStatus()
-    {
+    public bool attackStatus(){
         return isAttacking;
     }
 
-    void enableIdleSprite()
-    {
+    void enableIdleSprite(){
         Player_Sprite.enabled = true;
     }
 
-    public void findPlayers()
-    {
+    public void findPlayers(){
         otherPlayer = GameObject.FindWithTag(otherPlayerTag);
         otherPlayerController = otherPlayer.GetComponent<PlayerController>();
         otherPlayerHP = otherPlayer.GetComponent<PlayerController>().playerHP;
@@ -113,8 +92,7 @@ public class PlayerController : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start(){
         isMoving = false;
         isRanged = false;
         isMelee = false;
@@ -131,52 +109,42 @@ public class PlayerController : MonoBehaviour
         isAttacking = false;
         isAlive = true;
         isDashing = false;
-        if(gameObject.tag == "RangedPlayer")
-        {
+        if(gameObject.tag == "RangedPlayer"){
             isRanged = true;
             slot = GameStats.RangedSlot;
         }
-        else if(gameObject.tag == "MeleePlayer")
-        {
+        else if(gameObject.tag == "MeleePlayer"){
             isMelee = true;
             slot = GameStats.MeleeSlot;
         }
         if(slot == SinputSystems.InputDeviceSlot.keyboardAndMouse)
             isMouseAiming = true;
-
     }
-
-    void Update()
-    {
+    void Update(){
         Animator.SetBool("isDashing", isDashing);
         //Debug.Log(Vector2.Distance(gameObject.transform.position, otherPlayer.transform.position));
         //Health Check
-        if(this.playerHP <= 0)
-        {
+        if(this.playerHP <= 0){
             PlayerRB2D.constraints = RigidbodyConstraints2D.FreezeAll;
             isAlive = false;
         }
-        else if(this.playerHP > 0)
-        {
+        else if(this.playerHP > 0){
             PlayerRB2D.constraints = RigidbodyConstraints2D.FreezeRotation;
             isAlive = true;
         }
         if(this.playerHP > MaxHP)
             this.playerHP = MaxHP;
-        if(PlayerRB2D.velocity == Vector2.zero)
-        {
+        if(PlayerRB2D.velocity == Vector2.zero){
             if(AimDir.x < 0.0f )
                 Player_Sprite.flipX = true;
             else if(AimDir.x > 0.0f )
                 Player_Sprite.flipX = false;
         }
-        if(!(otherPlayerController.isAlive) && (Vector2.Distance(otherPlayer.transform.position, gameObject.transform.position) <= reviveDist))
-        {
+        if(!(otherPlayerController.isAlive) && (Vector2.Distance(otherPlayer.transform.position, gameObject.transform.position) <= reviveDist)){
             bool isRevive = false;
             if(!GameStats.bothPlayersKB)
                 isRevive = Sinput.GetButtonDown("Revive", slot);
-            else if(GameStats.bothPlayersKB)
-            {
+            else if(GameStats.bothPlayersKB){
                 if(isMelee)
                     isRevive = Sinput.GetButtonDown("Revive", slot);
                 else
@@ -186,18 +154,15 @@ public class PlayerController : MonoBehaviour
                 otherPlayerController.playerHP += 33.0f;
         }
         // Detecting Attacking
-        if(!isAttacking && isAlive && !isDashing && !GameStats.isPaused)
-        {
-            for (int i = 0; i < attacks.Length; i++)
-            {
+        if(!isAttacking && isAlive && !isDashing && !GameStats.isPaused){
+            for (int i = 0; i < attacks.Length; i++){
                 bool isNormAtk;
                 if(!GameStats.bothPlayersKB)
                     isNormAtk = (Sinput.GetButtonDown(attacks[i].fireKey, slot) && attacks[i].canFire);
                 else
                     isNormAtk = (Sinput.GetButtonDown(attacks[i].altFireKey, slot) && attacks[i].canFire);
 
-                if(isNormAtk)
-                {
+                if(isNormAtk){
                     isAttacking = true;
                     if(gameObject.tag == "MeleePlayer")
                         Player_Sprite.enabled = false;
@@ -208,16 +173,13 @@ public class PlayerController : MonoBehaviour
                     attacks[i].canFire = false;
                     Invoke("enableIdleSprite",  attacks[i].cooldown);
                 }
-                if(attacks[i].cooldownTimer < 0 && attacks[i].canFire == false)
-                {
+                if(attacks[i].cooldownTimer < 0 && attacks[i].canFire == false){
                     attacks[i].canFire = true;
                     attacks[i].cooldownTimer = attacks[i].cooldown;
                 }
                 attacks[i].cooldownTimer -= Time.deltaTime;
             }
         }
-
-
             //Player Movement
         if(GameStats.bothPlayersKB && !GameStats.isOnline){
             if(isMelee){
@@ -238,10 +200,7 @@ public class PlayerController : MonoBehaviour
                 UpdateAimSpriteTransform();
             }
         }
-       // else
-           // AimSprite.SetActive(false);
     }
-
     // Update is called once per x frame
     void FixedUpdate(){
         //Flashing Player whatever color 
@@ -249,13 +208,10 @@ public class PlayerController : MonoBehaviour
             colorTimer -= Time.deltaTime;
         Player_Sprite.color = Color.Lerp(Color.white, desiredColor, colorTimer/colorTime);
 
-   
         //Movement
         if (isMoving && (!isAttacking || isRanged) && isAlive)
             PlayerRB2D.MovePosition(PlayerRB2D.transform.position + (new Vector3(MoveDir.x,MoveDir.y, 1.00f)  * speed * Time.deltaTime));
-        
     }
-
     void OnCollisionEnter2D(Collision2D collision){
         float potentialDamage = 0.0f;
         if(isAlive && collision.collider.gameObject != null){
@@ -278,16 +234,12 @@ public class PlayerController : MonoBehaviour
                 colorTimer = colorTime;
                 PlayerAudioSource.PlayOneShot(PlayerHealing, GameStats.gameVol);
             }
-            
             else if(collision.gameObject.layer == 9 && shield.cooldownTimer != shield.cooldown && shieldController.isExposed == 1){
                 desiredColor = Color.green;
                 colorTimer = colorTime;
                 PlayerAudioSource.PlayOneShot(PlayerShield, GameStats.gameVol);
             }
- 
             this.playerHP -= potentialDamage * shieldController.isExposed;
         }
     }
-
-
 }

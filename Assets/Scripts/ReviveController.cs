@@ -3,34 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ReviveController : MonoBehaviour
-{
+public class ReviveController : MonoBehaviour{
     // Start is called before the first frame update
     private GameObject MeleePlayer, RangedPlayer, MReviveIcon, RReviveIcon;
-
     public Text ReviveStatus;
     private PlayerController rangedController, meleeController;
-
-    public void findPlayers()
-    {
+    public void findPlayers(){
         MeleePlayer = GameObject.FindWithTag("MeleePlayer");
         RangedPlayer = GameObject.FindWithTag("RangedPlayer");
         rangedController = RangedPlayer.GetComponent<PlayerController>();
         meleeController = MeleePlayer.GetComponent<PlayerController>();
-
     }
-
-    void Start()
-    {
+    void Start(){
         findPlayers();
         MReviveIcon.SetActive(false);
         RReviveIcon.SetActive(false);
         ReviveStatus.enabled = false;
     }
-
     // Update is called once per frame
-    void Update()
-    {
+    void Update(){
         if(!rangedController.isAlive)
             RReviveIcon.SetActive(true);
         else if(rangedController.isAlive)
@@ -44,6 +35,5 @@ public class ReviveController : MonoBehaviour
             ReviveStatus.enabled = true;
         else if(rangedController.isAlive && meleeController.isAlive)
              ReviveStatus.enabled = false;
-        
     }
 }

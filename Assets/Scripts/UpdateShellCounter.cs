@@ -11,12 +11,10 @@ public class UpdateShellCounter : MonoBehaviour
     private float spriteAngle, angleDif;
     public float speed;
     public AtkStruct attack;
-
     private SpreadAtkController bossShellsController;
 
     // Start is called before the first frame update   
-    void Start()
-    {
+    void Start(){
         boss = GameObject.FindWithTag("Boss");
         bossSpreadShells = GameObject.FindWithTag("BossSpreadShells");
         bossShellsController = bossSpreadShells.GetComponent<SpreadAtkController>();
@@ -24,15 +22,13 @@ public class UpdateShellCounter : MonoBehaviour
         angleDif = Random.Range(-10, 10);
     }
 
-    void FixedUpdate()
-    {
+    void FixedUpdate(){
         rb2D.velocity = angle * speed * Time.deltaTime;
         rb2D.transform.rotation = Quaternion.AngleAxis(spriteAngle, Vector3.forward);
         spriteAngle += angleDif;
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
-    {
+    void OnCollisionEnter2D(Collision2D collision){
         bossShellsController.removeShell();
         Destroy(gameObject);
     }

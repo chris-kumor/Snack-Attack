@@ -8,11 +8,8 @@ using UnityEngine.UI;
 public class PUN2_GameLobby : MonoBehaviourPunCallbacks
 {
     public Slider CharacterSlider, InputSlider;
-
     public GameObject[] PlayerPrefabs;
-
     public Transform[] spawnPoints;
-
     SinputSystems.InputDeviceSlot[] playerControls = new SinputSystems.InputDeviceSlot[] {SinputSystems.InputDeviceSlot.keyboardAndMouse, SinputSystems.InputDeviceSlot.gamepad1};
     //Player being controlled by user
     string playerName = "Player 1";
@@ -24,8 +21,6 @@ public class PUN2_GameLobby : MonoBehaviourPunCallbacks
     string roomName = "Room 1";
     Vector2 roomListScroll = Vector2.zero;
     bool isJoining = false;
-
-
     // Start is called before the first frame update
     void Start(){
         PhotonNetwork.AutomaticallySyncScene = true;
@@ -35,26 +30,20 @@ public class PUN2_GameLobby : MonoBehaviourPunCallbacks
             //Connects to master-server using ^ settings stored in PhotonServerSettings within asset file 
             PhotonNetwork.ConnectUsingSettings();
         }
-        
-
     }
-
     void Update(){
             GameStats.playerPrefab = PlayerPrefabs[(int)CharacterSlider.value];
             GameStats.spawnPoint = spawnPoints[(int)CharacterSlider.value];
             GameStats.localPlayerSlot = playerControls[(int)InputSlider.value];
     }
-
     public override void OnDisconnected(DisconnectCause cause){
         Debug.Log("OnFailedToConnectToPhoton.StatusCode: " + cause.ToString() + " ServerAddress: " + PhotonNetwork.ServerAddress);
     }
-
     public override void OnConnectedToMaster(){
         Debug.Log("OnConnectedToMaster");
         //Next Step Join Lobby
         PhotonNetwork.JoinLobby(TypedLobby.Default);
     }
-
     public override void OnRoomListUpdate(List<RoomInfo> roomList){
         Debug.Log("Room list aquired.");
         //Updates contents of Room List displayed to user
@@ -63,7 +52,6 @@ public class PUN2_GameLobby : MonoBehaviourPunCallbacks
     void OnGUI(){
         GUI.Window(0, new Rect(Screen.width/2 - 400, Screen.height/2 - 400, 900, 400), LobbyWindow, "Lobby");
     }
-
     void LobbyWindow(int index){
         //Create GUI Column layout to MultiplayerMenu
         GUILayout.BeginHorizontal();
@@ -94,8 +82,7 @@ public class PUN2_GameLobby : MonoBehaviourPunCallbacks
                 GUILayout.Label(createdRooms[i].Name, GUILayout.Width(400));
                 GUILayout.Label(createdRooms[i].PlayerCount+"/"+createdRooms[i].MaxPlayers);
                 GUILayout.FlexibleSpace();
-                if(GUILayout.Button("Join Room"))
-                {
+                if(GUILayout.Button("Join Room")){
                     isJoining = true;
                     PhotonNetwork.NickName=playerName;
                     if(GameStats.playerPrefab != null && GameStats.localPlayerSlot != null){
@@ -103,8 +90,6 @@ public class PUN2_GameLobby : MonoBehaviourPunCallbacks
                         GameStats.isOnline = true;
                         PhotonNetwork.JoinRoom(createdRooms[i].Name);
                     }
-                    
-
                 }
                 GUILayout.EndHorizontal();
             }
@@ -118,41 +103,30 @@ public class PUN2_GameLobby : MonoBehaviourPunCallbacks
         GUILayout.FlexibleSpace();
         //Once user has joined a room, Room Selection No longer needed to be seen
         GUI.enabled = (PhotonNetwork.NetworkClientState==ClientState.JoinedLobby||PhotonNetwork.NetworkClientState==ClientState.Disconnected) && !isJoining;
-        if(GUILayout.Button("Refresh", GUILayout.Width(100)))
-        {
+        if(GUILayout.Button("Refresh", GUILayout.Width(100))){
             if(PhotonNetwork.IsConnected)
                 PhotonNetwork.ConnectUsingSettings();
             else    
                 PhotonNetwork.ConnectUsingSettings();
         }
         GUILayout.EndHorizontal();
-        if(isJoining)
-        {
+        if(isJoining){
             GUI.enabled = true;
             GUI.Label(new Rect(900/2-50, 400/2-10, 100, 20), "Joining room...");
         }
     }
-
-    public override void OnCreateRoomFailed(short returncode, string message)
-    {
+    public override void OnCreateRoomFailed(short returncode, string message){
         Debug.Log("OnCreateRoomFailed called. Can occur when room exists, Try another name.");
         isJoining = false;
     }
-
-    public override void OnJoinRandomFailed(short returnCode, string message)
-    {
+    public override void OnJoinRandomFailed(short returnCode, string message){
         Debug.Log("OnJoinRandomFailed called. Room doesnt exist, is full or closed.");
         isJoining = false;
     }
-
-    public override void OnCreatedRoom()
-    {
+    public override void OnCreatedRoom(){
         Debug.Log("OnCreatedRoom");
         PhotonNetwork.NickName = playerName;
         GameStats.isOnline = true;
         PhotonNetwork.LoadLevel("GameLevel");
     }
-
-
-
 }

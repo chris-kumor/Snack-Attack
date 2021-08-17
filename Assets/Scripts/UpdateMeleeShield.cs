@@ -3,24 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UpdateMeleeShield : MonoBehaviour
-{
+public class UpdateMeleeShield : MonoBehaviour{
     private Image meleeShieldUI;
     private GameObject MeleeShield;
     private AtkStruct shield;
     // Start is called before the first frame update
-
-    void Start()
-    {
+    void Start(){
         meleeShieldUI=gameObject.GetComponent<Image>();
         meleeShieldUI.fillAmount = 1;
         MeleeShield = GameObject.FindWithTag("MeleeShield");
         shield = MeleeShield.GetComponent<ShieldController>().shield;
     }
-
     // Update is called once per frame
-    void Update()
-    {
+    void Update(){
         if(MeleeShield != null)
             meleeShieldUI.fillAmount = shield.cooldownTimer/shield.cooldown;
     }

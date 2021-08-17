@@ -11,19 +11,13 @@ public class ShieldController : MonoBehaviour
     public CircleCollider2D shieldCollider;
     public AudioSource ShieldAudioSource;
     public GameObject Player;
-
-
     private SinputSystems.InputDeviceSlot slot;
     private Color ShieldFullColor = new Color(1.00f, 0.0f, 0.0f, 0.75f);
     private PlayerController playerController;
-
     public string shieldName; 
     private bool isMShield;
-
-    public void PlayerShielding(string shieldFireKey)
-    {
-        if(Sinput.GetButton(shieldFireKey, slot) && shield.canFire && shield.cooldownTimer > 0 && !playerController.attackStatus() && !playerController.isDashing)
-        {
+    public void PlayerShielding(string shieldFireKey){
+        if(Sinput.GetButton(shieldFireKey, slot) && shield.canFire && shield.cooldownTimer > 0 && !playerController.attackStatus() && !playerController.isDashing){
             shieldSprite.enabled = true;
             shieldCollider.enabled = true;
             isExposed = 0;
@@ -33,8 +27,7 @@ public class ShieldController : MonoBehaviour
                 Physics2D.IgnoreLayerCollision(19, 16, true);
             ShieldAudioSource.PlayOneShot(shield.soundToPlay, GameStats.gameVol);
         }
-        else
-        {
+        else{
             shieldSprite.enabled = false;
             shieldCollider.enabled = false;
             if(slot == GameStats.MeleeSlot)
@@ -44,11 +37,8 @@ public class ShieldController : MonoBehaviour
              isExposed = 1;
         }
     }
-
-    
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start(){
         isMShield = (gameObject.tag == "MeleeShield");
         shieldName = shield.fireKey;
         shield.cooldownTimer = shield.cooldown;
@@ -65,21 +55,15 @@ public class ShieldController : MonoBehaviour
         if(GameStats.bothPlayersKB)
             shieldName = shield.altFireKey;
     }
-    
-    void FixedUpdate()
-    {
+    void FixedUpdate(){
         PlayerShielding(shieldName);
-        if(shieldSprite.enabled == true && shield.cooldownTimer > 0)
-        {
+        if(shieldSprite.enabled == true && shield.cooldownTimer > 0){
             shield.cooldownTimer -= Time.deltaTime;
             shieldSprite.color = new Color(shieldSprite.color[0], shieldSprite.color[1], shieldSprite.color[2], shieldSprite.color[3] - (Time.deltaTime/10));
         }
-
-        if(shield.cooldownTimer <= 0)
-        {
+        if(shield.cooldownTimer <= 0){
             shield.canFire = false;
             shieldSprite.color = ShieldFullColor;
         }
     }
-
 }

@@ -3,23 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UpdateBossHealth : MonoBehaviour
-{
+public class UpdateBossHealth : MonoBehaviour{
     public Image BossHealthBar;
     public GameObject Boss;
     private BossController bossController;
-  
-
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start(){
         bossController = Boss.GetComponent<BossController>();
         BossHealthBar.fillAmount = 1.00f;
     }
-
     // Update is called once per frame
-    void Update()
-    {
+    void Update(){
         if(Boss != null)
             BossHealthBar.fillAmount = (bossController.HP/bossController.MaxHP);
     }
