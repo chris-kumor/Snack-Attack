@@ -8,6 +8,7 @@ public class PlayerSync : MonoBehaviourPun, IPunObservable
     //All the scripts that are components for this player
     public MonoBehaviour[] localScripts;
     //All gameObjects that are components for this player
+
     public GameObject[] localObjects;
     public Rigidbody2D localPlayerRB;
     //local player vars that need to be updated via sending/receiving data
@@ -22,15 +23,14 @@ public class PlayerSync : MonoBehaviourPun, IPunObservable
         if(photonView.IsMine)
         {
             Debug.Log("The player is local.");
-            gameObject.tag = "Player";
             localPlayerRB.isKinematic = true;
         }
-        /*else{
+        else{
             for(int i = 0; i < localScripts.Length; i++)
-                localScripts[i].enabled = false;
+                localScripts[i].enabled = true;
             for(int i = 0; i < localObjects.Length; i++)
-                localObjects[i].SetActive(false);
-        }*/
+                localObjects[i].SetActive(true);
+        }
         
     }
 
@@ -70,7 +70,7 @@ public class PlayerSync : MonoBehaviourPun, IPunObservable
         if(!photonView.IsMine){
             Transform collisionObjectRoot = contact.transform.root;
             //PhotonView of Rigidbody owned by local player now
-            if(collisionObjectRoot.CompareTag("Player"))
+            if(collisionObjectRoot.CompareTag(gameObject.tag))
                 photonView.TransferOwnership(PhotonNetwork.LocalPlayer);
         }
     }

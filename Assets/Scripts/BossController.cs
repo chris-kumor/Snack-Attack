@@ -129,8 +129,6 @@ public class BossController : MonoBehaviour
 
     void Update()
     {   
-        if(Prey[0] == null || Prey[1] == null)
-            seekTargets();
         //Debug.Log(this.HP);
         //CoolDown for Bos Attack in action
         for (int i = 0; i < attacks.Length; i++)

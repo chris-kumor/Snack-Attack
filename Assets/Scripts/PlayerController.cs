@@ -104,6 +104,13 @@ public class PlayerController : MonoBehaviour
         Player_Sprite.enabled = true;
     }
 
+    public void findPlayers()
+    {
+        otherPlayer = GameObject.FindWithTag(otherPlayerTag);
+        otherPlayerController = otherPlayer.GetComponent<PlayerController>();
+        otherPlayerHP = otherPlayer.GetComponent<PlayerController>().playerHP;
+    }
+
 
     // Start is called before the first frame update
     void Start()
@@ -117,9 +124,7 @@ public class PlayerController : MonoBehaviour
         for (int i = 0; i < attacks.Length; i++)
             attacks[i].cooldownTimer = attacks[i].cooldown;
         shield.cooldownTimer = shield.cooldown;
-        otherPlayer = GameObject.FindWithTag(otherPlayerTag);
-        otherPlayerController = otherPlayer.GetComponent<PlayerController>();
-        otherPlayerHP = otherPlayer.GetComponent<PlayerController>().playerHP;
+        findPlayers();
         shieldController = playerShield.gameObject.GetComponent<ShieldController>();
         AimSprite.SetActive(false);
         this.playerHP = MaxHP;

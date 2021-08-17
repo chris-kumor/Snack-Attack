@@ -5,6 +5,7 @@ using Photon.Pun;
 
 public class RoomController : MonoBehaviourPunCallbacks{
     public GameObject meleePlayer, rangedPlayer;
+    public MonoBehaviour[] playerFindingScripts;
 
     // Start is called before the first frame update
     void Start(){
@@ -12,7 +13,7 @@ public class RoomController : MonoBehaviourPunCallbacks{
         if(PhotonNetwork.CurrentRoom == null){
             Debug.Log("Is no in the room, returning back to the lobby");
             UnityEngine.SceneManagement.SceneManager.LoadScene("OnlineMenu");
-            return;
+            //return;
         }
         //Spawn local Player in the room synchronize it using PhotonNetwork.Instantiate
         PhotonNetwork.Instantiate(GameStats.playerPrefab.name, GameStats.spawnPoint.position, Quaternion.identity, 0);
@@ -32,9 +33,6 @@ public class RoomController : MonoBehaviourPunCallbacks{
         PhotonNetwork.LeaveRoom();
     }
 
-    public override void OnJoinedRoom(){
-
-    }
 
     public override void OnLeftRoom(){
         UnityEngine.SceneManagement.SceneManager.LoadScene("OnlineMenu");

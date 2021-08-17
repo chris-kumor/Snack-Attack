@@ -6,15 +6,23 @@ using UnityEngine.UI;
 public class ReviveController : MonoBehaviour
 {
     // Start is called before the first frame update
-    public GameObject MeleePlayer, RangedPlayer, MReviveIcon, RReviveIcon;
+    private GameObject MeleePlayer, RangedPlayer, MReviveIcon, RReviveIcon;
 
     public Text ReviveStatus;
     private PlayerController rangedController, meleeController;
 
-    void Start()
+    public void findPlayers()
     {
+        MeleePlayer = GameObject.FindWithTag("MeleePlayer");
+        RangedPlayer = GameObject.FindWithTag("RangedPlayer");
         rangedController = RangedPlayer.GetComponent<PlayerController>();
         meleeController = MeleePlayer.GetComponent<PlayerController>();
+
+    }
+
+    void Start()
+    {
+        findPlayers();
         MReviveIcon.SetActive(false);
         RReviveIcon.SetActive(false);
         ReviveStatus.enabled = false;

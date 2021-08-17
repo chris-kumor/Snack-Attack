@@ -98,8 +98,11 @@ public class PUN2_GameLobby : MonoBehaviourPunCallbacks
                 {
                     isJoining = true;
                     PhotonNetwork.NickName=playerName;
-                    if(GameStats.playerPrefab != null && GameStats.localPlayerSlot != null)
+                    if(GameStats.playerPrefab != null && GameStats.localPlayerSlot != null){
+                        GameStats.bothPlayersKB = false;
+                        GameStats.isOnline = true;
                         PhotonNetwork.JoinRoom(createdRooms[i].Name);
+                    }
                     
 
                 }
@@ -149,9 +152,6 @@ public class PUN2_GameLobby : MonoBehaviourPunCallbacks
         PhotonNetwork.LoadLevel("GameLevel");
     }
 
-    public override void OnJoinedRoom()
-    {
-        Debug.Log("OnJoinedRoom");
-    }
+
 
 }
