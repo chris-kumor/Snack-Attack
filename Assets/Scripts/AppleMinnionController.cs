@@ -5,19 +5,17 @@ using static AttackCOntroller;
 
 public class AppleMinnionController : MonoBehaviour
 {
-
-    #region Private Fields
-    Vector3 PreyDir;
-    GameObject[] targets = new GameObject[2];
-    GameObject currentTarget;
-    #endregion
+    private Vector3 PreyDir;
+    private GameObject[] targets = new GameObject[2];
+    private GameObject currentTarget;
     
-    #region Public Fields
-    Rigidbody2D rigidbody;
-    float minionSpeed;
-    AtkStruct attack;
-    SpriteRenderer AppleMinnionSprite;
-    #endregion
+    
+    
+    public Rigidbody2D minnionRB;
+    public float minionSpeed;
+    public AtkStruct attack;
+    public SpriteRenderer AppleMinnionSprite;
+    
 
     public Vector2 GetPreyDir(){
         return PreyDir;
@@ -31,20 +29,21 @@ public class AppleMinnionController : MonoBehaviour
             currentTarget = targets[0];
          else
             currentTarget = targets[1];
+        minnionRB = gameObject.GetComponent<Rigidbody2D>();
     }
 
     
     void FixedUpdate(){
         gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, currentTarget.transform.position, (minionSpeed * Time.deltaTime));
-        if(rigidbody.velocity.x > 0.0f)
+        if(minnionRB.velocity.x > 0.0f)
             AppleMinnionSprite.flipX = true;
-        else if(rigidbody.velocity.x < 0.0f)
+        else if(minnionRB.velocity.x < 0.0f)
             AppleMinnionSprite.flipX = false;
     }
 
     void OnCollisionEnter2D(Collision2D collision){
         if(collision.gameObject != null){
-            PreyDir = rigidbody.velocity;
+            PreyDir = minnionRB.velocity;
             PreyDir.Normalize();
             GameStats.minions -= 1;
             GameObject atk = AttackCOntroller.Attack(attack.atkObj, gameObject.transform.position, PreyDir, attack.atkDistance, gameObject.transform.rotation);

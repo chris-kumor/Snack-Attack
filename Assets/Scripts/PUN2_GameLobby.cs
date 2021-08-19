@@ -85,7 +85,7 @@ public class PUN2_GameLobby : MonoBehaviourPunCallbacks
                 if(GUILayout.Button("Join Room")){
                     isJoining = true;
                     PhotonNetwork.NickName=playerName;
-                    if(GameStats.playerPrefab != null && GameStats.localPlayerSlot != null){
+                    if(GameStats.playerPrefab != null && GameStats.localPlayerSlot != SinputSystems.InputDeviceSlot.any){
                         GameStats.bothPlayersKB = false;
                         GameStats.isOnline = true;
                         PhotonNetwork.JoinRoom(createdRooms[i].Name);
