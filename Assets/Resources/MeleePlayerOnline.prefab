@@ -76,7 +76,7 @@ GameObject:
   - component: {fileID: -331490755604549269}
   - component: {fileID: 5549810015819219493}
   m_Layer: 20
-  m_Name: MeleePlayer
+  m_Name: MeleePlayerOnline
   m_TagString: MeleePlayer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
