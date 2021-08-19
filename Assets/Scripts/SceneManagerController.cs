@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class SceneManagerController : MonoBehaviour
 {
     public void PlayGame(){
-         Invoke("LoadingMainScene", 3.0f);
+         Invoke("LoadingLocalGame", 3.0f);
     }
     public void LoadingLocalGame(){
         SceneManager.LoadScene("LocalMainGame", LoadSceneMode.Single);

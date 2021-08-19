@@ -16,7 +16,7 @@ public class BossController : MonoBehaviour
     public Rigidbody2D BossRB2D;
     public AudioSource BossAudioSource;
     public SpriteRenderer BossSprite;
-    GameObject[] Prey;
+    GameObject[] Prey = new GameObject[2];
     public Animator bossAnimator;
     public GameObject MainCamera;
     public CapsuleCollider2D bossCapsuleCollider;

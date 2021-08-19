@@ -16,6 +16,8 @@ public class ReviveController : MonoBehaviour{
     }
     void Start(){
         findPlayers();
+        MReviveIcon = MeleePlayer.transform.Find("ReviveSprite").gameObject;
+        RReviveIcon = RangedPlayer.transform.Find("ReviveSprite").gameObject;
         MReviveIcon.SetActive(false);
         RReviveIcon.SetActive(false);
         ReviveStatus.enabled = false;
