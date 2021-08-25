@@ -8,18 +8,19 @@ public class ReviveController : MonoBehaviour{
     private GameObject MeleePlayer, RangedPlayer, MReviveIcon, RReviveIcon;
     public Text ReviveStatus;
     private PlayerController rangedController, meleeController;
-    public void findPlayers(){
-        MeleePlayer = GameObject.FindWithTag("MeleePlayer");
+    public void findRanged(){
+        
         RangedPlayer = GameObject.FindWithTag("RangedPlayer");
         rangedController = RangedPlayer.GetComponent<PlayerController>();
-        meleeController = MeleePlayer.GetComponent<PlayerController>();
-    }
-    void Start(){
-        findPlayers();
-        MReviveIcon = MeleePlayer.transform.Find("ReviveSprite").gameObject;
         RReviveIcon = RangedPlayer.transform.Find("ReviveSprite").gameObject;
-        MReviveIcon.SetActive(false);
-        RReviveIcon.SetActive(false);
+        
+    }
+    public void findMelee(){
+        MeleePlayer = GameObject.FindWithTag("MeleePlayer");
+        meleeController = MeleePlayer.GetComponent<PlayerController>();
+        MReviveIcon = MeleePlayer.transform.Find("ReviveSprite").gameObject;
+    }    
+    void Start(){
         ReviveStatus.enabled = false;
     }
     // Update is called once per frame
@@ -32,7 +33,6 @@ public class ReviveController : MonoBehaviour{
             MReviveIcon.SetActive(true);
         else if(meleeController.isAlive)
             MReviveIcon.SetActive(false);
-        
         if(!rangedController.isAlive || !meleeController.isAlive)
             ReviveStatus.enabled = true;
         else if(rangedController.isAlive && meleeController.isAlive)

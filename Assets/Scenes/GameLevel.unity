@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 39751663}
   m_Layer: 0
   m_Name: RoomController
-  m_TagString: Untagged
+  m_TagString: RoomController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -152,6 +152,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf8f09ed609ee8349b4d3886fcc93590, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  meleePlayer: {fileID: 0}
+  rangedPlayer: {fileID: 0}
+  playerFindingScripts: []
 --- !u!4 &39751664
 Transform:
   m_ObjectHideFlags: 0

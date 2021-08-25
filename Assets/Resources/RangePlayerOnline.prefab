@@ -5137,9 +5137,9 @@ MonoBehaviour:
   playerShield: {fileID: 6229573823428621015}
   AimSprite: {fileID: 6229573822953377892}
   AimReticleOffSet: 5
+  colorTime: 0.5
   Animator: {fileID: 6229573821599280899}
   Player_Sprite: {fileID: 6229573821599280911}
-  colorTime: 0.5
   PlayerDamaged: {fileID: 8300000, guid: 2ac195713f4f36343a1e9b4562f185de, type: 3}
   PlayerHealing: {fileID: 8300000, guid: f41d28ddf0490ee4d9f2d1d16bdfaf03, type: 3}
   PlayerShield: {fileID: 8300000, guid: 8471eedc86c760747bdd2951508a2bf1, type: 3}

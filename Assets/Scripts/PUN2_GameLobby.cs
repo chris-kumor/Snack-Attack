@@ -119,6 +119,11 @@ public class PUN2_GameLobby : MonoBehaviourPunCallbacks
         Debug.Log("OnCreateRoomFailed called. Can occur when room exists, Try another name.");
         isJoining = false;
     }
+    public override void OnJoinedRoom()
+    {
+        Debug.Log("OnJoinedRoom");
+        PhotonNetwork.NickName = playerName;
+    }
     public override void OnJoinRandomFailed(short returnCode, string message){
         Debug.Log("OnJoinRandomFailed called. Room doesnt exist, is full or closed.");
         isJoining = false;

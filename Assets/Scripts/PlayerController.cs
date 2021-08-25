@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using static AttackCOntroller;
+ 
 public class PlayerController : MonoBehaviour{
     public float speed, MaxHP, reviveDist, playerHP;
     public AtkStruct[] attacks;
     public AtkStruct shield;
     public GameObject playerShield, AimSprite;
-    public float AimReticleOffSet;
+    public float AimReticleOffSet, colorTime;
     public Animator Animator;
     public SpriteRenderer Player_Sprite;
-    public float colorTime;
     public AudioClip PlayerDamaged, PlayerHealing, PlayerShield;
     public Rigidbody2D PlayerRB2D;
     public AudioSource PlayerAudioSource;
@@ -19,13 +19,15 @@ public class PlayerController : MonoBehaviour{
     public bool isAlive, AimSpriteEnabled, isDashing, isMoving;
     private Vector2 MoveDir, AimDir;
     private float colorTimer, otherPlayerHP;
-    private GameObject atk, otherPlayer;
+    private GameObject atk, otherPlayer, roomContObj, reviveContObj;
     private Quaternion AimAngle;
     private SinputSystems.InputDeviceSlot slot;
     private bool isMouseAiming, isAttacking, isRanged, otherPlayerAlive, isMelee;
     private Color desiredColor;
     private ShieldController shieldController;
     private PlayerController otherPlayerController;
+    private ReviveController reviveController;
+    private RoomController roomController;
     public void PlayerMovement(string HSmartControl, string VSmartControl){   
          //Detecting Movement
         if ((Sinput.GetAxis(HSmartControl, slot) != 0 || Sinput.GetAxis(VSmartControl, slot) != 0) && (!isAttacking || isRanged) && isAlive){
@@ -89,14 +91,16 @@ public class PlayerController : MonoBehaviour{
         otherPlayerController = otherPlayer.GetComponent<PlayerController>();
         otherPlayerHP = otherPlayer.GetComponent<PlayerController>().playerHP;
     }
-
-
     // Start is called before the first frame update
     void Start(){
         isMoving = false;
         isRanged = false;
         isMelee = false;
         isMouseAiming = false;
+        roomContObj = GameObject.FindWithTag("RoomController");
+        roomController = roomContObj.GetComponent<RoomController>();
+        reviveContObj = GameObject.FindWithTag("ReviveController");
+        reviveController = reviveContObj.GetComponent<ReviveController>();
         MoveDir = new Vector2(0.0f, 0.0f);
         AimDir = new Vector2(0.0f, 0.0f);
         for (int i = 0; i < attacks.Length; i++)
@@ -119,7 +123,14 @@ public class PlayerController : MonoBehaviour{
         }
         if(slot == SinputSystems.InputDeviceSlot.keyboardAndMouse)
             isMouseAiming = true;
-    }
+        if(GameStats.isOnline){
+            roomController.findPlayer(gameObject.tag);
+            if(isRanged)
+                reviveController.findRanged();
+            else if(isMelee)
+                reviveController.findMelee();
+        }
+     }
     void Update(){
         Animator.SetBool("isDashing", isDashing);
         //Debug.Log(Vector2.Distance(gameObject.transform.position, otherPlayer.transform.position));
@@ -239,7 +250,7 @@ public class PlayerController : MonoBehaviour{
                 colorTimer = colorTime;
                 PlayerAudioSource.PlayOneShot(PlayerShield, GameStats.gameVol);
             }
-            this.playerHP -= potentialDamage * shieldController.isExposed;
+            this.playerHP -= potentialDamage * shieldController.isExposed;  
         }
     }
 }

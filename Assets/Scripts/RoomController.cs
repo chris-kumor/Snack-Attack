@@ -6,6 +6,13 @@ using Photon.Pun;
 public class RoomController : MonoBehaviourPunCallbacks{
     public GameObject meleePlayer, rangedPlayer;
     public MonoBehaviour[] playerFindingScripts;
+
+    public void findPlayer(string target){
+        if(target == "MeleePlayer")
+            meleePlayer = GameObject.FindWithTag(target);
+        else if(target == "RangedPlayer")
+            rangedPlayer = GameObject.FindWithTag(target);
+    }
     // Start is called before the first frame update
     void Start(){        //making sure we are in a room, if for some reson we are not, back to the lobby
         if(PhotonNetwork.CurrentRoom == null){
