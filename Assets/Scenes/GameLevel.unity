@@ -666,6 +666,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2978958746574756521, guid: d1300339cbfe41349bd5786b5b67a8e4, type: 3}
+      propertyPath: m_TagString
+      value: MeleeHealthBar
+      objectReference: {fileID: 0}
     - target: {fileID: 7629004231052605108, guid: d1300339cbfe41349bd5786b5b67a8e4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 

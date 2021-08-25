@@ -8,7 +8,7 @@ public class UpdateMeleeShield : MonoBehaviour{
     private GameObject MeleeShield;
     private AtkStruct shield;
     // Start is called before the first frame update
-    void Start(){
+    public void findMShield(){
         meleeShieldUI=gameObject.GetComponent<Image>();
         meleeShieldUI.fillAmount = 1;
         MeleeShield = GameObject.FindWithTag("MeleeShield");

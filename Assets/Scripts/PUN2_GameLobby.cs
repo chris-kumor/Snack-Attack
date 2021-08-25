@@ -119,8 +119,7 @@ public class PUN2_GameLobby : MonoBehaviourPunCallbacks
         Debug.Log("OnCreateRoomFailed called. Can occur when room exists, Try another name.");
         isJoining = false;
     }
-    public override void OnJoinedRoom()
-    {
+    public override void OnJoinedRoom(){
         Debug.Log("OnJoinedRoom");
         PhotonNetwork.NickName = playerName;
     }

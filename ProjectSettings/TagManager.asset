@@ -26,6 +26,8 @@ TagManager:
   - BossSpreadAtk
   - RoomController
   - ReviveController
+  - MeleeHealthBar
+  - RangedHealthBar
   layers:
   - Default
   - TransparentFX

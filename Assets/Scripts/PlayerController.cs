@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour{
     public bool isAlive, AimSpriteEnabled, isDashing, isMoving;
     private Vector2 MoveDir, AimDir;
     private float colorTimer, otherPlayerHP;
-    private GameObject atk, otherPlayer, roomContObj, reviveContObj;
+    private GameObject atk, otherPlayer, roomContObj, reviveContObj, MeleeHBObj, RangedHBObj;
     private Quaternion AimAngle;
     private SinputSystems.InputDeviceSlot slot;
     private bool isMouseAiming, isAttacking, isRanged, otherPlayerAlive, isMelee;
@@ -101,6 +101,8 @@ public class PlayerController : MonoBehaviour{
         roomController = roomContObj.GetComponent<RoomController>();
         reviveContObj = GameObject.FindWithTag("ReviveController");
         reviveController = reviveContObj.GetComponent<ReviveController>();
+        MeleeHBObj = GameObject.FindWithTag("MeleeHealthBar");
+        RangedHBObj = GameObject.FindWithTag("RangedHealthBar");
         MoveDir = new Vector2(0.0f, 0.0f);
         AimDir = new Vector2(0.0f, 0.0f);
         for (int i = 0; i < attacks.Length; i++)
@@ -113,23 +115,24 @@ public class PlayerController : MonoBehaviour{
         isAttacking = false;
         isAlive = true;
         isDashing = false;
-        if(gameObject.tag == "RangedPlayer"){
+        isRanged  = (gameObject.tag == "RangedPlayer");
+        isMelee = (gameObject.tag == "MeleePlayer");
+        if(isRanged){
             isRanged = true;
             slot = GameStats.RangedSlot;
+            reviveController.findRanged();
+            RangedHBObj.GetComponent<UpdateRangeHealth>().findRanged();
         }
-        else if(gameObject.tag == "MeleePlayer"){
+        else if(isMelee){
             isMelee = true;
             slot = GameStats.MeleeSlot;
+            reviveController.findMelee();
+            MeleeHBObj.GetComponent<UpdateMeleeHealth>().findMelee();
         }
         if(slot == SinputSystems.InputDeviceSlot.keyboardAndMouse)
             isMouseAiming = true;
-        if(GameStats.isOnline){
+        if(GameStats.isOnline)
             roomController.findPlayer(gameObject.tag);
-            if(isRanged)
-                reviveController.findRanged();
-            else if(isMelee)
-                reviveController.findMelee();
-        }
      }
     void Update(){
         Animator.SetBool("isDashing", isDashing);

@@ -15,7 +15,8 @@ public class ShieldController : MonoBehaviour
     private Color ShieldFullColor = new Color(1.00f, 0.0f, 0.0f, 0.75f);
     private PlayerController playerController;
     public string shieldName; 
-    private bool isMShield;
+    private bool isMShield, isRShield;
+    private GameObject MShieldBar, RShieldbar;
     public void PlayerShielding(string shieldFireKey){
         if(Sinput.GetButton(shieldFireKey, slot) && shield.canFire && shield.cooldownTimer > 0 && !playerController.attackStatus() && !playerController.isDashing){
             shieldSprite.enabled = true;
@@ -40,6 +41,9 @@ public class ShieldController : MonoBehaviour
     // Start is called before the first frame update
     void Start(){
         isMShield = (gameObject.tag == "MeleeShield");
+        isRShield = (gameObject.tag == "RangedShield");
+        MShieldBar = GameObject.FindWithTag("MeleeShieldBar");
+        RShieldbar = GameObject.FindWithTag("RangedShieldBar");
         shieldName = shield.fireKey;
         shield.cooldownTimer = shield.cooldown;
         shield.canFire = true;
@@ -47,11 +51,14 @@ public class ShieldController : MonoBehaviour
         isExposed = 1;
         ShieldAudioSource = gameObject.GetComponent<AudioSource>();
         playerController = Player.GetComponent<PlayerController>();
-        if(isMShield)
+        if(isMShield){
             slot = GameStats.MeleeSlot;
-        else
+            MShieldBar.GetComponent<UpdateMeleeShield>().findMShield();
+        }
+        else if(isRShield){
             slot = GameStats.RangedSlot;
-
+            RShieldbar.GetComponent<UpdateRangedShield>().findRShield();
+        }
         if(GameStats.bothPlayersKB)
             shieldName = shield.altFireKey;
     }
