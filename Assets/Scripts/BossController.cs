@@ -16,7 +16,7 @@ public class BossController : MonoBehaviour
     public Rigidbody2D BossRB2D;
     public AudioSource BossAudioSource;
     public SpriteRenderer BossSprite;
-    GameObject[] Prey = new GameObject[2];
+    public GameObject[] Prey = new GameObject[2];
     public Animator bossAnimator;
     public GameObject MainCamera;
     public CapsuleCollider2D bossCapsuleCollider;
@@ -71,7 +71,7 @@ public class BossController : MonoBehaviour
         BossRB2D.velocity = new Vector2(BossDir.x * angularSpeed, BossDir.y * angularSpeed);
     }
 
-    void seekTargets(){
+    public void seekTargets(){
         Prey[0] = GameObject.FindWithTag("RangedPlayer");
         Prey[1] = GameObject.FindWithTag("MeleePlayer");
         layerMask = LayerMask.GetMask("MeleePlayer","RangedPlayer");

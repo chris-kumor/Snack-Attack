@@ -18,3 +18,4 @@ public class UpdateMeleeHealth : MonoBehaviour{
             MeleePlayerHealthBar.fillAmount = (meleeController.playerHP/meleeController.MaxHP);
     }
 }
+ 

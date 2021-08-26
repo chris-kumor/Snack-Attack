@@ -28,6 +28,8 @@ TagManager:
   - ReviveController
   - MeleeHealthBar
   - RangedHealthBar
+  - MeleeShieldBar
+  - RangedShieldBar
   layers:
   - Default
   - TransparentFX

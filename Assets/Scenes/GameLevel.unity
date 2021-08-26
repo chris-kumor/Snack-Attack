@@ -634,6 +634,10 @@ PrefabInstance:
       propertyPath: boss
       value: 
       objectReference: {fileID: 1759584757}
+    - target: {fileID: 2977855937494317343, guid: d1300339cbfe41349bd5786b5b67a8e4, type: 3}
+      propertyPath: m_TagString
+      value: RangedShieldBar
+      objectReference: {fileID: 0}
     - target: {fileID: 2977855938091690725, guid: d1300339cbfe41349bd5786b5b67a8e4, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -649,6 +653,10 @@ PrefabInstance:
     - target: {fileID: 2977855938544220610, guid: d1300339cbfe41349bd5786b5b67a8e4, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2977855938819957249, guid: d1300339cbfe41349bd5786b5b67a8e4, type: 3}
+      propertyPath: m_TagString
+      value: MeleeShieldBar
       objectReference: {fileID: 0}
     - target: {fileID: 2977855938893743612, guid: d1300339cbfe41349bd5786b5b67a8e4, type: 3}
       propertyPath: m_AnchorMax.x

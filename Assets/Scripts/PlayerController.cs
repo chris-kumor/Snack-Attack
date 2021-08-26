@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour{
     public bool isAlive, AimSpriteEnabled, isDashing, isMoving;
     private Vector2 MoveDir, AimDir;
     private float colorTimer, otherPlayerHP;
-    private GameObject atk, otherPlayer, roomContObj, reviveContObj, MeleeHBObj, RangedHBObj;
+    private GameObject atk, otherPlayer, roomContObj, reviveContObj, MeleeHBObj, RangedHBObj, Boss;
     private Quaternion AimAngle;
     private SinputSystems.InputDeviceSlot slot;
     private bool isMouseAiming, isAttacking, isRanged, otherPlayerAlive, isMelee;
@@ -65,7 +65,6 @@ public class PlayerController : MonoBehaviour{
             UpdateAimSpriteTransform();
         }
     }
-
     public Vector2 GetAimDir(){
         return AimDir;
     }
@@ -103,6 +102,8 @@ public class PlayerController : MonoBehaviour{
         reviveController = reviveContObj.GetComponent<ReviveController>();
         MeleeHBObj = GameObject.FindWithTag("MeleeHealthBar");
         RangedHBObj = GameObject.FindWithTag("RangedHealthBar");
+        Boss = GameObject.FindWithTag("Boss");
+        Boss.GetComponent<BossController>().seekTargets();
         MoveDir = new Vector2(0.0f, 0.0f);
         AimDir = new Vector2(0.0f, 0.0f);
         for (int i = 0; i < attacks.Length; i++)
@@ -221,7 +222,6 @@ public class PlayerController : MonoBehaviour{
         if (colorTimer > 0)
             colorTimer -= Time.deltaTime;
         Player_Sprite.color = Color.Lerp(Color.white, desiredColor, colorTimer/colorTime);
-
         //Movement
         if (isMoving && (!isAttacking || isRanged) && isAlive)
             PlayerRB2D.MovePosition(PlayerRB2D.transform.position + (new Vector3(MoveDir.x,MoveDir.y, 1.00f)  * speed * Time.deltaTime));
