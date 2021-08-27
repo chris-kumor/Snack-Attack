@@ -1756,7 +1756,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RangedPlayerHealthBar: {fileID: 2977855937851328607}
-  RangedPlayer: {fileID: 0}
 --- !u!1 &2977855937858757213
 GameObject:
   m_ObjectHideFlags: 0
@@ -1791,7 +1790,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.000061035156}
+  m_AnchoredPosition: {x: 0, y: 249.61555}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &2977855937877673450
@@ -1915,7 +1914,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 2977855938091690725}
   m_Direction: 3
   m_Value: 1
-  m_Size: 1
+  m_Size: 0.5
   m_NumberOfSteps: 10
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3319,7 +3318,7 @@ GameObject:
   - component: {fileID: 2977855938696248636}
   m_Layer: 5
   m_Name: ReviveStatus
-  m_TagString: Untagged
+  m_TagString: ReviveController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3402,6 +3401,8 @@ MonoBehaviour:
   MReviveIcon: {fileID: 0}
   RReviveIcon: {fileID: 0}
   ReviveStatus: {fileID: 2977855938696248637}
+  rangedController: {fileID: 0}
+  meleeController: {fileID: 0}
 --- !u!1 &2977855938808818631
 GameObject:
   m_ObjectHideFlags: 0

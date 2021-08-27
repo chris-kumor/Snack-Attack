@@ -42,6 +42,8 @@ public class PUN2_GameLobby : MonoBehaviourPunCallbacks
     public override void OnConnectedToMaster(){
         Debug.Log("OnConnectedToMaster");
         //Next Step Join Lobby
+        GameStats.isOnline = true;
+        GameStats.bothPlayersKB = false;
         PhotonNetwork.JoinLobby(TypedLobby.Default);
     }
     public override void OnRoomListUpdate(List<RoomInfo> roomList){
@@ -122,6 +124,8 @@ public class PUN2_GameLobby : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom(){
         Debug.Log("OnJoinedRoom");
         PhotonNetwork.NickName = playerName;
+        GameStats.bothPlayersKB = false;
+        GameStats.isOnline = true;
     }
     public override void OnJoinRandomFailed(short returnCode, string message){
         Debug.Log("OnJoinRandomFailed called. Room doesnt exist, is full or closed.");
@@ -130,6 +134,7 @@ public class PUN2_GameLobby : MonoBehaviourPunCallbacks
     public override void OnCreatedRoom(){
         Debug.Log("OnCreatedRoom");
         PhotonNetwork.NickName = playerName;
+        GameStats.bothPlayersKB = false;
         GameStats.isOnline = true;
         PhotonNetwork.LoadLevel("GameLevel");
     }

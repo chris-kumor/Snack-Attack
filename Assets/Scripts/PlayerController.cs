@@ -90,20 +90,25 @@ public class PlayerController : MonoBehaviour{
         otherPlayerController = otherPlayer.GetComponent<PlayerController>();
         otherPlayerHP = otherPlayer.GetComponent<PlayerController>().playerHP;
     }
-    // Start is called before the first frame update
-    void Start(){
-        isMoving = false;
-        isRanged = false;
-        isMelee = false;
-        isMouseAiming = false;
+    void Awake()
+    {
         roomContObj = GameObject.FindWithTag("RoomController");
         roomController = roomContObj.GetComponent<RoomController>();
         reviveContObj = GameObject.FindWithTag("ReviveController");
         reviveController = reviveContObj.GetComponent<ReviveController>();
+        reviveController.findRanged();
+        reviveController.findMelee();
         MeleeHBObj = GameObject.FindWithTag("MeleeHealthBar");
         RangedHBObj = GameObject.FindWithTag("RangedHealthBar");
+        RangedHBObj.GetComponent<UpdateRangeHealth>().findRanged();
+        MeleeHBObj.GetComponent<UpdateMeleeHealth>().findMelee();
         Boss = GameObject.FindWithTag("Boss");
         Boss.GetComponent<BossController>().seekTargets();
+    }
+    // Start is called before the first frame update
+    void Start(){
+        isMoving = false;
+        isMouseAiming = false;
         MoveDir = new Vector2(0.0f, 0.0f);
         AimDir = new Vector2(0.0f, 0.0f);
         for (int i = 0; i < attacks.Length; i++)
@@ -118,22 +123,24 @@ public class PlayerController : MonoBehaviour{
         isDashing = false;
         isRanged  = (gameObject.tag == "RangedPlayer");
         isMelee = (gameObject.tag == "MeleePlayer");
+        Debug.Log(isRanged);
+        Debug.Log(isMelee);
         if(isRanged){
-            isRanged = true;
-            slot = GameStats.RangedSlot;
-            reviveController.findRanged();
-            RangedHBObj.GetComponent<UpdateRangeHealth>().findRanged();
+            Debug.Log("Ranged Player is here.");
+            if(!GameStats.isOnline)
+                slot = GameStats.RangedSlot;
         }
         else if(isMelee){
-            isMelee = true;
-            slot = GameStats.MeleeSlot;
-            reviveController.findMelee();
-            MeleeHBObj.GetComponent<UpdateMeleeHealth>().findMelee();
+            Debug.Log("Melee Player is here.");
+            if(!GameStats.isOnline)
+                slot = GameStats.MeleeSlot;
         }
         if(slot == SinputSystems.InputDeviceSlot.keyboardAndMouse)
             isMouseAiming = true;
-        if(GameStats.isOnline)
+        if(GameStats.isOnline){
             roomController.findPlayer(gameObject.tag);
+            slot = GameStats.localPlayerSlot;
+        }
      }
     void Update(){
         Animator.SetBool("isDashing", isDashing);
